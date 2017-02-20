@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sag-vote</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Create Nomination:</h1>
+    <form action="api/leadActor" method="post">
+      <input type="text" name="leadActorName" placeholder ="Lead Actor" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <form action="api/leadActress" method="post">
+      <input type="text" name="leadActressName" placeholder ="Lead Actress" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <form action="api/supportingActor" method="post">
+      <input type="text" name="supportingActorName" placeholder ="Supporting Actor" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <form action="api/supportingActress" method="post">
+      <input type="text" name="supportingActressName" placeholder ="Supporting Actress" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <form action="api/outstandingEnsemble" method="post">
+      <input type="text" name="outstandingEnsembleMovie" placeholder ="Outstanding Ensemble" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+      <form action="api/bestStunts" method="post">
+    <input type="text" name="bestStuntsMovie" placeholder ="Best Stunt" /><br />
+    <input type="submit" value="Submit" />
+  </form>
+
+  </body>
+</html>

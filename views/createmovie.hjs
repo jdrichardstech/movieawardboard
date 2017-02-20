@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sag-vote</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Create Movie:</h1>
+    <form action="api/movie" method="post">
+    <input type="text" name="movieName" placeholder ="movie name" /><br />
+    <input type="text" name="leadActor" placeholder ="lead actor" /><br />
+    <input type="text" name="leadActress" placeholder ="lead actress" /><br />
+    <input type="text" name="supportingActor" placeholder ="supporting actor" /><br />
+    <input type="text" name="supportingActress" placeholder ="supporting actress" /><br />
+    <input type="submit" value="Submit" />
+  </form>
+  </body>
+</html>
