@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const SupportingActress = (props)=>{
   return(
     <div>

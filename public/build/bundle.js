@@ -31450,7 +31450,6 @@
 	    value: function submitNomination(event) {
 	      var updatedList = Object.assign([], this.state.list);
 	      updatedList.push(this.state.nomination);
-	
 	      _superagent2.default.post('/api/beststunts').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
 	        if (err || !res.ok) {
 	          alert('Oh no! error');
@@ -32158,29 +32157,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _BestStunt = __webpack_require__(180);
-	
-	var _BestStunt2 = _interopRequireDefault(_BestStunt);
-	
-	var _LeadActor = __webpack_require__(181);
-	
-	var _LeadActor2 = _interopRequireDefault(_LeadActor);
-	
-	var _LeadActress = __webpack_require__(182);
-	
-	var _LeadActress2 = _interopRequireDefault(_LeadActress);
-	
-	var _SupportingActor = __webpack_require__(183);
-	
-	var _SupportingActor2 = _interopRequireDefault(_SupportingActor);
-	
-	var _SupportingActress = __webpack_require__(184);
-	
-	var _SupportingActress2 = _interopRequireDefault(_SupportingActress);
-	
-	var _OutstandingEnsemble = __webpack_require__(185);
-	
-	var _OutstandingEnsemble2 = _interopRequireDefault(_OutstandingEnsemble);
+	var _presentation = __webpack_require__(175);
 	
 	var _superagent = __webpack_require__(245);
 	

@@ -31,4 +31,5 @@ class MovieTrailer extends Component{
     )
   }
 }
+
 export default MovieTrailer

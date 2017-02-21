@@ -13,7 +13,6 @@ class CreateMovieNote extends Component{
     }
   }
 
-
   handleChange(event){
     let updatedNote = Object.assign({}, this.state.movieNote)
     updatedNote[event.target.id] = event.target.value
@@ -28,7 +27,6 @@ class CreateMovieNote extends Component{
     this.props.createMovieNote(this.state.movieNote)
   }
 
-
   render(){
     return(
       <div>
@@ -39,6 +37,5 @@ class CreateMovieNote extends Component{
     )
   }
 }
-
 
 export default CreateMovieNote

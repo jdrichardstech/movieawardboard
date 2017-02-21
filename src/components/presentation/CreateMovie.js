@@ -24,8 +24,6 @@ class CreateMovie extends Component{
     this.setState({
       movie: updatedMovie
     })
-
-
   }
 
   submitMovie(){
@@ -46,8 +44,5 @@ class CreateMovie extends Component{
     )
   }
 }
-
-
-
 
 export default CreateMovie

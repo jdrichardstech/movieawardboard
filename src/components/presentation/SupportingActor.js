@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const SupportingActor = (props)=>{
   return(
     <div>

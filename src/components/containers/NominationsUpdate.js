@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
-import BestStunt from '../presentation/BestStunt'
-import LeadActor from '../presentation/LeadActor'
-import LeadActress from '../presentation/LeadActress'
-import SupportingActor from '../presentation/SupportingActor'
-import SupportingActress from '../presentation/SupportingActress'
-import OutstandingEnsemble from '../presentation/OutstandingEnsemble'
+import { BestStunt, LeadActor, LeadActress, SupportingActor,SupportingActress, OutstandingEnsemble  } from '../presentation'
 import superagent from 'superagent'
 import styles from './styles'
 import { Link } from 'react-router'
@@ -36,10 +31,6 @@ class NominationsUpdate extends Component{
   componentDidMount(){
     console.log('MovieName: ' + JSON.stringify(this.props.list))
   }
-
-
-
-
 
   updateCategory(event){
     console.log(this.state.category.title)
@@ -133,7 +124,6 @@ class NominationsUpdate extends Component{
     })*/}
 
     return(
-
       <div >
 
         {/*}<ul style={styles.nominations.list}>
@@ -153,10 +143,7 @@ class NominationsUpdate extends Component{
         <input onChange ={this.updateNomination.bind(this)} className="form-control" type="text" id={this.state.category.nominationId} placeholder="nomination" /><br />
         <button style={styles.nominations.button}  onClick={this.submitNomination.bind(this)}  className="btn btn-success">Nominate</button> &nbsp;
         <Link to = "/nominations"><button style={styles.nominations.button}  type="" className="btn btn-info">View Nominations</button></Link>
-
-
-      <br />
-
+      	<br />
       </div>
     )
   }

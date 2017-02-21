@@ -53,27 +53,26 @@ class MoviesNowPlaying extends Component{
       })
     }
 
-
     return(
       <div>
-      <Header />
-      <br />
-    <div className="container">
-      <center>
-        <h1>Now In Theatres</h1>
+	      <Header />
+	      <br />
+		    <div className="container">
+		      <center>
+		        <h1>Now In Theatres</h1>
 
-        <h4>Movies currently released for public viewing</h4>
-        <hr style={{width:'40%'}}/>
-      </center>
-      <br />
-          <div className="clearfix">
-            <ul style={{listStyleType:'none'}}>
-              {movieList}
-            </ul>
-          </div>
-          {/*<a target="_blank" href="http://api.themoviedb.org/3/movie/330459/videos?api_key=4160bdc56f74445097c8012631f85743">Trailer</a>
-          */}
-      </div>
+		        <h4>Movies currently released for public viewing</h4>
+		        <hr style={{width:'40%'}}/>
+		      </center>
+		      <br />
+		          <div className="clearfix">
+		            <ul style={{listStyleType:'none'}}>
+		              {movieList}
+		            </ul>
+		          </div>
+		          {/*<a target="_blank" href="http://api.themoviedb.org/3/movie/330459/videos?api_key=4160bdc56f74445097c8012631f85743">Trailer</a>
+		          */}
+		      </div>
       </div>
     )
   }

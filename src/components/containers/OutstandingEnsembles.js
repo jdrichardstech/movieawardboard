@@ -3,7 +3,6 @@ import OutstandingEnsemble from '../presentation/OutstandingEnsemble'
 import superagent from 'superagent'
 import styles from './styles'
 
-
 class OutstandingEnsembles extends Component{
   constructor(props){
     super(props)
@@ -16,25 +15,24 @@ class OutstandingEnsembles extends Component{
   }
 
   componentDidMount(){
-  		superagent
-  		.get('/api/outstandingensemble')
-  		.query(null)
-  		.set('Accept', 'application/json')
-  		.end((err, response) => {
-  			if (err){
-  				alert('ERROR: '+err)
-  				return
-  			}
+		superagent
+		.get('/api/outstandingensemble')
+		.query(null)
+		.set('Accept', 'application/json')
+		.end((err, response) => {
+			if (err){
+				alert('ERROR: '+err)
+				return
+			}
 
-  			// console.log(JSON.stringify(response.body))
-  			let results = response.body.results
+			// console.log(JSON.stringify(response.body))
+			let results = response.body.results
 
-  			this.setState({
-  				list: results
-  			})
-  		})
-  	}
-
+			this.setState({
+				list: results
+			})
+		})
+	}
 
   updateNomination(event){
     let updatedNomination = Object.assign({}, this.state.nomination)
@@ -63,7 +61,6 @@ class OutstandingEnsembles extends Component{
 	  })
   }
 
-
   render(){
     var listItem = this.state.list.map((nomination, i)=>{
       return(
@@ -79,12 +76,9 @@ class OutstandingEnsembles extends Component{
       {/*   <input onChange ={this.updateNomination.bind(this)} className="form-control" type="text" id="outstandingEnsembleMovie" placeholder="Supporting Actor" /><br />
         <button style={{marginBottom:20}}  onClick={this.submitNomination.bind(this)}  className="btn btn-success">Nominate</button>
         */}
-
       </div>
     )
   }
 }
-
-
 
 export default OutstandingEnsembles

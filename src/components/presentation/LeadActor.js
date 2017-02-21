@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const LeadActor = (props)=>{
   return(
     <div>
