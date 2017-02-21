@@ -6,18 +6,17 @@ import styles from './styles'
 import store from '../../store/store'
 import actions from '../../actions/actions'
 import { connect } from 'react-redux'
-import Sidebar from './Sidebar'
+
 
 class Movies extends Component{
   constructor(props){
     super(props)
     this.state={
-      // list:[]
+
     }
   }
 
   componentDidMount(){
-
     console.log('componentDidMount: ')
   		APIManager.get('/api/movie', null, (err, response) => {
   			if (err){
@@ -35,11 +34,8 @@ class Movies extends Component{
 	  this.props.selectMovie(index)
 	}
 
-
 	handleMovieSubmit(movie){
-
 	  let updatedMovie = Object.assign({}, movie)
-
 		APIManager.post('/api/movie', updatedMovie, (err, response) => {
 			if (err){
 				alert('ERROR: '+err.message)
@@ -50,7 +46,6 @@ class Movies extends Component{
 	}
 
   render(){
-
     const movieList = this.props.list.map((movie, i) => {
       let selected = (i==this.props.selected)
       return(
@@ -100,7 +95,5 @@ const stateToProps = (state) => {
     selected:state.movies.selected
   }
 }
-
-
 
 export default connect (stateToProps, dispatchToProps)(Movies)

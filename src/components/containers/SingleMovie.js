@@ -14,22 +14,21 @@ class SingleMovie extends Component{
 
   componentDidMount(){
 
-    let url=`https://api.themoviedb.org/3/movie/${this.props.params.id}?api_key=4160bdc56f74445097c8012631f85743&append_to_response=videos
-  `
+    let url=
+		`https://api.themoviedb.org/3/movie/${this.props.params.id}?api_key=4160bdc56f74445097c8012631f85743&append_to_response=videos`
 
-  superagent
-  .get(url)
-  .query(null)
-  .set('Accept', 'application/json')
-  .end((err, response) => {
-    if (err){
-      alert('ERROR: '+err)
-      return
-    }
+	  superagent
+	  .get(url)
+	  .query(null)
+	  .set('Accept', 'application/json')
+	  .end((err, response) => {
+	    if (err){
+	      alert('ERROR: '+err)
+	      return
+	    }
 
-     console.log('SINGLEMOVIE BODY: '+JSON.stringify(response.body))
+   // 	console.log('SINGLEMOVIE BODY: '+JSON.stringify(response.body))
     let movie = response.body
-
     let posterpath=movie.poster_path
     let youtubeID = null
     if(movie.videos['results'].length !=0){
@@ -44,8 +43,7 @@ class SingleMovie extends Component{
     let voteCount = movie.vote_count
     let voteAverage = movie.vote_average
     let imdbID = movie.imdb_id
-    console.log("SINGLE POSTER PATH: " + posterpath)
-
+    // console.log("SINGLE POSTER PATH: " + posterpath)
 
     this.setState({
       posterpath,
@@ -81,7 +79,5 @@ class SingleMovie extends Component{
     )
   }
 }
-
-
 
 export default SingleMovie

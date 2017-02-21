@@ -21739,10 +21739,6 @@
 	
 	var _reactRedux = __webpack_require__(278);
 	
-	var _Sidebar = __webpack_require__(285);
-	
-	var _Sidebar2 = _interopRequireDefault(_Sidebar);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21759,9 +21755,7 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Movies.__proto__ || Object.getPrototypeOf(Movies)).call(this, props));
 	
-	    _this.state = {
-	      // list:[]
-	    };
+	    _this.state = {};
 	    return _this;
 	  }
 	
@@ -21793,7 +21787,6 @@
 	      var _this3 = this;
 	
 	      var updatedMovie = Object.assign({}, movie);
-	
 	      _utils.APIManager.post('/api/movie', updatedMovie, function (err, response) {
 	        if (err) {
 	          alert('ERROR: ' + err.message);
@@ -31151,57 +31144,7 @@
 	}
 
 /***/ },
-/* 285 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _presentation = __webpack_require__(175);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Sidebar = function (_Component) {
-	  _inherits(Sidebar, _Component);
-	
-	  function Sidebar() {
-	    _classCallCheck(this, Sidebar);
-	
-	    return _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).apply(this, arguments));
-	  }
-	
-	  _createClass(Sidebar, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'hello sidebar'
-	      );
-	    }
-	  }]);
-	
-	  return Sidebar;
-	}(_react.Component);
-	
-	exports.default = Sidebar;
-
-/***/ },
+/* 285 */,
 /* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -31256,27 +31199,6 @@
 	  }
 	
 	  _createClass(MovieNotes, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      // console.log('componentDidUpdate')
-	      // let selectedMovie = this.props.movieList[this.props.selected]
-	      // if(selectedMovie == null)
-	      // console.log('no movie has been selected')
-	      // return
-	      //
-	      //
-	      // APIManager.get('/api/movienotes', {seletedMovie: selectedMovie._id}, (error, response)=>{
-	      //   if(error){
-	      //     alert('error' + error.message)
-	      //     return
-	      //   }
-	      //   // console.log('notes' + JSON.stringify(response.results))
-	      //
-	      //   let notes = response.results
-	      //   this.props.notesReceived(notes)
-	      // })
-	    }
-	  }, {
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate() {
 	      var _this2 = this;
@@ -31659,7 +31581,6 @@
 	    value: function submitNomination(event) {
 	      var updatedList = Object.assign([], this.state.list);
 	      updatedList.push(this.state.nomination);
-	
 	      _superagent2.default.post('/api/leadactor').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
 	        if (err || !res.ok) {
 	          alert('Oh no! error');
@@ -31674,7 +31595,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
@@ -31805,7 +31725,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
@@ -31918,7 +31837,6 @@
 	    value: function submitNomination(event) {
 	      var updatedList = Object.assign([], this.state.list);
 	      updatedList.push(this.state.nomination);
-	
 	      _superagent2.default.post('/api/supportingActor').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
 	        if (err || !res.ok) {
 	          alert('Oh no! error');
@@ -31933,7 +31851,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      var borderThis = {
 	        border: '1px solid #ddd'
 	      };
@@ -32067,7 +31984,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
@@ -32183,7 +32099,6 @@
 	    value: function submitNomination(event) {
 	      var updatedList = Object.assign([], this.state.list);
 	      updatedList.push(this.state.nomination);
-	
 	      _superagent2.default.post('/api/outstandingEnsemble').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
 	        if (err || !res.ok) {
 	          alert('Oh no! error');
@@ -32198,7 +32113,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
@@ -32585,7 +32499,6 @@
 	          voteCount: voteCount,
 	          moviedBId: moviedBId,
 	          selected: selected
-	
 	        });
 	        // console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
 	      });
@@ -32712,7 +32625,7 @@
 	    value: function componentDidMount() {
 	      var _this2 = this;
 	
-	      var url = 'https://api.themoviedb.org/3/movie/' + this.props.params.id + '?api_key=4160bdc56f74445097c8012631f85743&append_to_response=videos\n  ';
+	      var url = 'https://api.themoviedb.org/3/movie/' + this.props.params.id + '?api_key=4160bdc56f74445097c8012631f85743&append_to_response=videos';
 	
 	      _superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
 	        if (err) {
@@ -32720,9 +32633,8 @@
 	          return;
 	        }
 	
-	        console.log('SINGLEMOVIE BODY: ' + JSON.stringify(response.body));
+	        // 	console.log('SINGLEMOVIE BODY: '+JSON.stringify(response.body))
 	        var movie = response.body;
-	
 	        var posterpath = movie.poster_path;
 	        var youtubeID = null;
 	        if (movie.videos['results'].length != 0) {
@@ -32737,7 +32649,7 @@
 	        var voteCount = movie.vote_count;
 	        var voteAverage = movie.vote_average;
 	        var imdbID = movie.imdb_id;
-	        console.log("SINGLE POSTER PATH: " + posterpath);
+	        // console.log("SINGLE POSTER PATH: " + posterpath)
 	
 	        _this2.setState({
 	          posterpath: posterpath,
@@ -33367,15 +33279,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _superagent = __webpack_require__(245);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
-	
 	var _reactRouter = __webpack_require__(188);
 	
 	var _Header = __webpack_require__(297);
 	
 	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _superagent = __webpack_require__(245);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33405,24 +33317,26 @@
 	      var _this2 = this;
 	
 	      //this is to search for a particular movie
-	      _superagent2.default.get('https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=Star%20Wars&page=1&include_adult=false');
+	      // ajax.get('https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=Star%20Wars&page=1&include_adult=false')
 	      //latest movies
-	      _superagent2.default.get('https://api.themoviedb.org/3/movie/now_playing?api_key=4160bdc56f74445097c8012631f85743&language=en-US&page=1').end(function (error, response) {
-	        if (!error && response) {
-	          var movies = response.body.results;
-	          _this2.setState({
-	            movies: movies
-	          });
-	          console.log("MOVIES: " + JSON.stringify(_this2.state.movies));
-	        } else {
-	          console.log('There was an error fetching from Movie', error);
+	      var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=4160bdc56f74445097c8012631f85743&language=en-US&page=1';
+	
+	      _superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+	        if (err) {
+	          alert('ERROR: ' + err);
+	          return;
 	        }
+	
+	        console.log('moviesnowplaying: ' + JSON.stringify(response.body.results));
+	        var movies = response.body.results;
+	        _this2.setState({
+	          movies: movies
+	        });
 	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      var movieList = null;
 	      if (this.state.movies != null) {
 	        var movies = this.state.movies;
@@ -33458,7 +33372,7 @@
 	              { style: { marginBottom: 50 }, key: i },
 	              _react2.default.createElement(
 	                _reactRouter.Link,
-	                { to: '/' + movie.title },
+	                { to: '/singlemovie/' + movie.id },
 	                _react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
 	              ),
 	              ' '
@@ -33471,14 +33385,26 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_Header2.default, null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'container' },
 	          _react2.default.createElement(
-	            'h1',
+	            'center',
 	            null,
-	            ' Now Playing'
+	            _react2.default.createElement(
+	              'h1',
+	              null,
+	              'Now In Theatres'
+	            ),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Movies currently released for public viewing'
+	            ),
+	            _react2.default.createElement('hr', { style: { width: '40%' } })
 	          ),
+	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'clearfix' },
@@ -33610,7 +33536,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _react = __webpack_require__(1);
@@ -33654,78 +33580,77 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var NominationInputs = function NominationInputs() {
-	
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(_Header2.default, null),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'container' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'row' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col-md-12' },
-	          _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Potential Nominations'
-	          ),
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            'Pick five from each category to nominate'
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null)
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'row' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col-md-12' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'div',
-	              { style: _styles2.default.layout.nomination, className: 'col-md-2' },
-	              _react2.default.createElement(_LeadActors2.default, null)
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { style: _styles2.default.layout.nomination, className: 'col-md-2' },
-	              _react2.default.createElement(_LeadActresses2.default, null)
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { style: _styles2.default.layout.nomination, className: 'col-md-2' },
-	              _react2.default.createElement(_SupportingActors2.default, null)
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { style: _styles2.default.layout.nomination, className: 'col-md-2' },
-	              _react2.default.createElement(_SupportingActresses2.default, null)
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { style: _styles2.default.layout.nomination, className: 'col-md-2' },
-	              _react2.default.createElement(_OutstandingEnsembles2.default, null)
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { style: _styles2.default.layout.nomination, className: 'col-md-2' },
-	              _react2.default.createElement(_BestStunts2.default, null)
-	            )
-	          )
-	        )
-	      )
-	    )
-	  );
+			return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_Header2.default, null),
+					_react2.default.createElement(
+							'div',
+							{ className: 'container' },
+							_react2.default.createElement(
+									'div',
+									{ className: 'row' },
+									_react2.default.createElement(
+											'div',
+											{ className: 'col-md-12' },
+											_react2.default.createElement(
+													'h1',
+													null,
+													'Potential Nominations'
+											),
+											_react2.default.createElement(
+													'h3',
+													null,
+													'Pick five from each category to nominate'
+											),
+											_react2.default.createElement('br', null),
+											_react2.default.createElement('br', null)
+									)
+							),
+							_react2.default.createElement(
+									'div',
+									{ className: 'row' },
+									_react2.default.createElement(
+											'div',
+											{ className: 'col-md-12' },
+											_react2.default.createElement(
+													'div',
+													{ className: 'row' },
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_LeadActors2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_LeadActresses2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_SupportingActors2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_SupportingActresses2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_OutstandingEnsembles2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_BestStunts2.default, null)
+													)
+											)
+									)
+							)
+					)
+			);
 	};
 	
 	exports.default = NominationInputs;

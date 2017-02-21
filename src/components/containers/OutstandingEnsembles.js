@@ -16,8 +16,6 @@ class OutstandingEnsembles extends Component{
   }
 
   componentDidMount(){
-
-
   		superagent
   		.get('/api/outstandingensemble')
   		.query(null)
@@ -44,41 +42,35 @@ class OutstandingEnsembles extends Component{
     this.setState({
       nomination: updatedNomination
     })
-
   }
 
   submitNomination(event){
     let updatedList = Object.assign([],this.state.list)
     updatedList.push(this.state.nomination)
-
-
-  superagent
-  .post('/api/outstandingEnsemble')
-  .send(this.state.nomination)
-  .set('Accept', 'application/json')
-  .end(function(err, res){
-    if (err || !res.ok) {
-      alert('Oh no! error');
-    } else {
-      console.log('outstandingEnsemble posted');
-    }
-  });
-  this.setState({
-    list:updatedList
-  })
+	  superagent
+	  .post('/api/outstandingEnsemble')
+	  .send(this.state.nomination)
+	  .set('Accept', 'application/json')
+	  .end(function(err, res){
+	    if (err || !res.ok) {
+	      alert('Oh no! error');
+	    } else {
+	      console.log('outstandingEnsemble posted');
+	    }
+	  });
+	  this.setState({
+	    list:updatedList
+	  })
   }
 
 
   render(){
-
-
     var listItem = this.state.list.map((nomination, i)=>{
       return(
          <li key={i}><OutstandingEnsemble currentNomination={nomination} /></li>
        )
     })
     return(
-
       <div style={styles.nominations.border}>
         <h4>Outstanding Ensemble:</h4>
         <ol style={styles.nominations.other}>

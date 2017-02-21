@@ -16,26 +16,6 @@ class MovieNotes extends Component{
     }
   }
 
-  componentDidMount(){
-    // console.log('componentDidUpdate')
-    // let selectedMovie = this.props.movieList[this.props.selected]
-    // if(selectedMovie == null)
-    // console.log('no movie has been selected')
-    // return
-    //
-    //
-    // APIManager.get('/api/movienotes', {seletedMovie: selectedMovie._id}, (error, response)=>{
-    //   if(error){
-    //     alert('error' + error.message)
-    //     return
-    //   }
-    //   // console.log('notes' + JSON.stringify(response.results))
-    //
-    //   let notes = response.results
-    //   this.props.notesReceived(notes)
-    // })
-  }
-
   componentDidUpdate(){
     console.log('componentDidUpdate')
     let selectedMovie = this.props.movieList[this.props.selected]

@@ -7,48 +7,45 @@ import OutstandingEnsembles from '../containers/OutstandingEnsembles'
 import BestStunts from '../containers/BestStunts'
 import Header from '../containers/Header'
 import { Link } from 'react-router'
-
 import styles from './styles'
 
-
-const NominationInputs = ()=>{
-
+const NominationInputs = () => {
   return(
     <div>
-    <Header />
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <h1>Potential Nominations</h1>
-          <h3>Pick five from each category to nominate</h3><br /><br />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-12">
-          <div className="row">
-            <div style={styles.layout.nomination} className="col-md-2">
-              <LeadActors />
-            </div>
-            <div style={styles.layout.nomination} className="col-md-2">
-              <LeadActresses />
-            </div>
-            <div style={styles.layout.nomination} className="col-md-2">
-              <SupportingActors />
-            </div>
-            <div style={styles.layout.nomination} className="col-md-2">
-              <SupportingActresses />
-            </div>
-            <div style={styles.layout.nomination} className="col-md-2">
-              <OutstandingEnsembles />
-            </div>
-            <div style={styles.layout.nomination} className="col-md-2">
-              <BestStunts />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	    <Header />
+	    <div className="container">
+	      <div className="row">
+	        <div className="col-md-12">
+	          <h1>Potential Nominations</h1>
+	          <h3>Pick five from each category to nominate</h3><br /><br />
+	        </div>
+	      </div>
+	      <div className="row">
+	        <div className="col-md-12">
+	          <div className="row">
+	            <div style={styles.layout.nomination} className="col-md-2">
+	              <LeadActors />
+	            </div>
+	            <div style={styles.layout.nomination} className="col-md-2">
+	              <LeadActresses />
+	            </div>
+	            <div style={styles.layout.nomination} className="col-md-2">
+	              <SupportingActors />
+	            </div>
+	            <div style={styles.layout.nomination} className="col-md-2">
+	              <SupportingActresses />
+	            </div>
+	            <div style={styles.layout.nomination} className="col-md-2">
+	              <OutstandingEnsembles />
+	            </div>
+	            <div style={styles.layout.nomination} className="col-md-2">
+	              <BestStunts />
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
   )
 }
 

@@ -3,11 +3,7 @@ import React, { Component } from 'react'
 // import MovieNotes from '../containers/MovieNotes'
 import { MovieDBInfo, MovieNotes, Movies, Header } from '../containers'
 import NominationsUpdate from '../containers/NominationsUpdate'
-
 import { Link } from 'react-router'
-
-
-
 
 const Home = ()=>{
     return(
@@ -42,12 +38,7 @@ const Home = ()=>{
           </div>
       </div>
     </div>
-
-
-
-
-
-    )
+  )
 }
 
 export default Home

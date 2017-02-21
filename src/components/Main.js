@@ -7,14 +7,7 @@ class Main extends Component{
     return(
       <div className="wrapper">
         {this.props.children}
-
-
-
-
-
         <div className="footer-v1">
-
-
           <div className="copyright">
             <div className="container">
               <div className="row">
@@ -24,8 +17,6 @@ class Main extends Component{
                     <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
                   </p>
                 </div>
-
-
                 <div className="col-md-6">
                   <ul className="footer-socials list-inline">
                     <li>
@@ -65,21 +56,11 @@ class Main extends Component{
                     </li>
                   </ul>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
-
-
-
-
-
-
-
-
       </div>
-
     )
   }
 }

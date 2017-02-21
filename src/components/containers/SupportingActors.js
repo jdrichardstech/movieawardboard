@@ -16,8 +16,6 @@ class SupportingActors extends Component{
   }
 
   componentDidMount(){
-
-
   		superagent
   		.get('/api/supportingactor')
   		.query(null)
@@ -41,34 +39,28 @@ class SupportingActors extends Component{
     this.setState({
       nomination: updatedNomination
     })
-
   }
 
   submitNomination(event){
     let updatedList = Object.assign([],this.state.list)
     updatedList.push(this.state.nomination)
-
-
-  superagent
-  .post('/api/supportingActor')
-  .send(this.state.nomination)
-  .set('Accept', 'application/json')
-  .end(function(err, res){
-    if (err || !res.ok) {
-      alert('Oh no! error');
-    } else {
-      console.log('posted ' + JSON.stringify(res.body));
-    }
-  });
-  this.setState({
-    list:updatedList
-  })
+	  superagent
+	  .post('/api/supportingActor')
+	  .send(this.state.nomination)
+	  .set('Accept', 'application/json')
+	  .end(function(err, res){
+	    if (err || !res.ok) {
+	      alert('Oh no! error');
+	    } else {
+	      console.log('posted ' + JSON.stringify(res.body));
+	    }
+	  });
+	  this.setState({
+	    list:updatedList
+	  })
   }
 
-
   render(){
-
-
     var borderThis = {
       border:'1px solid #ddd'
     }
@@ -85,15 +77,12 @@ class SupportingActors extends Component{
         <ol style={styles.nominations.other}>
           {listItem}
         </ol>
-    {/*     <input onChange ={this.updateNomination.bind(this)} className="form-control" type="text" id="supportingActorName" placeholder="Supporting Actor" />
-        <button style={{marginBottom:20}}  onClick={this.submitNomination.bind(this)}  className="btn btn-success">Nominate</button>
-        */}
-
+	    {/*     <input onChange ={this.updateNomination.bind(this)} className="form-control" type="text" id="supportingActorName" placeholder="Supporting Actor" />
+	        <button style={{marginBottom:20}}  onClick={this.submitNomination.bind(this)}  className="btn btn-success">Nominate</button>
+	        */}
       </div>
     )
   }
 }
-
-
 
 export default SupportingActors

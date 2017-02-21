@@ -3,14 +3,10 @@ import ajax from 'superagent'
 import { connect } from 'react-redux'
 import store from '../../store/store'
 import actions from '../../actions/actions'
-
 import { Link } from 'react-router'
 import superagent from 'superagent'
 
-
-
 class MovieDBInfo extends Component{
-
   constructor(props){
     super(props)
     this.state={
@@ -55,28 +51,23 @@ class MovieDBInfo extends Component{
       let selected = this.props.selected
 
 
-        this.setState({
-          movie,
-          posterPath,
-          overview,
-          popularity,
-          voteCount,
-          moviedBId,
-          selected
-
-        })
-        // console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
+      this.setState({
+        movie,
+        posterPath,
+        overview,
+        popularity,
+        voteCount,
+        moviedBId,
+        selected
       })
-
-
-
+        // console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
+    })
   }
 
   render(){
 
     return(
       <div>
-
         <div>
           <center>
           <Link to={"/singlemovie/"+this.state.moviedBId}><img src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`} /></Link>
@@ -86,7 +77,6 @@ class MovieDBInfo extends Component{
           Vote Count:<span style={{fontSize:'1em', color:'#5cb85c'}}> {this.state.voteCount}</span></p>
         </center><br /><br /><br />
         </div>
-
       </div>
     )
   }
@@ -104,6 +94,5 @@ const dispatchToProps = (dispatch)=>{
 
   }
 }
-
 
 export default connect(stateToProps, dispatchToProps) (MovieDBInfo)
