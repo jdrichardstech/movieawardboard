@@ -18,6 +18,14 @@ class CreateMovie extends Component{
     }
   }
 
+	clearValues(){
+		this.refs.movieName.value=''
+		this.refs.leadActor.value=''
+		this.refs.supportingActor.value=''
+		this.refs.leadActress.value=''
+		this.refs.supportingActress.value=''
+	}
+
   updateMovie(event){
     let updatedMovie = Object.assign({}, this.state.movie)
     updatedMovie[event.target.id] = event.target.value
@@ -35,17 +43,23 @@ class CreateMovie extends Component{
 		updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase()
 		// console.log("MOVIENAME: " + (updatedMovie['movieName']))
     this.props.onCreateMovie(updatedMovie)
+		this.clearValues()
   }
 
   render(){
     return(
       <div>
-      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" id="movieName" placeholder="movie name" /><br />
-      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" id="leadActor" placeholder="leadActor" /><br />
-      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" id="leadActress" placeholder="leadActress" /><br />
-      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" id="supportingActor" placeholder="supportingActor" /><br />
-      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" id="supportingActress" placeholder="supportingActress" /><br />
-      <button onClick={this.submitMovie.bind(this)} className="btn btn-info">Submit Movie</button>
+				<label>Movie NAME:</label>
+	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="movieName" id="movieName" /><br />
+				<label>Lead ACTOR:</label>
+	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="leadActor" id="leadActor" /><br />
+				<label>Supporting ACTOR:</label>
+			 	<input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="supportingActor" id="supportingActor" /><br />
+				 <label>Lead ACTRESS:</label>
+	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="leadActress" id="leadActress" /><br />
+				<label>Supporting ACTRESS:</label>
+	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="supportingActress" id="supportingActress" /><br />
+	      <button onClick={this.submitMovie.bind(this)} className="btn btn-info">Submit Movie</button>
       </div>
     )
   }

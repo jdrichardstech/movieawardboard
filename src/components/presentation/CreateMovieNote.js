@@ -25,13 +25,14 @@ class CreateMovieNote extends Component{
   addNote(event){
     // console.log('addnote: '+ JSON.stringify(this.state.movieNote))
     this.props.createMovieNote(this.state.movieNote)
+		this.refs.note.value=''
   }
 
   render(){
     return(
       <div>
 
-        <input onChange={this.handleChange.bind(this)}type="text" id="note" placeholder="notes" className="form-control" /><br />
+        <input onChange={this.handleChange.bind(this)}type="text" ref="note" id="note" className="form-control" /><br />
         <button onClick={this.addNote.bind(this)} className="btn btn-info">Submit</button>
       </div>
     )

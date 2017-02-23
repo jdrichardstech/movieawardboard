@@ -110,6 +110,7 @@ class NominationsUpdate extends Component{
   this.setState({
     list:updatedList
   })
+	this.refs.nomination.value=''
   }
 
 
@@ -140,7 +141,8 @@ class NominationsUpdate extends Component{
          <option value="outstandingEnsemble">Outstanding Ensemble</option>
      		</select>
      		<br /><br />
-        <input onChange ={this.updateNomination.bind(this)} className="form-control" type="text" id={this.state.category.nominationId} placeholder="nomination" /><br />
+				<label>Name or Movie:</label>
+        <input onChange ={this.updateNomination.bind(this)} className="form-control" type="text" ref="nomination" id={this.state.category.nominationId} /><br />
         <button style={styles.nominations.button}  onClick={this.submitNomination.bind(this)}  className="btn btn-success">Nominate</button> &nbsp;
         <Link to = "/nominations"><button style={styles.nominations.button}  type="" className="btn btn-info">View Nominations</button></Link>
       	<br />

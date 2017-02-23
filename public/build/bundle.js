@@ -22025,6 +22025,15 @@
 	  }
 	
 	  _createClass(CreateMovie, [{
+	    key: 'clearValues',
+	    value: function clearValues() {
+	      this.refs.movieName.value = '';
+	      this.refs.leadActor.value = '';
+	      this.refs.supportingActor.value = '';
+	      this.refs.leadActress.value = '';
+	      this.refs.supportingActress.value = '';
+	    }
+	  }, {
 	    key: 'updateMovie',
 	    value: function updateMovie(event) {
 	      var updatedMovie = Object.assign({}, this.state.movie);
@@ -22044,6 +22053,7 @@
 	      updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase();
 	      // console.log("MOVIENAME: " + (updatedMovie['movieName']))
 	      this.props.onCreateMovie(updatedMovie);
+	      this.clearValues();
 	    }
 	  }, {
 	    key: 'render',
@@ -22051,15 +22061,40 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', id: 'movieName', placeholder: 'movie name' }),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          'Movie NAME:'
+	        ),
+	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'movieName', id: 'movieName' }),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', id: 'leadActor', placeholder: 'leadActor' }),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          'Lead ACTOR:'
+	        ),
+	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'leadActor', id: 'leadActor' }),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', id: 'leadActress', placeholder: 'leadActress' }),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          'Supporting ACTOR:'
+	        ),
+	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'supportingActor', id: 'supportingActor' }),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', id: 'supportingActor', placeholder: 'supportingActor' }),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          'Lead ACTRESS:'
+	        ),
+	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'leadActress', id: 'leadActress' }),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', id: 'supportingActress', placeholder: 'supportingActress' }),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          'Supporting ACTRESS:'
+	        ),
+	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'supportingActress', id: 'supportingActress' }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'button',
@@ -22130,6 +22165,7 @@
 	    value: function addNote(event) {
 	      // console.log('addnote: '+ JSON.stringify(this.state.movieNote))
 	      this.props.createMovieNote(this.state.movieNote);
+	      this.refs.note.value = '';
 	    }
 	  }, {
 	    key: 'render',
@@ -22137,7 +22173,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('input', { onChange: this.handleChange.bind(this), type: 'text', id: 'note', placeholder: 'notes', className: 'form-control' }),
+	        _react2.default.createElement('input', { onChange: this.handleChange.bind(this), type: 'text', ref: 'note', id: 'note', className: 'form-control' }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'button',
@@ -32363,6 +32399,7 @@
 	      this.setState({
 	        list: updatedList
 	      });
+	      this.refs.nomination.value = '';
 	    }
 	  }, {
 	    key: 'render',
@@ -32425,7 +32462,12 @@
 	        ),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('input', { onChange: this.updateNomination.bind(this), className: 'form-control', type: 'text', id: this.state.category.nominationId, placeholder: 'nomination' }),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          'Name or Movie:'
+	        ),
+	        _react2.default.createElement('input', { onChange: this.updateNomination.bind(this), className: 'form-control', type: 'text', ref: 'nomination', id: this.state.category.nominationId }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'button',
