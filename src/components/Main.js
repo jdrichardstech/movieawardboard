@@ -11,8 +11,7 @@ class Main extends Component{
               <div className="row">
                 <div className="col-md-6">
                   <p>
-                    2015 &copy; All Rights Reserved.
-                    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                  Copyright &copy;2017 <a href='#'>JDRichardsTech</a> All Rights Reserved.
                   </p>
                 </div>
                 <div className="col-md-6">

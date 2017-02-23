@@ -21524,18 +21524,13 @@
 	                  _react2.default.createElement(
 	                    "p",
 	                    null,
-	                    "2015 \xA9 All Rights Reserved.",
+	                    "Copyright \xA92017 ",
 	                    _react2.default.createElement(
 	                      "a",
 	                      { href: "#" },
-	                      "Privacy Policy"
+	                      "JDRichardsTech"
 	                    ),
-	                    " | ",
-	                    _react2.default.createElement(
-	                      "a",
-	                      { href: "#" },
-	                      "Terms of Service"
-	                    )
+	                    " All Rights Reserved."
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -32837,41 +32832,63 @@
 	          ),
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'Overview: ',
-	          _react2.default.createElement('br', null),
-	          this.state.overview,
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          'Runtime: ',
-	          this.state.runtime,
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          'Budget: ',
-	          this.state.budget,
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          'Popularity: ',
-	          this.state.popularity,
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
-	            'span',
-	            { style: { paddingRight: 20 } },
-	            'Vote Count: ',
-	            this.state.voteCount,
-	            '  '
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              this.state.overview
+	            ),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Runtime: ',
+	              this.state.runtime
+	            ),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Budget: $',
+	              this.state.budget
+	            ),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Popularity: ',
+	              this.state.popularity
+	            ),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              _react2.default.createElement(
+	                'span',
+	                { style: { paddingRight: 20 } },
+	                'Vote Count: ',
+	                this.state.voteCount,
+	                '  '
+	              ),
+	              'Vote Average: ',
+	              this.state.voteAverage
+	            ),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'a',
+	              { target: '_blank', href: "https://www.imdb.com/title/" + this.state.imdbID + "/?ref_=nv_sr_1" },
+	              'IMDB Profile'
+	            ),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('br', null)
 	          ),
-	          'Vote Average: ',
-	          this.state.voteAverage,
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'a',
-	            { target: '_blank', href: "https://www.imdb.com/title/" + this.state.imdbID + "/?ref_=nv_sr_1" },
-	            'IMDB Profile'
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: '/' },

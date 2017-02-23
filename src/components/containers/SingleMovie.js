@@ -67,12 +67,15 @@ class SingleMovie extends Component{
         <Link to = "/">Home</Link><br /><br />
           <img src={`https://image.tmdb.org/t/p/w185/${this.state.posterpath}`} /><br /><br />
             <Link to = {"/movietrailer/"+this.props.params.id+"/"+this.state.youtubeID}><button className="btn btn-default">Watch Trailer</button></Link><br /><br />
-            Overview: <br />{this.state.overview}<br /><br />
-            Runtime: {this.state.runtime}<br /><br />
-            Budget: {this.state.budget}<br /><br />
-            Popularity: {this.state.popularity}<br /><br />
-            <span style={{paddingRight:20}}>Vote Count: {this.state.voteCount}  </span>Vote Average: {this.state.voteAverage}<br /><br />
-            <a target="_blank" href={"https://www.imdb.com/title/"+this.state.imdbID+"/?ref_=nv_sr_1"}>IMDB Profile</a><br /><br />
+						<div>
+							<h4>{this.state.overview}</h4><br /><br />
+							<h5>Runtime: {this.state.runtime}</h5><br /><br />
+							<h5>Budget: ${this.state.budget}</h5><br /><br />
+							<h5>Popularity: {this.state.popularity}</h5><br /><br />
+							<h5><span style={{paddingRight:20}}>Vote Count: {this.state.voteCount}  </span>Vote Average: {this.state.voteAverage}</h5><br /><br />
+							<a target="_blank" href={"https://www.imdb.com/title/"+this.state.imdbID+"/?ref_=nv_sr_1"}>IMDB Profile</a><br /><br />
+						</div>
+
             <Link to = "/">Home</Link>
         </center>
       </div>
