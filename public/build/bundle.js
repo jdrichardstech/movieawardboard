@@ -32668,7 +32668,7 @@
 									_react2.default.createElement(
 											'center',
 											null,
-											_react2.default.createElement('img', { src: '/img/noInfo.jpg' })
+											_react2.default.createElement('img', { src: '/assets/img/noInfo.jpg' })
 									)
 							);
 	

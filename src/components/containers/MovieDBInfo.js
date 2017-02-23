@@ -87,7 +87,7 @@ class MovieDBInfo extends Component{
 		</center><br /><br /><br />
 		</div>
 		:
-		<div><center><img src="/img/noInfo.jpg" /></center></div>
+		<div><center><img src="/assets/img/noInfo.jpg" /></center></div>
 
     return(
       <div>
