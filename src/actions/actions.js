@@ -1,6 +1,39 @@
 import constants from '../constants/constants'
 
+const getRequest = (path, params, actionType)=>{
+  return(dispatch) =>
+    APIManager.get(path, params)
+    .then(response=>{
+      // console.log(JSON.stringify(response))
+      const payload = response.results || response.result || response.user
+      dispatch({
+        type: actionType,
+        payload: payload,
+        params: params
+      })
+      return response
+    })
+    .catch(err=>{
+      throw err
+    })
+}
 
+const postRequest = (path, params, actionType)=>{
+  return (dispatch) =>
+    APIManager.post(path, params)
+    .then(response=>{
+      const payload = response.results || response.result || response.user
+      dispatch({
+        type: actionType,
+        payload:payload,
+        params:params
+      })
+      return response
+    })
+    .catch(err => {
+      throw err
+    })
+}
 
 export default{
   moviesReceived: (movies) => {
@@ -9,6 +42,24 @@ export default{
       movies: movies
     }
   },
+
+	createMovie: (movie) => {
+		return (dispatch) => {
+			APIManager
+			.post('/api/movie', movie)
+			.then(response => {
+				console.log('RESPONSE: '+JSON.stringify(response))
+
+				dispatch({
+					type: constants.MOVIE,
+					movie: movie
+				})
+			})
+			.catch((err) => {
+				console.log('ERROR: '+err)
+			})
+		}
+	},
 
   movieCreated: (movie) => {
     return{

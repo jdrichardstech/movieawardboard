@@ -17,16 +17,20 @@ export default (state=initialState, action) => {
       return updated
 		case constants.MOVIE_CREATED:
      let updatedList = Object.assign([], updated.list)
-     updatedList.push(action.movie)
-     let compareList= (a,b) => {
-      if (a.movieName < b.movieName)
-        return -1;
-      if (a.movieName > b.movieName)
-        return 1;
-      return 0;
-    }
-    let sortedNewMovies = updatedList.sort(compareList)
-   	updated['list'] = sortedNewMovies
+		// console.log("MOVIENAME IN REDUCER: " + JSON.stringify(action.movie))
+
+			updatedList.push(action.movie)
+      let compareList= (a,b) => {
+       if (a.movieName < b.movieName)
+         return -1;
+       if (a.movieName > b.movieName)
+         return 1;
+       return 0;
+     }
+     let sortedNewMovies = updatedList.sort(compareList)
+    	updated['list'] = sortedNewMovies
+
+
      // console.log('moviecreated: ' + JSON.stringify(updatedList))
    	return updated
 		case constants.MOVIES_RECEIVED:

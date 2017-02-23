@@ -24,44 +24,46 @@ class MovieDBInfo extends Component{
     }
     // console.log("DBINFO LEAD:" +JSON.stringify(this.props.movieList[0].leadActor))
     // console.log("DBINFO URL:" +JSON.stringify(selectedMovie))
+	if(this.props.movieList.length !=0){
+		let movieName=selectedMovie.movieName
+		let urlMovieName = movieName.split(' ').join('%20')
+		var url = `https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=${urlMovieName}&page=1&include_adult=false`
 
-    let movieName=selectedMovie.movieName
-    let urlMovieName = movieName.split(' ').join('%20')
-    var url = `https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=${urlMovieName}&page=1&include_adult=false`
+		superagent
+		.get(url)
+		.query(null)
+		.set('Accept', 'application/json')
+		.end((err, response) => {
+			if (err){
+				alert('ERROR: '+err)
+				return
+			}
 
-    superagent
-    .get(url)
-    .query(null)
-    .set('Accept', 'application/json')
-    .end((err, response) => {
-      if (err){
-        alert('ERROR: '+err)
-        return
-      }
-
-      // console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
-      let movie = response.body.results
-      let movieDBSelectedMovie=movie[0]
-      // console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
-      let posterPath=movieDBSelectedMovie.poster_path
-      let overview=movieDBSelectedMovie.overview
-      let popularity=movieDBSelectedMovie.popularity
-      let voteCount = movieDBSelectedMovie.vote_count
-      let moviedBId = movieDBSelectedMovie.id
-      let selected = this.props.selected
+			// console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
+			let movie = response.body.results
+			let movieDBSelectedMovie=movie[0]
+			// console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
+			let posterPath=movieDBSelectedMovie.poster_path
+			let overview=movieDBSelectedMovie.overview
+			let popularity=movieDBSelectedMovie.popularity
+			let voteCount = movieDBSelectedMovie.vote_count
+			let moviedBId = movieDBSelectedMovie.id
+			let selected = this.props.selected
 
 
-      this.setState({
-        movie,
-        posterPath,
-        overview,
-        popularity,
-        voteCount,
-        moviedBId,
-        selected
-      })
-        // console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
-    })
+			this.setState({
+				movie,
+				posterPath,
+				overview,
+				popularity,
+				voteCount,
+				moviedBId,
+				selected
+			})
+				// console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
+		})
+	}
+
   }
 
   render(){

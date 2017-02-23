@@ -60,11 +60,11 @@
 	
 	var _containers = __webpack_require__(173);
 	
-	var _MoviesNowPlaying = __webpack_require__(298);
+	var _MoviesNowPlaying = __webpack_require__(297);
 	
 	var _MoviesNowPlaying2 = _interopRequireDefault(_MoviesNowPlaying);
 	
-	var _layout = __webpack_require__(299);
+	var _layout = __webpack_require__(298);
 	
 	var _presentation = __webpack_require__(175);
 	
@@ -21637,51 +21637,51 @@
 	
 	var _Movies2 = _interopRequireDefault(_Movies);
 	
-	var _MovieNotes = __webpack_require__(286);
+	var _MovieNotes = __webpack_require__(285);
 	
 	var _MovieNotes2 = _interopRequireDefault(_MovieNotes);
 	
-	var _BestStunts = __webpack_require__(287);
+	var _BestStunts = __webpack_require__(286);
 	
 	var _BestStunts2 = _interopRequireDefault(_BestStunts);
 	
-	var _LeadActors = __webpack_require__(288);
+	var _LeadActors = __webpack_require__(287);
 	
 	var _LeadActors2 = _interopRequireDefault(_LeadActors);
 	
-	var _LeadActresses = __webpack_require__(289);
+	var _LeadActresses = __webpack_require__(288);
 	
 	var _LeadActresses2 = _interopRequireDefault(_LeadActresses);
 	
-	var _SupportingActors = __webpack_require__(290);
+	var _SupportingActors = __webpack_require__(289);
 	
 	var _SupportingActors2 = _interopRequireDefault(_SupportingActors);
 	
-	var _SupportingActresses = __webpack_require__(291);
+	var _SupportingActresses = __webpack_require__(290);
 	
 	var _SupportingActresses2 = _interopRequireDefault(_SupportingActresses);
 	
-	var _OutstandingEnsembles = __webpack_require__(292);
+	var _OutstandingEnsembles = __webpack_require__(291);
 	
 	var _OutstandingEnsembles2 = _interopRequireDefault(_OutstandingEnsembles);
 	
-	var _NominationsUpdate = __webpack_require__(293);
+	var _NominationsUpdate = __webpack_require__(292);
 	
 	var _NominationsUpdate2 = _interopRequireDefault(_NominationsUpdate);
 	
-	var _MovieDBInfo = __webpack_require__(294);
+	var _MovieDBInfo = __webpack_require__(293);
 	
 	var _MovieDBInfo2 = _interopRequireDefault(_MovieDBInfo);
 	
-	var _SingleMovie = __webpack_require__(295);
+	var _SingleMovie = __webpack_require__(294);
 	
 	var _SingleMovie2 = _interopRequireDefault(_SingleMovie);
 	
-	var _Account = __webpack_require__(296);
+	var _Account = __webpack_require__(295);
 	
 	var _Account2 = _interopRequireDefault(_Account);
 	
-	var _Header = __webpack_require__(297);
+	var _Header = __webpack_require__(296);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
@@ -21708,7 +21708,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21748,136 +21748,159 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Movies = function (_Component) {
-	  _inherits(Movies, _Component);
+			_inherits(Movies, _Component);
 	
-	  function Movies(props) {
-	    _classCallCheck(this, Movies);
+			function Movies(props) {
+					_classCallCheck(this, Movies);
 	
-	    var _this = _possibleConstructorReturn(this, (Movies.__proto__ || Object.getPrototypeOf(Movies)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (Movies.__proto__ || Object.getPrototypeOf(Movies)).call(this, props));
 	
-	    _this.state = {};
-	    return _this;
-	  }
+					_this.state = {};
+					return _this;
+			}
 	
-	  _createClass(Movies, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
+			_createClass(Movies, [{
+					key: 'componentDidMount',
+					value: function componentDidMount() {
+							var _this2 = this;
 	
-	      console.log('componentDidMount: ');
-	      _utils.APIManager.get('/api/movie', null, function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err.message);
-	          return;
-	        }
-	        var movies = response.results;
-	        _this2.props.moviesReceived(movies);
-	        // console.log('Movies: ' + JSON.stringify(movies))
-	      });
-	    }
-	  }, {
-	    key: 'handleSelectMovie',
-	    value: function handleSelectMovie(index) {
-	      // event.preventDefault()
-	      this.props.selectMovie(index);
-	    }
-	  }, {
-	    key: 'handleMovieSubmit',
-	    value: function handleMovieSubmit(movie) {
-	      var _this3 = this;
+							console.log('componentDidMount: ');
+							_utils.APIManager.get('/api/movie', null, function (err, response) {
+									if (err) {
+											alert('ERROR: ' + err.message);
+											return;
+									}
+									var movies = response.results;
+									_this2.props.moviesReceived(movies);
 	
-	      var updatedMovie = Object.assign({}, movie);
-	      _utils.APIManager.post('/api/movie', updatedMovie, function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err.message);
-	          return;
-	        }
-	        _this3.props.movieCreated(response.result);
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this4 = this;
+									_this2.setState({
+											movies: movies
+									});
+									console.log('Movies in container: ' + JSON.stringify(_this2.state.movies));
+							});
+					}
+			}, {
+					key: 'handleSelectMovie',
+					value: function handleSelectMovie(index) {
+							// event.preventDefault()
+							this.props.selectMovie(index);
+					}
+			}, {
+					key: 'handleMovieSubmit',
+					value: function handleMovieSubmit(movie) {
+							var _this3 = this;
 	
-	      var movieList = this.props.list.map(function (movie, i) {
-	        var selected = i == _this4.props.selected;
-	        return _react2.default.createElement(
-	          'li',
-	          { key: i, style: { marginBottom: 0 } },
-	          _react2.default.createElement(_presentation.MovieList, { index: i, isSelected: selected, selectMovie: _this4.handleSelectMovie.bind(_this4), currentMovie: movie })
-	        );
-	      });
+							if (this.state.movies.length == 0) {
+									var updatedMovie = Object.assign({}, movie);
+									_utils.APIManager.post('/api/movie', updatedMovie, function (err, response) {
+											if (err) {
+													alert('ERROR: ' + err.message);
+													return;
+											}
+											_this3.props.movieCreated(response.result);
+									});
+							}
+							if (this.state.movies.length != 0) {
+									for (var i = 0; i < this.state.movies.length; i++) {
+											if (this.state.movies[i]['movieName'] == movie.movieName) {
+													console.log("MOVIE INCLUDED");
+													alert("THIS MOVIE HAS ALREADY BEEN CREATED");
+													return;
+											}
+									}
+									var _updatedMovie = Object.assign({}, movie);
+									_utils.APIManager.post('/api/movie', _updatedMovie, function (err, response) {
+											if (err) {
+													alert('ERROR: ' + err.message);
+													return;
+											}
+											_this3.props.movieCreated(response.result);
+									});
+							}
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							var _this4 = this;
 	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'headline-v2' },
-	            _react2.default.createElement(
-	              'h2',
-	              null,
-	              'Movie List:'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	              'ul',
-	              { className: 'list-unstyled blog-trending margin-bottom-50' },
-	              movieList
-	            )
-	          ),
-	          _react2.default.createElement('hr', null),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'headline-v2' },
-	            _react2.default.createElement(
-	              'h2',
-	              null,
-	              'Create Movie:'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { style: { marginBottom: 50 } },
-	            _react2.default.createElement(_presentation.CreateMovie, { movie: this.props.movie, list: this.props.list, onCreateMovie: this.handleMovieSubmit.bind(this) })
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null)
-	        )
-	      );
-	    }
-	  }]);
+							var movieList = this.props.list.map(function (movie, i) {
+									var selected = i == _this4.props.selected;
+									return _react2.default.createElement(
+											'li',
+											{ key: i, style: { marginBottom: 0 } },
+											_react2.default.createElement(_presentation.MovieList, { index: i, isSelected: selected, selectMovie: _this4.handleSelectMovie.bind(_this4), currentMovie: movie })
+									);
+							});
 	
-	  return Movies;
+							return _react2.default.createElement(
+									'div',
+									null,
+									_react2.default.createElement(
+											'div',
+											null,
+											_react2.default.createElement(
+													'div',
+													{ className: 'headline-v2' },
+													_react2.default.createElement(
+															'h2',
+															null,
+															'Movie List:'
+													)
+											),
+											_react2.default.createElement(
+													'div',
+													null,
+													_react2.default.createElement(
+															'ul',
+															{ className: 'list-unstyled blog-trending margin-bottom-50' },
+															movieList
+													)
+											),
+											_react2.default.createElement('hr', null),
+											_react2.default.createElement(
+													'div',
+													{ className: 'headline-v2' },
+													_react2.default.createElement(
+															'h2',
+															null,
+															'Create Movie:'
+													)
+											),
+											_react2.default.createElement(
+													'div',
+													{ style: { marginBottom: 50 } },
+													_react2.default.createElement(_presentation.CreateMovie, { movie: this.props.movie, list: this.props.list, onCreateMovie: this.handleMovieSubmit.bind(this) })
+											),
+											_react2.default.createElement('br', null),
+											_react2.default.createElement('br', null)
+									)
+							);
+					}
+			}]);
+	
+			return Movies;
 	}(_react.Component);
 	
 	var dispatchToProps = function dispatchToProps(dispatch) {
-	  return {
-	    moviesReceived: function moviesReceived(movies) {
-	      return dispatch(_actions2.default.moviesReceived(movies));
-	    },
-	    movieCreated: function movieCreated(movie) {
-	      return dispatch(_actions2.default.movieCreated(movie));
-	    },
-	    selectMovie: function selectMovie(index) {
-	      return dispatch(_actions2.default.selectMovie(index));
-	    }
-	  };
+			return {
+					moviesReceived: function moviesReceived(movies) {
+							return dispatch(_actions2.default.moviesReceived(movies));
+					},
+					movieCreated: function movieCreated(movie) {
+							return dispatch(_actions2.default.movieCreated(movie));
+					},
+					selectMovie: function selectMovie(index) {
+							return dispatch(_actions2.default.selectMovie(index));
+					}
+			};
 	};
 	
 	var stateToProps = function stateToProps(state) {
-	  return {
-	    list: state.movies.list,
-	    movie: state.movies.movie,
-	    selected: state.movies.selected
-	  };
+			return {
+					list: state.movies.list,
+					movie: state.movies.movie,
+					selected: state.movies.selected
+			};
 	};
 	
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Movies);
@@ -30353,6 +30376,8 @@
 	      return updated;
 	    case _constants2.default.MOVIE_CREATED:
 	      var updatedList = Object.assign([], updated.list);
+	      // console.log("MOVIENAME IN REDUCER: " + JSON.stringify(action.movie))
+	
 	      updatedList.push(action.movie);
 	      var compareList = function compareList(a, b) {
 	        if (a.movieName < b.movieName) return -1;
@@ -30361,6 +30386,7 @@
 	      };
 	      var sortedNewMovies = updatedList.sort(compareList);
 	      updated['list'] = sortedNewMovies;
+	
 	      // console.log('moviecreated: ' + JSON.stringify(updatedList))
 	      return updated;
 	    case _constants2.default.MOVIES_RECEIVED:
@@ -30504,11 +30530,59 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var getRequest = function getRequest(path, params, actionType) {
+	  return function (dispatch) {
+	    return APIManager.get(path, params).then(function (response) {
+	      // console.log(JSON.stringify(response))
+	      var payload = response.results || response.result || response.user;
+	      dispatch({
+	        type: actionType,
+	        payload: payload,
+	        params: params
+	      });
+	      return response;
+	    }).catch(function (err) {
+	      throw err;
+	    });
+	  };
+	};
+	
+	var postRequest = function postRequest(path, params, actionType) {
+	  return function (dispatch) {
+	    return APIManager.post(path, params).then(function (response) {
+	      var payload = response.results || response.result || response.user;
+	      dispatch({
+	        type: actionType,
+	        payload: payload,
+	        params: params
+	      });
+	      return response;
+	    }).catch(function (err) {
+	      throw err;
+	    });
+	  };
+	};
+	
 	exports.default = {
 	  moviesReceived: function moviesReceived(movies) {
 	    return {
 	      type: _constants2.default.MOVIES_RECEIVED,
 	      movies: movies
+	    };
+	  },
+	
+	  createMovie: function createMovie(movie) {
+	    return function (dispatch) {
+	      APIManager.post('/api/movie', movie).then(function (response) {
+	        console.log('RESPONSE: ' + JSON.stringify(response));
+	
+	        dispatch({
+	          type: _constants2.default.MOVIE,
+	          movie: movie
+	        });
+	      }).catch(function (err) {
+	        console.log('ERROR: ' + err);
+	      });
 	    };
 	  },
 	
@@ -31144,8 +31218,7 @@
 	}
 
 /***/ },
-/* 285 */,
-/* 286 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31153,6 +31226,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -31204,36 +31279,34 @@
 	      var _this2 = this;
 	
 	      console.log('componentDidUpdate');
-	      var selectedMovie = this.props.movieList[this.props.selected];
-	      // if(selectedMovie == null){
-	      //   console.log('no selected zone')
-	      //   return
-	      // }
-	      console.log('SELECTED: ' + JSON.stringify(selectedMovie));
-	      console.log('selected zone ready: ' + selectedMovie._id);
-	      var notesArray = this.props.notesMap[selectedMovie._id];
-	      console.log("NOTES ARRAY: " + JSON.stringify(notesArray));
-	      if (notesArray != null) {
-	        return;
+	      if (this.props.movieList.length != 0) {
+	        var _ret = function () {
+	          var selectedMovie = _this2.props.movieList[_this2.props.selected];
+	          var notesArray = _this2.props.notesMap[selectedMovie._id];
+	          if (notesArray != null) {
+	            return {
+	              v: void 0
+	            };
+	          }
+	
+	          if (_this2.props.movieNotesLoaded == true) {
+	            return {
+	              v: void 0
+	            };
+	          }
+	
+	          _utils.APIManager.get('/api/movienotes', { selectedMovieId: selectedMovie._id }, function (error, response) {
+	            if (error) {
+	              alert('error' + error.message);
+	              return;
+	            }
+	            var notes = response.results;
+	            _this2.props.notesReceived(notes, selectedMovie);
+	          });
+	        }();
+	
+	        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
 	      }
-	
-	      if (this.props.movieNotesLoaded == true) {
-	        return;
-	      }
-	
-	      _utils.APIManager.get('/api/movienotes', { selectedMovieId: selectedMovie._id }, function (error, response) {
-	        if (error) {
-	          alert('error' + error.message);
-	          return;
-	        }
-	        // console.log('notes' + JSON.stringify(response.results))
-	        // this.setState({
-	        //   movieNotesLoaded: true
-	        // })
-	
-	        var notes = response.results;
-	        _this2.props.notesReceived(notes, selectedMovie);
-	      });
 	    }
 	  }, {
 	    key: 'addNote',
@@ -31365,7 +31438,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(MovieNotes);
 
 /***/ },
-/* 287 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31495,7 +31568,7 @@
 	exports.default = BestStunts;
 
 /***/ },
-/* 288 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31624,7 +31697,7 @@
 	exports.default = LeadActors;
 
 /***/ },
-/* 289 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31754,7 +31827,7 @@
 	exports.default = LeadActresses;
 
 /***/ },
-/* 290 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31884,7 +31957,7 @@
 	exports.default = SupportingActors;
 
 /***/ },
-/* 291 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32013,7 +32086,7 @@
 	exports.default = SupportingActresses;
 
 /***/ },
-/* 292 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32142,7 +32215,7 @@
 	exports.default = OutstandingEnsembles;
 
 /***/ },
-/* 293 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32379,7 +32452,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps)(NominationsUpdate);
 
 /***/ },
-/* 294 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32446,39 +32519,40 @@
 	      }
 	      // console.log("DBINFO LEAD:" +JSON.stringify(this.props.movieList[0].leadActor))
 	      // console.log("DBINFO URL:" +JSON.stringify(selectedMovie))
+	      if (this.props.movieList.length != 0) {
+	        var movieName = selectedMovie.movieName;
+	        var urlMovieName = movieName.split(' ').join('%20');
+	        var url = 'https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=' + urlMovieName + '&page=1&include_adult=false';
 	
-	      var movieName = selectedMovie.movieName;
-	      var urlMovieName = movieName.split(' ').join('%20');
-	      var url = 'https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=' + urlMovieName + '&page=1&include_adult=false';
+	        _superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+	          if (err) {
+	            alert('ERROR: ' + err);
+	            return;
+	          }
 	
-	      _superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err);
-	          return;
-	        }
+	          // console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
+	          var movie = response.body.results;
+	          var movieDBSelectedMovie = movie[0];
+	          // console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
+	          var posterPath = movieDBSelectedMovie.poster_path;
+	          var overview = movieDBSelectedMovie.overview;
+	          var popularity = movieDBSelectedMovie.popularity;
+	          var voteCount = movieDBSelectedMovie.vote_count;
+	          var moviedBId = movieDBSelectedMovie.id;
+	          var selected = _this2.props.selected;
 	
-	        // console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
-	        var movie = response.body.results;
-	        var movieDBSelectedMovie = movie[0];
-	        // console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
-	        var posterPath = movieDBSelectedMovie.poster_path;
-	        var overview = movieDBSelectedMovie.overview;
-	        var popularity = movieDBSelectedMovie.popularity;
-	        var voteCount = movieDBSelectedMovie.vote_count;
-	        var moviedBId = movieDBSelectedMovie.id;
-	        var selected = _this2.props.selected;
-	
-	        _this2.setState({
-	          movie: movie,
-	          posterPath: posterPath,
-	          overview: overview,
-	          popularity: popularity,
-	          voteCount: voteCount,
-	          moviedBId: moviedBId,
-	          selected: selected
+	          _this2.setState({
+	            movie: movie,
+	            posterPath: posterPath,
+	            overview: overview,
+	            popularity: popularity,
+	            voteCount: voteCount,
+	            moviedBId: moviedBId,
+	            selected: selected
+	          });
+	          // console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
 	        });
-	        // console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
-	      });
+	      }
 	    }
 	  }, {
 	    key: 'render',
@@ -32556,7 +32630,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(MovieDBInfo);
 
 /***/ },
-/* 295 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32723,7 +32797,7 @@
 	exports.default = SingleMovie;
 
 /***/ },
-/* 296 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32752,7 +32826,7 @@
 	
 	var _reactRouter = __webpack_require__(188);
 	
-	var _Header = __webpack_require__(297);
+	var _Header = __webpack_require__(296);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
@@ -33018,7 +33092,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Account);
 
 /***/ },
-/* 297 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33241,7 +33315,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Header);
 
 /***/ },
-/* 298 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33258,7 +33332,7 @@
 	
 	var _reactRouter = __webpack_require__(188);
 	
-	var _Header = __webpack_require__(297);
+	var _Header = __webpack_require__(296);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
@@ -33402,7 +33476,7 @@
 	exports.default = MoviesNowPlaying;
 
 /***/ },
-/* 299 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33412,11 +33486,11 @@
 	});
 	exports.NominationInputs = exports.Home = undefined;
 	
-	var _Home = __webpack_require__(300);
+	var _Home = __webpack_require__(299);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _NominationInputs = __webpack_require__(301);
+	var _NominationInputs = __webpack_require__(300);
 	
 	var _NominationInputs2 = _interopRequireDefault(_NominationInputs);
 	
@@ -33426,7 +33500,7 @@
 	exports.NominationInputs = _NominationInputs2.default;
 
 /***/ },
-/* 300 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33441,7 +33515,7 @@
 	
 	var _containers = __webpack_require__(173);
 	
-	var _NominationsUpdate = __webpack_require__(293);
+	var _NominationsUpdate = __webpack_require__(292);
 	
 	var _NominationsUpdate2 = _interopRequireDefault(_NominationsUpdate);
 	
@@ -33507,7 +33581,7 @@
 	exports.default = Home;
 
 /***/ },
-/* 301 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33520,37 +33594,37 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _LeadActors = __webpack_require__(288);
+	var _LeadActors = __webpack_require__(287);
 	
 	var _LeadActors2 = _interopRequireDefault(_LeadActors);
 	
-	var _LeadActresses = __webpack_require__(289);
+	var _LeadActresses = __webpack_require__(288);
 	
 	var _LeadActresses2 = _interopRequireDefault(_LeadActresses);
 	
-	var _SupportingActors = __webpack_require__(290);
+	var _SupportingActors = __webpack_require__(289);
 	
 	var _SupportingActors2 = _interopRequireDefault(_SupportingActors);
 	
-	var _SupportingActresses = __webpack_require__(291);
+	var _SupportingActresses = __webpack_require__(290);
 	
 	var _SupportingActresses2 = _interopRequireDefault(_SupportingActresses);
 	
-	var _OutstandingEnsembles = __webpack_require__(292);
+	var _OutstandingEnsembles = __webpack_require__(291);
 	
 	var _OutstandingEnsembles2 = _interopRequireDefault(_OutstandingEnsembles);
 	
-	var _BestStunts = __webpack_require__(287);
+	var _BestStunts = __webpack_require__(286);
 	
 	var _BestStunts2 = _interopRequireDefault(_BestStunts);
 	
-	var _Header = __webpack_require__(297);
+	var _Header = __webpack_require__(296);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
 	var _reactRouter = __webpack_require__(188);
 	
-	var _styles = __webpack_require__(302);
+	var _styles = __webpack_require__(301);
 	
 	var _styles2 = _interopRequireDefault(_styles);
 	
@@ -33633,7 +33707,7 @@
 	exports.default = NominationInputs;
 
 /***/ },
-/* 302 */
+/* 301 */
 /***/ function(module, exports) {
 
 	'use strict';

@@ -25,7 +25,11 @@ class Movies extends Component{
   			}
   			const movies = response.results
   			this.props.moviesReceived(movies)
-        // console.log('Movies: ' + JSON.stringify(movies))
+
+				this.setState({
+					movies: movies
+				})
+				console.log('Movies in container: ' + JSON.stringify(this.state.movies))
   		})
   	}
 
@@ -35,15 +39,38 @@ class Movies extends Component{
 	}
 
 	handleMovieSubmit(movie){
-	  let updatedMovie = Object.assign({}, movie)
-		APIManager.post('/api/movie', updatedMovie, (err, response) => {
-			if (err){
-				alert('ERROR: '+err.message)
-				return
+		if(this.state.movies.length == 0){
+			let updatedMovie = Object.assign({}, movie)
+			APIManager.post('/api/movie', updatedMovie, (err, response) => {
+				if (err){
+					alert('ERROR: '+err.message)
+					return
+				}
+				this.props.movieCreated(response.result)
+			})
+		}
+		if(this.state.movies.length !=0){
+			for(let i = 0; i < this.state.movies.length;i++){
+				if(this.state.movies[i]['movieName']==movie.movieName){
+					console.log("MOVIE INCLUDED")
+					alert("THIS MOVIE HAS ALREADY BEEN CREATED")
+					return
+				}
 			}
-			this.props.movieCreated(response.result)
-		})
-	}
+			let updatedMovie = Object.assign({}, movie)
+			APIManager.post('/api/movie', updatedMovie, (err, response) => {
+				if (err){
+					alert('ERROR: '+err.message)
+					return
+				}
+				this.props.movieCreated(response.result)
+			})
+		}
+		}
+
+
+
+
 
   render(){
     const movieList = this.props.list.map((movie, i) => {

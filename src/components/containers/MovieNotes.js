@@ -18,38 +18,27 @@ class MovieNotes extends Component{
 
   componentDidUpdate(){
     console.log('componentDidUpdate')
-    let selectedMovie = this.props.movieList[this.props.selected]
-    // if(selectedMovie == null){
-    //   console.log('no selected zone')
-    //   return
-    // }
-    console.log('SELECTED: ' + JSON.stringify(selectedMovie))
-    console.log('selected zone ready: ' + selectedMovie._id)
-    let notesArray = this.props.notesMap[selectedMovie._id]
-    console.log("NOTES ARRAY: " + JSON.stringify(notesArray))
-    if(notesArray != null){
-      return
-    }
+		if(this.props.movieList.length != 0){
+			let selectedMovie = this.props.movieList[this.props.selected]
+			let notesArray = this.props.notesMap[selectedMovie._id]
+			if(notesArray != null){
+				return
+			}
 
+			if(this.props.movieNotesLoaded==true){
+				return
+			}
 
-    if(this.props.movieNotesLoaded==true){
-      return
-    }
+			APIManager.get('/api/movienotes', {selectedMovieId: selectedMovie._id}, (error, response)=>{
+				if(error){
+					alert('error' + error.message)
+					return
+				}
+				let notes = response.results
+				this.props.notesReceived(notes, selectedMovie)
 
-    APIManager.get('/api/movienotes', {selectedMovieId: selectedMovie._id}, (error, response)=>{
-      if(error){
-        alert('error' + error.message)
-        return
-      }
-      // console.log('notes' + JSON.stringify(response.results))
-      // this.setState({
-      //   movieNotesLoaded: true
-      // })
-
-      let notes = response.results
-      this.props.notesReceived(notes, selectedMovie)
-
-    })
+			})
+		}
   }
 
 
