@@ -22458,7 +22458,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _react = __webpack_require__(1);
@@ -22468,68 +22468,72 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var MovieDetails = function MovieDetails(props) {
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "news-v3 bg-color-black margin-bottom-30" },
-	    _react2.default.createElement(
-	      "div",
-	      { className: "news-v3-in", style: { color: 'black' } },
-	      _react2.default.createElement(
-	        "h4",
-	        null,
-	        "Submitted Nomination Considerations For:"
-	      ),
-	      _react2.default.createElement(
-	        "h2",
-	        { style: { color: 'green', paddingBottom: 20 } },
-	        props.movieName
-	      ),
-	      _react2.default.createElement(
-	        "p",
-	        null,
-	        _react2.default.createElement(
-	          "span",
-	          { style: { fontWeight: 'bold' } },
-	          "Lead Actor(s):"
-	        ),
-	        " ",
-	        props.leadActor
-	      ),
-	      _react2.default.createElement(
-	        "p",
-	        null,
-	        _react2.default.createElement(
-	          "span",
-	          { style: { fontWeight: 'bold' } },
-	          "Lead Actoress(es):"
-	        ),
-	        " ",
-	        props.leadActress
-	      ),
-	      _react2.default.createElement(
-	        "p",
-	        null,
-	        _react2.default.createElement(
-	          "span",
-	          { style: { fontWeight: 'bold' } },
-	          "Supporting Actor(s):"
-	        ),
-	        " ",
-	        props.supportingActor
-	      ),
-	      _react2.default.createElement(
-	        "p",
-	        null,
-	        _react2.default.createElement(
-	          "span",
-	          { style: { fontWeight: 'bold' } },
-	          "Supporting Actress(es):"
-	        ),
-	        " ",
-	        props.supportingActress
-	      )
-	    )
-	  );
+			return _react2.default.createElement(
+					"div",
+					{ className: "news-v3 bg-color-black" },
+					_react2.default.createElement(
+							"div",
+							{ className: "news-v3-in", style: { color: 'black' } },
+							_react2.default.createElement(
+									"center",
+									null,
+									_react2.default.createElement(
+											"h4",
+											null,
+											"Submitted Nomination Considerations For:"
+									),
+									_react2.default.createElement(
+											"h2",
+											{ style: { color: 'green', paddingBottom: 15 } },
+											props.movieName
+									),
+									_react2.default.createElement(
+											"p",
+											null,
+											_react2.default.createElement(
+													"span",
+													{ style: { fontWeight: 'bold' } },
+													"Lead Actor(s):"
+											),
+											" ",
+											props.leadActor
+									),
+									_react2.default.createElement(
+											"p",
+											null,
+											_react2.default.createElement(
+													"span",
+													{ style: { fontWeight: 'bold' } },
+													"Lead Actoress(es):"
+											),
+											" ",
+											props.leadActress
+									),
+									_react2.default.createElement(
+											"p",
+											null,
+											_react2.default.createElement(
+													"span",
+													{ style: { fontWeight: 'bold' } },
+													"Supporting Actor(s):"
+											),
+											" ",
+											props.supportingActor
+									),
+									_react2.default.createElement(
+											"p",
+											null,
+											_react2.default.createElement(
+													"span",
+													{ style: { fontWeight: 'bold' } },
+													"Supporting Actress(es):"
+											),
+											" ",
+											props.supportingActress
+									)
+							)
+					)
+			);
 	};
 	
 	exports.default = MovieDetails;
@@ -31366,7 +31370,6 @@
 	          });
 	        }
 	      }
-	
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -31379,11 +31382,19 @@
 	            leadActress: leadActress,
 	            supportingActor: supportingActor,
 	            supportingActress: supportingActress
-	
 	          }),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('hr', null),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { paddingBottom: 40 } },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Add A Note for ',
+	              movieName,
+	              ':'
+	            ),
+	            _react2.default.createElement(_presentation.CreateMovieNote, { movieName: movieName, createMovieNote: this.addNote.bind(this) })
+	          ),
 	          _react2.default.createElement(
 	            'h4',
 	            null,
@@ -31400,16 +31411,6 @@
 	            { style: { listStyleType: 'none', padding: 0 } },
 	            movieNotesList
 	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            'Add A Note:'
-	          ),
-	          _react2.default.createElement(_presentation.CreateMovieNote, { movieName: movieName, createMovieNote: this.addNote.bind(this) })
 	        )
 	      );
 	    }

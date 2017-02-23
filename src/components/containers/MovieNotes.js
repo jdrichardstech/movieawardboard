@@ -87,33 +87,25 @@ class MovieNotes extends Component{
           })
         }
     }
-
-
-
-
     return(
       <div>
         <div>
-
-
           <MovieDetails
                 movieName={movieName}
                 leadActor={leadActor}
                 leadActress={leadActress}
                 supportingActor={supportingActor}
                 supportingActress={supportingActress}
-
               />
-
-            <br /><br /><hr />
-            <h4>Notes for <span style={{color:'green'}}>{movieName}: </span></h4>
+           
+						<div style={{paddingBottom:40}}>
+	           <h3>Add A Note for {movieName}:</h3>
+	           <CreateMovieNote movieName={movieName} createMovieNote={this.addNote.bind(this)} />
+	         	</div>
+						<h4>Notes for <span style={{color:'green'}}>{movieName}: </span></h4>
           <ul style={{listStyleType:'none', padding:0}}>
-          {movieNotesList}
-        </ul>
-        </div>
-        <div>
-          <h3>Add A Note:</h3>
-          <CreateMovieNote movieName={movieName} createMovieNote={this.addNote.bind(this)} />
+          	{movieNotesList}
+        	</ul>
         </div>
       </div>
     )
