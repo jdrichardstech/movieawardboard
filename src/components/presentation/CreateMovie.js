@@ -27,6 +27,10 @@ class CreateMovie extends Component{
   }
 
   submitMovie(){
+		if(this.state.movie.movieName == ''){
+			alert("YOU MUST ENTER A MOVIE NAME")
+			return
+		}
     let updatedMovie = Object.assign({}, this.state.movie)
 		updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase()
 		// console.log("MOVIENAME: " + (updatedMovie['movieName']))

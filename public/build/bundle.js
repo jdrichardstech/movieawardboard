@@ -22036,6 +22036,10 @@
 	  }, {
 	    key: 'submitMovie',
 	    value: function submitMovie() {
+	      if (this.state.movie.movieName == '') {
+	        alert("YOU MUST ENTER A MOVIE NAME");
+	        return;
+	      }
 	      var updatedMovie = Object.assign({}, this.state.movie);
 	      updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase();
 	      // console.log("MOVIENAME: " + (updatedMovie['movieName']))
