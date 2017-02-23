@@ -32597,7 +32597,7 @@
 											}
 											var selected = _this2.props.selected;
 	
-											console.log("POSTERPATH: " + JSON.stringify(posterPath));
+											console.log("movieDBSelectedMovie: " + JSON.stringify(movieDBSelectedMovie));
 	
 											_this2.setState({
 													movie: movie,
