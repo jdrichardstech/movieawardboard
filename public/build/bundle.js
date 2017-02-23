@@ -22037,6 +22037,8 @@
 	    key: 'submitMovie',
 	    value: function submitMovie() {
 	      var updatedMovie = Object.assign({}, this.state.movie);
+	      updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase();
+	      // console.log("MOVIENAME: " + (updatedMovie['movieName']))
 	      this.props.onCreateMovie(updatedMovie);
 	    }
 	  }, {
