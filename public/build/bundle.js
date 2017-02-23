@@ -32507,7 +32507,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32541,139 +32541,157 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var MovieDBInfo = function (_Component) {
-	  _inherits(MovieDBInfo, _Component);
+			_inherits(MovieDBInfo, _Component);
 	
-	  function MovieDBInfo(props) {
-	    _classCallCheck(this, MovieDBInfo);
+			function MovieDBInfo(props) {
+					_classCallCheck(this, MovieDBInfo);
 	
-	    var _this = _possibleConstructorReturn(this, (MovieDBInfo.__proto__ || Object.getPrototypeOf(MovieDBInfo)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (MovieDBInfo.__proto__ || Object.getPrototypeOf(MovieDBInfo)).call(this, props));
 	
-	    _this.state = {
-	      movie: [],
-	      posterPath: '',
-	      flag: false
-	    };
-	    return _this;
-	  }
+					_this.state = {
+							movie: [],
+							posterPath: '',
+							flag: false
+					};
+					return _this;
+			}
 	
-	  _createClass(MovieDBInfo, [{
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate() {
-	      var _this2 = this;
+			_createClass(MovieDBInfo, [{
+					key: 'componentDidUpdate',
+					value: function componentDidUpdate() {
+							var _this2 = this;
 	
-	      // console.log('MOVIELIST DBINFO: '+ JSON.stringify(this.props.movieList[this.props.selected]))
-	      var selectedMovie = this.props.movieList[this.props.selected];
-	      if (this.state.selected == this.props.selected) {
-	        return;
-	      }
-	      // console.log("DBINFO LEAD:" +JSON.stringify(this.props.movieList[0].leadActor))
-	      // console.log("DBINFO URL:" +JSON.stringify(selectedMovie))
-	      if (this.props.movieList.length != 0) {
-	        var movieName = selectedMovie.movieName;
-	        var urlMovieName = movieName.split(' ').join('%20');
-	        var url = 'https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=' + urlMovieName + '&page=1&include_adult=false';
+							// console.log('MOVIELIST DBINFO: '+ JSON.stringify(this.props.movieList[this.props.selected]))
+							var selectedMovie = this.props.movieList[this.props.selected];
+							if (this.state.selected == this.props.selected) {
+									return;
+							}
+							// console.log("DBINFO LEAD:" +JSON.stringify(this.props.movieList[0].leadActor))
+							// console.log("DBINFO URL:" +JSON.stringify(selectedMovie))
+							if (this.props.movieList.length != 0) {
+									var movieName = selectedMovie.movieName;
+									var urlMovieName = movieName.split(' ').join('%20');
+									var url = 'https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=' + urlMovieName + '&page=1&include_adult=false';
 	
-	        _superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
-	          if (err) {
-	            alert('ERROR: ' + err);
-	            return;
-	          }
+									_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+											if (err) {
+													alert('ERROR: ' + err);
+													return;
+											}
 	
-	          // console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
-	          var movie = response.body.results;
-	          var movieDBSelectedMovie = movie[0];
-	          // console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
-	          var posterPath = movieDBSelectedMovie.poster_path;
-	          var overview = movieDBSelectedMovie.overview;
-	          var popularity = movieDBSelectedMovie.popularity;
-	          var voteCount = movieDBSelectedMovie.vote_count;
-	          var moviedBId = movieDBSelectedMovie.id;
-	          var selected = _this2.props.selected;
+											// console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
+											var movie = response.body.results;
+											var movieDBSelectedMovie = movie[0];
+											// console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
+											var posterPath = null;
+											var overview = null;
+											var popularity = null;
+											var voteCount = null;
+											var moviedBId = null;
+											if (movieDBSelectedMovie != undefined) {
+													posterPath = movieDBSelectedMovie.poster_path;
+													overview = movieDBSelectedMovie.overview;
+													popularity = movieDBSelectedMovie.popularity;
+													voteCount = movieDBSelectedMovie.vote_count;
+													moviedBId = movieDBSelectedMovie.id;
+											}
+											var selected = _this2.props.selected;
 	
-	          _this2.setState({
-	            movie: movie,
-	            posterPath: posterPath,
-	            overview: overview,
-	            popularity: popularity,
-	            voteCount: voteCount,
-	            moviedBId: moviedBId,
-	            selected: selected
-	          });
-	          // console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
+											console.log("POSTERPATH: " + JSON.stringify(posterPath));
 	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'center',
-	            null,
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: "/singlemovie/" + this.state.moviedBId },
-	              _react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + this.state.posterPath })
-	            ),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'p',
-	              { style: { fontSize: '.9em', color: "#999" } },
-	              'Overview:',
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'span',
-	                { style: { color: '#5cb85c', fontStyle: 'oblique' } },
-	                ' ',
-	                this.state.overview
-	              )
-	            ),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'p',
-	              { style: { fontSize: '.7em', color: '#999' } },
-	              ' Popularity: ',
-	              _react2.default.createElement(
-	                'span',
-	                { style: { fontSize: '1em', color: '#5cb85c', paddingRight: 20 } },
-	                this.state.popularity
-	              ),
-	              'Vote Count:',
-	              _react2.default.createElement(
-	                'span',
-	                { style: { fontSize: '1em', color: '#5cb85c' } },
-	                ' ',
-	                this.state.voteCount
-	              )
-	            )
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null)
-	        )
-	      );
-	    }
-	  }]);
+											_this2.setState({
+													movie: movie,
+													posterPath: posterPath,
+													overview: overview,
+													popularity: popularity,
+													voteCount: voteCount,
+													moviedBId: moviedBId,
+													selected: selected
+											});
+											// console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
+									});
+							}
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							var content = this.state.moviedBId != null ? _react2.default.createElement(
+									'div',
+									null,
+									_react2.default.createElement(
+											'center',
+											null,
+											_react2.default.createElement(
+													_reactRouter.Link,
+													{ to: "/singlemovie/" + this.state.moviedBId },
+													_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + this.state.posterPath })
+											),
+											_react2.default.createElement('br', null),
+											_react2.default.createElement('br', null),
+											_react2.default.createElement(
+													'p',
+													{ style: { fontSize: '.9em', color: "#999" } },
+													'Overview:',
+													_react2.default.createElement('br', null),
+													_react2.default.createElement(
+															'span',
+															{ style: { color: '#5cb85c', fontStyle: 'oblique' } },
+															' ',
+															this.state.overview
+													)
+											),
+											_react2.default.createElement('br', null),
+											_react2.default.createElement(
+													'p',
+													{ style: { fontSize: '.7em', color: '#999' } },
+													' Popularity: ',
+													_react2.default.createElement(
+															'span',
+															{ style: { fontSize: '1em', color: '#5cb85c', paddingRight: 20 } },
+															this.state.popularity
+													),
+													'Vote Count:',
+													_react2.default.createElement(
+															'span',
+															{ style: { fontSize: '1em', color: '#5cb85c' } },
+															' ',
+															this.state.voteCount
+													)
+											)
+									),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement('br', null)
+							) : _react2.default.createElement(
+									'div',
+									null,
+									_react2.default.createElement(
+											'center',
+											null,
+											_react2.default.createElement('img', { src: '/img/noInfo.jpg' })
+									)
+							);
 	
-	  return MovieDBInfo;
+							return _react2.default.createElement(
+									'div',
+									null,
+									content
+							);
+					}
+			}]);
+	
+			return MovieDBInfo;
 	}(_react.Component);
 	
 	var stateToProps = function stateToProps(state) {
-	  return {
-	    movieList: state.movies.list,
-	    selected: state.movies.selected
-	  };
+			return {
+					movieList: state.movies.list,
+					selected: state.movies.selected
+			};
 	};
 	
 	var dispatchToProps = function dispatchToProps(dispatch) {
-	  return {};
+			return {};
 	};
 	
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(MovieDBInfo);

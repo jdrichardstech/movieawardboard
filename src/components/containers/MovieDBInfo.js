@@ -43,12 +43,21 @@ class MovieDBInfo extends Component{
 			let movie = response.body.results
 			let movieDBSelectedMovie=movie[0]
 			// console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
-			let posterPath=movieDBSelectedMovie.poster_path
-			let overview=movieDBSelectedMovie.overview
-			let popularity=movieDBSelectedMovie.popularity
-			let voteCount = movieDBSelectedMovie.vote_count
-			let moviedBId = movieDBSelectedMovie.id
+			let posterPath = null
+			let overview = null
+			let popularity=null
+			let voteCount = null
+			let moviedBId = null
+			if(movieDBSelectedMovie != undefined){
+				posterPath=movieDBSelectedMovie.poster_path
+				overview=movieDBSelectedMovie.overview
+	 			popularity=movieDBSelectedMovie.popularity
+	 			voteCount = movieDBSelectedMovie.vote_count
+	 			moviedBId = movieDBSelectedMovie.id
+			}
 			let selected = this.props.selected
+
+			console.log("POSTERPATH: " + JSON.stringify(posterPath))
 
 
 			this.setState({
@@ -67,18 +76,22 @@ class MovieDBInfo extends Component{
   }
 
   render(){
+		let content = (this.state.moviedBId != null) ?
+		<div>
+			<center>
+			<Link to={"/singlemovie/"+this.state.moviedBId}><img src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`} /></Link>
+			<br /><br />
+			<p style={{fontSize:'.9em', color:"#999"}}>Overview:<br /><span style={{color:'#5cb85c', fontStyle:'oblique'}}> {this.state.overview}</span></p>
+			<br /><p style={{fontSize:'.7em', color:'#999'}}> Popularity: <span style={{fontSize:'1em', color:'#5cb85c', paddingRight:20}}>{this.state.popularity}</span>
+			Vote Count:<span style={{fontSize:'1em', color:'#5cb85c'}}> {this.state.voteCount}</span></p>
+		</center><br /><br /><br />
+		</div>
+		:
+		<div><center><img src="/img/noInfo.jpg" /></center></div>
 
     return(
       <div>
-        <div>
-          <center>
-          <Link to={"/singlemovie/"+this.state.moviedBId}><img src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`} /></Link>
-          <br /><br />
-          <p style={{fontSize:'.9em', color:"#999"}}>Overview:<br /><span style={{color:'#5cb85c', fontStyle:'oblique'}}> {this.state.overview}</span></p>
-          <br /><p style={{fontSize:'.7em', color:'#999'}}> Popularity: <span style={{fontSize:'1em', color:'#5cb85c', paddingRight:20}}>{this.state.popularity}</span>
-          Vote Count:<span style={{fontSize:'1em', color:'#5cb85c'}}> {this.state.voteCount}</span></p>
-        </center><br /><br /><br />
-        </div>
+        {content}
       </div>
     )
   }
