@@ -9,7 +9,7 @@ class MovieList extends Component{
     const movieTitle = (this.props.isSelected) ? <a style={{color:'green'}} href="#">{this.props.currentMovie.movieName}</a> : <a href="#">{this.props.currentMovie.movieName}</a>
     return(
       <div>
-          <span onClick={this.selectMovie.bind(this)}>{movieTitle}</span>
+          <h4 onClick={this.selectMovie.bind(this)}>{movieTitle}</h4>
       </div>
     )
   }

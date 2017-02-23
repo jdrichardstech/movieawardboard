@@ -22064,35 +22064,55 @@
 	        _react2.default.createElement(
 	          'label',
 	          null,
-	          'Movie NAME:'
+	          _react2.default.createElement(
+	            'h5',
+	            null,
+	            'Movie NAME (required):'
+	          )
 	        ),
 	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'movieName', id: 'movieName' }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'label',
 	          null,
-	          'Lead ACTOR:'
+	          _react2.default.createElement(
+	            'h5',
+	            null,
+	            'Lead ACTOR:'
+	          )
 	        ),
 	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'leadActor', id: 'leadActor' }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'label',
 	          null,
-	          'Supporting ACTOR:'
+	          _react2.default.createElement(
+	            'h5',
+	            null,
+	            'Supporting ACTOR:'
+	          )
 	        ),
 	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'supportingActor', id: 'supportingActor' }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'label',
 	          null,
-	          'Lead ACTRESS:'
+	          _react2.default.createElement(
+	            'h5',
+	            null,
+	            'Lead ACTRESS:'
+	          )
 	        ),
 	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'leadActress', id: 'leadActress' }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'label',
 	          null,
-	          'Supporting ACTRESS:'
+	          _react2.default.createElement(
+	            'h5',
+	            null,
+	            'Supporting ACTRESS:'
+	          )
 	        ),
 	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'supportingActress', id: 'supportingActress' }),
 	        _react2.default.createElement('br', null),
@@ -22282,7 +22302,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'span',
+	          'h4',
 	          { onClick: this.selectMovie.bind(this) },
 	          movieTitle
 	        )
@@ -22524,7 +22544,7 @@
 											props.movieName
 									),
 									_react2.default.createElement(
-											"p",
+											"h5",
 											null,
 											_react2.default.createElement(
 													"span",
@@ -22535,7 +22555,7 @@
 											props.leadActor
 									),
 									_react2.default.createElement(
-											"p",
+											"h5",
 											null,
 											_react2.default.createElement(
 													"span",
@@ -22546,7 +22566,7 @@
 											props.leadActress
 									),
 									_react2.default.createElement(
-											"p",
+											"h5",
 											null,
 											_react2.default.createElement(
 													"span",
@@ -22557,7 +22577,7 @@
 											props.supportingActor
 									),
 									_react2.default.createElement(
-											"p",
+											"h5",
 											null,
 											_react2.default.createElement(
 													"span",
@@ -32424,7 +32444,7 @@
 	        _react2.default.createElement(
 	          'h5',
 	          null,
-	          'Nomination Category:'
+	          'Nomination Category: (please select category)'
 	        ),
 	        _react2.default.createElement(
 	          'select',
@@ -32465,7 +32485,11 @@
 	        _react2.default.createElement(
 	          'label',
 	          null,
-	          'Name or Movie:'
+	          _react2.default.createElement(
+	            'h5',
+	            null,
+	            'Enter Name or Movie:'
+	          )
 	        ),
 	        _react2.default.createElement('input', { onChange: this.updateNomination.bind(this), className: 'form-control', type: 'text', ref: 'nomination', id: this.state.category.nominationId }),
 	        _react2.default.createElement('br', null),
@@ -32629,8 +32653,8 @@
 											_react2.default.createElement('br', null),
 											_react2.default.createElement('br', null),
 											_react2.default.createElement(
-													'p',
-													{ style: { fontSize: '.9em', color: "#999" } },
+													'h5',
+													{ style: { color: "#999" } },
 													'Overview:',
 													_react2.default.createElement('br', null),
 													_react2.default.createElement(
@@ -32642,8 +32666,8 @@
 											),
 											_react2.default.createElement('br', null),
 											_react2.default.createElement(
-													'p',
-													{ style: { fontSize: '.7em', color: '#999' } },
+													'h5',
+													{ style: { color: '#999' } },
 													' Popularity: ',
 													_react2.default.createElement(
 															'span',

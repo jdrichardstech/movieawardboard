@@ -131,7 +131,7 @@ class NominationsUpdate extends Component{
           {listItem}
         </ul>*/}
         <h3>Make Nomination:</h3><br />
-        <h5>Nomination Category:</h5>
+        <h5>Nomination Category: (please select category)</h5>
         <select className="form-control" style={{backGround:'black',color:'#999'}} value={this.state.category.title} onChange={this.updateCategory.bind(this)}>
          <option value="leadActor">Lead Actor</option>
          <option value="leadActress">Lead Actress</option>
@@ -141,7 +141,7 @@ class NominationsUpdate extends Component{
          <option value="outstandingEnsemble">Outstanding Ensemble</option>
      		</select>
      		<br /><br />
-				<label>Name or Movie:</label>
+				<label><h5>Enter Name or Movie:</h5></label>
         <input onChange ={this.updateNomination.bind(this)} className="form-control" type="text" ref="nomination" id={this.state.category.nominationId} /><br />
         <button style={styles.nominations.button}  onClick={this.submitNomination.bind(this)}  className="btn btn-success">Nominate</button> &nbsp;
         <Link to = "/nominations"><button style={styles.nominations.button}  type="" className="btn btn-info">View Nominations</button></Link>

@@ -81,9 +81,9 @@ class MovieDBInfo extends Component{
 			<center>
 			<Link to={"/singlemovie/"+this.state.moviedBId}><img src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`} /></Link>
 			<br /><br />
-			<p style={{fontSize:'.9em', color:"#999"}}>Overview:<br /><span style={{color:'#5cb85c', fontStyle:'oblique'}}> {this.state.overview}</span></p>
-			<br /><p style={{fontSize:'.7em', color:'#999'}}> Popularity: <span style={{fontSize:'1em', color:'#5cb85c', paddingRight:20}}>{this.state.popularity}</span>
-			Vote Count:<span style={{fontSize:'1em', color:'#5cb85c'}}> {this.state.voteCount}</span></p>
+			<h5 style={{color:"#999"}}>Overview:<br /><span style={{color:'#5cb85c', fontStyle:'oblique'}}> {this.state.overview}</span></h5>
+			<br /><h5 style={{color:'#999'}}> Popularity: <span style={{fontSize:'1em', color:'#5cb85c', paddingRight:20}}>{this.state.popularity}</span>
+			Vote Count:<span style={{fontSize:'1em', color:'#5cb85c'}}> {this.state.voteCount}</span></h5>
 		</center><br /><br /><br />
 		</div>
 		:

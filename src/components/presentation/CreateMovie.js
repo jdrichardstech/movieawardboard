@@ -49,15 +49,15 @@ class CreateMovie extends Component{
   render(){
     return(
       <div>
-				<label>Movie NAME:</label>
+				<label><h5>Movie NAME (required):</h5></label>
 	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="movieName" id="movieName" /><br />
-				<label>Lead ACTOR:</label>
+				<label><h5>Lead ACTOR:</h5></label>
 	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="leadActor" id="leadActor" /><br />
-				<label>Supporting ACTOR:</label>
+				<label><h5>Supporting ACTOR:</h5></label>
 			 	<input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="supportingActor" id="supportingActor" /><br />
-				 <label>Lead ACTRESS:</label>
+				 <label><h5>Lead ACTRESS:</h5></label>
 	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="leadActress" id="leadActress" /><br />
-				<label>Supporting ACTRESS:</label>
+				<label><h5>Supporting ACTRESS:</h5></label>
 	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="supportingActress" id="supportingActress" /><br />
 	      <button onClick={this.submitMovie.bind(this)} className="btn btn-info">Submit Movie</button>
       </div>
