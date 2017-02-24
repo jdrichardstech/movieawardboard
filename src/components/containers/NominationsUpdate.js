@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 class NominationsUpdate extends Component{
   constructor(props){
     super(props)
+		this.restructureEnteredName = this.restructureEnteredName.bind(this)
     this.state={
 
       category:{
@@ -72,12 +73,21 @@ class NominationsUpdate extends Component{
     })
   }
 
+	restructureEnteredName(name){
+		var nameArray = names.split(' ')
+		var newNameArray = nameArray.map((letter)=> {
+			return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase()
+		})
+		var restructuredName = newNameArray.join(' ')
+		return restructuredName
+	}
+
   updateNomination(event){
     let updatedNomination = Object.assign({}, this.state.nomination)
-    updatedNomination[this.state.category.nominationId] = event.target.value
+		let category = updatedNomination[this.state.category.nominationId]
+    category = this.restructureEnteredName(event.target.value)
     this.setState({
-      nomination: updatedNomination,
-
+      nomination: updatedNomination
     })
 
   }
@@ -90,22 +100,21 @@ class NominationsUpdate extends Component{
     let updatedList = Object.assign([],this.state.list)
     updatedList.push(this.state.nomination)
 
-
-  superagent
-  .post(url)//this can be replaced with /api/this.state.category.title
-  .send(this.state.nomination)
-  .set('Accept', 'application/json')
-  .end(function(err, res){
-    if (err || !res.ok) {
-      alert('Oh no! error');
-    } else {
-      alert('Nomination Has Been Added')
-    }
-  });
-  this.setState({
-    list:updatedList
-  })
-	this.refs.nomination.value=''
+	  superagent
+	  .post(url)//this can be replaced with /api/this.state.category.title
+	  .send(this.state.nomination)
+	  .set('Accept', 'application/json')
+	  .end(function(err, res){
+	    if (err || !res.ok) {
+	      alert('Oh no! error');
+	    } else {
+	      alert('Nomination Has Been Added')
+	    }
+	  });
+	  this.setState({
+	    list:updatedList
+	  })
+		this.refs.nomination.value=''
   }
 
 

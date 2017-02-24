@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 class CreateMovie extends Component{
   constructor(props){
     super(props)
-		this.createName = this.createName.bind(this)
+		this.restructureEnteredName = this.restructureEnteredName.bind(this)
     this.state={
       movie:{
         movieName:'',
@@ -27,16 +27,13 @@ class CreateMovie extends Component{
 		this.refs.supportingActress.value=''
 	}
 
-	createName(actorName){
-		var nameArray = actorName.split(' ')
-		console.log("nameArray: " + JSON.stringify(nameArray))
+	restructureEnteredName(name){
+		var nameArray = name.split(' ')
 		var newNameArray = nameArray.map((letter)=> {
 			return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase()
 		})
-		console.log("newNameArray: " + JSON.stringify(newNameArray))
-		var refactoredName = newNameArray.join(' ')
-		console.log('refactoredName: ' + JSON.stringify(refactoredName))
-		return refactoredName
+		var restructuredName = newNameArray.join(' ')
+		return restructuredName
 	}
 
   updateMovie(event){
@@ -55,20 +52,18 @@ class CreateMovie extends Component{
     let updatedMovie = Object.assign({}, this.state.movie)
 		updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase()
 		if(updatedMovie['leadActor']!=''){
-			updatedMovie['leadActor'] = this.createName(updatedMovie['leadActor'])
+			updatedMovie['leadActor'] = this.restructureEnteredName(updatedMovie['leadActor'])
 		}
 		if(updatedMovie['leadActress']!=''){
-			updatedMovie['leadActress'] = this.createName(updatedMovie['leadActress'])
+			updatedMovie['leadActress'] = this.restructureEnteredName(updatedMovie['leadActress'])
 		}
 		if(updatedMovie['supportingActor']!=''){
-			updatedMovie['supportingActor'] = this.createName(updatedMovie['supportingActor'])
+			updatedMovie['supportingActor'] = this.restructureEnteredName(updatedMovie['supportingActor'])
 		}
 		if(updatedMovie['supportingActress']!=''){
-			updatedMovie['supportingActress'] = this.createName(updatedMovie['supportingActress'])
+			updatedMovie['supportingActress'] = this.restructureEnteredName(updatedMovie['supportingActress'])
 		}
 
-		console.log(updatedMovie['leadActor'])
-		// console.log("MOVIENAME: " + (updatedMovie['movieName']))
     this.props.onCreateMovie(updatedMovie)
 		this.clearValues()
   }

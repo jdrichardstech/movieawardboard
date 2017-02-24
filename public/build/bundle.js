@@ -22006,7 +22006,7 @@
 	
 					var _this = _possibleConstructorReturn(this, (CreateMovie.__proto__ || Object.getPrototypeOf(CreateMovie)).call(this, props));
 	
-					_this.createName = _this.createName.bind(_this);
+					_this.restructureEnteredName = _this.restructureEnteredName.bind(_this);
 					_this.state = {
 							movie: {
 									movieName: '',
@@ -22030,17 +22030,14 @@
 							this.refs.supportingActress.value = '';
 					}
 			}, {
-					key: 'createName',
-					value: function createName(actorName) {
-							var nameArray = actorName.split(' ');
-							console.log("nameArray: " + JSON.stringify(nameArray));
+					key: 'restructureEnteredName',
+					value: function restructureEnteredName(name) {
+							var nameArray = name.split(' ');
 							var newNameArray = nameArray.map(function (letter) {
 									return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase();
 							});
-							console.log("newNameArray: " + JSON.stringify(newNameArray));
-							var refactoredName = newNameArray.join(' ');
-							console.log('refactoredName: ' + JSON.stringify(refactoredName));
-							return refactoredName;
+							var restructuredName = newNameArray.join(' ');
+							return restructuredName;
 					}
 			}, {
 					key: 'updateMovie',
@@ -22061,20 +22058,18 @@
 							var updatedMovie = Object.assign({}, this.state.movie);
 							updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase();
 							if (updatedMovie['leadActor'] != '') {
-									updatedMovie['leadActor'] = this.createName(updatedMovie['leadActor']);
+									updatedMovie['leadActor'] = this.restructureEnteredName(updatedMovie['leadActor']);
 							}
 							if (updatedMovie['leadActress'] != '') {
-									updatedMovie['leadActress'] = this.createName(updatedMovie['leadActress']);
+									updatedMovie['leadActress'] = this.restructureEnteredName(updatedMovie['leadActress']);
 							}
 							if (updatedMovie['supportingActor'] != '') {
-									updatedMovie['supportingActor'] = this.createName(updatedMovie['supportingActor']);
+									updatedMovie['supportingActor'] = this.restructureEnteredName(updatedMovie['supportingActor']);
 							}
 							if (updatedMovie['supportingActress'] != '') {
-									updatedMovie['supportingActress'] = this.createName(updatedMovie['supportingActress']);
+									updatedMovie['supportingActress'] = this.restructureEnteredName(updatedMovie['supportingActress']);
 							}
 	
-							console.log(updatedMovie['leadActor']);
-							// console.log("MOVIENAME: " + (updatedMovie['movieName']))
 							this.props.onCreateMovie(updatedMovie);
 							this.clearValues();
 					}
@@ -32346,6 +32341,7 @@
 	
 	    var _this = _possibleConstructorReturn(this, (NominationsUpdate.__proto__ || Object.getPrototypeOf(NominationsUpdate)).call(this, props));
 	
+	    _this.restructureEnteredName = _this.restructureEnteredName.bind(_this);
 	    _this.state = {
 	
 	      category: {
@@ -32414,13 +32410,23 @@
 	      });
 	    }
 	  }, {
+	    key: 'restructureEnteredName',
+	    value: function restructureEnteredName(name) {
+	      var nameArray = names.split(' ');
+	      var newNameArray = nameArray.map(function (letter) {
+	        return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase();
+	      });
+	      var restructuredName = newNameArray.join(' ');
+	      return restructuredName;
+	    }
+	  }, {
 	    key: 'updateNomination',
 	    value: function updateNomination(event) {
 	      var updatedNomination = Object.assign({}, this.state.nomination);
-	      updatedNomination[this.state.category.nominationId] = event.target.value;
+	      var category = updatedNomination[this.state.category.nominationId];
+	      category = this.restructureEnteredName(event.target.value);
 	      this.setState({
 	        nomination: updatedNomination
-	
 	      });
 	    }
 	  }, {
