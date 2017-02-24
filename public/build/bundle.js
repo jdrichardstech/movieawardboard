@@ -32341,7 +32341,6 @@
 	
 	    var _this = _possibleConstructorReturn(this, (NominationsUpdate.__proto__ || Object.getPrototypeOf(NominationsUpdate)).call(this, props));
 	
-	    _this.restructureEnteredName = _this.restructureEnteredName.bind(_this);
 	    _this.state = {
 	
 	      category: {
@@ -32410,21 +32409,10 @@
 	      });
 	    }
 	  }, {
-	    key: 'restructureEnteredName',
-	    value: function restructureEnteredName(name) {
-	      var nameArray = names.split(' ');
-	      var newNameArray = nameArray.map(function (letter) {
-	        return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase();
-	      });
-	      var restructuredName = newNameArray.join(' ');
-	      return restructuredName;
-	    }
-	  }, {
 	    key: 'updateNomination',
 	    value: function updateNomination(event) {
 	      var updatedNomination = Object.assign({}, this.state.nomination);
-	      var category = updatedNomination[this.state.category.nominationId];
-	      category = this.restructureEnteredName(event.target.value);
+	      updatedNomination[this.state.category.nominationId] = event.target.value;
 	      this.setState({
 	        nomination: updatedNomination
 	      });

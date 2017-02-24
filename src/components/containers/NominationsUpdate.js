@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 class NominationsUpdate extends Component{
   constructor(props){
     super(props)
-		this.restructureEnteredName = this.restructureEnteredName.bind(this)
     this.state={
 
       category:{
@@ -73,24 +72,13 @@ class NominationsUpdate extends Component{
     })
   }
 
-	restructureEnteredName(name){
-		var nameArray = names.split(' ')
-		var newNameArray = nameArray.map((letter)=> {
-			return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase()
-		})
-		var restructuredName = newNameArray.join(' ')
-		return restructuredName
-	}
-
-  updateNomination(event){
-    let updatedNomination = Object.assign({}, this.state.nomination)
-		let category = updatedNomination[this.state.category.nominationId]
-    category = this.restructureEnteredName(event.target.value)
-    this.setState({
-      nomination: updatedNomination
-    })
-
-  }
+	updateNomination(event){
+	let updatedNomination = Object.assign({}, this.state.nomination)
+	updatedNomination[this.state.category.nominationId] = event.target.value
+	this.setState({
+		nomination: updatedNomination,
+	})
+}
 
 
 
