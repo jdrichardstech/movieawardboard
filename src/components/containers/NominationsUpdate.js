@@ -70,11 +70,6 @@ class NominationsUpdate extends Component{
     this.setState({
       category: updatedCategory
     })
-
-
-
-
-
   }
 
   updateNomination(event){

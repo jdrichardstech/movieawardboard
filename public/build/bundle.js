@@ -21981,7 +21981,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21999,128 +21999,156 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var CreateMovie = function (_Component) {
-	  _inherits(CreateMovie, _Component);
+			_inherits(CreateMovie, _Component);
 	
-	  function CreateMovie(props) {
-	    _classCallCheck(this, CreateMovie);
+			function CreateMovie(props) {
+					_classCallCheck(this, CreateMovie);
 	
-	    var _this = _possibleConstructorReturn(this, (CreateMovie.__proto__ || Object.getPrototypeOf(CreateMovie)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (CreateMovie.__proto__ || Object.getPrototypeOf(CreateMovie)).call(this, props));
 	
-	    _this.state = {
-	      movie: {
-	        movieName: '',
-	        leadActor: '',
-	        leadActress: '',
-	        supportingActor: '',
-	        supportingActress: ''
-	      },
-	      list: []
-	    };
-	    return _this;
-	  }
+					_this.createName = _this.createName.bind(_this);
+					_this.state = {
+							movie: {
+									movieName: '',
+									leadActor: '',
+									leadActress: '',
+									supportingActor: '',
+									supportingActress: ''
+							},
+							list: []
+					};
+					return _this;
+			}
 	
-	  _createClass(CreateMovie, [{
-	    key: 'clearValues',
-	    value: function clearValues() {
-	      this.refs.movieName.value = '';
-	      this.refs.leadActor.value = '';
-	      this.refs.supportingActor.value = '';
-	      this.refs.leadActress.value = '';
-	      this.refs.supportingActress.value = '';
-	    }
-	  }, {
-	    key: 'updateMovie',
-	    value: function updateMovie(event) {
-	      var updatedMovie = Object.assign({}, this.state.movie);
-	      updatedMovie[event.target.id] = event.target.value;
-	      this.setState({
-	        movie: updatedMovie
-	      });
-	    }
-	  }, {
-	    key: 'submitMovie',
-	    value: function submitMovie() {
-	      if (this.state.movie.movieName == '') {
-	        alert("YOU MUST ENTER A MOVIE NAME");
-	        return;
-	      }
-	      var updatedMovie = Object.assign({}, this.state.movie);
-	      updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase();
-	      // console.log("MOVIENAME: " + (updatedMovie['movieName']))
-	      this.props.onCreateMovie(updatedMovie);
-	      this.clearValues();
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'label',
-	          null,
-	          _react2.default.createElement(
-	            'h5',
-	            null,
-	            'Movie NAME (required):'
-	          )
-	        ),
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'movieName', id: 'movieName' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'label',
-	          null,
-	          _react2.default.createElement(
-	            'h5',
-	            null,
-	            'Lead ACTOR:'
-	          )
-	        ),
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'leadActor', id: 'leadActor' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'label',
-	          null,
-	          _react2.default.createElement(
-	            'h5',
-	            null,
-	            'Supporting ACTOR:'
-	          )
-	        ),
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'supportingActor', id: 'supportingActor' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'label',
-	          null,
-	          _react2.default.createElement(
-	            'h5',
-	            null,
-	            'Lead ACTRESS:'
-	          )
-	        ),
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'leadActress', id: 'leadActress' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'label',
-	          null,
-	          _react2.default.createElement(
-	            'h5',
-	            null,
-	            'Supporting ACTRESS:'
-	          )
-	        ),
-	        _react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'supportingActress', id: 'supportingActress' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.submitMovie.bind(this), className: 'btn btn-info' },
-	          'Submit Movie'
-	        )
-	      );
-	    }
-	  }]);
+			_createClass(CreateMovie, [{
+					key: 'clearValues',
+					value: function clearValues() {
+							this.refs.movieName.value = '';
+							this.refs.leadActor.value = '';
+							this.refs.supportingActor.value = '';
+							this.refs.leadActress.value = '';
+							this.refs.supportingActress.value = '';
+					}
+			}, {
+					key: 'createName',
+					value: function createName(actorName) {
+							var nameArray = actorName.split(' ');
+							console.log("nameArray: " + JSON.stringify(nameArray));
+							var newNameArray = nameArray.map(function (letter) {
+									return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase();
+							});
+							console.log("newNameArray: " + JSON.stringify(newNameArray));
+							var refactoredName = newNameArray.join(' ');
+							console.log('refactoredName: ' + JSON.stringify(refactoredName));
+							return refactoredName;
+					}
+			}, {
+					key: 'updateMovie',
+					value: function updateMovie(event) {
+							var updatedMovie = Object.assign({}, this.state.movie);
+							updatedMovie[event.target.id] = event.target.value;
+							this.setState({
+									movie: updatedMovie
+							});
+					}
+			}, {
+					key: 'submitMovie',
+					value: function submitMovie() {
+							if (this.state.movie.movieName == '') {
+									alert("YOU MUST ENTER A MOVIE NAME");
+									return;
+							}
+							var updatedMovie = Object.assign({}, this.state.movie);
+							updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase();
+							if (updatedMovie['leadActor'] != '') {
+									updatedMovie['leadActor'] = this.createName(updatedMovie['leadActor']);
+							}
+							if (updatedMovie['leadActress'] != '') {
+									updatedMovie['leadActress'] = this.createName(updatedMovie['leadActress']);
+							}
+							if (updatedMovie['supportingActor'] != '') {
+									updatedMovie['supportingActor'] = this.createName(updatedMovie['supportingActor']);
+							}
+							if (updatedMovie['supportingActress'] != '') {
+									updatedMovie['supportingActress'] = this.createName(updatedMovie['supportingActress']);
+							}
 	
-	  return CreateMovie;
+							console.log(updatedMovie['leadActor']);
+							// console.log("MOVIENAME: " + (updatedMovie['movieName']))
+							// this.props.onCreateMovie(updatedMovie)
+							// this.clearValues()
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							return _react2.default.createElement(
+									'div',
+									null,
+									_react2.default.createElement(
+											'label',
+											null,
+											_react2.default.createElement(
+													'h5',
+													null,
+													'Movie NAME (required):'
+											)
+									),
+									_react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'movieName', id: 'movieName' }),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+											'label',
+											null,
+											_react2.default.createElement(
+													'h5',
+													null,
+													'Lead ACTOR:'
+											)
+									),
+									_react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'leadActor', id: 'leadActor' }),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+											'label',
+											null,
+											_react2.default.createElement(
+													'h5',
+													null,
+													'Supporting ACTOR:'
+											)
+									),
+									_react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'supportingActor', id: 'supportingActor' }),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+											'label',
+											null,
+											_react2.default.createElement(
+													'h5',
+													null,
+													'Lead ACTRESS:'
+											)
+									),
+									_react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'leadActress', id: 'leadActress' }),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+											'label',
+											null,
+											_react2.default.createElement(
+													'h5',
+													null,
+													'Supporting ACTRESS:'
+											)
+									),
+									_react2.default.createElement('input', { onChange: this.updateMovie.bind(this), className: 'form-control', type: 'text', ref: 'supportingActress', id: 'supportingActress' }),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+											'button',
+											{ onClick: this.submitMovie.bind(this), className: 'btn btn-info' },
+											'Submit Movie'
+									)
+							);
+					}
+			}]);
+	
+			return CreateMovie;
 	}(_react.Component);
 	
 	exports.default = CreateMovie;

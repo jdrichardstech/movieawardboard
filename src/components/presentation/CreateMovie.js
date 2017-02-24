@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 class CreateMovie extends Component{
   constructor(props){
     super(props)
+		this.createName = this.createName.bind(this)
     this.state={
       movie:{
         movieName:'',
@@ -26,6 +27,18 @@ class CreateMovie extends Component{
 		this.refs.supportingActress.value=''
 	}
 
+	createName(actorName){
+		var nameArray = actorName.split(' ')
+		console.log("nameArray: " + JSON.stringify(nameArray))
+		var newNameArray = nameArray.map((letter)=> {
+			return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase()
+		})
+		console.log("newNameArray: " + JSON.stringify(newNameArray))
+		var refactoredName = newNameArray.join(' ')
+		console.log('refactoredName: ' + JSON.stringify(refactoredName))
+		return refactoredName
+	}
+
   updateMovie(event){
     let updatedMovie = Object.assign({}, this.state.movie)
     updatedMovie[event.target.id] = event.target.value
@@ -41,9 +54,23 @@ class CreateMovie extends Component{
 		}
     let updatedMovie = Object.assign({}, this.state.movie)
 		updatedMovie['movieName'] = updatedMovie.movieName.toUpperCase()
+		if(updatedMovie['leadActor']!=''){
+			updatedMovie['leadActor'] = this.createName(updatedMovie['leadActor'])
+		}
+		if(updatedMovie['leadActress']!=''){
+			updatedMovie['leadActress'] = this.createName(updatedMovie['leadActress'])
+		}
+		if(updatedMovie['supportingActor']!=''){
+			updatedMovie['supportingActor'] = this.createName(updatedMovie['supportingActor'])
+		}
+		if(updatedMovie['supportingActress']!=''){
+			updatedMovie['supportingActress'] = this.createName(updatedMovie['supportingActress'])
+		}
+
+		console.log(updatedMovie['leadActor'])
 		// console.log("MOVIENAME: " + (updatedMovie['movieName']))
-    this.props.onCreateMovie(updatedMovie)
-		this.clearValues()
+    // this.props.onCreateMovie(updatedMovie)
+		// this.clearValues()
   }
 
   render(){
