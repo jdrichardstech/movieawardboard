@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 class Movies extends Component{
   constructor(props){
     super(props)
+		this.postMovie = this.postMovie.bind(this)
     this.state={
 
     }
@@ -38,16 +39,22 @@ class Movies extends Component{
 	  this.props.selectMovie(index)
 	}
 
+	postMovie(movie){
+		let updatedMovie = Object.assign({}, movie)
+		APIManager.post('/api/movie', updatedMovie, (err, response) => {
+			if (err){
+				alert('ERROR: '+err.message)
+				return
+			}
+			this.props.movieCreated(response.result)
+		})
+	}
+
 	handleMovieSubmit(movie){
+
 		if(this.state.movies.length == 0){
-			let updatedMovie = Object.assign({}, movie)
-			APIManager.post('/api/movie', updatedMovie, (err, response) => {
-				if (err){
-					alert('ERROR: '+err.message)
-					return
-				}
-				this.props.movieCreated(response.result)
-			})
+			this.postMovie(movie)
+
 		}
 		if(this.state.movies.length !=0){
 			for(let i = 0; i < this.state.movies.length;i++){
@@ -57,16 +64,10 @@ class Movies extends Component{
 					return
 				}
 			}
-			let updatedMovie = Object.assign({}, movie)
-			APIManager.post('/api/movie', updatedMovie, (err, response) => {
-				if (err){
-					alert('ERROR: '+err.message)
-					return
-				}
-				this.props.movieCreated(response.result)
-			})
+
+			this.postMovie(movie)
 		}
-		}
+	}
 
 
 

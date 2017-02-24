@@ -21703,7 +21703,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21743,159 +21743,160 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Movies = function (_Component) {
-			_inherits(Movies, _Component);
+	  _inherits(Movies, _Component);
 	
-			function Movies(props) {
-					_classCallCheck(this, Movies);
+	  function Movies(props) {
+	    _classCallCheck(this, Movies);
 	
-					var _this = _possibleConstructorReturn(this, (Movies.__proto__ || Object.getPrototypeOf(Movies)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Movies.__proto__ || Object.getPrototypeOf(Movies)).call(this, props));
 	
-					_this.state = {};
-					return _this;
-			}
+	    _this.postMovie = _this.postMovie.bind(_this);
+	    _this.state = {};
+	    return _this;
+	  }
 	
-			_createClass(Movies, [{
-					key: 'componentDidMount',
-					value: function componentDidMount() {
-							var _this2 = this;
+	  _createClass(Movies, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
 	
-							console.log('componentDidMount: ');
-							_utils.APIManager.get('/api/movie', null, function (err, response) {
-									if (err) {
-											alert('ERROR: ' + err.message);
-											return;
-									}
-									var movies = response.results;
-									_this2.props.moviesReceived(movies);
+	      console.log('componentDidMount: ');
+	      _utils.APIManager.get('/api/movie', null, function (err, response) {
+	        if (err) {
+	          alert('ERROR: ' + err.message);
+	          return;
+	        }
+	        var movies = response.results;
+	        _this2.props.moviesReceived(movies);
 	
-									_this2.setState({
-											movies: movies
-									});
-									console.log('Movies in container: ' + JSON.stringify(_this2.state.movies));
-							});
-					}
-			}, {
-					key: 'handleSelectMovie',
-					value: function handleSelectMovie(index) {
-							// event.preventDefault()
-							this.props.selectMovie(index);
-					}
-			}, {
-					key: 'handleMovieSubmit',
-					value: function handleMovieSubmit(movie) {
-							var _this3 = this;
+	        _this2.setState({
+	          movies: movies
+	        });
+	        console.log('Movies in container: ' + JSON.stringify(_this2.state.movies));
+	      });
+	    }
+	  }, {
+	    key: 'handleSelectMovie',
+	    value: function handleSelectMovie(index) {
+	      // event.preventDefault()
+	      this.props.selectMovie(index);
+	    }
+	  }, {
+	    key: 'postMovie',
+	    value: function postMovie(movie) {
+	      var _this3 = this;
 	
-							if (this.state.movies.length == 0) {
-									var updatedMovie = Object.assign({}, movie);
-									_utils.APIManager.post('/api/movie', updatedMovie, function (err, response) {
-											if (err) {
-													alert('ERROR: ' + err.message);
-													return;
-											}
-											_this3.props.movieCreated(response.result);
-									});
-							}
-							if (this.state.movies.length != 0) {
-									for (var i = 0; i < this.state.movies.length; i++) {
-											if (this.state.movies[i]['movieName'] == movie.movieName) {
-													console.log("MOVIE INCLUDED");
-													alert("THIS MOVIE HAS ALREADY BEEN CREATED");
-													return;
-											}
-									}
-									var _updatedMovie = Object.assign({}, movie);
-									_utils.APIManager.post('/api/movie', _updatedMovie, function (err, response) {
-											if (err) {
-													alert('ERROR: ' + err.message);
-													return;
-											}
-											_this3.props.movieCreated(response.result);
-									});
-							}
-					}
-			}, {
-					key: 'render',
-					value: function render() {
-							var _this4 = this;
+	      var updatedMovie = Object.assign({}, movie);
+	      _utils.APIManager.post('/api/movie', updatedMovie, function (err, response) {
+	        if (err) {
+	          alert('ERROR: ' + err.message);
+	          return;
+	        }
+	        _this3.props.movieCreated(response.result);
+	      });
+	    }
+	  }, {
+	    key: 'handleMovieSubmit',
+	    value: function handleMovieSubmit(movie) {
 	
-							var movieList = this.props.list.map(function (movie, i) {
-									var selected = i == _this4.props.selected;
-									return _react2.default.createElement(
-											'li',
-											{ key: i, style: { marginBottom: 0 } },
-											_react2.default.createElement(_presentation.MovieList, { index: i, isSelected: selected, selectMovie: _this4.handleSelectMovie.bind(_this4), currentMovie: movie })
-									);
-							});
+	      if (this.state.movies.length == 0) {
+	        this.postMovie(movie);
+	      }
+	      if (this.state.movies.length != 0) {
+	        for (var i = 0; i < this.state.movies.length; i++) {
+	          if (this.state.movies[i]['movieName'] == movie.movieName) {
+	            console.log("MOVIE INCLUDED");
+	            alert("THIS MOVIE HAS ALREADY BEEN CREATED");
+	            return;
+	          }
+	        }
 	
-							return _react2.default.createElement(
-									'div',
-									null,
-									_react2.default.createElement(
-											'div',
-											null,
-											_react2.default.createElement(
-													'div',
-													{ className: 'headline-v2' },
-													_react2.default.createElement(
-															'h2',
-															null,
-															'Movie List:'
-													)
-											),
-											_react2.default.createElement(
-													'div',
-													null,
-													_react2.default.createElement(
-															'ul',
-															{ className: 'list-unstyled blog-trending margin-bottom-50' },
-															movieList
-													)
-											),
-											_react2.default.createElement('hr', null),
-											_react2.default.createElement(
-													'div',
-													{ className: 'headline-v2' },
-													_react2.default.createElement(
-															'h2',
-															null,
-															'Create Movie:'
-													)
-											),
-											_react2.default.createElement(
-													'div',
-													{ style: { marginBottom: 50 } },
-													_react2.default.createElement(_presentation.CreateMovie, { movie: this.props.movie, list: this.props.list, onCreateMovie: this.handleMovieSubmit.bind(this) })
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null)
-									)
-							);
-					}
-			}]);
+	        this.postMovie(movie);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this4 = this;
 	
-			return Movies;
+	      var movieList = this.props.list.map(function (movie, i) {
+	        var selected = i == _this4.props.selected;
+	        return _react2.default.createElement(
+	          'li',
+	          { key: i, style: { marginBottom: 0 } },
+	          _react2.default.createElement(_presentation.MovieList, { index: i, isSelected: selected, selectMovie: _this4.handleSelectMovie.bind(_this4), currentMovie: movie })
+	        );
+	      });
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'headline-v2' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'Movie List:'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'list-unstyled blog-trending margin-bottom-50' },
+	              movieList
+	            )
+	          ),
+	          _react2.default.createElement('hr', null),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'headline-v2' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'Create Movie:'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { marginBottom: 50 } },
+	            _react2.default.createElement(_presentation.CreateMovie, { movie: this.props.movie, list: this.props.list, onCreateMovie: this.handleMovieSubmit.bind(this) })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null)
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Movies;
 	}(_react.Component);
 	
 	var dispatchToProps = function dispatchToProps(dispatch) {
-			return {
-					moviesReceived: function moviesReceived(movies) {
-							return dispatch(_actions2.default.moviesReceived(movies));
-					},
-					movieCreated: function movieCreated(movie) {
-							return dispatch(_actions2.default.movieCreated(movie));
-					},
-					selectMovie: function selectMovie(index) {
-							return dispatch(_actions2.default.selectMovie(index));
-					}
-			};
+	  return {
+	    moviesReceived: function moviesReceived(movies) {
+	      return dispatch(_actions2.default.moviesReceived(movies));
+	    },
+	    movieCreated: function movieCreated(movie) {
+	      return dispatch(_actions2.default.movieCreated(movie));
+	    },
+	    selectMovie: function selectMovie(index) {
+	      return dispatch(_actions2.default.selectMovie(index));
+	    }
+	  };
 	};
 	
 	var stateToProps = function stateToProps(state) {
-			return {
-					list: state.movies.list,
-					movie: state.movies.movie,
-					selected: state.movies.selected
-			};
+	  return {
+	    list: state.movies.list,
+	    movie: state.movies.movie,
+	    selected: state.movies.selected
+	  };
 	};
 	
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Movies);
