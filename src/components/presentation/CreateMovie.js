@@ -69,8 +69,8 @@ class CreateMovie extends Component{
 
 		console.log(updatedMovie['leadActor'])
 		// console.log("MOVIENAME: " + (updatedMovie['movieName']))
-    // this.props.onCreateMovie(updatedMovie)
-		// this.clearValues()
+    this.props.onCreateMovie(updatedMovie)
+		this.clearValues()
   }
 
   render(){
