@@ -23,8 +23,21 @@ class CreateMovieNote extends Component{
   }
 
   addNote(event){
-    // console.log('addnote: '+ JSON.stringify(this.state.movieNote))
+    console.log('addnote: '+ JSON.stringify(this.state.movieNote))
+		if(this.state.movieNote.note==''){
+			swal({
+				title:'Oops!',
+				text:'You must enter a note',
+				type:'error'
+			})
+			return
+		}
     this.props.createMovieNote(this.state.movieNote)
+		let updated = Object.assign({}, this.state.movieNote)
+		updated['note'] = ''
+		this.setState({
+			movieNote: updated
+		})
 		this.refs.note.value=''
   }
 

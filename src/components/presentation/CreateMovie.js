@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 
 
+
 class CreateMovie extends Component{
   constructor(props){
     super(props)
@@ -46,7 +47,12 @@ class CreateMovie extends Component{
 
   submitMovie(){
 		if(this.state.movie.movieName == ''){
-			alert("YOU MUST ENTER A MOVIE NAME")
+			// alert("YOU MUST ENTER A MOVIE NAME")
+		swal({
+			title:"Oops!",
+			text:"You must enter a movie name",
+			type: "error"
+		})
 			return
 		}
     let updatedMovie = Object.assign({}, this.state.movie)

@@ -40,6 +40,8 @@
 
   	<!-- CSS Customization -->
   	<link rel="stylesheet" href="/assets/css/custom.css">
+		<link rel="stylesheet" href="/assets/css/sweetalert.css">
+		<script type="text/javascript" src="/assets/js/sweetalert.min.js"></script>
   </head>
 
 

@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 class NominationsUpdate extends Component{
   constructor(props){
     super(props)
+		this.restructureEnteredName = this.restructureEnteredName.bind(this)
     this.state={
 
       category:{
@@ -72,22 +73,43 @@ class NominationsUpdate extends Component{
     })
   }
 
-	updateNomination(event){
-	let updatedNomination = Object.assign({}, this.state.nomination)
-	updatedNomination[this.state.category.nominationId] = event.target.value
-	this.setState({
-		nomination: updatedNomination,
-	})
-}
+restructureEnteredName(name){
+		var nameArray = name.split(' ')
+		var newNameArray = nameArray.map((letter)=> {
+			return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase()
+		})
+		var restructuredName = newNameArray.join(' ')
+		return restructuredName
+	}
 
+  updateNomination(event){
+    let updatedNomination = Object.assign({}, this.state.nomination)
+		let category = this.restructureEnteredName(event.target.value)
+		updatedNomination[this.state.category.nominationId] = category
 
+    this.setState({
+      nomination: updatedNomination
+    })
+
+  }
 
   submitNomination(event){
-    // console.log('Submit: ' + this.state.category.title)
+		console.log("EVENT: " + JSON.stringify(this.refs.nomination.value))
+		if (this.refs.nomination.value==''){
+			swal({
+				title:"Oops!",
+				text:"You must nominate a person or a movie",
+				type:"error"
+			})
+			return
+		}
+
+    // // console.log('Submit: ' + this.state.category.title)
     var url = '/api/'+(this.state.category.title).toLowerCase()
     let updatedList = Object.assign([],this.state.list)
     updatedList.push(this.state.nomination)
 
+		// console.log("UPDATED NOMINATION: " + JSON.stringify(this.state.nomination))
 	  superagent
 	  .post(url)//this can be replaced with /api/this.state.category.title
 	  .send(this.state.nomination)
@@ -96,7 +118,11 @@ class NominationsUpdate extends Component{
 	    if (err || !res.ok) {
 	      alert('Oh no! error');
 	    } else {
-	      alert('Nomination Has Been Added')
+	      swal({
+					title:"Success",
+					text:"Your nomination has been added",
+					type:"success"
+				})
 	    }
 	  });
 	  this.setState({
