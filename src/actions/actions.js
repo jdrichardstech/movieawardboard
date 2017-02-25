@@ -1,4 +1,5 @@
 import constants from '../constants/constants'
+import { APIManager } from '../utils'
 
 const getRequest = (path, params, actionType)=>{
   return(dispatch) =>
@@ -51,7 +52,7 @@ export default{
 				console.log('RESPONSE: '+JSON.stringify(response))
 
 				dispatch({
-					type: constants.MOVIE,
+					type: constants.MOVIE_CREATED,
 					movie: movie
 				})
 			})

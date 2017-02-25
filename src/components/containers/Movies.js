@@ -51,10 +51,8 @@ class Movies extends Component{
 	}
 
 	handleMovieSubmit(movie){
-
 		if(this.state.movies.length == 0){
 			this.postMovie(movie)
-
 		}
 		if(this.state.movies.length !=0){
 			for(let i = 0; i < this.state.movies.length;i++){
@@ -64,14 +62,9 @@ class Movies extends Component{
 					return
 				}
 			}
-
 			this.postMovie(movie)
 		}
 	}
-
-
-
-
 
   render(){
     const movieList = this.props.list.map((movie, i) => {
@@ -112,7 +105,8 @@ const dispatchToProps = (dispatch) => {
   return{
     moviesReceived: (movies) => dispatch(actions.moviesReceived(movies)),
     movieCreated: (movie) => dispatch(actions.movieCreated(movie)),
-    selectMovie: (index) => dispatch(actions.selectMovie(index))
+    selectMovie: (index) => dispatch(actions.selectMovie(index)),
+		createMovie: (movie) => dispatch(actions.createMovie(movie))
   }
 }
 

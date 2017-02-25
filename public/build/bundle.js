@@ -21798,7 +21798,6 @@
 	  }, {
 	    key: 'handleMovieSubmit',
 	    value: function handleMovieSubmit(movie) {
-	
 	      if (this.state.movies.length == 0) {
 	        this.postMovie(movie);
 	      }
@@ -21810,7 +21809,6 @@
 	            return;
 	          }
 	        }
-	
 	        this.postMovie(movie);
 	      }
 	    }
@@ -21887,6 +21885,9 @@
 	    },
 	    selectMovie: function selectMovie(index) {
 	      return dispatch(_actions2.default.selectMovie(index));
+	    },
+	    createMovie: function createMovie(movie) {
+	      return dispatch(_actions2.default.createMovie(movie));
 	    }
 	  };
 	};
@@ -30613,11 +30614,13 @@
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
+	var _utils = __webpack_require__(243);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var getRequest = function getRequest(path, params, actionType) {
 	  return function (dispatch) {
-	    return APIManager.get(path, params).then(function (response) {
+	    return _utils.APIManager.get(path, params).then(function (response) {
 	      // console.log(JSON.stringify(response))
 	      var payload = response.results || response.result || response.user;
 	      dispatch({
@@ -30634,7 +30637,7 @@
 	
 	var postRequest = function postRequest(path, params, actionType) {
 	  return function (dispatch) {
-	    return APIManager.post(path, params).then(function (response) {
+	    return _utils.APIManager.post(path, params).then(function (response) {
 	      var payload = response.results || response.result || response.user;
 	      dispatch({
 	        type: actionType,
@@ -30658,11 +30661,11 @@
 	
 	  createMovie: function createMovie(movie) {
 	    return function (dispatch) {
-	      APIManager.post('/api/movie', movie).then(function (response) {
+	      _utils.APIManager.post('/api/movie', movie).then(function (response) {
 	        console.log('RESPONSE: ' + JSON.stringify(response));
 	
 	        dispatch({
-	          type: _constants2.default.MOVIE,
+	          type: _constants2.default.MOVIE_CREATED,
 	          movie: movie
 	        });
 	      }).catch(function (err) {
