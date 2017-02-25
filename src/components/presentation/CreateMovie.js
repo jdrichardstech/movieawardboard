@@ -69,8 +69,13 @@ class CreateMovie extends Component{
 		if(updatedMovie['supportingActress']!=''){
 			updatedMovie['supportingActress'] = this.restructureEnteredName(updatedMovie['supportingActress'])
 		}
-
+		swal({
+			title:"Success!",
+			text:`${this.state.movie.movieName.toUpperCase()} has been added`,
+			type:"success"
+		})
     this.props.onCreateMovie(updatedMovie)
+
 		this.clearValues()
   }
 

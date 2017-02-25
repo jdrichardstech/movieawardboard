@@ -58,7 +58,12 @@ class Movies extends Component{
 			for(let i = 0; i < this.state.movies.length;i++){
 				if(this.state.movies[i]['movieName']==movie.movieName){
 					console.log("MOVIE INCLUDED")
-					alert("THIS MOVIE HAS ALREADY BEEN CREATED")
+					swal({
+						title:"Sorry!",
+						text:`${movie.movieName.toUpperCase()} has already been added`,
+						type:"error"
+					})
+
 					return
 				}
 			}
