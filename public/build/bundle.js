@@ -21624,7 +21624,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Header = exports.Account = exports.SingleMovie = exports.MovieDBInfo = exports.NominationsUpdate = exports.OutstandingEnsembles = exports.SupportingActresses = exports.SupportingActors = exports.LeadActresses = exports.LeadActors = exports.BestStunts = exports.MovieNotes = exports.Movies = undefined;
+	exports.MoviesNowPlaying = exports.Header = exports.Account = exports.SingleMovie = exports.MovieDBInfo = exports.NominationsUpdate = exports.OutstandingEnsembles = exports.SupportingActresses = exports.SupportingActors = exports.LeadActresses = exports.LeadActors = exports.BestStunts = exports.MovieNotes = exports.Movies = undefined;
 	
 	var _Movies = __webpack_require__(174);
 	
@@ -21678,6 +21678,10 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
+	var _MoviesNowPlaying = __webpack_require__(302);
+	
+	var _MoviesNowPlaying2 = _interopRequireDefault(_MoviesNowPlaying);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.Movies = _Movies2.default;
@@ -21693,6 +21697,7 @@
 	exports.SingleMovie = _SingleMovie2.default;
 	exports.Account = _Account2.default;
 	exports.Header = _Header2.default;
+	exports.MoviesNowPlaying = _MoviesNowPlaying2.default;
 
 /***/ },
 /* 174 */
@@ -34095,6 +34100,171 @@
 	
 	  movieList: {}
 	};
+
+/***/ },
+/* 302 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(188);
+	
+	var _Header = __webpack_require__(297);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _superagent = __webpack_require__(245);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var MoviesNowPlaying = function (_Component) {
+	  _inherits(MoviesNowPlaying, _Component);
+	
+	  function MoviesNowPlaying(props) {
+	    _classCallCheck(this, MoviesNowPlaying);
+	
+	    var _this = _possibleConstructorReturn(this, (MoviesNowPlaying.__proto__ || Object.getPrototypeOf(MoviesNowPlaying)).call(this, props));
+	
+	    _this.state = {
+	      movies: []
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(MoviesNowPlaying, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+	
+	      console.log("CURRENT RELEASES: ");
+	      //this is to search for a particular movie
+	      // ajax.get('https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=Star%20Wars&page=1&include_adult=false')
+	      //latest movies
+	      var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=4160bdc56f74445097c8012631f85743&language=en-US&page=1';
+	
+	      _superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+	        if (err) {
+	          alert('ERROR: ' + err);
+	          return;
+	        }
+	
+	        console.log('moviesnowplaying: ' + JSON.stringify(response.body.results));
+	        var movies = response.body.results;
+	        _this2.setState({
+	          movies: movies
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var movieList = null;
+	      if (this.state.movies == null) {
+	        console.log("NULL FOOL");
+	      }
+	      if (this.state.movies != null) {
+	        var movies = this.state.movies;
+	
+	        movieList = movies.map(function (movie, i) {
+	          if (movie.poster_path == null) {
+	            return _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-3' },
+	              _react2.default.createElement(
+	                'li',
+	                { style: { marginBottom: 20 }, key: i },
+	                _react2.default.createElement(
+	                  'h6',
+	                  null,
+	                  'No Image'
+	                ),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement(
+	                  'h6',
+	                  null,
+	                  movie.title
+	                ),
+	                ' '
+	              )
+	            );
+	          }
+	          return _react2.default.createElement(
+	            'div',
+	            { className: 'col-md-3' },
+	            _react2.default.createElement(
+	              'li',
+	              { style: { marginBottom: 50 }, key: i },
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/singlemovie/' + movie.id },
+	                _react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
+	              ),
+	              ' '
+	            )
+	          );
+	        });
+	      }
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Header2.default, null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container' },
+	          _react2.default.createElement(
+	            'center',
+	            null,
+	            _react2.default.createElement(
+	              'h1',
+	              null,
+	              'Now In Theatres'
+	            ),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Movies currently released for public viewing'
+	            ),
+	            _react2.default.createElement('hr', { style: { width: '40%' } })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'clearfix' },
+	            _react2.default.createElement(
+	              'ul',
+	              { style: { listStyleType: 'none' } },
+	              movieList
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return MoviesNowPlaying;
+	}(_react.Component);
+	
+	exports.default = MoviesNowPlaying;
 
 /***/ }
 /******/ ]);

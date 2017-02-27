@@ -41,7 +41,7 @@ class Header extends Component{
           <li><Link to="/">Home</Link></li> |&nbsp;
             <li><Link to ='/nominations'>Nominations</Link></li> |&nbsp;
             <li><Link to = '/moviesnowplaying'>Current Releases</Link></li> |&nbsp;
-          <li> <Link to="/account">Login</Link></li>
+          	<li> <Link to="/account">Login</Link></li>
           </ul>
         </div>
       )
