@@ -14,7 +14,6 @@ class MoviesNowPlaying extends Component{
   }
 
   componentDidMount(){
-		console.log("CURRENT RELEASES: " )
     //this is to search for a particular movie
     // ajax.get('https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=Star%20Wars&page=1&include_adult=false')
     //latest movies
@@ -30,7 +29,7 @@ class MoviesNowPlaying extends Component{
         return
       }
 
-      console.log('moviesnowplaying: ' +JSON.stringify(response.body.results))
+      // console.log('moviesnowplaying: ' +JSON.stringify(response.body.results))
       let movies = response.body.results
       this.setState({
         movies:movies
@@ -39,45 +38,41 @@ class MoviesNowPlaying extends Component{
   }
   render(){
     let movieList = null
-		if(this.state.movies == null){
-			console.log("NULL FOOL")
-		}
     if(this.state.movies!=null){
       let movies = this.state.movies
 
       movieList=  movies.map((movie, i)=>{
-      if(movie.poster_path==null){
-        return <div className="col-md-3">
-          <li style={{marginBottom:20}} key={i}><h6>No Image</h6><br /><h6>{movie.title}</h6> </li>
-        </div>
-      }
-        return <div className="col-md-3">
-          <li style={{marginBottom:50}} key={i}><Link to = {`/singlemovie/${movie.id}`}><img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} /></Link> </li>
-    	</div>
+	      if(movie.poster_path==null){
+	        return <div className="col-md-3" key={i}>
+	          <li style={{marginBottom:20}} ><h6>No Image</h6><br /><h6>{movie.title}</h6> </li>
+	        </div>
+	      }else{
+					return <div className="col-md-3" key={i}>
+											<li style={{marginBottom:50}}><Link to = {`/singlemovie/${movie.id}`}><img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} /></Link> </li>
+								 </div>
+				}
       })
     }
 
-
     return(
       <div>
-      <Header />
-      <br />
-    <div className="container">
-      <center>
-        <h1>Now In Theatres</h1>
-
-        <h4>Movies currently released for public viewing</h4>
-        <hr style={{width:'40%'}}/>
-      </center>
-      <br />
-          <div className="clearfix">
-            <ul style={{listStyleType:'none'}}>
-              {movieList}
-            </ul>
-          </div>
-          {/*<a target="_blank" href="http://api.themoviedb.org/3/movie/330459/videos?api_key=4160bdc56f74445097c8012631f85743">Trailer</a>
-          */}
-      </div>
+	      <Header />
+	      <br />
+		    <div className="container">
+		      <center>
+		        <h1>Now In Theatres</h1>
+		        <h4>Movies currently released for public viewing</h4>
+		        <hr style={{width:'40%'}}/>
+		      </center>
+		      <br />
+		          <div className="clearfix">
+		            <ul style={{listStyleType:'none'}}>
+		              {movieList}
+		            </ul>
+		          </div>
+		          {/*<a target="_blank" href="http://api.themoviedb.org/3/movie/330459/videos?api_key=4160bdc56f74445097c8012631f85743">Trailer</a>
+		          */}
+		      </div>
       </div>
     )
   }

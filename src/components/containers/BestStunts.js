@@ -27,24 +27,6 @@ class BestStunts extends Component{
 				list: results
 			})
 		})
-
-		// superagent
-		// .get('/api/beststunts')
-		// .query(null)
-		// .set('Accept', 'application/json')
-		// .end((err, response) => {
-		// 	if (err){
-		// 		alert('ERROR: '+err)
-		// 		return
-		// 	}
-		//
-		// 	// console.log(JSON.stringify(response.body))
-		// 	let results = response.body.results
-		//
-		// 	this.setState({
-		// 		list: results
-		// 	})
-		// })
 	}
 
   updateNomination(event){
@@ -58,20 +40,16 @@ class BestStunts extends Component{
   submitNomination(event){
     let updatedList = Object.assign([],this.state.list)
     updatedList.push(this.state.nomination)
-	  superagent
-	  .post('/api/beststunts')
-	  .send(this.state.nomination)
-	  .set('Accept', 'application/json')
-	  .end(function(err, res){
-	    if (err || !res.ok) {
-	      alert('Oh no! error');
-	    } else {
-	      console.log('bestStunts posted');
-	    }
-	  });
-	  this.setState({
-	    list:updatedList
-	  })
+		APIManager.post('/api/beststunts', this.state.nomination, (err, response)=>{
+			if (err || !res.ok) {
+					 alert('Oh no! error');
+				 } else {
+					 console.log('beststunts posted');
+				 }
+				 this.setState({
+					 list:updatedList
+				 })
+		})
   }
 
 
@@ -88,9 +66,6 @@ class BestStunts extends Component{
         <ol style={styles.nominations.list}>
           {listItem}
         </ol>
-    {/*     <input onChange ={this.updateNomination.bind(this)} className="form-control" type="text" id="bestStuntsMovie" placeholder="Best Stunts" /><br />
-        <button style={styles.nominations.button}  onClick={this.submitNomination.bind(this)}  className="btn btn-success">Nominate</button>
-    */}
       </div>
     )
   }

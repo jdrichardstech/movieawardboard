@@ -31761,7 +31761,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31789,111 +31789,95 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var BestStunts = function (_Component) {
-			_inherits(BestStunts, _Component);
+	  _inherits(BestStunts, _Component);
 	
-			function BestStunts(props) {
-					_classCallCheck(this, BestStunts);
+	  function BestStunts(props) {
+	    _classCallCheck(this, BestStunts);
 	
-					var _this = _possibleConstructorReturn(this, (BestStunts.__proto__ || Object.getPrototypeOf(BestStunts)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (BestStunts.__proto__ || Object.getPrototypeOf(BestStunts)).call(this, props));
 	
-					_this.state = {
-							nomination: {
-									bestStuntsMovie: ''
-							},
-							list: []
-					};
-					return _this;
-			}
+	    _this.state = {
+	      nomination: {
+	        bestStuntsMovie: ''
+	      },
+	      list: []
+	    };
+	    return _this;
+	  }
 	
-			_createClass(BestStunts, [{
-					key: 'componentDidMount',
-					value: function componentDidMount() {
-							var _this2 = this;
+	  _createClass(BestStunts, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
 	
-							_utils.APIManager.get('/api/beststunts', null, function (err, response) {
-									if (err) {
-											alert('ERROR: ' + err);
-											return;
-									}
-									var results = response.results;
+	      _utils.APIManager.get('/api/beststunts', null, function (err, response) {
+	        if (err) {
+	          alert('ERROR: ' + err);
+	          return;
+	        }
+	        var results = response.results;
 	
-									_this2.setState({
-											list: results
-									});
-							});
+	        _this2.setState({
+	          list: results
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'updateNomination',
+	    value: function updateNomination(event) {
+	      var updatedNomination = Object.assign({}, this.state.nomination);
+	      updatedNomination[event.target.id] = event.target.value;
+	      this.setState({
+	        nomination: updatedNomination
+	      });
+	    }
+	  }, {
+	    key: 'submitNomination',
+	    value: function submitNomination(event) {
+	      var _this3 = this;
 	
-							// superagent
-							// .get('/api/beststunts')
-							// .query(null)
-							// .set('Accept', 'application/json')
-							// .end((err, response) => {
-							// 	if (err){
-							// 		alert('ERROR: '+err)
-							// 		return
-							// 	}
-							//
-							// 	// console.log(JSON.stringify(response.body))
-							// 	let results = response.body.results
-							//
-							// 	this.setState({
-							// 		list: results
-							// 	})
-							// })
-					}
-			}, {
-					key: 'updateNomination',
-					value: function updateNomination(event) {
-							var updatedNomination = Object.assign({}, this.state.nomination);
-							updatedNomination[event.target.id] = event.target.value;
-							this.setState({
-									nomination: updatedNomination
-							});
-					}
-			}, {
-					key: 'submitNomination',
-					value: function submitNomination(event) {
-							var updatedList = Object.assign([], this.state.list);
-							updatedList.push(this.state.nomination);
-							superagent.post('/api/beststunts').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-									if (err || !res.ok) {
-											alert('Oh no! error');
-									} else {
-											console.log('bestStunts posted');
-									}
-							});
-							this.setState({
-									list: updatedList
-							});
-					}
-			}, {
-					key: 'render',
-					value: function render() {
+	      var updatedList = Object.assign([], this.state.list);
+	      updatedList.push(this.state.nomination);
+	      _utils.APIManager.post('/api/beststunts', this.state.nomination, function (err, response) {
+	        if (err || !res.ok) {
+	          alert('Oh no! error');
+	        } else {
+	          console.log('beststunts posted');
+	        }
+	        _this3.setState({
+	          list: updatedList
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
 	
-							var listItem = this.state.list.map(function (nomination, i) {
-									return _react2.default.createElement(
-											'li',
-											{ key: i },
-											_react2.default.createElement(_BestStunt2.default, { currentNomination: nomination })
-									);
-							});
-							return _react2.default.createElement(
-									'div',
-									{ style: _styles2.default.nominations.border },
-									_react2.default.createElement(
-											'h4',
-											null,
-											'Best Stunts:'
-									),
-									_react2.default.createElement(
-											'ol',
-											{ style: _styles2.default.nominations.list },
-											listItem
-									)
-							);
-					}
-			}]);
+	      var listItem = this.state.list.map(function (nomination, i) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: i },
+	          _react2.default.createElement(_BestStunt2.default, { currentNomination: nomination })
+	        );
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        { style: _styles2.default.nominations.border },
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Best Stunts:'
+	        ),
+	        _react2.default.createElement(
+	          'ol',
+	          { style: _styles2.default.nominations.list },
+	          listItem
+	        )
+	      );
+	    }
+	  }]);
 	
-			return BestStunts;
+	  return BestStunts;
 	}(_react.Component);
 	
 	exports.default = BestStunts;
@@ -31905,7 +31889,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31933,108 +31917,93 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var LeadActors = function (_Component) {
-			_inherits(LeadActors, _Component);
+	  _inherits(LeadActors, _Component);
 	
-			function LeadActors(props) {
-					_classCallCheck(this, LeadActors);
+	  function LeadActors(props) {
+	    _classCallCheck(this, LeadActors);
 	
-					var _this = _possibleConstructorReturn(this, (LeadActors.__proto__ || Object.getPrototypeOf(LeadActors)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (LeadActors.__proto__ || Object.getPrototypeOf(LeadActors)).call(this, props));
 	
-					_this.state = {
-							nomination: {
-									leadActorName: ''
-							},
-							list: []
-					};
-					return _this;
-			}
+	    _this.state = {
+	      nomination: {
+	        leadActorName: ''
+	      },
+	      list: []
+	    };
+	    return _this;
+	  }
 	
-			_createClass(LeadActors, [{
-					key: 'componentDidMount',
-					value: function componentDidMount() {
-							var _this2 = this;
+	  _createClass(LeadActors, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
 	
-							_utils.APIManager.get('/api/leadactor', null, function (err, response) {
-									if (err) {
-											alert('ERROR: ' + err);
-											return;
-									}
-									var results = response.results;
-									_this2.setState({
-											list: results
-									});
-							});
-							// superagent
-							// .get('/api/leadactor')
-							// .query(null)
-							// .set('Accept', 'application/json')
-							// .end((err, response) => {
-							// 	if (err){
-							// 		alert('ERROR: '+err)
-							// 		return
-							// 	}
-							//
-							// 	// console.log(JSON.stringify(response.body))
-							// 	let results = response.body.results
-							//
-							// 	this.setState({
-							// 		list: results
-							// 	})
-							// })
-					}
-			}, {
-					key: 'updateNomination',
-					value: function updateNomination(event) {
-							var updatedNomination = Object.assign({}, this.state.nomination);
-							updatedNomination[event.target.id] = event.target.value;
-							this.setState({
-									nomination: updatedNomination
-							});
-					}
-			}, {
-					key: 'submitNomination',
-					value: function submitNomination(event) {
-							var updatedList = Object.assign([], this.state.list);
-							updatedList.push(this.state.nomination);
-							superagent.post('/api/leadactor').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-									if (err || !res.ok) {
-											alert('Oh no! error');
-									} else {
-											console.log('leadActor posted');
-									}
-							});
-							this.setState({
-									list: updatedList
-							});
-					}
-			}, {
-					key: 'render',
-					value: function render() {
-							var listItem = this.state.list.map(function (nomination, i) {
-									return _react2.default.createElement(
-											'li',
-											{ key: i },
-											_react2.default.createElement(_LeadActor2.default, { currentNomination: nomination })
-									);
-							});
-							return _react2.default.createElement(
-									'div',
-									{ style: _styles2.default.nominations.border },
-									_react2.default.createElement(
-											'h4',
-											null,
-											'Lead Actor:'
-									),
-									_react2.default.createElement(
-											'ol',
-											{ style: _styles2.default.nominations.other },
-											listItem
-									)
-							);
-					}
-			}]);
+	      _utils.APIManager.get('/api/leadactor', null, function (err, response) {
+	        if (err) {
+	          alert('ERROR: ' + err);
+	          return;
+	        }
+	        var results = response.results;
+	        _this2.setState({
+	          list: results
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'updateNomination',
+	    value: function updateNomination(event) {
+	      var updatedNomination = Object.assign({}, this.state.nomination);
+	      updatedNomination[event.target.id] = event.target.value;
+	      this.setState({
+	        nomination: updatedNomination
+	      });
+	    }
+	  }, {
+	    key: 'submitNomination',
+	    value: function submitNomination(event) {
+	      var _this3 = this;
 	
-			return LeadActors;
+	      var updatedList = Object.assign([], this.state.list);
+	      updatedList.push(this.state.nomination);
+	      _utils.APIManager.post('/api/leadactor', this.state.nomination, function (err, response) {
+	        if (err || !res.ok) {
+	          alert('Oh no! error');
+	        } else {
+	          console.log('leadactor posted');
+	        }
+	        _this3.setState({
+	          list: updatedList
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var listItem = this.state.list.map(function (nomination, i) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: i },
+	          _react2.default.createElement(_LeadActor2.default, { currentNomination: nomination })
+	        );
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        { style: _styles2.default.nominations.border },
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Lead Actor:'
+	        ),
+	        _react2.default.createElement(
+	          'ol',
+	          { style: _styles2.default.nominations.other },
+	          listItem
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return LeadActors;
 	}(_react.Component);
 	
 	exports.default = LeadActors;
@@ -32046,7 +32015,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32074,109 +32043,93 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var LeadActresses = function (_Component) {
-			_inherits(LeadActresses, _Component);
+	  _inherits(LeadActresses, _Component);
 	
-			function LeadActresses(props) {
-					_classCallCheck(this, LeadActresses);
+	  function LeadActresses(props) {
+	    _classCallCheck(this, LeadActresses);
 	
-					var _this = _possibleConstructorReturn(this, (LeadActresses.__proto__ || Object.getPrototypeOf(LeadActresses)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (LeadActresses.__proto__ || Object.getPrototypeOf(LeadActresses)).call(this, props));
 	
-					_this.state = {
-							nomination: {
-									leadActressName: ''
-							},
-							list: []
-					};
-					return _this;
-			}
+	    _this.state = {
+	      nomination: {
+	        leadActressName: ''
+	      },
+	      list: []
+	    };
+	    return _this;
+	  }
 	
-			_createClass(LeadActresses, [{
-					key: 'componentDidMount',
-					value: function componentDidMount() {
-							var _this2 = this;
+	  _createClass(LeadActresses, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
 	
-							_utils.APIManager.get('/api/leadactress', null, function (err, response) {
-									if (err) {
-											alert('ERROR: ' + err);
-											return;
-									}
-									var results = response.results;
-									_this2.setState({
-											list: results
-									});
-							});
-							// superagent
-							// .get('/api/leadactress')
-							// .query(null)
-							// .set('Accept', 'application/json')
-							// .end((err, response) => {
-							// 	if (err){
-							// 		alert('ERROR: '+err)
-							// 		return
-							// 	}
-							//
-							// 	// console.log(JSON.stringify(response.body))
-							// 	let results = response.body.results
-							//
-							// 	this.setState({
-							// 		list: results
-							// 	})
-							// })
-					}
-			}, {
-					key: 'updateNomination',
-					value: function updateNomination(event) {
-							var updatedNomination = Object.assign({}, this.state.nomination);
-							updatedNomination[event.target.id] = event.target.value;
-							this.setState({
-									nomination: updatedNomination
-							});
-					}
-			}, {
-					key: 'submitNomination',
-					value: function submitNomination(event) {
-							var updatedList = Object.assign([], this.state.list);
-							updatedList.push(this.state.nomination);
+	      _utils.APIManager.get('/api/leadactress', null, function (err, response) {
+	        if (err) {
+	          alert('ERROR: ' + err);
+	          return;
+	        }
+	        var results = response.results;
+	        _this2.setState({
+	          list: results
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'updateNomination',
+	    value: function updateNomination(event) {
+	      var updatedNomination = Object.assign({}, this.state.nomination);
+	      updatedNomination[event.target.id] = event.target.value;
+	      this.setState({
+	        nomination: updatedNomination
+	      });
+	    }
+	  }, {
+	    key: 'submitNomination',
+	    value: function submitNomination(event) {
+	      var _this3 = this;
 	
-							superagent.post('/api/leadactress').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-									if (err || !res.ok) {
-											alert('Oh no! error');
-									} else {
-											console.log('leadActress posted');
-									}
-							});
-							this.setState({
-									list: updatedList
-							});
-					}
-			}, {
-					key: 'render',
-					value: function render() {
-							var listItem = this.state.list.map(function (nomination, i) {
-									return _react2.default.createElement(
-											'li',
-											{ key: i },
-											_react2.default.createElement(_LeadActress2.default, { currentNomination: nomination })
-									);
-							});
-							return _react2.default.createElement(
-									'div',
-									{ style: _styles2.default.nominations.border },
-									_react2.default.createElement(
-											'h4',
-											null,
-											'Lead Actress:'
-									),
-									_react2.default.createElement(
-											'ol',
-											{ style: _styles2.default.nominations.other },
-											listItem
-									)
-							);
-					}
-			}]);
+	      var updatedList = Object.assign([], this.state.list);
+	      updatedList.push(this.state.nomination);
+	      _utils.APIManager.post('/api/leadactress', this.state.nomination, function (err, response) {
+	        if (err || !res.ok) {
+	          alert('Oh no! error');
+	        } else {
+	          console.log('leadactress posted');
+	        }
+	        _this3.setState({
+	          list: updatedList
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var listItem = this.state.list.map(function (nomination, i) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: i },
+	          _react2.default.createElement(_LeadActress2.default, { currentNomination: nomination })
+	        );
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        { style: _styles2.default.nominations.border },
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Lead Actress:'
+	        ),
+	        _react2.default.createElement(
+	          'ol',
+	          { style: _styles2.default.nominations.other },
+	          listItem
+	        )
+	      );
+	    }
+	  }]);
 	
-			return LeadActresses;
+	  return LeadActresses;
 	}(_react.Component);
 	
 	exports.default = LeadActresses;
@@ -32247,20 +32200,6 @@
 	          list: results
 	        });
 	      });
-	      // superagent
-	      // .get('/api/supportingactor')
-	      // .query(null)
-	      // .set('Accept', 'application/json')
-	      // .end((err, response) => {
-	      // if (err){
-	      // 	alert('ERROR: '+err)
-	      // 	return
-	      // }
-	      // let results = response.body.results
-	      // this.setState({
-	      // 	list: results
-	      // })
-	      // })
 	    }
 	  }, {
 	    key: 'updateNomination',
@@ -32274,17 +32213,19 @@
 	  }, {
 	    key: 'submitNomination',
 	    value: function submitNomination(event) {
+	      var _this3 = this;
+	
 	      var updatedList = Object.assign([], this.state.list);
 	      updatedList.push(this.state.nomination);
-	      superagent.post('/api/supportingActor').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
+	      _utils.APIManager.post('/api/supportingActor', this.state.nomination, function (err, response) {
 	        if (err || !res.ok) {
 	          alert('Oh no! error');
 	        } else {
-	          console.log('posted ' + JSON.stringify(res.body));
+	          console.log('supportingActor posted');
 	        }
-	      });
-	      this.setState({
-	        list: updatedList
+	        _this3.setState({
+	          list: updatedList
+	        });
 	      });
 	    }
 	  }, {
@@ -32330,7 +32271,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32358,109 +32299,94 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var SupportingActresses = function (_Component) {
-			_inherits(SupportingActresses, _Component);
+	  _inherits(SupportingActresses, _Component);
 	
-			function SupportingActresses(props) {
-					_classCallCheck(this, SupportingActresses);
+	  function SupportingActresses(props) {
+	    _classCallCheck(this, SupportingActresses);
 	
-					var _this = _possibleConstructorReturn(this, (SupportingActresses.__proto__ || Object.getPrototypeOf(SupportingActresses)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (SupportingActresses.__proto__ || Object.getPrototypeOf(SupportingActresses)).call(this, props));
 	
-					_this.state = {
-							nomination: {
-									supportingActressName: ''
-							},
-							list: []
-					};
-					return _this;
-			}
+	    _this.state = {
+	      nomination: {
+	        supportingActressName: ''
+	      },
+	      list: []
+	    };
+	    return _this;
+	  }
 	
-			_createClass(SupportingActresses, [{
-					key: 'componentDidMount',
-					value: function componentDidMount() {
-							var _this2 = this;
+	  _createClass(SupportingActresses, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
 	
-							_utils.APIManager.get('/api/supportingactress', null, function (err, response) {
-									if (err) {
-											alert('ERROR: ' + err);
-											return;
-									}
-									var results = response.results;
+	      _utils.APIManager.get('/api/supportingactress', null, function (err, response) {
+	        if (err) {
+	          alert('ERROR: ' + err);
+	          return;
+	        }
+	        var results = response.results;
 	
-									_this2.setState({
-											list: results
-									});
-							});
-							// superagent
-							// .get('/api/supportingactress')
-							// .query(null)
-							// .set('Accept', 'application/json')
-							// .end((err, response) => {
-							// 	if (err){
-							// 		alert('ERROR: '+err)
-							// 		return
-							// 	}
-							//
-							// 	let results = response.body.results
-							//
-							// 	this.setState({
-							// 		list: results
-							// 	})
-							// })
-					}
-			}, {
-					key: 'updateNomination',
-					value: function updateNomination(event) {
-							var updatedNomination = Object.assign({}, this.state.nomination);
-							updatedNomination[event.target.id] = event.target.value;
-							this.setState({
-									nomination: updatedNomination
-							});
-					}
-			}, {
-					key: 'submitNomination',
-					value: function submitNomination(event) {
-							var updatedList = Object.assign([], this.state.list);
-							updatedList.push(this.state.nomination);
+	        _this2.setState({
+	          list: results
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'updateNomination',
+	    value: function updateNomination(event) {
+	      var updatedNomination = Object.assign({}, this.state.nomination);
+	      updatedNomination[event.target.id] = event.target.value;
+	      this.setState({
+	        nomination: updatedNomination
+	      });
+	    }
+	  }, {
+	    key: 'submitNomination',
+	    value: function submitNomination(event) {
+	      var _this3 = this;
 	
-							superagent.post('/api/supportingActress').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-									if (err || !res.ok) {
-											alert('Oh no! error');
-									} else {
-											console.log('supportingActress');
-									}
-							});
-							this.setState({
-									list: updatedList
-							});
-					}
-			}, {
-					key: 'render',
-					value: function render() {
-							var listItem = this.state.list.map(function (nomination, i) {
-									return _react2.default.createElement(
-											'li',
-											{ key: i },
-											_react2.default.createElement(_SupportingActress2.default, { currentNomination: nomination })
-									);
-							});
-							return _react2.default.createElement(
-									'div',
-									{ style: _styles2.default.nominations.border },
-									_react2.default.createElement(
-											'h4',
-											null,
-											'Supporting Actress:'
-									),
-									_react2.default.createElement(
-											'ol',
-											{ style: _styles2.default.nominations.other },
-											listItem
-									)
-							);
-					}
-			}]);
+	      var updatedList = Object.assign([], this.state.list);
+	      updatedList.push(this.state.nomination);
+	      _utils.APIManager.post('/api/supportingActress', this.state.nomination, function (err, response) {
+	        if (err || !res.ok) {
+	          alert('Oh no! error');
+	        } else {
+	          console.log('supportingActress posted');
+	        }
+	        _this3.setState({
+	          list: updatedList
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var listItem = this.state.list.map(function (nomination, i) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: i },
+	          _react2.default.createElement(_SupportingActress2.default, { currentNomination: nomination })
+	        );
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        { style: _styles2.default.nominations.border },
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Supporting Actress:'
+	        ),
+	        _react2.default.createElement(
+	          'ol',
+	          { style: _styles2.default.nominations.other },
+	          listItem
+	        )
+	      );
+	    }
+	  }]);
 	
-			return SupportingActresses;
+	  return SupportingActresses;
 	}(_react.Component);
 	
 	exports.default = SupportingActresses;
@@ -32472,7 +32398,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32500,109 +32426,94 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var OutstandingEnsembles = function (_Component) {
-			_inherits(OutstandingEnsembles, _Component);
+	  _inherits(OutstandingEnsembles, _Component);
 	
-			function OutstandingEnsembles(props) {
-					_classCallCheck(this, OutstandingEnsembles);
+	  function OutstandingEnsembles(props) {
+	    _classCallCheck(this, OutstandingEnsembles);
 	
-					var _this = _possibleConstructorReturn(this, (OutstandingEnsembles.__proto__ || Object.getPrototypeOf(OutstandingEnsembles)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (OutstandingEnsembles.__proto__ || Object.getPrototypeOf(OutstandingEnsembles)).call(this, props));
 	
-					_this.state = {
-							nomination: {
-									outstandingEnsembleMovie: ''
-							},
-							list: []
-					};
-					return _this;
-			}
+	    _this.state = {
+	      nomination: {
+	        outstandingEnsembleMovie: ''
+	      },
+	      list: []
+	    };
+	    return _this;
+	  }
 	
-			_createClass(OutstandingEnsembles, [{
-					key: 'componentDidMount',
-					value: function componentDidMount() {
-							var _this2 = this;
+	  _createClass(OutstandingEnsembles, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
 	
-							_utils.APIManager.get('/api/outstandingensemble', null, function (err, response) {
-									if (err) {
-											alert('ERROR: ' + err);
-											return;
-									}
-									var results = response.results;
+	      _utils.APIManager.get('/api/outstandingensemble', null, function (err, response) {
+	        if (err) {
+	          alert('ERROR: ' + err);
+	          return;
+	        }
+	        var results = response.results;
 	
-									_this2.setState({
-											list: results
-									});
-							});
-							// superagent
-							// .get('/api/outstandingensemble')
-							// .query(null)
-							// .set('Accept', 'application/json')
-							// .end((err, response) => {
-							// 	if (err){
-							// 		alert('ERROR: '+err)
-							// 		return
-							// 	}
-							//
-							// 	// console.log(JSON.stringify(response.body))
-							// 	let results = response.body.results
-							//
-							// 	this.setState({
-							// 		list: results
-							// 	})
-							// })
-					}
-			}, {
-					key: 'updateNomination',
-					value: function updateNomination(event) {
-							var updatedNomination = Object.assign({}, this.state.nomination);
-							updatedNomination[event.target.id] = event.target.value;
-							this.setState({
-									nomination: updatedNomination
-							});
-					}
-			}, {
-					key: 'submitNomination',
-					value: function submitNomination(event) {
-							var updatedList = Object.assign([], this.state.list);
-							updatedList.push(this.state.nomination);
-							superagent.post('/api/outstandingEnsemble').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-									if (err || !res.ok) {
-											alert('Oh no! error');
-									} else {
-											console.log('outstandingEnsemble posted');
-									}
-							});
-							this.setState({
-									list: updatedList
-							});
-					}
-			}, {
-					key: 'render',
-					value: function render() {
-							var listItem = this.state.list.map(function (nomination, i) {
-									return _react2.default.createElement(
-											'li',
-											{ key: i },
-											_react2.default.createElement(_OutstandingEnsemble2.default, { currentNomination: nomination })
-									);
-							});
-							return _react2.default.createElement(
-									'div',
-									{ style: _styles2.default.nominations.border },
-									_react2.default.createElement(
-											'h4',
-											null,
-											'Outstanding Ensemble:'
-									),
-									_react2.default.createElement(
-											'ol',
-											{ style: _styles2.default.nominations.other },
-											listItem
-									)
-							);
-					}
-			}]);
+	        _this2.setState({
+	          list: results
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'updateNomination',
+	    value: function updateNomination(event) {
+	      var updatedNomination = Object.assign({}, this.state.nomination);
+	      updatedNomination[event.target.id] = event.target.value;
+	      this.setState({
+	        nomination: updatedNomination
+	      });
+	    }
+	  }, {
+	    key: 'submitNomination',
+	    value: function submitNomination(event) {
+	      var _this3 = this;
 	
-			return OutstandingEnsembles;
+	      var updatedList = Object.assign([], this.state.list);
+	      updatedList.push(this.state.nomination);
+	      _utils.APIManager.post('/api/outstandingEnsemble', this.state.nomination, function (err, response) {
+	        if (err || !res.ok) {
+	          alert('Oh no! error');
+	        } else {
+	          console.log('outstandingEnsemble posted');
+	        }
+	        _this3.setState({
+	          list: updatedList
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var listItem = this.state.list.map(function (nomination, i) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: i },
+	          _react2.default.createElement(_OutstandingEnsemble2.default, { currentNomination: nomination })
+	        );
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        { style: _styles2.default.nominations.border },
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Outstanding Ensemble:'
+	        ),
+	        _react2.default.createElement(
+	          'ol',
+	          { style: _styles2.default.nominations.other },
+	          listItem
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return OutstandingEnsembles;
 	}(_react.Component);
 	
 	exports.default = OutstandingEnsembles;
@@ -34154,7 +34065,6 @@
 	    value: function componentDidMount() {
 	      var _this2 = this;
 	
-	      console.log("CURRENT RELEASES: ");
 	      //this is to search for a particular movie
 	      // ajax.get('https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=Star%20Wars&page=1&include_adult=false')
 	      //latest movies
@@ -34166,7 +34076,7 @@
 	          return;
 	        }
 	
-	        console.log('moviesnowplaying: ' + JSON.stringify(response.body.results));
+	        // console.log('moviesnowplaying: ' +JSON.stringify(response.body.results))
 	        var movies = response.body.results;
 	        _this2.setState({
 	          movies: movies
@@ -34177,9 +34087,6 @@
 	    key: 'render',
 	    value: function render() {
 	      var movieList = null;
-	      if (this.state.movies == null) {
-	        console.log("NULL FOOL");
-	      }
 	      if (this.state.movies != null) {
 	        var movies = this.state.movies;
 	
@@ -34187,10 +34094,10 @@
 	          if (movie.poster_path == null) {
 	            return _react2.default.createElement(
 	              'div',
-	              { className: 'col-md-3' },
+	              { className: 'col-md-3', key: i },
 	              _react2.default.createElement(
 	                'li',
-	                { style: { marginBottom: 20 }, key: i },
+	                { style: { marginBottom: 20 } },
 	                _react2.default.createElement(
 	                  'h6',
 	                  null,
@@ -34205,21 +34112,22 @@
 	                ' '
 	              )
 	            );
-	          }
-	          return _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-3' },
-	            _react2.default.createElement(
-	              'li',
-	              { style: { marginBottom: 50 }, key: i },
+	          } else {
+	            return _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-3', key: i },
 	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/singlemovie/' + movie.id },
-	                _react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
-	              ),
-	              ' '
-	            )
-	          );
+	                'li',
+	                { style: { marginBottom: 50 } },
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/singlemovie/' + movie.id },
+	                  _react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
+	                ),
+	                ' '
+	              )
+	            );
+	          }
 	        });
 	      }
 	
