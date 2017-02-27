@@ -121,7 +121,7 @@ class Account extends Component{
     }
 
     return(
-      <div style={{background:'url(/assets/img/bg/31.jpg) no-repeat',backgroundSize:'cover'}}>
+      <div style={{background:'url(/assets/img/bg/oscar.jpg) no-repeat',backgroundSize:'cover'}}>
         {content}
       </div>
     )

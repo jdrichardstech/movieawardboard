@@ -33467,7 +33467,7 @@
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { style: { background: 'url(/assets/img/bg/31.jpg) no-repeat', backgroundSize: 'cover' } },
+	        { style: { background: 'url(/assets/img/bg/oscar.jpg) no-repeat', backgroundSize: 'cover' } },
 	        content
 	      );
 	    }
