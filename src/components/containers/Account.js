@@ -70,8 +70,8 @@ class Account extends Component{
         <div className="forms-wrapper">
           <div className="container content-md">
             <div className="margin-bottom-60 head">
-              <h1>Welcome to the Movie Awards Dashboard</h1>
-              <h2>Login or Register an Account</h2>
+							<h1>Welcome to the Movie Awards Dashboard</h1>
+							<h2>Login or Register an Account</h2>
             </div>
             <div className="row space-xlg-hor equal-height-columns">
               <div className="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column">
@@ -121,7 +121,7 @@ class Account extends Component{
     }
 
     return(
-      <div className="wrapper">
+      <div style={{background:'url(/assets/img/bg/31.jpg) no-repeat',backgroundSize:'cover'}}>
         {content}
       </div>
     )

@@ -12,7 +12,7 @@
   	<meta name="description" content="">
   	<meta name="author" content="">
 
-  	
+  	<link rel="stylesheet" href="/assets/css/sweetalert.css">
 
   	<!-- Web Fonts -->
   	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
@@ -37,10 +37,14 @@
   	<link rel="stylesheet" href="/assets/css/theme-colors/default.css" id="style_color">
   	<link rel="stylesheet" href="/assets/css/theme-skins/dark.css">
 
+		<!-- CSS Page Style -->
+	 <link rel="stylesheet" href="/assets/css/pages/page_log_reg_v3.css">
+
+
   	<!-- CSS Customization -->
   	<link rel="stylesheet" href="/assets/css/custom.css">
-		<link rel="stylesheet" href="/assets/css/sweetalert.css">
-		<script type="text/javascript" src="/assets/js/sweetalert.min.js"></script>
+
+
   </head>
 
 
@@ -48,7 +52,7 @@
 
   <div id="root">  <h1>HJS Sag-Vote</h1></div>
 
-
+		<script type="text/javascript" src="/assets/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="/build/bundle.js"></script>
   </body>
 </html>
