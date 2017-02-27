@@ -41,8 +41,8 @@ class Header extends Component{
           <ul className="loginbar pull-right">
           <li><Link to="/">Home</Link></li> |&nbsp;
             <li><Link to ='/nominations'>Nominations</Link></li> |&nbsp;
-            <li><Link to = '/moviesnowplaying'>Current Releases</Link></li>{/* |&nbsp;
-          <li> <Link to="/account">Login</Link></li>*/}
+            <li><Link to = '/moviesnowplaying'>Current Releases</Link></li> |&nbsp;
+          <li> <Link to="/account">Login</Link></li>
           </ul>
         </div>
       )
@@ -52,8 +52,8 @@ class Header extends Component{
           <ul className="loginbar pull-right">
           <li><Link to="/">Home</Link></li> |&nbsp;
             <li><Link to ='/nominations'>Nominations</Link></li> |&nbsp;
-            <li><Link to = '/moviesnowplaying'>Current Releases</Link></li>  {/*|&nbsp;
-           <a onClick={this.logout.bind(this)} style={{color:'gray', fontSize:'.8em'}} href='/'>Logout</a>*/}
+            <li><Link to = '/moviesnowplaying'>Current Releases</Link></li> |&nbsp;
+           <a onClick={this.logout.bind(this)} style={{color:'gray', fontSize:'.8em'}} href='/'>Logout</a>
           </ul><br />
 	        <div className='pull-right'>
 	            Username: <span style={{color:'#72c02c'}}>{this.props.user.username.toUpperCase()}</span>
@@ -90,15 +90,15 @@ class Header extends Component{
 
 const stateToProps= (state) => {
   return{
-    // user:state.account.user
+    user:state.account.user
   }
 }
 
 const dispatchToProps= (dispatch) => {
   return{
 
-    // fetchCurrentUser: (params) => dispatch(actions.fetchCurrentUser(params)),
-    // currentUserReceived: (user) => dispatch(actions.currentUserReceived(user))
+    fetchCurrentUser: (params) => dispatch(actions.fetchCurrentUser(params)),
+    currentUserReceived: (user) => dispatch(actions.currentUserReceived(user))
   }
 }
 

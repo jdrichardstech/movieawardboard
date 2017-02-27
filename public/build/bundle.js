@@ -60,10 +60,6 @@
 	
 	var _containers = __webpack_require__(173);
 	
-	var _MoviesNowPlaying = __webpack_require__(297);
-	
-	var _MoviesNowPlaying2 = _interopRequireDefault(_MoviesNowPlaying);
-	
 	var _layout = __webpack_require__(298);
 	
 	var _presentation = __webpack_require__(175);
@@ -72,7 +68,7 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _reactRedux = __webpack_require__(278);
+	var _reactRedux = __webpack_require__(279);
 	
 	var _reactRouter = __webpack_require__(188);
 	
@@ -89,13 +85,15 @@
 	      { path: '/', component: _Main2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _layout.Home }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/nominations', component: _layout.NominationInputs }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/moviesnowplaying', component: _MoviesNowPlaying2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/moviesnowplaying', component: _containers.MoviesNowPlaying }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/singlemovie/:id', component: _containers.SingleMovie }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/movietrailer/:id/:youtubeID', component: _presentation.MovieTrailer }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/account', component: _containers.Account })
 	    )
 	  )
 	);
+	// import MoviesNowPlaying from './components/containers/MoviesNowPlaying'
+	
 	
 	_reactDom2.default.render(app, document.getElementById('root'));
 
@@ -21632,51 +21630,51 @@
 	
 	var _Movies2 = _interopRequireDefault(_Movies);
 	
-	var _MovieNotes = __webpack_require__(285);
+	var _MovieNotes = __webpack_require__(286);
 	
 	var _MovieNotes2 = _interopRequireDefault(_MovieNotes);
 	
-	var _BestStunts = __webpack_require__(286);
+	var _BestStunts = __webpack_require__(287);
 	
 	var _BestStunts2 = _interopRequireDefault(_BestStunts);
 	
-	var _LeadActors = __webpack_require__(287);
+	var _LeadActors = __webpack_require__(288);
 	
 	var _LeadActors2 = _interopRequireDefault(_LeadActors);
 	
-	var _LeadActresses = __webpack_require__(288);
+	var _LeadActresses = __webpack_require__(289);
 	
 	var _LeadActresses2 = _interopRequireDefault(_LeadActresses);
 	
-	var _SupportingActors = __webpack_require__(289);
+	var _SupportingActors = __webpack_require__(290);
 	
 	var _SupportingActors2 = _interopRequireDefault(_SupportingActors);
 	
-	var _SupportingActresses = __webpack_require__(290);
+	var _SupportingActresses = __webpack_require__(291);
 	
 	var _SupportingActresses2 = _interopRequireDefault(_SupportingActresses);
 	
-	var _OutstandingEnsembles = __webpack_require__(291);
+	var _OutstandingEnsembles = __webpack_require__(292);
 	
 	var _OutstandingEnsembles2 = _interopRequireDefault(_OutstandingEnsembles);
 	
-	var _NominationsUpdate = __webpack_require__(292);
+	var _NominationsUpdate = __webpack_require__(293);
 	
 	var _NominationsUpdate2 = _interopRequireDefault(_NominationsUpdate);
 	
-	var _MovieDBInfo = __webpack_require__(293);
+	var _MovieDBInfo = __webpack_require__(294);
 	
 	var _MovieDBInfo2 = _interopRequireDefault(_MovieDBInfo);
 	
-	var _SingleMovie = __webpack_require__(294);
+	var _SingleMovie = __webpack_require__(295);
 	
 	var _SingleMovie2 = _interopRequireDefault(_SingleMovie);
 	
-	var _Account = __webpack_require__(295);
+	var _Account = __webpack_require__(296);
 	
 	var _Account2 = _interopRequireDefault(_Account);
 	
-	var _Header = __webpack_require__(296);
+	var _Header = __webpack_require__(297);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
@@ -21728,11 +21726,11 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _actions = __webpack_require__(277);
+	var _actions = __webpack_require__(278);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
-	var _reactRedux = __webpack_require__(278);
+	var _reactRedux = __webpack_require__(279);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27710,6 +27708,42 @@
 	
 	      callback(null, response.body);
 	    });
+	  },
+	  put: function put(url, body, callback) {
+	    _superagent2.default.put(url).send(body).set('Accept', 'application/json').end(function (err, response) {
+	      if (err) {
+	        callback(err, null);
+	        return;
+	      }
+	
+	      var confirmation = response.body.confirmation;
+	      if (confirmation != 'success') {
+	        callback({ message: response.body.message }, null);
+	        return;
+	      }
+	
+	      callback(null, response.body);
+	    });
+	  },
+	
+	  delete: function _delete() {},
+	
+	  upload: function upload(endpoint, file, params, callback) {
+	    console.log('APIManager - upload: ');
+	    var uploadRequest = _superagent2.default.post(endpoint);
+	
+	    uploadRequest.attach('file', file);
+	    Object.keys(params).forEach(function (key) {
+	      uploadRequest.field(key, params[key]);
+	    });
+	
+	    uploadRequest.end(function (err, response) {
+	      if (err) {
+	        callback(err, null);
+	        return;
+	      }
+	      callback(null, response);
+	    });
 	  }
 	};
 
@@ -29369,9 +29403,13 @@
 	
 	var _moviesReducer2 = _interopRequireDefault(_moviesReducer);
 	
-	var _notesReducer = __webpack_require__(275);
+	var _notesReducer = __webpack_require__(276);
 	
 	var _notesReducer2 = _interopRequireDefault(_notesReducer);
+	
+	var _accountReducer = __webpack_require__(277);
+	
+	var _accountReducer2 = _interopRequireDefault(_accountReducer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29382,7 +29420,8 @@
 	  configureStore: function configureStore() {
 	    var reducers = (0, _redux.combineReducers)({
 	      movies: _moviesReducer2.default,
-	      movieNotes: _notesReducer2.default
+	      movieNotes: _notesReducer2.default,
+	      account: _accountReducer2.default
 	    });
 	
 	    store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(_reduxThunk2.default));
@@ -30467,7 +30506,7 @@
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
-	var _constants = __webpack_require__(276);
+	var _constants = __webpack_require__(275);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -30564,6 +30603,27 @@
 
 /***/ },
 /* 275 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  MOVIES_RECEIVED: 'MOVIES_RECEIVED',
+	  MOVIE_CREATED: 'MOVIE_CREATED',
+	  SELECT_MOVIE: 'SELECT_MOVIE',
+	  NOTE_CREATED: 'NOTE_CREATED',
+	  NOTES_RECEIVED: 'NOTE_RECEIVED',
+	  PROFILE_UPDATED: 'PROFILE_UPDATED',
+	  PROFILE_RECEIVED: 'PROFILE_RECEIVED',
+	  CURRENT_USER_RECEIVED: 'CURRENT_USER_RECEIVED',
+	  APPLICATION_STATE: 'APPLICATION_STATE'
+	};
+
+/***/ },
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30574,7 +30634,7 @@
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
-	var _constants = __webpack_require__(276);
+	var _constants = __webpack_require__(275);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -30652,24 +30712,6 @@
 	};
 
 /***/ },
-/* 276 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  MOVIES_RECEIVED: 'MOVIES_RECEIVED',
-	  MOVIE_CREATED: 'MOVIE_CREATED',
-	  SELECT_MOVIE: 'SELECT_MOVIE',
-	  NOTE_CREATED: 'NOTE_CREATED',
-	  NOTES_RECEIVED: 'NOTE_RECEIVED',
-	  CURRENT_USER_RECEIVED: 'CURRENT_USER_RECEIVED'
-	};
-
-/***/ },
 /* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -30679,97 +30721,31 @@
 	  value: true
 	});
 	
-	var _constants = __webpack_require__(276);
+	var _constants = __webpack_require__(275);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _utils = __webpack_require__(243);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var getRequest = function getRequest(path, params, actionType) {
-	  return function (dispatch) {
-	    return _utils.APIManager.get(path, params).then(function (response) {
-	      // console.log(JSON.stringify(response))
-	      var payload = response.results || response.result || response.user;
-	      dispatch({
-	        type: actionType,
-	        payload: payload,
-	        params: params
-	      });
-	      return response;
-	    }).catch(function (err) {
-	      throw err;
-	    });
-	  };
+	var initialState = {
+	  user: null,
+	  appStatus: 'ready'
 	};
 	
-	var postRequest = function postRequest(path, params, actionType) {
-	  return function (dispatch) {
-	    return _utils.APIManager.post(path, params).then(function (response) {
-	      var payload = response.results || response.result || response.user;
-	      dispatch({
-	        type: actionType,
-	        payload: payload,
-	        params: params
-	      });
-	      return response;
-	    }).catch(function (err) {
-	      throw err;
-	    });
-	  };
-	};
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	  var action = arguments[1];
 	
-	exports.default = {
-	  moviesReceived: function moviesReceived(movies) {
-	    return {
-	      type: _constants2.default.MOVIES_RECEIVED,
-	      movies: movies
-	    };
-	  },
+	  var updated = Object.assign({}, state);
 	
-	  createMovie: function createMovie(movie) {
-	    return function (dispatch) {
-	      _utils.APIManager.post('/api/movie', movie).then(function (response) {
-	        console.log('RESPONSE: ' + JSON.stringify(response));
+	  switch (action.type) {
+	    case _constants2.default.CURRENT_USER_RECEIVED:
+	      updated['user'] = action.user;
+	      console.log("New User: " + JSON.stringify(updated['user']));
+	      return updated;
 	
-	        dispatch({
-	          type: _constants2.default.MOVIE_CREATED,
-	          movie: movie
-	        });
-	      }).catch(function (err) {
-	        console.log('ERROR: ' + err);
-	      });
-	    };
-	  },
-	
-	  movieCreated: function movieCreated(movie) {
-	    return {
-	      type: _constants2.default.MOVIE_CREATED,
-	      movie: movie
-	    };
-	  },
-	
-	  selectMovie: function selectMovie(selected) {
-	    return {
-	      type: _constants2.default.SELECT_MOVIE,
-	      selectedMovie: selected
-	    };
-	  },
-	
-	  noteCreated: function noteCreated(note) {
-	    return {
-	      type: _constants2.default.NOTE_CREATED,
-	      note: note
-	    };
-	  },
-	
-	  notesReceived: function notesReceived(notes, selectedMovie) {
-	    return {
-	      type: _constants2.default.NOTES_RECEIVED,
-	      notes: notes,
-	      selectedMovie: selectedMovie
-	    };
+	    default:
+	      return state;
 	  }
 	};
 
@@ -30779,14 +30755,196 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _constants = __webpack_require__(275);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	var _utils = __webpack_require__(243);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// const getRequest = (path, params, actionType)=>{
+	//   return(dispatch) =>
+	//     APIManager.get(path, params)
+	//     .then(response=>{
+	//       // console.log(JSON.stringify(response))
+	//       const payload = response.results || response.result || response.user
+	//       dispatch({
+	//         type: actionType,
+	//         payload: payload,
+	//         params: params
+	//       })
+	//       return response
+	//     })
+	//     .catch(err=>{
+	//       throw err
+	//     })
+	// }
+	//
+	// const postRequest = (path, params, actionType)=>{
+	//   return (dispatch) =>
+	//     APIManager.post(path, params)
+	//     .then(response=>{
+	//       const payload = response.results || response.result || response.user
+	//       dispatch({
+	//         type: actionType,
+	//         payload:payload,
+	//         params:params
+	//       })
+	//       return response
+	//     })
+	//     .catch(err => {
+	//       throw err
+	//     })
+	// }
+	
+	exports.default = {
+		moviesReceived: function moviesReceived(movies) {
+			return {
+				type: _constants2.default.MOVIES_RECEIVED,
+				movies: movies
+			};
+		},
+	
+		createMovie: function createMovie(movie) {
+			return function (dispatch) {
+				_utils.APIManager.post('/api/movie', movie).then(function (response) {
+					console.log('RESPONSE: ' + JSON.stringify(response));
+	
+					dispatch({
+						type: _constants2.default.MOVIE_CREATED,
+						movie: movie
+					});
+				}).catch(function (err) {
+					console.log('ERROR: ' + err);
+				});
+			};
+		},
+	
+		movieCreated: function movieCreated(movie) {
+			return {
+				type: _constants2.default.MOVIE_CREATED,
+				movie: movie
+			};
+		},
+	
+		selectMovie: function selectMovie(selected) {
+			return {
+				type: _constants2.default.SELECT_MOVIE,
+				selectedMovie: selected
+			};
+		},
+	
+		noteCreated: function noteCreated(note) {
+			return {
+				type: _constants2.default.NOTE_CREATED,
+				note: note
+			};
+		},
+	
+		notesReceived: function notesReceived(notes, selectedMovie) {
+			return {
+				type: _constants2.default.NOTES_RECEIVED,
+				notes: notes,
+				selectedMovie: selectedMovie
+			};
+		},
+		createUser: function createUser(params) {
+			return function (dispatch) {
+				dispatch({
+					type: _constants2.default.APPLICATION_STATE,
+					appStatus: 'loading',
+					reducer: 'account'
+				});
+	
+				console.log('params: ' + JSON.stringify(params));
+	
+				_utils.APIManager.post('/account/register', params, function (err, response) {
+					if (err) {
+						alert('Username Taken. Choose different username');
+						return;
+					}
+					var user = response.user;
+					console.log("user: " + JSON.stringify(user));
+					dispatch({
+						type: _constants2.default.CURRENT_USER_RECEIVED,
+						user: user
+					});
+				});
+			};
+		},
+	
+		createLogin: function createLogin(params) {
+			return function (dispatch) {
+				dispatch({
+					type: _constants2.default.APPLICATION_STATE,
+					appStatus: 'loading',
+					reducer: 'account'
+				});
+	
+				_utils.APIManager.post('/account/login', params, function (err, response) {
+					if (err) {
+						alert(err.message);
+						return;
+					}
+					var user = response.user;
+					dispatch({
+						type: _constants2.default.CURRENT_USER_RECEIVED,
+						user: user
+					});
+				});
+			};
+		},
+	
+		fetchCurrentUser: function fetchCurrentUser(params) {
+			return function (dispatch) {
+				dispatch({
+					type: _constants2.default.APPLICATION_STATE,
+					appstatus: 'loading',
+					reducer: 'account'
+				});
+				_utils.APIManager.get('/account/currentuser', params, function (err, response) {
+					if (response == null) {
+						return;
+					}
+					if (err) {
+						alert("Cannot get current user: " + err.message);
+						return;
+					}
+					var user = response.user;
+					dispatch({
+						type: _constants2.default.CURRENT_USER_RECEIVED,
+						user: user
+					});
+				});
+			};
+		},
+		currentUserReceived: function currentUserReceived(user) {
+			return {
+				type: _constants2.default.CURRENT_USER_RECEIVED,
+				user: user
+			};
+		}
+	};
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	exports.__esModule = true;
 	exports.connect = exports.Provider = undefined;
 	
-	var _Provider = __webpack_require__(279);
+	var _Provider = __webpack_require__(280);
 	
 	var _Provider2 = _interopRequireDefault(_Provider);
 	
-	var _connect = __webpack_require__(282);
+	var _connect = __webpack_require__(283);
 	
 	var _connect2 = _interopRequireDefault(_connect);
 	
@@ -30796,7 +30954,7 @@
 	exports.connect = _connect2["default"];
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -30806,11 +30964,11 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(280);
+	var _storeShape = __webpack_require__(281);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _warning = __webpack_require__(281);
+	var _warning = __webpack_require__(282);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -30880,7 +31038,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30896,7 +31054,7 @@
 	});
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30926,7 +31084,7 @@
 	}
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -30939,19 +31097,19 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(280);
+	var _storeShape = __webpack_require__(281);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _shallowEqual = __webpack_require__(283);
+	var _shallowEqual = __webpack_require__(284);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
-	var _wrapActionCreators = __webpack_require__(284);
+	var _wrapActionCreators = __webpack_require__(285);
 	
 	var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 	
-	var _warning = __webpack_require__(281);
+	var _warning = __webpack_require__(282);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -31327,7 +31485,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -31358,7 +31516,7 @@
 	}
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31375,7 +31533,7 @@
 	}
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31404,11 +31562,11 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _actions = __webpack_require__(277);
+	var _actions = __webpack_require__(278);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
-	var _reactRedux = __webpack_require__(278);
+	var _reactRedux = __webpack_require__(279);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31592,7 +31750,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(MovieNotes);
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31722,7 +31880,7 @@
 	exports.default = BestStunts;
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31851,7 +32009,7 @@
 	exports.default = LeadActors;
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31981,7 +32139,7 @@
 	exports.default = LeadActresses;
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32111,7 +32269,7 @@
 	exports.default = SupportingActors;
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32240,7 +32398,7 @@
 	exports.default = SupportingActresses;
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32369,7 +32527,7 @@
 	exports.default = OutstandingEnsembles;
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32396,7 +32554,7 @@
 	
 	var _reactRouter = __webpack_require__(188);
 	
-	var _reactRedux = __webpack_require__(278);
+	var _reactRedux = __webpack_require__(279);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -32643,7 +32801,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps)(NominationsUpdate);
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32662,13 +32820,13 @@
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
-	var _reactRedux = __webpack_require__(278);
+	var _reactRedux = __webpack_require__(279);
 	
 	var _store = __webpack_require__(251);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _actions = __webpack_require__(277);
+	var _actions = __webpack_require__(278);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -32839,7 +32997,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(MovieDBInfo);
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33028,7 +33186,7 @@
 	exports.default = SingleMovie;
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33043,9 +33201,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(278);
+	var _reactRedux = __webpack_require__(279);
 	
-	var _actions = __webpack_require__(277);
+	var _actions = __webpack_require__(278);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -33057,9 +33215,13 @@
 	
 	var _reactRouter = __webpack_require__(188);
 	
-	var _Header = __webpack_require__(296);
+	var _Header = __webpack_require__(297);
 	
 	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _Home = __webpack_require__(299);
+	
+	var _Home2 = _interopRequireDefault(_Home);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33120,15 +33282,25 @@
 	      var content = null;
 	
 	      if (this.props.user != null) {
-	        content = _react2.default.createElement(
+	        content =
+	        // <div>
+	        // 	{window.location.assign('/')}
+	        // </div>
+	
+	        _react2.default.createElement(
 	          'div',
 	          null,
+	          _react2.default.createElement(_Home2.default, null),
+	          '// ',
 	          _react2.default.createElement(_Header2.default, null),
+	          '// ',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
+	          '// ',
 	          _react2.default.createElement(
 	            'div',
-	            { style: { textAlign: 'center' } },
+	            { style: { textAlign: 'center', height: 100, width: 100, backgroundColor: 'white' } },
+	            '// ',
 	            _react2.default.createElement(
 	              'h1',
 	              null,
@@ -33139,11 +33311,13 @@
 	                this.props.user.username.toUpperCase()
 	              )
 	            ),
+	            '// ',
 	            _react2.default.createElement(
 	              'h3',
 	              null,
 	              'You are logged in'
 	            ),
+	            '// ',
 	            _react2.default.createElement(
 	              'button',
 	              { className: 'btn btn-primary' },
@@ -33152,8 +33326,10 @@
 	                { to: '/' },
 	                'Go to DashBoard'
 	              )
-	            )
+	            ),
+	            '// '
 	          ),
+	          '// ',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null)
@@ -33291,7 +33467,7 @@
 	
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'wrapper' },
 	        content
 	      );
 	    }
@@ -33323,7 +33499,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Account);
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33340,9 +33516,9 @@
 	
 	var _reactRouter = __webpack_require__(188);
 	
-	var _reactRedux = __webpack_require__(278);
+	var _reactRedux = __webpack_require__(279);
 	
-	var _actions = __webpack_require__(277);
+	var _actions = __webpack_require__(278);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -33431,6 +33607,17 @@
 	                { to: '/moviesnowplaying' },
 	                'Current Releases'
 	              )
+	            ),
+	            ' |\xA0',
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              ' ',
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/account' },
+	                'Login'
+	              )
 	            )
 	          )
 	        );
@@ -33470,7 +33657,12 @@
 	                'Current Releases'
 	              )
 	            ),
-	            '  '
+	            ' |\xA0',
+	            _react2.default.createElement(
+	              'a',
+	              { onClick: this.logout.bind(this), style: { color: 'gray', fontSize: '.8em' }, href: '/' },
+	              'Logout'
+	            )
 	          ),
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
@@ -33531,180 +33723,23 @@
 	
 	var stateToProps = function stateToProps(state) {
 	  return {
-	    // user:state.account.user
+	    user: state.account.user
 	  };
 	};
 	
 	var dispatchToProps = function dispatchToProps(dispatch) {
 	  return {
 	
-	    // fetchCurrentUser: (params) => dispatch(actions.fetchCurrentUser(params)),
-	    // currentUserReceived: (user) => dispatch(actions.currentUserReceived(user))
+	    fetchCurrentUser: function fetchCurrentUser(params) {
+	      return dispatch(_actions2.default.fetchCurrentUser(params));
+	    },
+	    currentUserReceived: function currentUserReceived(user) {
+	      return dispatch(_actions2.default.currentUserReceived(user));
+	    }
 	  };
 	};
 	
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Header);
-
-/***/ },
-/* 297 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(188);
-	
-	var _Header = __webpack_require__(296);
-	
-	var _Header2 = _interopRequireDefault(_Header);
-	
-	var _superagent = __webpack_require__(245);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var MoviesNowPlaying = function (_Component) {
-	  _inherits(MoviesNowPlaying, _Component);
-	
-	  function MoviesNowPlaying(props) {
-	    _classCallCheck(this, MoviesNowPlaying);
-	
-	    var _this = _possibleConstructorReturn(this, (MoviesNowPlaying.__proto__ || Object.getPrototypeOf(MoviesNowPlaying)).call(this, props));
-	
-	    _this.state = {
-	      movies: []
-	    };
-	    return _this;
-	  }
-	
-	  _createClass(MoviesNowPlaying, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      //this is to search for a particular movie
-	      // ajax.get('https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=Star%20Wars&page=1&include_adult=false')
-	      //latest movies
-	      var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=4160bdc56f74445097c8012631f85743&language=en-US&page=1';
-	
-	      _superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err);
-	          return;
-	        }
-	
-	        console.log('moviesnowplaying: ' + JSON.stringify(response.body.results));
-	        var movies = response.body.results;
-	        _this2.setState({
-	          movies: movies
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var movieList = null;
-	      if (this.state.movies != null) {
-	        var movies = this.state.movies;
-	
-	        movieList = movies.map(function (movie, i) {
-	          if (movie.poster_path == null) {
-	            return _react2.default.createElement(
-	              'div',
-	              { className: 'col-md-3' },
-	              _react2.default.createElement(
-	                'li',
-	                { style: { marginBottom: 20 }, key: i },
-	                _react2.default.createElement(
-	                  'h6',
-	                  null,
-	                  'No Image'
-	                ),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement(
-	                  'h6',
-	                  null,
-	                  movie.title
-	                ),
-	                ' '
-	              )
-	            );
-	          }
-	          return _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-3' },
-	            _react2.default.createElement(
-	              'li',
-	              { style: { marginBottom: 50 }, key: i },
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/singlemovie/' + movie.id },
-	                _react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
-	              ),
-	              ' '
-	            )
-	          );
-	        });
-	      }
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_Header2.default, null),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'container' },
-	          _react2.default.createElement(
-	            'center',
-	            null,
-	            _react2.default.createElement(
-	              'h1',
-	              null,
-	              'Now In Theatres'
-	            ),
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              'Movies currently released for public viewing'
-	            ),
-	            _react2.default.createElement('hr', { style: { width: '40%' } })
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'clearfix' },
-	            _react2.default.createElement(
-	              'ul',
-	              { style: { listStyleType: 'none' } },
-	              movieList
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return MoviesNowPlaying;
-	}(_react.Component);
-	
-	exports.default = MoviesNowPlaying;
 
 /***/ },
 /* 298 */
@@ -33746,7 +33781,7 @@
 	
 	var _containers = __webpack_require__(173);
 	
-	var _NominationsUpdate = __webpack_require__(292);
+	var _NominationsUpdate = __webpack_require__(293);
 	
 	var _NominationsUpdate2 = _interopRequireDefault(_NominationsUpdate);
 	
@@ -33825,31 +33860,31 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _LeadActors = __webpack_require__(287);
+	var _LeadActors = __webpack_require__(288);
 	
 	var _LeadActors2 = _interopRequireDefault(_LeadActors);
 	
-	var _LeadActresses = __webpack_require__(288);
+	var _LeadActresses = __webpack_require__(289);
 	
 	var _LeadActresses2 = _interopRequireDefault(_LeadActresses);
 	
-	var _SupportingActors = __webpack_require__(289);
+	var _SupportingActors = __webpack_require__(290);
 	
 	var _SupportingActors2 = _interopRequireDefault(_SupportingActors);
 	
-	var _SupportingActresses = __webpack_require__(290);
+	var _SupportingActresses = __webpack_require__(291);
 	
 	var _SupportingActresses2 = _interopRequireDefault(_SupportingActresses);
 	
-	var _OutstandingEnsembles = __webpack_require__(291);
+	var _OutstandingEnsembles = __webpack_require__(292);
 	
 	var _OutstandingEnsembles2 = _interopRequireDefault(_OutstandingEnsembles);
 	
-	var _BestStunts = __webpack_require__(286);
+	var _BestStunts = __webpack_require__(287);
 	
 	var _BestStunts2 = _interopRequireDefault(_BestStunts);
 	
-	var _Header = __webpack_require__(296);
+	var _Header = __webpack_require__(297);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	

@@ -5,6 +5,8 @@ import { APIManager } from '../../utils'
 import ajax from 'superagent'
 import { Link } from 'react-router'
 import Header from '../containers/Header'
+import Home from '../layout/Home'
+
 
 class Account extends Component{
   constructor(props){
@@ -34,7 +36,7 @@ class Account extends Component{
   }
 
   submitProfile(event){
-    this.props.createUser(this.state.profile)
+      this.props.createUser(this.state.profile)
   }
 
   submitLogin(event){
@@ -46,19 +48,25 @@ class Account extends Component{
 
     if(this.props.user != null){
       content=(
-        <div>
-          <Header />
-          <br /><br />
-          <div style={{textAlign:'center'}}>
-          <h1>Hi <span style={{color:'#72c02c'}}>{this.props.user.username.toUpperCase()}</span></h1>
-          <h3>You are logged in</h3>
-          <button className="btn btn-primary"><Link to='/'>Go to DashBoard</Link></button>
-          </div>
-          <br /><br /><br />
+				// <div>
+				// 	{window.location.assign('/')}
+				// </div>
+
+       <div>
+				 <Home />
+            // <Header />
+            // <br /><br />
+            // <div style={{textAlign:'center', height:100, width:100, backgroundColor:'white'}}>
+            // <h1>Hi <span style={{color:'#72c02c'}}>{this.props.user.username.toUpperCase()}</span></h1>
+            // <h3>You are logged in</h3>
+            // <button className="btn btn-primary"><Link to='/'>Go to DashBoard</Link></button>
+            // </div>
+            // <br /><br /><br />
         </div>
       )
     }else{
       content=(
+
         <div className="forms-wrapper">
           <div className="container content-md">
             <div className="margin-bottom-60 head">
@@ -113,7 +121,7 @@ class Account extends Component{
     }
 
     return(
-      <div>
+      <div className="wrapper">
         {content}
       </div>
     )

@@ -6,6 +6,8 @@ var SupportingActressController = require('./SupportingActressController')
 var OutstandingEnsembleController = require('./OutstandingEnsembleController')
 var BestStuntsController = require('./BestStuntsController')
 var MovieNotesController = require('./MovieNotesController')
+var ProfileController = require('./ProfileController')
+var AccountController = require('./AccountController')
 
 
 
@@ -17,5 +19,7 @@ module.exports = {
   supportingactress: SupportingActressController,
   outstandingensemble: OutstandingEnsembleController,
   beststunts: BestStuntsController,
-  movienotes: MovieNotesController
+  movienotes: MovieNotesController,
+	profile: ProfileController,
+	account: AccountController
 }
