@@ -24,55 +24,54 @@ class MovieDBInfo extends Component{
     }
     // console.log("DBINFO LEAD:" +JSON.stringify(this.props.movieList[0].leadActor))
     // console.log("DBINFO URL:" +JSON.stringify(selectedMovie))
-	if(this.props.movieList.length !=0){
-		let movieName=selectedMovie.movieName
-		let urlMovieName = movieName.split(' ').join('%20')
-		var url = `https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=${urlMovieName}&page=1&include_adult=false`
+		if(this.props.movieList.length !=0){
+			let movieName=selectedMovie.movieName
+			let urlMovieName = movieName.split(' ').join('%20')
+			var url = `https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=${urlMovieName}&page=1&include_adult=false`
 
-		superagent
-		.get(url)
-		.query(null)
-		.set('Accept', 'application/json')
-		.end((err, response) => {
-			if (err){
-				alert('ERROR: '+err)
-				return
-			}
+			superagent
+			.get(url)
+			.query(null)
+			.set('Accept', 'application/json')
+			.end((err, response) => {
+				if (err){
+					alert('ERROR: '+err)
+					return
+				}
 
-			// console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
-			let movie = response.body.results
-			let movieDBSelectedMovie=movie[0]
-			// console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
-			let posterPath = null
-			let overview = null
-			let popularity=null
-			let voteCount = null
-			let moviedBId = null
-			if(movieDBSelectedMovie != undefined){
-				posterPath=movieDBSelectedMovie.poster_path
-				overview=movieDBSelectedMovie.overview
-	 			popularity=movieDBSelectedMovie.popularity
-	 			voteCount = movieDBSelectedMovie.vote_count
-	 			moviedBId = movieDBSelectedMovie.id
-			}
-			let selected = this.props.selected
+				// console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
+				let movie = response.body.results
+				let movieDBSelectedMovie=movie[0]
+				// console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
+				let posterPath = null
+				let overview = null
+				let popularity=null
+				let voteCount = null
+				let moviedBId = null
+				if(movieDBSelectedMovie != undefined){
+					posterPath=movieDBSelectedMovie.poster_path
+					overview=movieDBSelectedMovie.overview
+		 			popularity=movieDBSelectedMovie.popularity
+		 			voteCount = movieDBSelectedMovie.vote_count
+		 			moviedBId = movieDBSelectedMovie.id
+				}
+				let selected = this.props.selected
 
-			console.log("movieDBSelectedMovie: " + JSON.stringify(movieDBSelectedMovie))
+				console.log("movieDBSelectedMovie: " + JSON.stringify(movieDBSelectedMovie))
 
 
-			this.setState({
-				movie,
-				posterPath,
-				overview,
-				popularity,
-				voteCount,
-				moviedBId,
-				selected
+				this.setState({
+					movie,
+					posterPath,
+					overview,
+					popularity,
+					voteCount,
+					moviedBId,
+					selected
+				})
+					// console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
 			})
-				// console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
-		})
-	}
-
+		}
   }
 
   render(){

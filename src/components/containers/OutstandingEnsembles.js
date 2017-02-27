@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import OutstandingEnsemble from '../presentation/OutstandingEnsemble'
-import superagent from 'superagent'
+import { APIManager } from '../../utils'
 import styles from './styles'
 
 class OutstandingEnsembles extends Component{
@@ -15,23 +15,34 @@ class OutstandingEnsembles extends Component{
   }
 
   componentDidMount(){
-		superagent
-		.get('/api/outstandingensemble')
-		.query(null)
-		.set('Accept', 'application/json')
-		.end((err, response) => {
+		APIManager.get('/api/outstandingensemble',null,(err, response)=>{
 			if (err){
 				alert('ERROR: '+err)
 				return
 			}
-
-			// console.log(JSON.stringify(response.body))
-			let results = response.body.results
+			let results = response.results
 
 			this.setState({
 				list: results
 			})
 		})
+		// superagent
+		// .get('/api/outstandingensemble')
+		// .query(null)
+		// .set('Accept', 'application/json')
+		// .end((err, response) => {
+		// 	if (err){
+		// 		alert('ERROR: '+err)
+		// 		return
+		// 	}
+		//
+		// 	// console.log(JSON.stringify(response.body))
+		// 	let results = response.body.results
+		//
+		// 	this.setState({
+		// 		list: results
+		// 	})
+		// })
 	}
 
   updateNomination(event){

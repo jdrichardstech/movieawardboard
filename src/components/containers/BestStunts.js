@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import BestStunt from '../presentation/BestStunt'
-import superagent from 'superagent'
+import { APIManager } from '../../utils'
 import styles from './styles'
 
 
@@ -16,23 +16,35 @@ class BestStunts extends Component{
   }
 
   componentDidMount(){
-		superagent
-		.get('/api/beststunts')
-		.query(null)
-		.set('Accept', 'application/json')
-		.end((err, response) => {
+		APIManager.get('/api/beststunts',null,(err, response)=>{
 			if (err){
 				alert('ERROR: '+err)
 				return
 			}
-
-			// console.log(JSON.stringify(response.body))
-			let results = response.body.results
+			let results = response.results
 
 			this.setState({
 				list: results
 			})
 		})
+
+		// superagent
+		// .get('/api/beststunts')
+		// .query(null)
+		// .set('Accept', 'application/json')
+		// .end((err, response) => {
+		// 	if (err){
+		// 		alert('ERROR: '+err)
+		// 		return
+		// 	}
+		//
+		// 	// console.log(JSON.stringify(response.body))
+		// 	let results = response.body.results
+		//
+		// 	this.setState({
+		// 		list: results
+		// 	})
+		// })
 	}
 
   updateNomination(event){

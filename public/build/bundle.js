@@ -30548,7 +30548,7 @@
 						var movieTitleA = a.movieName;
 						var movieTitleB = b.movieName;
 						movieTitleA = removeArticles(a.movieName);
-						console.log("MOVIENAME: " + JSON.stringify(a.movieName));
+						// console.log("MOVIENAME: " + JSON.stringify(a.movieName))
 						movieTitleB = removeArticles(b.movieName);
 	
 						if (movieTitleA < movieTitleB) return -1;
@@ -30578,7 +30578,7 @@
 						var movieTitleA = a.movieName;
 						var movieTitleB = b.movieName;
 						movieTitleA = removeArticle(a.movieName);
-						console.log("MOVIENAME: " + JSON.stringify(a.movieName));
+						// console.log("MOVIENAME: " + JSON.stringify(a.movieName))
 						movieTitleB = removeArticle(b.movieName);
 	
 						if (movieTitleA < movieTitleB) return -1;
@@ -31756,7 +31756,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31769,9 +31769,7 @@
 	
 	var _BestStunt2 = _interopRequireDefault(_BestStunt);
 	
-	var _superagent = __webpack_require__(245);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
+	var _utils = __webpack_require__(243);
 	
 	var _styles = __webpack_require__(250);
 	
@@ -31786,95 +31784,111 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var BestStunts = function (_Component) {
-	  _inherits(BestStunts, _Component);
+			_inherits(BestStunts, _Component);
 	
-	  function BestStunts(props) {
-	    _classCallCheck(this, BestStunts);
+			function BestStunts(props) {
+					_classCallCheck(this, BestStunts);
 	
-	    var _this = _possibleConstructorReturn(this, (BestStunts.__proto__ || Object.getPrototypeOf(BestStunts)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (BestStunts.__proto__ || Object.getPrototypeOf(BestStunts)).call(this, props));
 	
-	    _this.state = {
-	      nomination: {
-	        bestStuntsMovie: ''
-	      },
-	      list: []
-	    };
-	    return _this;
-	  }
+					_this.state = {
+							nomination: {
+									bestStuntsMovie: ''
+							},
+							list: []
+					};
+					return _this;
+			}
 	
-	  _createClass(BestStunts, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
+			_createClass(BestStunts, [{
+					key: 'componentDidMount',
+					value: function componentDidMount() {
+							var _this2 = this;
 	
-	      _superagent2.default.get('/api/beststunts').query(null).set('Accept', 'application/json').end(function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err);
-	          return;
-	        }
+							_utils.APIManager.get('/api/beststunts', null, function (err, response) {
+									if (err) {
+											alert('ERROR: ' + err);
+											return;
+									}
+									var results = response.results;
 	
-	        // console.log(JSON.stringify(response.body))
-	        var results = response.body.results;
+									_this2.setState({
+											list: results
+									});
+							});
 	
-	        _this2.setState({
-	          list: results
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'updateNomination',
-	    value: function updateNomination(event) {
-	      var updatedNomination = Object.assign({}, this.state.nomination);
-	      updatedNomination[event.target.id] = event.target.value;
-	      this.setState({
-	        nomination: updatedNomination
-	      });
-	    }
-	  }, {
-	    key: 'submitNomination',
-	    value: function submitNomination(event) {
-	      var updatedList = Object.assign([], this.state.list);
-	      updatedList.push(this.state.nomination);
-	      _superagent2.default.post('/api/beststunts').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-	        if (err || !res.ok) {
-	          alert('Oh no! error');
-	        } else {
-	          console.log('bestStunts posted');
-	        }
-	      });
-	      this.setState({
-	        list: updatedList
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
+							// superagent
+							// .get('/api/beststunts')
+							// .query(null)
+							// .set('Accept', 'application/json')
+							// .end((err, response) => {
+							// 	if (err){
+							// 		alert('ERROR: '+err)
+							// 		return
+							// 	}
+							//
+							// 	// console.log(JSON.stringify(response.body))
+							// 	let results = response.body.results
+							//
+							// 	this.setState({
+							// 		list: results
+							// 	})
+							// })
+					}
+			}, {
+					key: 'updateNomination',
+					value: function updateNomination(event) {
+							var updatedNomination = Object.assign({}, this.state.nomination);
+							updatedNomination[event.target.id] = event.target.value;
+							this.setState({
+									nomination: updatedNomination
+							});
+					}
+			}, {
+					key: 'submitNomination',
+					value: function submitNomination(event) {
+							var updatedList = Object.assign([], this.state.list);
+							updatedList.push(this.state.nomination);
+							superagent.post('/api/beststunts').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
+									if (err || !res.ok) {
+											alert('Oh no! error');
+									} else {
+											console.log('bestStunts posted');
+									}
+							});
+							this.setState({
+									list: updatedList
+							});
+					}
+			}, {
+					key: 'render',
+					value: function render() {
 	
-	      var listItem = this.state.list.map(function (nomination, i) {
-	        return _react2.default.createElement(
-	          'li',
-	          { key: i },
-	          _react2.default.createElement(_BestStunt2.default, { currentNomination: nomination })
-	        );
-	      });
-	      return _react2.default.createElement(
-	        'div',
-	        { style: _styles2.default.nominations.border },
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Best Stunts:'
-	        ),
-	        _react2.default.createElement(
-	          'ol',
-	          { style: _styles2.default.nominations.list },
-	          listItem
-	        )
-	      );
-	    }
-	  }]);
+							var listItem = this.state.list.map(function (nomination, i) {
+									return _react2.default.createElement(
+											'li',
+											{ key: i },
+											_react2.default.createElement(_BestStunt2.default, { currentNomination: nomination })
+									);
+							});
+							return _react2.default.createElement(
+									'div',
+									{ style: _styles2.default.nominations.border },
+									_react2.default.createElement(
+											'h4',
+											null,
+											'Best Stunts:'
+									),
+									_react2.default.createElement(
+											'ol',
+											{ style: _styles2.default.nominations.list },
+											listItem
+									)
+							);
+					}
+			}]);
 	
-	  return BestStunts;
+			return BestStunts;
 	}(_react.Component);
 	
 	exports.default = BestStunts;
@@ -31886,7 +31900,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31899,9 +31913,7 @@
 	
 	var _LeadActor2 = _interopRequireDefault(_LeadActor);
 	
-	var _superagent = __webpack_require__(245);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
+	var _utils = __webpack_require__(243);
 	
 	var _styles = __webpack_require__(250);
 	
@@ -31916,94 +31928,108 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var LeadActors = function (_Component) {
-	  _inherits(LeadActors, _Component);
+			_inherits(LeadActors, _Component);
 	
-	  function LeadActors(props) {
-	    _classCallCheck(this, LeadActors);
+			function LeadActors(props) {
+					_classCallCheck(this, LeadActors);
 	
-	    var _this = _possibleConstructorReturn(this, (LeadActors.__proto__ || Object.getPrototypeOf(LeadActors)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (LeadActors.__proto__ || Object.getPrototypeOf(LeadActors)).call(this, props));
 	
-	    _this.state = {
-	      nomination: {
-	        leadActorName: ''
-	      },
-	      list: []
-	    };
-	    return _this;
-	  }
+					_this.state = {
+							nomination: {
+									leadActorName: ''
+							},
+							list: []
+					};
+					return _this;
+			}
 	
-	  _createClass(LeadActors, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
+			_createClass(LeadActors, [{
+					key: 'componentDidMount',
+					value: function componentDidMount() {
+							var _this2 = this;
 	
-	      _superagent2.default.get('/api/leadactor').query(null).set('Accept', 'application/json').end(function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err);
-	          return;
-	        }
+							_utils.APIManager.get('/api/leadactor', null, function (err, response) {
+									if (err) {
+											alert('ERROR: ' + err);
+											return;
+									}
+									var results = response.results;
+									_this2.setState({
+											list: results
+									});
+							});
+							// superagent
+							// .get('/api/leadactor')
+							// .query(null)
+							// .set('Accept', 'application/json')
+							// .end((err, response) => {
+							// 	if (err){
+							// 		alert('ERROR: '+err)
+							// 		return
+							// 	}
+							//
+							// 	// console.log(JSON.stringify(response.body))
+							// 	let results = response.body.results
+							//
+							// 	this.setState({
+							// 		list: results
+							// 	})
+							// })
+					}
+			}, {
+					key: 'updateNomination',
+					value: function updateNomination(event) {
+							var updatedNomination = Object.assign({}, this.state.nomination);
+							updatedNomination[event.target.id] = event.target.value;
+							this.setState({
+									nomination: updatedNomination
+							});
+					}
+			}, {
+					key: 'submitNomination',
+					value: function submitNomination(event) {
+							var updatedList = Object.assign([], this.state.list);
+							updatedList.push(this.state.nomination);
+							superagent.post('/api/leadactor').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
+									if (err || !res.ok) {
+											alert('Oh no! error');
+									} else {
+											console.log('leadActor posted');
+									}
+							});
+							this.setState({
+									list: updatedList
+							});
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							var listItem = this.state.list.map(function (nomination, i) {
+									return _react2.default.createElement(
+											'li',
+											{ key: i },
+											_react2.default.createElement(_LeadActor2.default, { currentNomination: nomination })
+									);
+							});
+							return _react2.default.createElement(
+									'div',
+									{ style: _styles2.default.nominations.border },
+									_react2.default.createElement(
+											'h4',
+											null,
+											'Lead Actor:'
+									),
+									_react2.default.createElement(
+											'ol',
+											{ style: _styles2.default.nominations.other },
+											listItem
+									)
+							);
+					}
+			}]);
 	
-	        // console.log(JSON.stringify(response.body))
-	        var results = response.body.results;
-	
-	        _this2.setState({
-	          list: results
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'updateNomination',
-	    value: function updateNomination(event) {
-	      var updatedNomination = Object.assign({}, this.state.nomination);
-	      updatedNomination[event.target.id] = event.target.value;
-	      this.setState({
-	        nomination: updatedNomination
-	      });
-	    }
-	  }, {
-	    key: 'submitNomination',
-	    value: function submitNomination(event) {
-	      var updatedList = Object.assign([], this.state.list);
-	      updatedList.push(this.state.nomination);
-	      _superagent2.default.post('/api/leadactor').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-	        if (err || !res.ok) {
-	          alert('Oh no! error');
-	        } else {
-	          console.log('leadActor posted');
-	        }
-	      });
-	      this.setState({
-	        list: updatedList
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var listItem = this.state.list.map(function (nomination, i) {
-	        return _react2.default.createElement(
-	          'li',
-	          { key: i },
-	          _react2.default.createElement(_LeadActor2.default, { currentNomination: nomination })
-	        );
-	      });
-	      return _react2.default.createElement(
-	        'div',
-	        { style: _styles2.default.nominations.border },
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Lead Actor:'
-	        ),
-	        _react2.default.createElement(
-	          'ol',
-	          { style: _styles2.default.nominations.other },
-	          listItem
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return LeadActors;
+			return LeadActors;
 	}(_react.Component);
 	
 	exports.default = LeadActors;
@@ -32015,7 +32041,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32028,9 +32054,7 @@
 	
 	var _LeadActress2 = _interopRequireDefault(_LeadActress);
 	
-	var _superagent = __webpack_require__(245);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
+	var _utils = __webpack_require__(243);
 	
 	var _styles = __webpack_require__(250);
 	
@@ -32045,95 +32069,109 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var LeadActresses = function (_Component) {
-	  _inherits(LeadActresses, _Component);
+			_inherits(LeadActresses, _Component);
 	
-	  function LeadActresses(props) {
-	    _classCallCheck(this, LeadActresses);
+			function LeadActresses(props) {
+					_classCallCheck(this, LeadActresses);
 	
-	    var _this = _possibleConstructorReturn(this, (LeadActresses.__proto__ || Object.getPrototypeOf(LeadActresses)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (LeadActresses.__proto__ || Object.getPrototypeOf(LeadActresses)).call(this, props));
 	
-	    _this.state = {
-	      nomination: {
-	        leadActressName: ''
-	      },
-	      list: []
-	    };
-	    return _this;
-	  }
+					_this.state = {
+							nomination: {
+									leadActressName: ''
+							},
+							list: []
+					};
+					return _this;
+			}
 	
-	  _createClass(LeadActresses, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
+			_createClass(LeadActresses, [{
+					key: 'componentDidMount',
+					value: function componentDidMount() {
+							var _this2 = this;
 	
-	      _superagent2.default.get('/api/leadactress').query(null).set('Accept', 'application/json').end(function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err);
-	          return;
-	        }
+							_utils.APIManager.get('/api/leadactress', null, function (err, response) {
+									if (err) {
+											alert('ERROR: ' + err);
+											return;
+									}
+									var results = response.results;
+									_this2.setState({
+											list: results
+									});
+							});
+							// superagent
+							// .get('/api/leadactress')
+							// .query(null)
+							// .set('Accept', 'application/json')
+							// .end((err, response) => {
+							// 	if (err){
+							// 		alert('ERROR: '+err)
+							// 		return
+							// 	}
+							//
+							// 	// console.log(JSON.stringify(response.body))
+							// 	let results = response.body.results
+							//
+							// 	this.setState({
+							// 		list: results
+							// 	})
+							// })
+					}
+			}, {
+					key: 'updateNomination',
+					value: function updateNomination(event) {
+							var updatedNomination = Object.assign({}, this.state.nomination);
+							updatedNomination[event.target.id] = event.target.value;
+							this.setState({
+									nomination: updatedNomination
+							});
+					}
+			}, {
+					key: 'submitNomination',
+					value: function submitNomination(event) {
+							var updatedList = Object.assign([], this.state.list);
+							updatedList.push(this.state.nomination);
 	
-	        // console.log(JSON.stringify(response.body))
-	        var results = response.body.results;
+							superagent.post('/api/leadactress').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
+									if (err || !res.ok) {
+											alert('Oh no! error');
+									} else {
+											console.log('leadActress posted');
+									}
+							});
+							this.setState({
+									list: updatedList
+							});
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							var listItem = this.state.list.map(function (nomination, i) {
+									return _react2.default.createElement(
+											'li',
+											{ key: i },
+											_react2.default.createElement(_LeadActress2.default, { currentNomination: nomination })
+									);
+							});
+							return _react2.default.createElement(
+									'div',
+									{ style: _styles2.default.nominations.border },
+									_react2.default.createElement(
+											'h4',
+											null,
+											'Lead Actress:'
+									),
+									_react2.default.createElement(
+											'ol',
+											{ style: _styles2.default.nominations.other },
+											listItem
+									)
+							);
+					}
+			}]);
 	
-	        _this2.setState({
-	          list: results
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'updateNomination',
-	    value: function updateNomination(event) {
-	      var updatedNomination = Object.assign({}, this.state.nomination);
-	      updatedNomination[event.target.id] = event.target.value;
-	      this.setState({
-	        nomination: updatedNomination
-	      });
-	    }
-	  }, {
-	    key: 'submitNomination',
-	    value: function submitNomination(event) {
-	      var updatedList = Object.assign([], this.state.list);
-	      updatedList.push(this.state.nomination);
-	
-	      _superagent2.default.post('/api/leadactress').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-	        if (err || !res.ok) {
-	          alert('Oh no! error');
-	        } else {
-	          console.log('leadActress posted');
-	        }
-	      });
-	      this.setState({
-	        list: updatedList
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var listItem = this.state.list.map(function (nomination, i) {
-	        return _react2.default.createElement(
-	          'li',
-	          { key: i },
-	          _react2.default.createElement(_LeadActress2.default, { currentNomination: nomination })
-	        );
-	      });
-	      return _react2.default.createElement(
-	        'div',
-	        { style: _styles2.default.nominations.border },
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Lead Actress:'
-	        ),
-	        _react2.default.createElement(
-	          'ol',
-	          { style: _styles2.default.nominations.other },
-	          listItem
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return LeadActresses;
+			return LeadActresses;
 	}(_react.Component);
 	
 	exports.default = LeadActresses;
@@ -32158,9 +32196,7 @@
 	
 	var _SupportingActor2 = _interopRequireDefault(_SupportingActor);
 	
-	var _superagent = __webpack_require__(245);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
+	var _utils = __webpack_require__(243);
 	
 	var _styles = __webpack_require__(250);
 	
@@ -32196,16 +32232,30 @@
 	    value: function componentDidMount() {
 	      var _this2 = this;
 	
-	      _superagent2.default.get('/api/supportingactor').query(null).set('Accept', 'application/json').end(function (err, response) {
+	      _utils.APIManager.get('/api/supportingactor', null, function (err, response) {
 	        if (err) {
 	          alert('ERROR: ' + err);
 	          return;
 	        }
-	        var results = response.body.results;
+	        var results = response.results;
 	        _this2.setState({
 	          list: results
 	        });
 	      });
+	      // superagent
+	      // .get('/api/supportingactor')
+	      // .query(null)
+	      // .set('Accept', 'application/json')
+	      // .end((err, response) => {
+	      // if (err){
+	      // 	alert('ERROR: '+err)
+	      // 	return
+	      // }
+	      // let results = response.body.results
+	      // this.setState({
+	      // 	list: results
+	      // })
+	      // })
 	    }
 	  }, {
 	    key: 'updateNomination',
@@ -32221,7 +32271,7 @@
 	    value: function submitNomination(event) {
 	      var updatedList = Object.assign([], this.state.list);
 	      updatedList.push(this.state.nomination);
-	      _superagent2.default.post('/api/supportingActor').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
+	      superagent.post('/api/supportingActor').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
 	        if (err || !res.ok) {
 	          alert('Oh no! error');
 	        } else {
@@ -32275,7 +32325,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32288,9 +32338,7 @@
 	
 	var _SupportingActress2 = _interopRequireDefault(_SupportingActress);
 	
-	var _superagent = __webpack_require__(245);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
+	var _utils = __webpack_require__(243);
 	
 	var _styles = __webpack_require__(250);
 	
@@ -32305,94 +32353,109 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var SupportingActresses = function (_Component) {
-	  _inherits(SupportingActresses, _Component);
+			_inherits(SupportingActresses, _Component);
 	
-	  function SupportingActresses(props) {
-	    _classCallCheck(this, SupportingActresses);
+			function SupportingActresses(props) {
+					_classCallCheck(this, SupportingActresses);
 	
-	    var _this = _possibleConstructorReturn(this, (SupportingActresses.__proto__ || Object.getPrototypeOf(SupportingActresses)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (SupportingActresses.__proto__ || Object.getPrototypeOf(SupportingActresses)).call(this, props));
 	
-	    _this.state = {
-	      nomination: {
-	        supportingActressName: ''
-	      },
-	      list: []
-	    };
-	    return _this;
-	  }
+					_this.state = {
+							nomination: {
+									supportingActressName: ''
+							},
+							list: []
+					};
+					return _this;
+			}
 	
-	  _createClass(SupportingActresses, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
+			_createClass(SupportingActresses, [{
+					key: 'componentDidMount',
+					value: function componentDidMount() {
+							var _this2 = this;
 	
-	      _superagent2.default.get('/api/supportingactress').query(null).set('Accept', 'application/json').end(function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err);
-	          return;
-	        }
+							_utils.APIManager.get('/api/supportingactress', null, function (err, response) {
+									if (err) {
+											alert('ERROR: ' + err);
+											return;
+									}
+									var results = response.results;
 	
-	        var results = response.body.results;
+									_this2.setState({
+											list: results
+									});
+							});
+							// superagent
+							// .get('/api/supportingactress')
+							// .query(null)
+							// .set('Accept', 'application/json')
+							// .end((err, response) => {
+							// 	if (err){
+							// 		alert('ERROR: '+err)
+							// 		return
+							// 	}
+							//
+							// 	let results = response.body.results
+							//
+							// 	this.setState({
+							// 		list: results
+							// 	})
+							// })
+					}
+			}, {
+					key: 'updateNomination',
+					value: function updateNomination(event) {
+							var updatedNomination = Object.assign({}, this.state.nomination);
+							updatedNomination[event.target.id] = event.target.value;
+							this.setState({
+									nomination: updatedNomination
+							});
+					}
+			}, {
+					key: 'submitNomination',
+					value: function submitNomination(event) {
+							var updatedList = Object.assign([], this.state.list);
+							updatedList.push(this.state.nomination);
 	
-	        _this2.setState({
-	          list: results
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'updateNomination',
-	    value: function updateNomination(event) {
-	      var updatedNomination = Object.assign({}, this.state.nomination);
-	      updatedNomination[event.target.id] = event.target.value;
-	      this.setState({
-	        nomination: updatedNomination
-	      });
-	    }
-	  }, {
-	    key: 'submitNomination',
-	    value: function submitNomination(event) {
-	      var updatedList = Object.assign([], this.state.list);
-	      updatedList.push(this.state.nomination);
+							superagent.post('/api/supportingActress').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
+									if (err || !res.ok) {
+											alert('Oh no! error');
+									} else {
+											console.log('supportingActress');
+									}
+							});
+							this.setState({
+									list: updatedList
+							});
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							var listItem = this.state.list.map(function (nomination, i) {
+									return _react2.default.createElement(
+											'li',
+											{ key: i },
+											_react2.default.createElement(_SupportingActress2.default, { currentNomination: nomination })
+									);
+							});
+							return _react2.default.createElement(
+									'div',
+									{ style: _styles2.default.nominations.border },
+									_react2.default.createElement(
+											'h4',
+											null,
+											'Supporting Actress:'
+									),
+									_react2.default.createElement(
+											'ol',
+											{ style: _styles2.default.nominations.other },
+											listItem
+									)
+							);
+					}
+			}]);
 	
-	      _superagent2.default.post('/api/supportingActress').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-	        if (err || !res.ok) {
-	          alert('Oh no! error');
-	        } else {
-	          console.log('supportingActress');
-	        }
-	      });
-	      this.setState({
-	        list: updatedList
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var listItem = this.state.list.map(function (nomination, i) {
-	        return _react2.default.createElement(
-	          'li',
-	          { key: i },
-	          _react2.default.createElement(_SupportingActress2.default, { currentNomination: nomination })
-	        );
-	      });
-	      return _react2.default.createElement(
-	        'div',
-	        { style: _styles2.default.nominations.border },
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Supporting Actress:'
-	        ),
-	        _react2.default.createElement(
-	          'ol',
-	          { style: _styles2.default.nominations.other },
-	          listItem
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return SupportingActresses;
+			return SupportingActresses;
 	}(_react.Component);
 	
 	exports.default = SupportingActresses;
@@ -32404,7 +32467,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32417,9 +32480,7 @@
 	
 	var _OutstandingEnsemble2 = _interopRequireDefault(_OutstandingEnsemble);
 	
-	var _superagent = __webpack_require__(245);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
+	var _utils = __webpack_require__(243);
 	
 	var _styles = __webpack_require__(250);
 	
@@ -32434,94 +32495,109 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var OutstandingEnsembles = function (_Component) {
-	  _inherits(OutstandingEnsembles, _Component);
+			_inherits(OutstandingEnsembles, _Component);
 	
-	  function OutstandingEnsembles(props) {
-	    _classCallCheck(this, OutstandingEnsembles);
+			function OutstandingEnsembles(props) {
+					_classCallCheck(this, OutstandingEnsembles);
 	
-	    var _this = _possibleConstructorReturn(this, (OutstandingEnsembles.__proto__ || Object.getPrototypeOf(OutstandingEnsembles)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (OutstandingEnsembles.__proto__ || Object.getPrototypeOf(OutstandingEnsembles)).call(this, props));
 	
-	    _this.state = {
-	      nomination: {
-	        outstandingEnsembleMovie: ''
-	      },
-	      list: []
-	    };
-	    return _this;
-	  }
+					_this.state = {
+							nomination: {
+									outstandingEnsembleMovie: ''
+							},
+							list: []
+					};
+					return _this;
+			}
 	
-	  _createClass(OutstandingEnsembles, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
+			_createClass(OutstandingEnsembles, [{
+					key: 'componentDidMount',
+					value: function componentDidMount() {
+							var _this2 = this;
 	
-	      _superagent2.default.get('/api/outstandingensemble').query(null).set('Accept', 'application/json').end(function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err);
-	          return;
-	        }
+							_utils.APIManager.get('/api/outstandingensemble', null, function (err, response) {
+									if (err) {
+											alert('ERROR: ' + err);
+											return;
+									}
+									var results = response.results;
 	
-	        // console.log(JSON.stringify(response.body))
-	        var results = response.body.results;
+									_this2.setState({
+											list: results
+									});
+							});
+							// superagent
+							// .get('/api/outstandingensemble')
+							// .query(null)
+							// .set('Accept', 'application/json')
+							// .end((err, response) => {
+							// 	if (err){
+							// 		alert('ERROR: '+err)
+							// 		return
+							// 	}
+							//
+							// 	// console.log(JSON.stringify(response.body))
+							// 	let results = response.body.results
+							//
+							// 	this.setState({
+							// 		list: results
+							// 	})
+							// })
+					}
+			}, {
+					key: 'updateNomination',
+					value: function updateNomination(event) {
+							var updatedNomination = Object.assign({}, this.state.nomination);
+							updatedNomination[event.target.id] = event.target.value;
+							this.setState({
+									nomination: updatedNomination
+							});
+					}
+			}, {
+					key: 'submitNomination',
+					value: function submitNomination(event) {
+							var updatedList = Object.assign([], this.state.list);
+							updatedList.push(this.state.nomination);
+							superagent.post('/api/outstandingEnsemble').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
+									if (err || !res.ok) {
+											alert('Oh no! error');
+									} else {
+											console.log('outstandingEnsemble posted');
+									}
+							});
+							this.setState({
+									list: updatedList
+							});
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							var listItem = this.state.list.map(function (nomination, i) {
+									return _react2.default.createElement(
+											'li',
+											{ key: i },
+											_react2.default.createElement(_OutstandingEnsemble2.default, { currentNomination: nomination })
+									);
+							});
+							return _react2.default.createElement(
+									'div',
+									{ style: _styles2.default.nominations.border },
+									_react2.default.createElement(
+											'h4',
+											null,
+											'Outstanding Ensemble:'
+									),
+									_react2.default.createElement(
+											'ol',
+											{ style: _styles2.default.nominations.other },
+											listItem
+									)
+							);
+					}
+			}]);
 	
-	        _this2.setState({
-	          list: results
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'updateNomination',
-	    value: function updateNomination(event) {
-	      var updatedNomination = Object.assign({}, this.state.nomination);
-	      updatedNomination[event.target.id] = event.target.value;
-	      this.setState({
-	        nomination: updatedNomination
-	      });
-	    }
-	  }, {
-	    key: 'submitNomination',
-	    value: function submitNomination(event) {
-	      var updatedList = Object.assign([], this.state.list);
-	      updatedList.push(this.state.nomination);
-	      _superagent2.default.post('/api/outstandingEnsemble').send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
-	        if (err || !res.ok) {
-	          alert('Oh no! error');
-	        } else {
-	          console.log('outstandingEnsemble posted');
-	        }
-	      });
-	      this.setState({
-	        list: updatedList
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var listItem = this.state.list.map(function (nomination, i) {
-	        return _react2.default.createElement(
-	          'li',
-	          { key: i },
-	          _react2.default.createElement(_OutstandingEnsemble2.default, { currentNomination: nomination })
-	        );
-	      });
-	      return _react2.default.createElement(
-	        'div',
-	        { style: _styles2.default.nominations.border },
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Outstanding Ensemble:'
-	        ),
-	        _react2.default.createElement(
-	          'ol',
-	          { style: _styles2.default.nominations.other },
-	          listItem
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return OutstandingEnsembles;
+			return OutstandingEnsembles;
 	}(_react.Component);
 	
 	exports.default = OutstandingEnsembles;
@@ -33562,8 +33638,7 @@
 	          alert(err.message);
 	          return;
 	        }
-	
-	        console.log(JSON.stringify(response));
+	        // console.log(JSON.stringify(response))
 	        _this2.props.currentUserReceived(null);
 	      });
 	    }

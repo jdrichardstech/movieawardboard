@@ -20,7 +20,7 @@ export default (state=initialState, action) => {
 		// console.log("MOVIENAME IN REDUCER: " + JSON.stringify(action.movie))
 			updatedList.push(action.movie)
 
-  
+
 		 let removeArticles = (str) => {
 				words = str.split(" ")
 				if(words.length <= 1) return str
@@ -33,7 +33,7 @@ export default (state=initialState, action) => {
 				let movieTitleA=a.movieName
 				let movieTitleB =b.movieName
 				movieTitleA=removeArticles(a.movieName)
-				console.log("MOVIENAME: " + JSON.stringify(a.movieName))
+				// console.log("MOVIENAME: " + JSON.stringify(a.movieName))
 				movieTitleB=removeArticles(b.movieName)
 
        if (movieTitleA < movieTitleB)
@@ -66,7 +66,7 @@ export default (state=initialState, action) => {
 				let movieTitleA=a.movieName
 				let movieTitleB =b.movieName
 				movieTitleA=removeArticle(a.movieName)
-				console.log("MOVIENAME: " + JSON.stringify(a.movieName))
+				// console.log("MOVIENAME: " + JSON.stringify(a.movieName))
 				movieTitleB=removeArticle(b.movieName)
 
 			 if (movieTitleA < movieTitleB)

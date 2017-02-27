@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SupportingActress from '../presentation/SupportingActress'
-import superagent from 'superagent'
+import { APIManager } from '../../utils'
 import styles from './styles'
 
 
@@ -16,22 +16,33 @@ class SupportingActresses extends Component{
   }
 
   componentDidMount(){
-		superagent
-		.get('/api/supportingactress')
-		.query(null)
-		.set('Accept', 'application/json')
-		.end((err, response) => {
+		APIManager.get('/api/supportingactress',null,(err, response)=>{
 			if (err){
 				alert('ERROR: '+err)
 				return
 			}
-
-			let results = response.body.results
+			let results = response.results
 
 			this.setState({
 				list: results
 			})
 		})
+		// superagent
+		// .get('/api/supportingactress')
+		// .query(null)
+		// .set('Accept', 'application/json')
+		// .end((err, response) => {
+		// 	if (err){
+		// 		alert('ERROR: '+err)
+		// 		return
+		// 	}
+		//
+		// 	let results = response.body.results
+		//
+		// 	this.setState({
+		// 		list: results
+		// 	})
+		// })
 	}
 
   updateNomination(event){

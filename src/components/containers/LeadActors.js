@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import LeadActor from '../presentation/LeadActor'
-import superagent from 'superagent'
+import { APIManager } from '../../utils'
 import styles from './styles'
 
 
@@ -16,23 +16,33 @@ class LeadActors extends Component{
   }
 
   componentDidMount(){
-		superagent
-		.get('/api/leadactor')
-		.query(null)
-		.set('Accept', 'application/json')
-		.end((err, response) => {
+		APIManager.get('/api/leadactor', null, (err, response)=>{
 			if (err){
 				alert('ERROR: '+err)
 				return
 			}
-
-			// console.log(JSON.stringify(response.body))
-			let results = response.body.results
-
+			let results = response.results
 			this.setState({
 				list: results
 			})
 		})
+		// superagent
+		// .get('/api/leadactor')
+		// .query(null)
+		// .set('Accept', 'application/json')
+		// .end((err, response) => {
+		// 	if (err){
+		// 		alert('ERROR: '+err)
+		// 		return
+		// 	}
+		//
+		// 	// console.log(JSON.stringify(response.body))
+		// 	let results = response.body.results
+		//
+		// 	this.setState({
+		// 		list: results
+		// 	})
+		// })
 	}
 
   updateNomination(event){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SupportingActor from '../presentation/SupportingActor'
-import superagent from 'superagent'
+import { APIManager } from '../../utils'
 import styles from './styles'
 
 
@@ -16,20 +16,30 @@ class SupportingActors extends Component{
   }
 
   componentDidMount(){
-  		superagent
-  		.get('/api/supportingactor')
-  		.query(null)
-  		.set('Accept', 'application/json')
-  		.end((err, response) => {
-  			if (err){
-  				alert('ERROR: '+err)
-  				return
-  			}
-  			let results = response.body.results
-  			this.setState({
-  				list: results
-  			})
-  		})
+		APIManager.get('/api/supportingactor', null, (err, response)=>{
+			if (err){
+				alert('ERROR: '+err)
+				return
+			}
+			let results = response.results
+			this.setState({
+				list: results
+			})
+		})
+  		// superagent
+  		// .get('/api/supportingactor')
+  		// .query(null)
+  		// .set('Accept', 'application/json')
+  		// .end((err, response) => {
+  			// if (err){
+  			// 	alert('ERROR: '+err)
+  			// 	return
+  			// }
+  			// let results = response.body.results
+  			// this.setState({
+  			// 	list: results
+  			// })
+  		// })
   	}
 
 
