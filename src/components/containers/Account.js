@@ -68,18 +68,18 @@ class Account extends Component{
       content=(
 
         <div className="forms-wrapper">
-          <div className="container content-md">
-            <div className="margin-bottom-60 head">
+          <div className="container content-md" style={{paddingTop:40}}>
+            <div className="margin-bottom-6 head">
 							<h1>Welcome to the Movie Awards Dashboard</h1>
 							<h2>Login or Register an Account</h2>
             </div>
             <div className="row space-xlg-hor equal-height-columns">
-              <div className="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column">
+              <div className="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column" style={{background:'rgba(105,196,199,0.5)'}}>
                 <div className="form-block-header">
                   <h2 className="margin-bottom-20" style={{color:'white'}}>Sign In</h2>
                 </div>
                 <div className="input-group margin-bottom-20">
-                  <span className="input-group-addon rounded-left"><i style={{marginRight:10}} className="icon-user color-white"></i></span>
+                  <span className="input-group-addon rounded-left" ><i style={{marginRight:10 }} className="icon-user color-white"></i></span>
                   <input onChange={this.updateProfile.bind(this)} id="username"  type="text" className="form-control rounded-right" placeholder="Username" />
                 </div>
                 <div className="input-group margin-bottom-20">
@@ -92,7 +92,7 @@ class Account extends Component{
                   </div>
                 </div>
               </div>
-              <div className="form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column" style={{paddingBottom:71}}>
+              <div className="form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column" style={{paddingBottom:71,background:'rgba(51,51,51,0.8)'}}>
                 <div className="form-block-header">
                   <h2 className="margin-bottom-10">Sign Up</h2>
                 </div>
@@ -121,7 +121,7 @@ class Account extends Component{
     }
 
     return(
-      <div style={{background:'url(/assets/img/bg/oscar.jpg) no-repeat',backgroundSize:'cover'}}>
+      <div style={{background:'url(/assets/img/bg/oscar2.jpg) no-repeat',backgroundSize:'cover'}}>
         {content}
       </div>
     )

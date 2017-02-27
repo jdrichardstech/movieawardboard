@@ -33340,10 +33340,10 @@
 	          { className: 'forms-wrapper' },
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'container content-md' },
+	            { className: 'container content-md', style: { paddingTop: 40 } },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'margin-bottom-60 head' },
+	              { className: 'margin-bottom-6 head' },
 	              _react2.default.createElement(
 	                'h1',
 	                null,
@@ -33360,7 +33360,7 @@
 	              { className: 'row space-xlg-hor equal-height-columns' },
 	              _react2.default.createElement(
 	                'div',
-	                { className: 'form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column' },
+	                { className: 'form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column', style: { background: 'rgba(105,196,199,0.5)' } },
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'form-block-header' },
@@ -33406,7 +33406,7 @@
 	              ),
 	              _react2.default.createElement(
 	                'div',
-	                { className: 'form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column', style: { paddingBottom: 71 } },
+	                { className: 'form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column', style: { paddingBottom: 71, background: 'rgba(51,51,51,0.8)' } },
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'form-block-header' },
@@ -33467,7 +33467,7 @@
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { style: { background: 'url(/assets/img/bg/oscar.jpg) no-repeat', backgroundSize: 'cover' } },
+	        { style: { background: 'url(/assets/img/bg/oscar2.jpg) no-repeat', backgroundSize: 'cover' } },
 	        content
 	      );
 	    }
