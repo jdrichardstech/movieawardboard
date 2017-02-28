@@ -10,6 +10,7 @@ import SupportingActress from './SupportingActress'
 import OutstandingEnsemble from './OutstandingEnsemble'
 import MovieDetails from './MovieDetails'
 import MovieTrailer from './MovieTrailer'
+import Footer from './Footer'
 
 
 
@@ -28,7 +29,8 @@ export{
   SupportingActor,
   SupportingActress,
   OutstandingEnsemble,
-	MovieTrailer
+	MovieTrailer,
+	Footer
 
 
 }
