@@ -13,14 +13,14 @@ const app=(
   <Provider store ={store.configureStore()}>
     <Router history={browserHistory}>
       <Route path='/' component={Main}>
-        <IndexRoute component={Home}></IndexRoute>
-      <Route path="/nominations" component={NominationInputs}></Route>
-      <Route path="/moviesnowplaying" component={MoviesNowPlaying}></Route>
-			<Route path="/singlemovie/:id" component={SingleMovie}></Route>
-			<Route path="/movietrailer/:id/:youtubeID" component={MovieTrailer}></Route>
-			<Route path="/account" component={Account}></Route>
-  </Route>
-      </Router>
+        <IndexRoute component={Account}></IndexRoute>
+	      <Route path="/nominations" component={NominationInputs}></Route>
+	      <Route path="/moviesnowplaying" component={MoviesNowPlaying}></Route>
+				<Route path="/singlemovie/:id" component={SingleMovie}></Route>
+				<Route path="/movietrailer/:id/:youtubeID" component={MovieTrailer}></Route>
+				<Route path="/account" component={Account}></Route>
+  		</Route>
+    </Router>
   </Provider>
 )
 

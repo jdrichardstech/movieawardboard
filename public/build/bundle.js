@@ -83,7 +83,7 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _Main2.default },
-	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _layout.Home }),
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _containers.Account }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/nominations', component: _layout.NominationInputs }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/moviesnowplaying', component: _containers.MoviesNowPlaying }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/singlemovie/:id', component: _containers.SingleMovie }),

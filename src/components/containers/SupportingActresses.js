@@ -64,6 +64,7 @@ class SupportingActresses extends Component{
         <ol style={styles.nominations.other}>
           {listItem}
         </ol>
+
       </div>
     )
   }
