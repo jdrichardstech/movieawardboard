@@ -22611,7 +22611,7 @@
 											_react2.default.createElement(
 													"span",
 													{ style: { fontWeight: 'bold' } },
-													"Lead Actoress(es):"
+													"Lead Actress(es):"
 											),
 											" ",
 											props.leadActress
