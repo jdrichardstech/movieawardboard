@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 // import MovieNotes from '../containers/MovieNotes'
 import { MovieDBInfo, MovieNotes, Movies, Header, SearchActor } from '../containers'
 import NominationsUpdate from '../containers/NominationsUpdate'
-import { Link } from 'react-router'
 
 const Home = ()=>{
     return(
@@ -26,7 +25,7 @@ const Home = ()=>{
                       </div>
                     </div>
                     <div className="col-sm-6">
-                     
+
                       <div className="news-v2-desc" style={{marginBottom:30}}>
                           <NominationsUpdate />
                       </div>

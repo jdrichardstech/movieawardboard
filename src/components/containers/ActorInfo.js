@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import superagent from 'superagent'
 import { Link } from 'react-router'
 import styles from './styles'
+import { Header } from '../containers'
 
 
 
@@ -129,12 +130,11 @@ class ActorInfo extends Component{
 					</center>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
 		return(
 			<div>
+				<Header />
 				{content}
 			</div>
 		)

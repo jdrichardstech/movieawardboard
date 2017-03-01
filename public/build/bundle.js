@@ -60,7 +60,7 @@
 	
 	var _containers = __webpack_require__(242);
 	
-	var _layout = __webpack_require__(303);
+	var _layout = __webpack_require__(304);
 	
 	var _presentation = __webpack_require__(173);
 	
@@ -33213,7 +33213,7 @@
 															'  '
 													),
 													'Vote Average: ',
-													this.state.voteAverage
+													movie.voteAverage
 											),
 											_react2.default.createElement('br', null),
 											_react2.default.createElement('br', null),
@@ -33819,10 +33819,10 @@
 	
 	var _NominationsUpdate2 = _interopRequireDefault(_NominationsUpdate);
 	
-	var _reactRouter = __webpack_require__(186);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import Movies from '../containers/Movies'
+	// import MovieNotes from '../containers/MovieNotes'
 	var Home = function Home() {
 	  return _react2.default.createElement(
 	    'div',
@@ -33880,8 +33880,7 @@
 	    )
 	  );
 	};
-	// import Movies from '../containers/Movies'
-	// import MovieNotes from '../containers/MovieNotes'
+	
 	exports.default = Home;
 
 /***/ },
@@ -34165,6 +34164,8 @@
 	
 	var _styles2 = _interopRequireDefault(_styles);
 	
+	var _containers = __webpack_require__(242);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -34368,6 +34369,7 @@
 				return _react2.default.createElement(
 					'div',
 					null,
+					_react2.default.createElement(_containers.Header, null),
 					content
 				);
 			}
@@ -34379,7 +34381,8 @@
 	exports.default = ActorInfo;
 
 /***/ },
-/* 303 */
+/* 303 */,
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34393,7 +34396,7 @@
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _NominationInputs = __webpack_require__(304);
+	var _NominationInputs = __webpack_require__(305);
 	
 	var _NominationInputs2 = _interopRequireDefault(_NominationInputs);
 	
@@ -34403,7 +34406,7 @@
 	exports.NominationInputs = _NominationInputs2.default;
 
 /***/ },
-/* 304 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34446,7 +34449,7 @@
 	
 	var _reactRouter = __webpack_require__(186);
 	
-	var _styles = __webpack_require__(305);
+	var _styles = __webpack_require__(306);
 	
 	var _styles2 = _interopRequireDefault(_styles);
 	
@@ -34529,7 +34532,7 @@
 	exports.default = NominationInputs;
 
 /***/ },
-/* 305 */
+/* 306 */
 /***/ function(module, exports) {
 
 	'use strict';

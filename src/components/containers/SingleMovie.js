@@ -88,7 +88,7 @@ class SingleMovie extends Component{
 					<h5>Status: {movie.status}</h5><br /><br />
 					<h5>Tag Line: {movie.tagline}</h5><br /><br />
 					<h5>Homepage: <a href={this.state.homepage} target="_blank" >{movie.homepage}</a></h5><br /><br />
-					<h5><span style={{paddingRight:20}}>Vote Count: {movie.voteCount}  </span>Vote Average: {this.state.voteAverage}</h5><br /><br />
+					<h5><span style={{paddingRight:20}}>Vote Count: {movie.voteCount}  </span>Vote Average: {movie.voteAverage}</h5><br /><br />
 					<a target="_blank" href={"https://www.imdb.com/title/"+movie.imdbID+"/?ref_=nv_sr_1"}>IMDB Profile</a><br /><br />
 				</div>
 
