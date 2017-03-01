@@ -34161,7 +34161,13 @@
 	
 	var _reactRouter = __webpack_require__(186);
 	
+	var _styles = __webpack_require__(251);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -34177,7 +34183,11 @@
 	
 			var _this = _possibleConstructorReturn(this, (ActorInfo.__proto__ || Object.getPrototypeOf(ActorInfo)).call(this));
 	
-			_this.state = {};
+			_this.state = {
+				actorKnownForList: [],
+				actorInfo: {},
+				length: 0
+			};
 			return _this;
 		}
 	
@@ -34187,7 +34197,7 @@
 				var _this2 = this;
 	
 				var actorName = this.props.params.actorName;
-				actorName = actorName.replace(/\s+/g, '+').toLowerCase();
+				actorName = actorName.replace(/\s+/g, '+').toLowerCase(); //get rid of spaces and replace space with a + sign
 	
 				var url = 'https://api.themoviedb.org/3/search/person?api_key=4160bdc56f74445097c8012631f85743&query=' + actorName;
 				_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
@@ -34196,14 +34206,14 @@
 						return;
 					}
 					var info = response.body.results;
-					var length = info.length;
+					var length = info.length; //this is the length of the array the results are in
 	
 					// console.log("ACTOR RESPONSE: " + JSON.stringify(info[0]['known_for'][0]['poster_path']))
 					if (info.length == 0) {
 						alert("Nobody by that name");
 						return;
 					}
-					var actorKnownForList = [];
+					var actorKnownForList = Object.assign([], _this2.state.actorKnownForList);
 					for (var i = 0; i < info[0]['known_for'].length; i++) {
 						// console.log(i)
 						actorKnownForList.push(info[0]['known_for'][i]['poster_path']);
@@ -34216,17 +34226,38 @@
 							alert(err);
 							return;
 						}
-						console.log("2nd query: " + JSON.stringify(res.body));
+						// console.log("2nd query: " + JSON.stringify(res.body))
 						var placeOfBirth = res.body.place_of_birth;
+						if (placeOfBirth == null) {
+							placeOfBirth = 'unknown';
+						}
 						var biography = res.body.biography;
 						var imdbId = res.body.imdb_id;
 						var actorImage = res.body.profile_path;
-						console.log("IMDB: " + JSON.stringify(imdbId));
+						var jsonBirthday = res.body.birthday;
+						var birthdayArr = jsonBirthday.split('-');
+						var year = birthdayArr.shift();
+						birthdayArr.push(year);
+						var birthday = birthdayArr.join('-');
+						console.log("BIRTHDAY: " + JSON.stringify(birthday));
+						// let birthdayArr = birthday.split('-')
+						// let year= birthdayArr.shift()
+						// birthdayArr = birthdayArr.push(year)
+						// // let newBirthday = birthdayArr.join('-')
+						// console.log("BIRTHDAY: "+ JSON.stringify(birthdayArr))
+	
+						var actorInfo = Object.assign({}, _this2.state.actorInfo);
+						actorInfo['placeOfBirth'] = placeOfBirth;
+						actorInfo['biography'] = biography;
+						actorInfo['imdbId'] = imdbId;
+						actorInfo['actorImage'] = actorImage;
+						actorInfo['birthday'] = birthday;
+	
+						// console.log("IMDB: " + JSON.stringify(imdbId))
 						_this2.setState({
-							length: length,
-							actorImage: actorImage,
-							biography: biography,
-							placeOfBirth: placeOfBirth
+							actorInfo: actorInfo,
+							actorKnownForList: actorKnownForList,
+							length: length
 						});
 					});
 				});
@@ -34234,29 +34265,104 @@
 		}, {
 			key: 'render',
 			value: function render() {
+				var moviesKnownFor = this.state.actorKnownForList.map(function (posterId, i) {
+					return _react2.default.createElement('img', { key: i, style: { paddingRight: 20 }, src: "http://image.tmdb.org/t/p/w185//" + posterId });
+				});
+				var actor = this.state.actorInfo;
+				// console.log("LENGTH: " + JSON.stringify(actor.length))
 				var content = this.state.length == 0 ? 'NOBODY BY THAT NAME' : _react2.default.createElement(
 					'div',
 					null,
 					_react2.default.createElement(
-						'center',
-						null,
+						'div',
+						{ className: 'container' },
 						_react2.default.createElement(
-							'h1',
-							null,
-							this.props.params.actorName
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-12' },
+								_react2.default.createElement(
+									'center',
+									null,
+									_react2.default.createElement(
+										'h1',
+										{ style: { padding: '50px 0' } },
+										this.props.params.actorName
+									)
+								)
+							)
 						)
 					),
-					_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w342/' + this.state.actorImage }),
-					_react2.default.createElement('br', null),
 					_react2.default.createElement(
-						'p',
-						null,
-						this.state.placeOfBirth
-					),
-					_react2.default.createElement(
-						'p',
-						null,
-						this.state.biography
+						'div',
+						{ className: 'container', style: { padding: 50, border: '1px solid white', marginBottom: 50 } },
+						_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-3' },
+								_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w342/' + actor.actorImage }),
+								_react2.default.createElement('br', null),
+								_react2.default.createElement(
+									'p',
+									{ style: { marginTop: 20 } },
+									'Born in: ',
+									actor.placeOfBirth
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									'Birthday: ',
+									actor.birthday
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-8 col-md-offset-1' },
+								_react2.default.createElement(
+									'p',
+									{ style: { marginBottom: 30 } },
+									actor.biography
+								),
+								_react2.default.createElement(
+									'h3',
+									null,
+									'Also Known For:'
+								),
+								_react2.default.createElement(
+									'center',
+									null,
+									_react2.default.createElement(
+										'p',
+										null,
+										moviesKnownFor
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-12' },
+								_react2.default.createElement(
+									'center',
+									null,
+									_react2.default.createElement(
+										_reactRouter.Link,
+										{ to: '/' },
+										_react2.default.createElement(
+											'button',
+											_defineProperty({ style: _styles2.default.nominations.button, type: '', className: 'btn btn-info btn-lg' }, 'style', { margin: '30px auto' }),
+											'Home'
+										)
+									)
+								)
+							)
+						)
 					)
 				);
 				return _react2.default.createElement(
