@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Main from './components/Main'
-import { SingleMovie, Account, MoviesNowPlaying, ActorInfo } from './components/containers'
+import { SingleMovie, Account, MoviesNowPlaying, ActorInfo,Auth } from './components/containers'
 // import MoviesNowPlaying from './components/containers/MoviesNowPlaying'
 import { NominationInputs, Home } from './components/layout'
 import { MovieTrailer } from './components/presentation'

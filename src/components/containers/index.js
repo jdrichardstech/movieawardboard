@@ -14,6 +14,7 @@ import Header from './Header'
 import MoviesNowPlaying from './MoviesNowPlaying'
 import SearchActor from './SearchActor'
 import ActorInfo from './ActorInfo'
+import Auth from './Auth'
 
 
 
@@ -33,6 +34,7 @@ export{
 	Header,
 	MoviesNowPlaying,
 	SearchActor,
-	ActorInfo
+	ActorInfo,
+	Auth
 
 }

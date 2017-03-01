@@ -27368,7 +27368,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.ActorInfo = exports.SearchActor = exports.MoviesNowPlaying = exports.Header = exports.Account = exports.SingleMovie = exports.MovieDBInfo = exports.NominationsUpdate = exports.OutstandingEnsembles = exports.SupportingActresses = exports.SupportingActors = exports.LeadActresses = exports.LeadActors = exports.BestStunts = exports.MovieNotes = exports.Movies = undefined;
+	exports.Auth = exports.ActorInfo = exports.SearchActor = exports.MoviesNowPlaying = exports.Header = exports.Account = exports.SingleMovie = exports.MovieDBInfo = exports.NominationsUpdate = exports.OutstandingEnsembles = exports.SupportingActresses = exports.SupportingActors = exports.LeadActresses = exports.LeadActors = exports.BestStunts = exports.MovieNotes = exports.Movies = undefined;
 	
 	var _Movies = __webpack_require__(243);
 	
@@ -27434,6 +27434,10 @@
 	
 	var _ActorInfo2 = _interopRequireDefault(_ActorInfo);
 	
+	var _Auth = __webpack_require__(308);
+	
+	var _Auth2 = _interopRequireDefault(_Auth);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.Movies = _Movies2.default;
@@ -27452,6 +27456,7 @@
 	exports.MoviesNowPlaying = _MoviesNowPlaying2.default;
 	exports.SearchActor = _SearchActor2.default;
 	exports.ActorInfo = _ActorInfo2.default;
+	exports.Auth = _Auth2.default;
 
 /***/ },
 /* 243 */
@@ -34579,6 +34584,78 @@
 	
 	  movieList: {}
 	};
+
+/***/ },
+/* 307 */,
+/* 308 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	exports.default = function (ComposedComponent) {
+		var Auth = function (_Component) {
+			_inherits(Auth, _Component);
+	
+			function Auth() {
+				_classCallCheck(this, Auth);
+	
+				return _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
+			}
+	
+			_createClass(Auth, [{
+				key: 'componentDidMount',
+				value: function componentDidMount() {
+					if (this.props.user == null) {
+						this.context.router.push('/account');
+					}
+				}
+			}, {
+				key: 'componentDidUpdate',
+				value: function componentDidUpdate() {
+					if (this.props.user == null) {
+						this.context.router.push('/account');
+					}
+				}
+			}, {
+				key: 'render',
+				value: function render() {
+					return _react2.default.createElement(ComposedComponent, this.props);
+				}
+			}]);
+	
+			return Auth;
+		}(_react.Component);
+	
+		Auth.contextTypes = {
+			router: _react.PropTypes.object
+		};
+		var stateToProps = function stateToProps(state) {
+			return {
+				user: state.account.user
+			};
+		};
+		return (0, _reactRedux.connect)(stateToProps)(Auth);
+	};
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(280);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /***/ }
 /******/ ]);
