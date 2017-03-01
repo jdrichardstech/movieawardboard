@@ -12,6 +12,8 @@ import SingleMovie from './SingleMovie'
 import Account from './Account'
 import Header from './Header'
 import MoviesNowPlaying from './MoviesNowPlaying'
+import SearchActor from './SearchActor'
+import ActorInfo from './ActorInfo'
 
 
 
@@ -29,6 +31,8 @@ export{
 	SingleMovie,
 	Account,
 	Header,
-	MoviesNowPlaying
+	MoviesNowPlaying,
+	SearchActor,
+	ActorInfo
 
 }

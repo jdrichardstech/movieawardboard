@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import Movies from '../containers/Movies'
 // import MovieNotes from '../containers/MovieNotes'
-import { MovieDBInfo, MovieNotes, Movies, Header } from '../containers'
+import { MovieDBInfo, MovieNotes, Movies, Header, SearchActor } from '../containers'
 import NominationsUpdate from '../containers/NominationsUpdate'
 import { Link } from 'react-router'
 
@@ -26,10 +26,12 @@ const Home = ()=>{
                       </div>
                     </div>
                     <div className="col-sm-6">
-                      <div className="news-v2-badge">
-                      </div>
-                      <div className="news-v2-desc">
+                     
+                      <div className="news-v2-desc" style={{marginBottom:30}}>
                           <NominationsUpdate />
+                      </div>
+											<div className="news-v2-desc">
+													<SearchActor />
                       </div>
                     </div>
                   </div>
