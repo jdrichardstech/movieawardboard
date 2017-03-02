@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Main from './components/Main'
-import { SingleMovie, Account, MoviesNowPlaying, ActorInfo,Auth } from './components/containers'
+import { SingleMovie, Account, MoviesNowPlaying, ActorInfo,Auth,CheckUser } from './components/containers'
 // import MoviesNowPlaying from './components/containers/MoviesNowPlaying'
-import { NominationInputs, Home } from './components/layout'
+import { NominationInputs } from './components/layout'
 import { MovieTrailer } from './components/presentation'
 import store from './store/store'
 import { Provider} from 'react-redux'
@@ -13,7 +13,7 @@ const app=(
   <Provider store ={store.configureStore()}>
     <Router history={browserHistory}>
       <Route path='/' component={Main}>
-        <IndexRoute component={Home}></IndexRoute>
+        <IndexRoute component={CheckUser}></IndexRoute>
 	      <Route path="/nominations" component={NominationInputs}></Route>
 	      <Route path="/moviesnowplaying" component={MoviesNowPlaying}></Route>
 				<Route path="/singlemovie/:id" component={SingleMovie}></Route>

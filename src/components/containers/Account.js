@@ -5,7 +5,7 @@ import { APIManager } from '../../utils'
 import ajax from 'superagent'
 import { Link } from 'react-router'
 import Header from '../containers/Header'
-import Home from '../layout/Home'
+import Checkout from '../containers/CheckUser'
 
 
 class Account extends Component{
@@ -106,8 +106,8 @@ class Account extends Component{
 
 			</div>
 		)
-    }
   }
+}
 
 Account.contextTypes={
 	router:PropTypes.object

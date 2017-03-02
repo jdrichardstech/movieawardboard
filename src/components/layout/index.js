@@ -1,8 +1,10 @@
-import Home from './Home'
+
 import NominationInputs from './NominationInputs'
+import MainPage from './MainPage'
 
 
 export{
-  Home,
-  NominationInputs
+
+  NominationInputs,
+	MainPage
 }
