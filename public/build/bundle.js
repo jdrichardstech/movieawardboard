@@ -21755,8 +21755,8 @@
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
 						'button',
-						{ onClick: this.submitMovie.bind(this), className: 'btn btn-info' },
-						'Submit Movie'
+						{ onClick: this.submitMovie.bind(this), className: 'btn btn-success' },
+						'Create Movie'
 					)
 				);
 			}
@@ -27598,8 +27598,8 @@
 					_react2.default.createElement('input', { className: 'form-control', onChange: this.updateSearch.bind(this), style: { backGround: 'black', color: '#999' }, id: 'actorName', ref: 'actorName' }),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
-						'a',
-						{ onClick: this.submitSearch.bind(this), href: 'https://www.google.com/search?q=' + this.state.castName + '+cast&oq=' + this.state.castName + '+cast&aqs=chrome..69i57.3111j0j7&sourceid=chrome&ie=UTF-8', target: '_blank' },
+						'button',
+						{ className: 'btn btn-success', style: _styles2.default.nominations.button, onClick: this.submitSearch.bind(this), href: 'https://www.google.com/search?q=' + this.state.castName + '+cast&oq=' + this.state.castName + '+cast&aqs=chrome..69i57.3111j0j7&sourceid=chrome&ie=UTF-8', target: '_blank' },
 						'Find Movie Cast'
 					),
 					_react2.default.createElement('br', null)
@@ -31994,35 +31994,48 @@
 	        null,
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'news-v2-desc', style: { marginBottom: 30 } },
 	          _react2.default.createElement(_presentation.MovieDetails, {
 	            movieName: movieName,
 	            leadActor: leadActor,
 	            leadActress: leadActress,
 	            supportingActor: supportingActor,
 	            supportingActress: supportingActress
-	          }),
+	          })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'news-v2-desc', style: { marginBottom: 30, paddingBottom: 40 } },
 	          _react2.default.createElement(
-	            'div',
-	            { style: { paddingBottom: 40 } },
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Add A Note for ',
-	              movieName,
-	              ':'
-	            ),
-	            _react2.default.createElement(_presentation.CreateMovieNote, { movieName: movieName, createMovieNote: this.addNote.bind(this) })
-	          ),
-	          _react2.default.createElement(
-	            'h4',
+	            'h3',
 	            null,
-	            'Notes for ',
+	            'Add A Note for ',
 	            _react2.default.createElement(
 	              'span',
-	              { style: { color: 'green' } },
+	              { style: { color: 'rgb(92, 184, 92)' } },
+	              ' ',
 	              movieName,
-	              ': '
+	              ':'
+	            )
+	          ),
+	          _react2.default.createElement(_presentation.CreateMovieNote, { movieName: movieName, createMovieNote: this.addNote.bind(this) })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'headline-v2' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Notes for ',
+	              _react2.default.createElement(
+	                'span',
+	                { style: { color: 'rgb(92, 184, 92)' } },
+	                movieName,
+	                ': '
+	              )
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -32981,8 +32994,7 @@
 	      updatedList.push(this.state.nomination);
 	
 	      // console.log("UPDATED NOMINATION: " + JSON.stringify(this.state.nomination))
-	      _superagent2.default.post(url) //this can be replaced with /api/this.state.category.title
-	      .send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
+	      _superagent2.default.post(url).send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
 	        if (err || !res.ok) {
 	          alert('Oh no! error');
 	        } else {
@@ -33300,7 +33312,7 @@
 	
 							return _react2.default.createElement(
 									'div',
-									null,
+									{ className: 'news-v2-desc', style: { marginBottom: 30 } },
 									content
 							);
 					}
@@ -34211,7 +34223,7 @@
 								_react2.default.createElement('div', { className: 'news-v2-badge', style: { backgroundColor: 'black' } }),
 								_react2.default.createElement(
 									'div',
-									{ className: 'news-v2-desc' },
+									null,
 									_react2.default.createElement(_containers.MovieDBInfo, null),
 									_react2.default.createElement(_containers.MovieNotes, null)
 								)

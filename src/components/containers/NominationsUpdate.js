@@ -111,7 +111,7 @@ restructureEnteredName(name){
 
 		// console.log("UPDATED NOMINATION: " + JSON.stringify(this.state.nomination))
 	  superagent
-	  .post(url)//this can be replaced with /api/this.state.category.title
+	  .post(url)
 	  .send(this.state.nomination)
 	  .set('Accept', 'application/json')
 	  .end(function(err, res){

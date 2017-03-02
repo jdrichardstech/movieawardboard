@@ -103,7 +103,7 @@ class MovieDBInfo extends Component{
 		<div><center><img src="/assets/img/noInfo.jpg" /></center></div>
 
     return(
-      <div>
+      <div className="news-v2-desc"style={{marginBottom:30}}>
         {content}
       </div>
     )

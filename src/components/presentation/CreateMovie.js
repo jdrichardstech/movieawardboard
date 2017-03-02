@@ -92,7 +92,7 @@ class CreateMovie extends Component{
 	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="leadActress" id="leadActress" /><br />
 				<label><h5>Supporting ACTRESS:</h5></label>
 	      <input onChange ={this.updateMovie.bind(this)} className="form-control" type="text" ref="supportingActress" id="supportingActress" /><br />
-	      <button onClick={this.submitMovie.bind(this)} className="btn btn-info">Submit Movie</button>
+	      <button onClick={this.submitMovie.bind(this)} className="btn btn-success">Create Movie</button>
       </div>
     )
   }

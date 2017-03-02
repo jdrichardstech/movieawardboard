@@ -14,10 +14,11 @@ const MainPage = () => {
 								<div className="col-sm-6 sm-margin-bottom-30">
 									<div className="news-v2-badge" style={{backgroundColor:'black'}}>
 									</div>
-									<div className="news-v2-desc">
+									<div>
 											<MovieDBInfo />
 											<MovieNotes />
 									</div>
+
 								</div>
 								<div className="col-sm-6">
 
