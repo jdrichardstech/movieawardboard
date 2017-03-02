@@ -26,6 +26,13 @@ class Account extends Component{
     this.props.fetchCurrentUser(null)
   }
 
+	componentDidUpdate(){
+		this.props.fetchCurrentUser(null)
+		if(this.props.user!=null){
+			this.context.router.push('/')
+		}
+	}
+
   updateProfile(event){
     // console.log("Update Profile: " + event.target.value)
     let updatedProfile= Object.assign({}, this.state.profile)
@@ -44,22 +51,9 @@ class Account extends Component{
   }
 
   render(){
-    let content = null
-
-    if(this.props.user != null){
-      content=(
-				// <div>
-				// 	{window.location.assign('/')}
-				// </div>
-
-       <div>
-				 <Home />
-        </div>
-      )
-    }else{
-      content=(
-
-        <div className="forms-wrapper">
+		return(
+			<div style={{background:'url(/assets/img/bg/oscar2.jpg) no-repeat',backgroundSize:'cover'}}>
+				<div className="forms-wrapper">
           <div className="container content-md" style={{paddingTop:40}}>
             <div className="margin-bottom-6 head">
 							<h1>Welcome to the Movie Awards Dashboard</h1>
@@ -109,16 +103,12 @@ class Account extends Component{
             </div>
           </div>
         </div>
-      )
-    }
 
-    return(
-      <div style={{background:'url(/assets/img/bg/oscar2.jpg) no-repeat',backgroundSize:'cover'}}>
-        {content}
-      </div>
-    )
+			</div>
+		)
+    }
   }
-}
+
 Account.contextTypes={
 	router:PropTypes.object
 }

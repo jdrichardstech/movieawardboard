@@ -33323,6 +33323,14 @@
 	      this.props.fetchCurrentUser(null);
 	    }
 	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      this.props.fetchCurrentUser(null);
+	      if (this.props.user != null) {
+	        this.context.router.push('/');
+	      }
+	    }
+	  }, {
 	    key: 'updateProfile',
 	    value: function updateProfile(event) {
 	      // console.log("Update Profile: " + event.target.value)
@@ -33345,21 +33353,10 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var content = null;
-	
-	      if (this.props.user != null) {
-	        content =
-	        // <div>
-	        // 	{window.location.assign('/')}
-	        // </div>
-	
+	      return _react2.default.createElement(
+	        'div',
+	        { style: { background: 'url(/assets/img/bg/oscar2.jpg) no-repeat', backgroundSize: 'cover' } },
 	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(_Home2.default, null)
-	        );
-	      } else {
-	        content = _react2.default.createElement(
 	          'div',
 	          { className: 'forms-wrapper' },
 	          _react2.default.createElement(
@@ -33486,13 +33483,7 @@
 	              )
 	            )
 	          )
-	        );
-	      }
-	
-	      return _react2.default.createElement(
-	        'div',
-	        { style: { background: 'url(/assets/img/bg/oscar2.jpg) no-repeat', backgroundSize: 'cover' } },
-	        content
+	        )
 	      );
 	    }
 	  }]);
@@ -33779,8 +33770,10 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
 	
@@ -33792,69 +33785,124 @@
 	
 	var _NominationsUpdate2 = _interopRequireDefault(_NominationsUpdate);
 	
+	var _reactRedux = __webpack_require__(280);
+	
+	var _actions = __webpack_require__(279);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	// import Movies from '../containers/Movies'
 	// import MovieNotes from '../containers/MovieNotes'
-	var Home = function Home() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(_containers.Header, null),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'bg-color-light' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'container content-sm' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-3' },
-	            _react2.default.createElement(_containers.Movies, null)
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-9' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'row news-v2 margin-bottom-50' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'col-sm-6 sm-margin-bottom-30' },
-	                _react2.default.createElement('div', { className: 'news-v2-badge', style: { backgroundColor: 'black' } }),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'news-v2-desc' },
-	                  _react2.default.createElement(_containers.MovieDBInfo, null),
-	                  _react2.default.createElement(_containers.MovieNotes, null)
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'col-sm-6' },
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'news-v2-desc', style: { marginBottom: 30 } },
-	                  _react2.default.createElement(_NominationsUpdate2.default, null)
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'news-v2-desc' },
-	                  _react2.default.createElement(_containers.SearchActor, null)
-	                )
-	              )
-	            )
-	          )
-	        )
-	      )
-	    )
-	  );
+	
+	
+	var Home = function (_Component) {
+		_inherits(Home, _Component);
+	
+		function Home() {
+			_classCallCheck(this, Home);
+	
+			return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+		}
+	
+		_createClass(Home, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.props.fetchCurrentUser(null);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var content = null;
+	
+				content = this.props.user != null ? _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_containers.Header, null),
+					_react2.default.createElement(
+						'div',
+						{ className: 'bg-color-light' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'container content-sm' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'row' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'col-md-3' },
+									_react2.default.createElement(_containers.Movies, null)
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'col-md-9' },
+									_react2.default.createElement(
+										'div',
+										{ className: 'row news-v2 margin-bottom-50' },
+										_react2.default.createElement(
+											'div',
+											{ className: 'col-sm-6 sm-margin-bottom-30' },
+											_react2.default.createElement('div', { className: 'news-v2-badge', style: { backgroundColor: 'black' } }),
+											_react2.default.createElement(
+												'div',
+												{ className: 'news-v2-desc' },
+												_react2.default.createElement(_containers.MovieDBInfo, null),
+												_react2.default.createElement(_containers.MovieNotes, null)
+											)
+										),
+										_react2.default.createElement(
+											'div',
+											{ className: 'col-sm-6' },
+											_react2.default.createElement(
+												'div',
+												{ className: 'news-v2-desc', style: { marginBottom: 30 } },
+												_react2.default.createElement(_NominationsUpdate2.default, null)
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'news-v2-desc' },
+												_react2.default.createElement(_containers.SearchActor, null)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				) : _react2.default.createElement(_containers.Account, null);
+	
+				return _react2.default.createElement(
+					'div',
+					null,
+					content
+				);
+			}
+		}]);
+	
+		return Home;
+	}(_react.Component);
+	
+	var stateToProps = function stateToProps(state) {
+		return {
+			user: state.account.user
+		};
 	};
 	
-	exports.default = Home;
+	var dispatchToProps = function dispatchToProps(dispatch) {
+		return {
+			fetchCurrentUser: function fetchCurrentUser(params) {
+				return dispatch(_actions2.default.fetchCurrentUser(params));
+			}
+		};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Home);
 
 /***/ },
 /* 300 */
