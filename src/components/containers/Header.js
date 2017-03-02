@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import actions from '../../actions/actions'
@@ -27,6 +27,7 @@ class Header extends Component{
 	    }
 	    // console.log(JSON.stringify(response))
 	    this.props.currentUserReceived(null)
+			this.context.router.push('/account')
 	  })
 	}
 
@@ -85,6 +86,10 @@ class Header extends Component{
 				</div>
     )
   }
+}
+
+Header.contextTypes={
+	router: PropTypes.object
 }
 
 const stateToProps= (state) => {

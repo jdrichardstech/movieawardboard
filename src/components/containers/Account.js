@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions/actions'
 import { APIManager } from '../../utils'
@@ -54,14 +54,6 @@ class Account extends Component{
 
        <div>
 				 <Home />
-            // <Header />
-            // <br /><br />
-            // <div style={{textAlign:'center', height:100, width:100, backgroundColor:'white'}}>
-            // <h1>Hi <span style={{color:'#72c02c'}}>{this.props.user.username.toUpperCase()}</span></h1>
-            // <h3>You are logged in</h3>
-            // <button className="btn btn-primary"><Link to='/'>Go to DashBoard</Link></button>
-            // </div>
-            // <br /><br /><br />
         </div>
       )
     }else{
@@ -127,7 +119,9 @@ class Account extends Component{
     )
   }
 }
-
+Account.contextTypes={
+	router:PropTypes.object
+}
 const stateToProps=(state)=>{
   return{
     user:state.account.user

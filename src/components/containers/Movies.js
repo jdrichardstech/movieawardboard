@@ -18,7 +18,10 @@ class Movies extends Component{
   }
 
   componentDidMount(){
-    console.log('componentDidMount: ')
+    console.log('componentDidMount: ' +JSON.stringify(this.props.user))
+
+		
+
   		APIManager.get('/api/movie', null, (err, response) => {
   			if (err){
   				alert('ERROR: '+err.message)
@@ -33,6 +36,7 @@ class Movies extends Component{
 				console.log('Movies in container: ' + JSON.stringify(this.state.movies))
   		})
   	}
+
 
 	handleSelectMovie(index){
 	  // event.preventDefault()
@@ -119,7 +123,8 @@ const stateToProps = (state) => {
   return{
     list:state.movies.list,
     movie: state.movies.movie,
-    selected:state.movies.selected
+    selected:state.movies.selected,
+		user: state.account.user
   }
 }
 

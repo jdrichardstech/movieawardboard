@@ -27522,7 +27522,8 @@
 					value: function componentDidMount() {
 							var _this2 = this;
 	
-							console.log('componentDidMount: ');
+							console.log('componentDidMount: ' + JSON.stringify(this.props.user));
+	
 							_utils.APIManager.get('/api/movie', null, function (err, response) {
 									if (err) {
 											alert('ERROR: ' + err.message);
@@ -27663,7 +27664,8 @@
 			return {
 					list: state.movies.list,
 					movie: state.movies.movie,
-					selected: state.movies.selected
+					selected: state.movies.selected,
+					user: state.account.user
 			};
 	};
 	
@@ -33354,49 +33356,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(_Home2.default, null),
-	          '// ',
-	          _react2.default.createElement(_Header2.default, null),
-	          '// ',
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          '// ',
-	          _react2.default.createElement(
-	            'div',
-	            { style: { textAlign: 'center', height: 100, width: 100, backgroundColor: 'white' } },
-	            '// ',
-	            _react2.default.createElement(
-	              'h1',
-	              null,
-	              'Hi ',
-	              _react2.default.createElement(
-	                'span',
-	                { style: { color: '#72c02c' } },
-	                this.props.user.username.toUpperCase()
-	              )
-	            ),
-	            '// ',
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'You are logged in'
-	            ),
-	            '// ',
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'btn btn-primary' },
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/' },
-	                'Go to DashBoard'
-	              )
-	            ),
-	            '// '
-	          ),
-	          '// ',
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null)
+	          _react2.default.createElement(_Home2.default, null)
 	        );
 	      } else {
 	        content = _react2.default.createElement(
@@ -33540,6 +33500,9 @@
 	  return Account;
 	}(_react.Component);
 	
+	Account.contextTypes = {
+	  router: _react.PropTypes.object
+	};
 	var stateToProps = function stateToProps(state) {
 	  return {
 	    user: state.account.user
@@ -33628,6 +33591,7 @@
 	        }
 	        // console.log(JSON.stringify(response))
 	        _this2.props.currentUserReceived(null);
+	        _this2.context.router.push('/account');
 	      });
 	    }
 	  }, {
@@ -33783,6 +33747,10 @@
 	
 	  return Header;
 	}(_react.Component);
+	
+	Header.contextTypes = {
+	  router: _react.PropTypes.object
+	};
 	
 	var stateToProps = function stateToProps(state) {
 	  return {
@@ -34328,6 +34296,11 @@
 								'div',
 								{ className: 'col-md-8 col-md-offset-1' },
 								_react2.default.createElement(
+									'h3',
+									null,
+									'Biography:'
+								),
+								_react2.default.createElement(
 									'p',
 									{ style: { marginBottom: 30 } },
 									actor.biography
@@ -34616,10 +34589,15 @@
 					}
 				}
 			}, {
-				key: 'componentDidUpdate',
-				value: function componentDidUpdate() {
+				key: 'componentWillUpdate',
+				value: function componentWillUpdate() {
 					if (this.props.user == null) {
 						this.context.router.push('/account');
+						return;
+					}
+					if (this.props.user != null) {
+						this.context.router.push('/');
+						return;
 					}
 				}
 			}, {

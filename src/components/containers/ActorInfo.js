@@ -118,6 +118,7 @@ class ActorInfo extends Component{
 					<p>Birthday: {actor.birthday}</p>
 				</div>
 				<div className="col-md-8 col-md-offset-1">
+					<h3>Biography:</h3>
 					<p style={{marginBottom:30}}>{actor.biography}</p>
 					<h3>Also Known For:</h3>
 					<center><p>{moviesKnownFor}</p></center>

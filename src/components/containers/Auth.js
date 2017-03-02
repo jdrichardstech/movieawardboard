@@ -11,9 +11,14 @@ export default function (ComposedComponent) {
 			}
 		}
 
-		componentDidUpdate(){
+		componentWillUpdate(){
 			if(this.props.user==null){
 				this.context.router.push('/account')
+				return
+			}
+			if(this.props.user!=null){
+				this.context.router.push('/')
+				return
 			}
 		}
 		render(){
