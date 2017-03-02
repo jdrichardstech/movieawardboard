@@ -84,7 +84,7 @@ class Movies extends Component{
 		if(this.state.movies.length !=0){
 			for(let i = 0; i < this.state.movies.length;i++){
 				if(this.state.movies[i]['movieName']==movie.movieName){
-					console.log("MOVIE INCLUDED")
+					// console.log("MOVIE INCLUDED")
 					swal({
 						title:"Sorry!",
 						text:`${movie.movieName.toUpperCase()} has already been added`,
@@ -103,7 +103,7 @@ class Movies extends Component{
 	}
 
   render(){
-		console.log("MOVIES: " + JSON.stringify(this.props.list))
+		
     const movieList = this.props.list.map((movie, i) => {
       let selected = (i==this.props.selected)
       return(

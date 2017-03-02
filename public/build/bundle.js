@@ -21503,7 +21503,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Footer = exports.MovieTrailer = exports.OutstandingEnsemble = exports.SupportingActress = exports.SupportingActor = exports.LeadActress = exports.LeadActor = exports.BestStunt = exports.MovieDetails = exports.MovieList = exports.MovieNote = exports.CreateMovieNote = exports.CreateMovie = undefined;
+	exports.GoogleTheMovie = exports.SearchActor = exports.Footer = exports.MovieTrailer = exports.OutstandingEnsemble = exports.SupportingActress = exports.SupportingActor = exports.LeadActress = exports.LeadActor = exports.BestStunt = exports.MovieDetails = exports.MovieList = exports.MovieNote = exports.CreateMovieNote = exports.CreateMovie = undefined;
 	
 	var _CreateMovie = __webpack_require__(174);
 	
@@ -21557,6 +21557,14 @@
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
+	var _SearchActor = __webpack_require__(309);
+	
+	var _SearchActor2 = _interopRequireDefault(_SearchActor);
+	
+	var _GoogleTheMovie = __webpack_require__(311);
+	
+	var _GoogleTheMovie2 = _interopRequireDefault(_GoogleTheMovie);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.CreateMovie = _CreateMovie2.default;
@@ -21572,6 +21580,8 @@
 	exports.OutstandingEnsemble = _OutstandingEnsemble2.default;
 	exports.MovieTrailer = _MovieTrailer2.default;
 	exports.Footer = _Footer2.default;
+	exports.SearchActor = _SearchActor2.default;
+	exports.GoogleTheMovie = _GoogleTheMovie2.default;
 
 /***/ },
 /* 174 */
@@ -27368,7 +27378,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.CheckUser = exports.Auth = exports.ActorInfo = exports.SearchActor = exports.MoviesNowPlaying = exports.Header = exports.Account = exports.SingleMovie = exports.MovieDBInfo = exports.NominationsUpdate = exports.OutstandingEnsembles = exports.SupportingActresses = exports.SupportingActors = exports.LeadActresses = exports.LeadActors = exports.BestStunts = exports.MovieNotes = exports.Movies = undefined;
+	exports.CheckUser = exports.Auth = exports.ActorInfo = exports.MoviesNowPlaying = exports.Header = exports.Account = exports.SingleMovie = exports.MovieDBInfo = exports.NominationsUpdate = exports.OutstandingEnsembles = exports.SupportingActresses = exports.SupportingActors = exports.LeadActresses = exports.LeadActors = exports.BestStunts = exports.MovieNotes = exports.Movies = undefined;
 	
 	var _Movies = __webpack_require__(243);
 	
@@ -27426,10 +27436,6 @@
 	
 	var _MoviesNowPlaying2 = _interopRequireDefault(_MoviesNowPlaying);
 	
-	var _SearchActor = __webpack_require__(305);
-	
-	var _SearchActor2 = _interopRequireDefault(_SearchActor);
-	
 	var _ActorInfo = __webpack_require__(306);
 	
 	var _ActorInfo2 = _interopRequireDefault(_ActorInfo);
@@ -27458,7 +27464,6 @@
 	exports.Account = _Account2.default;
 	exports.Header = _Header2.default;
 	exports.MoviesNowPlaying = _MoviesNowPlaying2.default;
-	exports.SearchActor = _SearchActor2.default;
 	exports.ActorInfo = _ActorInfo2.default;
 	exports.Auth = _Auth2.default;
 	exports.CheckUser = _CheckUser2.default;
@@ -27600,7 +27605,7 @@
 				if (this.state.movies.length != 0) {
 					for (var i = 0; i < this.state.movies.length; i++) {
 						if (this.state.movies[i]['movieName'] == movie.movieName) {
-							console.log("MOVIE INCLUDED");
+							// console.log("MOVIE INCLUDED")
 							swal({
 								title: "Sorry!",
 								text: movie.movieName.toUpperCase() + ' has already been added',
@@ -27622,7 +27627,6 @@
 			value: function render() {
 				var _this5 = this;
 	
-				console.log("MOVIES: " + JSON.stringify(this.props.list));
 				var movieList = this.props.list.map(function (movie, i) {
 					var selected = i == _this5.props.selected;
 					return _react2.default.createElement(
@@ -34018,6 +34022,8 @@
 	
 	var _containers = __webpack_require__(242);
 	
+	var _presentation = __webpack_require__(173);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var MainPage = function MainPage() {
@@ -34062,8 +34068,13 @@
 								),
 								_react2.default.createElement(
 									'div',
+									{ className: 'news-v2-desc', style: { marginBottom: 30 } },
+									_react2.default.createElement(_presentation.SearchActor, null)
+								),
+								_react2.default.createElement(
+									'div',
 									{ className: 'news-v2-desc' },
-									_react2.default.createElement(_containers.SearchActor, null)
+									_react2.default.createElement(_presentation.GoogleTheMovie, null)
 								)
 							)
 						)
@@ -34238,99 +34249,7 @@
 	exports.default = MoviesNowPlaying;
 
 /***/ },
-/* 305 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(186);
-	
-	var _styles = __webpack_require__(251);
-	
-	var _styles2 = _interopRequireDefault(_styles);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var SearchActor = function (_Component) {
-		_inherits(SearchActor, _Component);
-	
-		function SearchActor() {
-			_classCallCheck(this, SearchActor);
-	
-			var _this = _possibleConstructorReturn(this, (SearchActor.__proto__ || Object.getPrototypeOf(SearchActor)).call(this));
-	
-			_this.state = {
-				actorName: ''
-			};
-			return _this;
-		}
-	
-		_createClass(SearchActor, [{
-			key: 'updateSearch',
-			value: function updateSearch(event) {
-	
-				var updatedName = Object.assign({}, this.state);
-				updatedName['actorName'] = event.target.value.trim();
-				this.setState({
-					actorName: updatedName['actorName']
-				});
-				// console.log("ACTOR: " + JSON.stringify(this.state.actorName))
-			}
-		}, {
-			key: 'submitSearch',
-			value: function submitSearch(event) {
-				// console.log('Submitsearch')
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'h5',
-						null,
-						'Search for Actor:'
-					),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('input', { className: 'form-control', onChange: this.updateSearch.bind(this), style: { backGround: 'black', color: '#999' }, id: 'actorName', ref: 'actorName' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: "/actor/" + this.state.actorName },
-						_react2.default.createElement(
-							'button',
-							{ className: 'btn btn-info', style: _styles2.default.nominations.button, onClick: this.submitSearch.bind(this) },
-							' Search'
-						)
-					),
-					_react2.default.createElement('br', null)
-				);
-			}
-		}]);
-	
-		return SearchActor;
-	}(_react.Component);
-	
-	exports.default = SearchActor;
-
-/***/ },
+/* 305 */,
 /* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -34671,6 +34590,8 @@
 	
 	var _containers = __webpack_require__(242);
 	
+	var _presentation = __webpack_require__(173);
+	
 	var _reactRedux = __webpack_require__(280);
 	
 	var _actions = __webpack_require__(279);
@@ -34741,6 +34662,237 @@
 	};
 	
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Home);
+
+/***/ },
+/* 309 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(186);
+	
+	var _styles = __webpack_require__(310);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SearchActor = function (_Component) {
+		_inherits(SearchActor, _Component);
+	
+		function SearchActor() {
+			_classCallCheck(this, SearchActor);
+	
+			var _this = _possibleConstructorReturn(this, (SearchActor.__proto__ || Object.getPrototypeOf(SearchActor)).call(this));
+	
+			_this.state = {
+				actorName: ''
+			};
+			return _this;
+		}
+	
+		_createClass(SearchActor, [{
+			key: 'updateSearch',
+			value: function updateSearch(event) {
+	
+				var updatedName = Object.assign({}, this.state);
+				updatedName['actorName'] = event.target.value.trim();
+				this.setState({
+					actorName: updatedName['actorName']
+				});
+				// console.log("ACTOR: " + JSON.stringify(this.state.actorName))
+			}
+		}, {
+			key: 'submitSearch',
+			value: function submitSearch(event) {
+				// console.log('Submitsearch')
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'h5',
+						null,
+						'Search for Actor:'
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('input', { className: 'form-control', onChange: this.updateSearch.bind(this), style: { backGround: 'black', color: '#999' }, id: 'actorName', ref: 'actorName' }),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: "/actor/" + this.state.actorName },
+						_react2.default.createElement(
+							'button',
+							{ className: 'btn btn-info', style: _styles2.default.nominations.button, onClick: this.submitSearch.bind(this) },
+							' Search'
+						)
+					),
+					_react2.default.createElement('br', null)
+				);
+			}
+		}]);
+	
+		return SearchActor;
+	}(_react.Component);
+	
+	exports.default = SearchActor;
+
+/***/ },
+/* 310 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	
+	  universal: {},
+	
+	  nominations: {
+	    button: {
+	      marginBottom: 20
+	    },
+	    list: {
+	
+	      margin: 0,
+	      padding: 0,
+	      color: 'gray'
+	    },
+	    border: {
+	      display: 'block',
+	      // border:'1px solid #ddd',
+	      // borderRadius:5,
+	      marginBottom: 20,
+	      padding: 20
+	
+	    },
+	    other: {
+	
+	      margin: 0,
+	      padding: '10px 0',
+	      color: 'gray'
+	    },
+	    makeNomination: {
+	      border: '1px solid #ddd',
+	      borderRadius: 5,
+	      padding: 10
+	    }
+	
+	  },
+	
+	  movieForm: {},
+	
+	  movieList: {}
+	};
+
+/***/ },
+/* 311 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(186);
+	
+	var _styles = __webpack_require__(310);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GoogleTheMovie = function (_Component) {
+		_inherits(GoogleTheMovie, _Component);
+	
+		function GoogleTheMovie() {
+			_classCallCheck(this, GoogleTheMovie);
+	
+			var _this = _possibleConstructorReturn(this, (GoogleTheMovie.__proto__ || Object.getPrototypeOf(GoogleTheMovie)).call(this));
+	
+			_this.state = {
+				castName: ''
+			};
+			return _this;
+		}
+	
+		_createClass(GoogleTheMovie, [{
+			key: 'updateSearch',
+			value: function updateSearch(event) {
+	
+				var updatedName = Object.assign({}, this.state);
+				updatedName['castName'] = event.target.value;
+				this.setState({
+					castName: updatedName['castName']
+				});
+			}
+		}, {
+			key: 'submitSearch',
+			value: function submitSearch(event) {
+				this.refs.actorName.value = '';
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'h5',
+						null,
+						'Google the Movie:'
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('input', { className: 'form-control', onChange: this.updateSearch.bind(this), style: { backGround: 'black', color: '#999' }, id: 'actorName', ref: 'actorName' }),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'a',
+						{ onClick: this.submitSearch.bind(this), href: 'https://www.google.com/search?q=' + this.state.castName + '+cast&oq=' + this.state.castName + '+cast&aqs=chrome..69i57.3111j0j7&sourceid=chrome&ie=UTF-8', target: '_blank' },
+						'Find Movie Cast'
+					),
+					_react2.default.createElement('br', null)
+				);
+			}
+		}]);
+	
+		return GoogleTheMovie;
+	}(_react.Component);
+	
+	exports.default = GoogleTheMovie;
 
 /***/ }
 /******/ ]);

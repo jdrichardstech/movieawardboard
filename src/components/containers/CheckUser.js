@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { MovieDBInfo, MovieNotes, Movies, Header, SearchActor, Account, NominationsUpdate } from '../containers'
+import { MovieDBInfo, MovieNotes, Movies, Header, Account, NominationsUpdate } from '../containers'
+import { SearchActor } from '../presentation'
 import { connect } from 'react-redux'
 import actions from '../../actions/actions'
 import MainPage from '../layout/MainPage'

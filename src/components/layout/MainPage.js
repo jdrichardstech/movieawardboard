@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { MovieDBInfo, MovieNotes, Movies, Header, SearchActor, Account, NominationsUpdate } from '../containers'
-
+import { MovieDBInfo, MovieNotes, Movies, Header, Account, NominationsUpdate } from '../containers'
+import { SearchActor, GoogleTheMovie } from '../presentation'
 const MainPage = () => {
 	return(
 		<div className="bg-color-light">
@@ -24,8 +24,11 @@ const MainPage = () => {
 									<div className="news-v2-desc" style={{marginBottom:30}}>
 											<NominationsUpdate />
 									</div>
-									<div className="news-v2-desc">
+									<div className="news-v2-desc" style={{marginBottom:30}}>
 											<SearchActor />
+									</div>
+									<div className="news-v2-desc">
+											<GoogleTheMovie />
 									</div>
 								</div>
 							</div>
