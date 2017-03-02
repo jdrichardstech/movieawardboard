@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Main from './components/Main'
-import { SingleMovie, Account, MoviesNowPlaying, ActorInfo,Auth,CheckUser } from './components/containers'
+import { SingleMovie, MoviesNowPlaying, ActorInfo,Auth,CheckUser } from './components/containers'
 // import MoviesNowPlaying from './components/containers/MoviesNowPlaying'
 import { NominationInputs } from './components/layout'
 import { MovieTrailer } from './components/presentation'
@@ -18,7 +18,6 @@ const app=(
 	      <Route path="/moviesnowplaying" component={MoviesNowPlaying}></Route>
 				<Route path="/singlemovie/:id" component={SingleMovie}></Route>
 				<Route path="/movietrailer/:id/:youtubeID" component={MovieTrailer}></Route>
-				<Route path="/account" component={Account}></Route>
 				<Route path="/actor/:actorName" component={ActorInfo}></Route>
   		</Route>
     </Router>

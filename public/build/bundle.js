@@ -88,7 +88,6 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: '/moviesnowplaying', component: _containers.MoviesNowPlaying }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/singlemovie/:id', component: _containers.SingleMovie }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/movietrailer/:id/:youtubeID', component: _presentation.MovieTrailer }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/account', component: _containers.Account }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/actor/:actorName', component: _containers.ActorInfo })
 	    )
 	  )
@@ -33678,6 +33677,11 @@
 	      _utils.APIManager.upload(url, image, params, function (err, response) {
 	        if (err) {
 	          console.log('Upload err: ' + err.message);
+	          swal({
+	            title: "Error!",
+	            text: "Image upload failed. You can still register without a profile image.",
+	            type: "error"
+	          });
 	          return;
 	        }
 	        console.log('Uploaded image: ' + JSON.stringify(response.body));
@@ -33687,6 +33691,11 @@
 	        updatedProfile['profileImage'] = response.body['secure_url'];
 	        _this2.setState({
 	          profile: updatedProfile
+	        });
+	        swal({
+	          title: "Success!",
+	          text: "You profile image has been uploaded",
+	          type: "success"
 	        });
 	      });
 	    }
@@ -33931,7 +33940,7 @@
 	          return;
 	        }
 	        _this2.props.currentUserReceived(null);
-	        _this2.context.router.push('/account');
+	        _this2.context.router.push('/');
 	      });
 	    }
 	  }, {
@@ -33975,17 +33984,7 @@
 	                'Current Releases'
 	              )
 	            ),
-	            ' |\xA0',
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              ' ',
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/account' },
-	                'Login'
-	              )
-	            )
+	            ' |\xA0'
 	          )
 	        );
 	      } else {

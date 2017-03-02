@@ -71,6 +71,11 @@ class Account extends Component{
     APIManager.upload(url, image,params,(err, response)=>{
       if(err){
         console.log('Upload err: ' + err.message)
+				swal({
+					title:"Error!",
+					text:"Image upload failed. You can still register without a profile image.",
+					type: "error"
+				})
         return
       }
       console.log('Uploaded image: ' + JSON.stringify(response.body))
@@ -81,6 +86,11 @@ class Account extends Component{
       this.setState({
         profile: updatedProfile
       })
+			swal({
+				title:"Success!",
+				text:"You profile image has been uploaded",
+				type: "success"
+			})
   })
 }
 
