@@ -13,14 +13,15 @@ class Movies extends Component{
     super(props)
 		this.postMovie = this.postMovie.bind(this)
     this.state={
-
+			list:[],
+			newMovie: null
     }
   }
 
   componentDidMount(){
-    console.log('componentDidMount: ' +JSON.stringify(this.props.user))
+    // console.log('componentDidMount: ' +JSON.stringify(this.props.user))
 
-		
+
 
   		APIManager.get('/api/movie', null, (err, response) => {
   			if (err){
@@ -28,14 +29,36 @@ class Movies extends Component{
   				return
   			}
   			const movies = response.results
+
   			this.props.moviesReceived(movies)
 
 				this.setState({
 					movies: movies
 				})
-				console.log('Movies in container: ' + JSON.stringify(this.state.movies))
   		})
   	}
+
+	componentDidUpdate(){
+		if(this.state.newMovie==null){
+			return
+		}
+
+			APIManager.get('/api/movie', null, (err, response) => {
+  			if (err){
+  				alert('ERROR: '+err.message)
+  				return
+  			}
+  			const movies = response.results
+
+  			this.props.moviesReceived(movies)
+
+				this.setState({
+					movies: movies,
+					newMovie:null
+				})
+  		})
+
+	}
 
 
 	handleSelectMovie(index){
@@ -71,11 +94,16 @@ class Movies extends Component{
 					return
 				}
 			}
+
 			this.postMovie(movie)
+			this.setState({
+				newMovie : movie
+			})
 		}
 	}
 
   render(){
+		console.log("MOVIES: " + JSON.stringify(this.props.list))
     const movieList = this.props.list.map((movie, i) => {
       let selected = (i==this.props.selected)
       return(

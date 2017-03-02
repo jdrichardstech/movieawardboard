@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
   switch(action.type){
     case constants.CURRENT_USER_RECEIVED:
      updated['user']=action.user
-     console.log("New User: " + JSON.stringify(updated['user']))
+    //  console.log("New User: " + JSON.stringify(updated['user']))
     return updated
 
     default:

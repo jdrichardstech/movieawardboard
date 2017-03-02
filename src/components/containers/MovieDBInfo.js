@@ -57,7 +57,7 @@ class MovieDBInfo extends Component{
 				}
 				let selected = this.props.selected
 
-				console.log("movieDBSelectedMovie: " + JSON.stringify(movieDBSelectedMovie))
+				// console.log("movieDBSelectedMovie: " + JSON.stringify(movieDBSelectedMovie))
 
 
 				this.setState({

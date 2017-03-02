@@ -41,7 +41,7 @@ export default (state=initialState, action) => {
       selectedMovieNotes.push(note)
     })
     updatedMap[action.selectedMovie._id]= selectedMovieNotes
-    console.log("SELECTEDMOVIENOTES***: "+ JSON.stringify(updatedMap[action.selectedMovie._id]))
+    // console.log("SELECTEDMOVIENOTES***: "+ JSON.stringify(updatedMap[action.selectedMovie._id]))
 
     updated['map'] = updatedMap
 
