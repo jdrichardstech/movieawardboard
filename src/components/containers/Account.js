@@ -6,6 +6,8 @@ import ajax from 'superagent'
 import { Link } from 'react-router'
 import Header from '../containers/Header'
 import Checkout from '../containers/CheckUser'
+import DropZone from 'react-dropzone'
+import sha1 from 'sha1'
 
 class Account extends Component{
   constructor(props){
@@ -49,6 +51,39 @@ class Account extends Component{
     this.props.createLogin(this.state.profile)
   }
 
+	uploadImage(files){
+	const image = files[0]
+	console.log("COMMENT Container Image file: "+JSON.stringify(image))
+	let timestamp = Date.now()/1000
+	const cloudName= 'jdrichardstech'
+	const uploadPreset='qfk6kfpf'
+	const apiSecret = 'e8LAFbk1H23PLU02S5Og2DzsMYQ'
+	const paramStr='timestamp='+timestamp+'&upload_preset='+uploadPreset+'e8LAFbk1H23PLU02S5Og2DzsMYQ'
+	const signature=sha1(paramStr)
+	const apiKey = '854536555581142'
+	const params = {
+		'api_key': apiKey,
+		'timestamp':timestamp,
+		'upload_preset':uploadPreset,
+		'signature': signature
+	}
+    const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
+    APIManager.upload(url, image,params,(err, response)=>{
+      if(err){
+        console.log('Upload err: ' + err.message)
+        return
+      }
+      console.log('Uploaded image: ' + JSON.stringify(response.body))
+      const imageUrl = response.body['secure_url']
+
+      let updatedProfile = Object.assign({}, this.state.profile)
+      updatedProfile['profileImage'] = response.body['secure_url']
+      this.setState({
+        profile: updatedProfile
+      })
+  })
+}
+
   render(){
 		return(
 			<div style={{background:'url(/assets/img/bg/oscar2.jpg) no-repeat',backgroundSize:'cover'}}>
@@ -61,7 +96,7 @@ class Account extends Component{
             <div className="row space-xlg-hor equal-height-columns">
               <div className="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column" style={{background:'rgba(105,196,199,0.5)'}}>
                 <div className="form-block-header">
-                  <h2 className="margin-bottom-20" style={{color:'white'}}>Sign In</h2>
+                  <h2 className="margin-bottom-20" style={{color:'white',paddingBottom:16}}>Sign In</h2>
                 </div>
                 <div className="input-group margin-bottom-20">
                   <span className="input-group-addon rounded-left" ><i style={{marginRight:10 }} className="icon-user color-white"></i></span>
@@ -77,7 +112,7 @@ class Account extends Component{
                   </div>
                 </div>
               </div>
-              <div className="form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column" style={{paddingBottom:71,background:'rgba(51,51,51,0.8)'}}>
+              <div className="form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column" style={{paddingBottom:41,background:'rgba(51,51,51,0.8)'}}>
                 <div className="form-block-header">
                   <h2 className="margin-bottom-10">Sign Up</h2>
                 </div>
@@ -93,9 +128,10 @@ class Account extends Component{
                   <span className="input-group-addon rounded-left"><i style={{marginRight:10, color:'white'}} className="icon-lock color-white"></i></span>
                   <input onChange={this.updateProfile.bind(this)} id="password" type="password" className="form-control rounded-right" placeholder="Password" />
                 </div>
+								<DropZone style={{color:'blue'}} onDrop={this.uploadImage.bind(this)}><a>Add Profile Image</a></DropZone><br />
                 <div className="row">
                   <div className="col-md-12" >
-                    <button onClick={this.submitProfile.bind(this)} type="submit" className="btn-u btn-block rounded">Continue</button>
+                    <button onClick={this.submitProfile.bind(this)} type="submit" className="btn-u btn-block rounded">Register</button>
                   </div>
                 </div>
               </div>

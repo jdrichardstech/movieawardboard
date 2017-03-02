@@ -33,7 +33,7 @@ class Header extends Component{
 
   render(){
     let content = null
-
+		let imageProfile = null
     if(this.props.user == null){
       content = (
         <div>
@@ -46,6 +46,14 @@ class Header extends Component{
         </div>
       )
     } else{
+
+			console.log("IMageProfile: " + JSON.stringify(this.props.user.profileImage))
+			if(this.props.user.profileImage.length==0){
+				imageProfile = "/assets/img/profileImg-placeholder.png"
+			}else{
+			imageProfile = this.props.user.profileImage
+			}
+
       content =(
         <div>
           <ul className="loginbar pull-right">
@@ -54,12 +62,14 @@ class Header extends Component{
             <li><Link to = '/moviesnowplaying'>Current Releases</Link></li> |&nbsp;
            <a onClick={this.logout.bind(this)} style={{color:'gray', fontSize:'.8em'}} href='/'>Logout</a>
           </ul><br />
-	        <div className='pull-right'>
+				<div className='pull-right' style={{paddingBottom:5}}>
+							<img style={{height:30, width:30, borderRadius:30}} src={imageProfile} />&nbsp;
 	            Username: <span style={{color:'#72c02c'}}>{this.props.user.username.toUpperCase()}</span>
 	        </div>
         </div>
       )
     }
+
 
     return(
       <div>
