@@ -25,7 +25,6 @@ class Header extends Component{
 	      alert(err.message)
 	      return
 	    }
-	    // console.log(JSON.stringify(response))
 	    this.props.currentUserReceived(null)
 			this.context.router.push('/account')
 	  })
@@ -100,7 +99,6 @@ const stateToProps= (state) => {
 
 const dispatchToProps= (dispatch) => {
   return{
-
     fetchCurrentUser: (params) => dispatch(actions.fetchCurrentUser(params)),
     currentUserReceived: (user) => dispatch(actions.currentUserReceived(user))
   }

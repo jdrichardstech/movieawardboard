@@ -1,7 +1,5 @@
 var LeadActor = require('../models/LeadActor')
 
-
-
 module.exports = {
 
   find: function(params, cb){

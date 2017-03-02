@@ -4,8 +4,6 @@ import { Link } from 'react-router'
 import styles from './styles'
 import { Header } from '../containers'
 
-
-
 class ActorInfo extends Component{
 	constructor(){
 		super()
@@ -82,9 +80,6 @@ class ActorInfo extends Component{
 						actorInfo['actorImage'] = actorImage
 						actorInfo['birthday'] = birthday
 
-
-
-						// console.log("IMDB: " + JSON.stringify(imdbId))
 						this.setState({
 							actorInfo,
 							actorKnownForList,
@@ -93,7 +88,6 @@ class ActorInfo extends Component{
 				})
 		})
 	}
-
 
 	render(){
 		let moviesKnownFor = this.state.actorKnownForList.map((posterId, i)=>{

@@ -2,9 +2,6 @@ var express = require('express')
 var router = express.Router()
 var controllers = require('../controllers')
 
-
-
-/* GET home page. */
 router.get('/:resource', function(req, res, next) {
   var resource = req.params.resource
   var controller = controllers[resource]
@@ -109,9 +106,5 @@ router.delete('/:resource/:id', function(req, res, next){
     return
   })
 })
-
-
-
-
 
 module.exports = router

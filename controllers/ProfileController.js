@@ -4,7 +4,6 @@ var Promise = require('bluebird')
 
 module.exports = {
 
-
 	find: function(params, callback){
 		Profile.find(params, function(err, profiles){
 			if (err){
@@ -56,9 +55,7 @@ module.exports = {
 				callback(err, null)
 				return
 			}
-
 			callback(null, null)
-
 		})
 	}
 }

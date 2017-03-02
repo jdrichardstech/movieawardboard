@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 
-
-
-
-
 class CreateMovie extends Component{
   constructor(props){
     super(props)

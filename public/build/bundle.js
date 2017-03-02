@@ -27479,8 +27479,6 @@
 	});
 	exports.default = {
 	
-	  universal: {},
-	
 	  nominations: {
 	    button: {
 	      marginBottom: 20
@@ -27565,7 +27563,6 @@
 		_createClass(GoogleTheMovie, [{
 			key: 'updateSearch',
 			value: function updateSearch(event) {
-	
 				var updatedName = Object.assign({}, this.state);
 				updatedName['castName'] = event.target.value;
 				this.setState({
@@ -27778,9 +27775,6 @@
 			value: function componentDidMount() {
 				var _this2 = this;
 	
-				// console.log('componentDidMount: ' +JSON.stringify(this.props.user))
-	
-	
 				_utils.APIManager.get('/api/movie', null, function (err, response) {
 					if (err) {
 						alert('ERROR: ' + err.message);
@@ -27854,7 +27848,6 @@
 								text: movie.movieName.toUpperCase() + ' has already been added',
 								type: "error"
 							});
-	
 							return;
 						}
 					}
@@ -29657,8 +29650,6 @@
 	  value: true
 	});
 	exports.default = {
-	
-	  universal: {},
 	
 	  nominations: {
 	    button: {
@@ -31942,7 +31933,7 @@
 	    value: function addNote(movieNote) {
 	      var _this3 = this;
 	
-	      console.log('click:' + JSON.stringify(movieNote));
+	      // console.log('click:' + JSON.stringify(movieNote))
 	      var updatedMovieNote = Object.assign({}, movieNote);
 	      var selectedMovie = this.props.movieList[this.props.selected];
 	      updatedMovieNote['selectedMovieId'] = selectedMovie._id;
@@ -32059,7 +32050,6 @@
 	    movieNotesLoaded: state.movieNotes.movieNotesLoaded,
 	    movieList: state.movies.list,
 	    selected: state.movies.selected
-	
 	  };
 	};
 	
@@ -32174,7 +32164,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
@@ -32182,6 +32171,7 @@
 	          _react2.default.createElement(_BestStunt2.default, { currentNomination: nomination })
 	        );
 	      });
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { style: _styles2.default.nominations.border },
@@ -32818,6 +32808,7 @@
 	          _react2.default.createElement(_OutstandingEnsemble2.default, { currentNomination: nomination })
 	        );
 	      });
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { style: _styles2.default.nominations.border },
@@ -32888,11 +32879,9 @@
 	
 	    _this.restructureEnteredName = _this.restructureEnteredName.bind(_this);
 	    _this.state = {
-	
 	      category: {
 	        title: 'leadactor',
 	        nominationId: 'leadActorName'
-	
 	      },
 	      nomination: {
 	        bestStuntsMovie: '',
@@ -32901,7 +32890,6 @@
 	        outstandingEnsembleMovie: '',
 	        supportingActorName: '',
 	        supportingActressName: ''
-	
 	      },
 	      list: []
 	    };
@@ -32911,12 +32899,12 @@
 	  _createClass(NominationsUpdate, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      console.log('MovieName: ' + JSON.stringify(this.props.list));
+	      // console.log('MovieName: ' + JSON.stringify(this.props.list))
 	    }
 	  }, {
 	    key: 'updateCategory',
 	    value: function updateCategory(event) {
-	      console.log(this.state.category.title);
+	      // console.log(this.state.category.title)
 	
 	      var updatedCategory = Object.assign({}, this.state.category);
 	      updatedCategory['title'] = event.target.value;
@@ -32988,12 +32976,10 @@
 	        return;
 	      }
 	
-	      // // console.log('Submit: ' + this.state.category.title)
 	      var url = '/api/' + this.state.category.title.toLowerCase();
 	      var updatedList = Object.assign([], this.state.list);
 	      updatedList.push(this.state.nomination);
 	
-	      // console.log("UPDATED NOMINATION: " + JSON.stringify(this.state.nomination))
 	      _superagent2.default.post(url).send(this.state.nomination).set('Accept', 'application/json').end(function (err, res) {
 	        if (err || !res.ok) {
 	          alert('Oh no! error');
@@ -33013,14 +32999,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
-	      {/*}  var listItem = this.state.list.map((nomination, i)=>{
-	           return(
-	              <li key={i}><BestStunt currentNomination={nomination} /></li>
-	              ,{/*figure out here how to send to the correct component
-	            )
-	         })*/}
-	
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -33120,7 +33098,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+		value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -33158,178 +33136,174 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var MovieDBInfo = function (_Component) {
-			_inherits(MovieDBInfo, _Component);
+		_inherits(MovieDBInfo, _Component);
 	
-			function MovieDBInfo(props) {
-					_classCallCheck(this, MovieDBInfo);
+		function MovieDBInfo(props) {
+			_classCallCheck(this, MovieDBInfo);
 	
-					var _this = _possibleConstructorReturn(this, (MovieDBInfo.__proto__ || Object.getPrototypeOf(MovieDBInfo)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (MovieDBInfo.__proto__ || Object.getPrototypeOf(MovieDBInfo)).call(this, props));
 	
-					_this.toggleHover = _this.toggleHover.bind(_this);
-					_this.state = {
-							movie: [],
-							posterPath: '',
-							hover: false
-					};
-					return _this;
+			_this.toggleHover = _this.toggleHover.bind(_this);
+			_this.state = {
+				movie: [],
+				posterPath: '',
+				hover: false
+			};
+			return _this;
+		}
+	
+		_createClass(MovieDBInfo, [{
+			key: 'componentDidUpdate',
+			value: function componentDidUpdate() {
+				var _this2 = this;
+	
+				// console.log('MOVIELIST DBINFO: '+ JSON.stringify(this.props.movieList[this.props.selected]))
+				var selectedMovie = this.props.movieList[this.props.selected];
+				if (this.state.selected == this.props.selected) {
+					return;
+				}
+				// console.log("DBINFO LEAD:" +JSON.stringify(this.props.movieList[0].leadActor))
+				// console.log("DBINFO URL:" +JSON.stringify(selectedMovie))
+				if (this.props.movieList.length != 0) {
+					var movieName = selectedMovie.movieName;
+					var urlMovieName = movieName.split(' ').join('%20');
+					var url = 'https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=' + urlMovieName + '&page=1&include_adult=false';
+	
+					_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+						if (err) {
+							alert('ERROR: ' + err);
+							return;
+						}
+	
+						// console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
+						var movie = response.body.results;
+						var movieDBSelectedMovie = movie[0];
+						// console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
+						var posterPath = null;
+						var overview = null;
+						var popularity = null;
+						var voteCount = null;
+						var moviedBId = null;
+						if (movieDBSelectedMovie != undefined) {
+							posterPath = movieDBSelectedMovie.poster_path;
+							overview = movieDBSelectedMovie.overview;
+							popularity = movieDBSelectedMovie.popularity;
+							voteCount = movieDBSelectedMovie.vote_count;
+							moviedBId = movieDBSelectedMovie.id;
+						}
+						var selected = _this2.props.selected;
+	
+						_this2.setState({
+							movie: movie,
+							posterPath: posterPath,
+							overview: overview,
+							popularity: popularity,
+							voteCount: voteCount,
+							moviedBId: moviedBId,
+							selected: selected
+						});
+					});
+				}
 			}
+		}, {
+			key: 'toggleHover',
+			value: function toggleHover() {
+				this.setState({
+					hover: !this.state.hover
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var linkStyle = !this.state.hover ? linkStyle = _react2.default.createElement(
+					_reactRouter.Link,
+					{ to: "/singlemovie/" + this.state.moviedBId },
+					_react2.default.createElement('img', { style: linkStyle, src: 'http://image.tmdb.org/t/p/w185/' + this.state.posterPath, onMouseEnter: this.toggleHover })
+				) : linkStyle = _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ style: { background: 'white', zIndes: 20 }, to: "/singlemovie/" + this.state.moviedBId },
+						_react2.default.createElement('img', { style: linkStyle, src: 'http://image.tmdb.org/t/p/w185/' + this.state.posterPath, onMouseOut: this.toggleHover })
+					),
+					_react2.default.createElement('br', null),
+					'Click to view MovieDetails'
+				);
 	
-			_createClass(MovieDBInfo, [{
-					key: 'componentDidUpdate',
-					value: function componentDidUpdate() {
-							var _this2 = this;
+				var content = this.state.moviedBId != null ? _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'center',
+						null,
+						linkStyle,
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							{ style: { color: "#999" } },
+							'Overview:',
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'span',
+								{ style: { color: '#5cb85c', fontStyle: 'oblique' } },
+								' ',
+								this.state.overview
+							)
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							{ style: { color: '#999' } },
+							' Popularity: ',
+							_react2.default.createElement(
+								'span',
+								{ style: { fontSize: '1em', color: '#5cb85c', paddingRight: 20 } },
+								this.state.popularity
+							),
+							'Vote Count:',
+							_react2.default.createElement(
+								'span',
+								{ style: { fontSize: '1em', color: '#5cb85c' } },
+								' ',
+								this.state.voteCount
+							)
+						)
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('br', null)
+				) : _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'center',
+						null,
+						_react2.default.createElement('img', { src: '/assets/img/noInfo.jpg' })
+					)
+				);
 	
-							// console.log('MOVIELIST DBINFO: '+ JSON.stringify(this.props.movieList[this.props.selected]))
-							var selectedMovie = this.props.movieList[this.props.selected];
-							if (this.state.selected == this.props.selected) {
-									return;
-							}
-							// console.log("DBINFO LEAD:" +JSON.stringify(this.props.movieList[0].leadActor))
-							// console.log("DBINFO URL:" +JSON.stringify(selectedMovie))
-							if (this.props.movieList.length != 0) {
-									var movieName = selectedMovie.movieName;
-									var urlMovieName = movieName.split(' ').join('%20');
-									var url = 'https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=' + urlMovieName + '&page=1&include_adult=false';
+				return _react2.default.createElement(
+					'div',
+					{ className: 'news-v2-desc', style: { marginBottom: 30 } },
+					content
+				);
+			}
+		}]);
 	
-									_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
-											if (err) {
-													alert('ERROR: ' + err);
-													return;
-											}
-	
-											// console.log('DBINFO MOVIEDB NEW: '+JSON.stringify(response.body))
-											var movie = response.body.results;
-											var movieDBSelectedMovie = movie[0];
-											// console.log('MOVIEDB ID NEW: '+JSON.stringify(movieDBSelectedMovie))
-											var posterPath = null;
-											var overview = null;
-											var popularity = null;
-											var voteCount = null;
-											var moviedBId = null;
-											if (movieDBSelectedMovie != undefined) {
-													posterPath = movieDBSelectedMovie.poster_path;
-													overview = movieDBSelectedMovie.overview;
-													popularity = movieDBSelectedMovie.popularity;
-													voteCount = movieDBSelectedMovie.vote_count;
-													moviedBId = movieDBSelectedMovie.id;
-											}
-											var selected = _this2.props.selected;
-	
-											// console.log("movieDBSelectedMovie: " + JSON.stringify(movieDBSelectedMovie))
-	
-	
-											_this2.setState({
-													movie: movie,
-													posterPath: posterPath,
-													overview: overview,
-													popularity: popularity,
-													voteCount: voteCount,
-													moviedBId: moviedBId,
-													selected: selected
-											});
-											// console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
-									});
-							}
-					}
-			}, {
-					key: 'toggleHover',
-					value: function toggleHover() {
-							this.setState({
-									hover: !this.state.hover
-							});
-					}
-			}, {
-					key: 'render',
-					value: function render() {
-							var linkStyle = !this.state.hover ? linkStyle = _react2.default.createElement(
-									_reactRouter.Link,
-									{ to: "/singlemovie/" + this.state.moviedBId },
-									_react2.default.createElement('img', { style: linkStyle, src: 'http://image.tmdb.org/t/p/w185/' + this.state.posterPath, onMouseEnter: this.toggleHover })
-							) : linkStyle = _react2.default.createElement(
-									'div',
-									null,
-									_react2.default.createElement(
-											_reactRouter.Link,
-											{ style: { background: 'white', zIndes: 20 }, to: "/singlemovie/" + this.state.moviedBId },
-											_react2.default.createElement('img', { style: linkStyle, src: 'http://image.tmdb.org/t/p/w185/' + this.state.posterPath, onMouseOut: this.toggleHover })
-									),
-									_react2.default.createElement('br', null),
-									'Click to view MovieDetails'
-							);
-	
-							var content = this.state.moviedBId != null ? _react2.default.createElement(
-									'div',
-									null,
-									_react2.default.createElement(
-											'center',
-											null,
-											linkStyle,
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													{ style: { color: "#999" } },
-													'Overview:',
-													_react2.default.createElement('br', null),
-													_react2.default.createElement(
-															'span',
-															{ style: { color: '#5cb85c', fontStyle: 'oblique' } },
-															' ',
-															this.state.overview
-													)
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													{ style: { color: '#999' } },
-													' Popularity: ',
-													_react2.default.createElement(
-															'span',
-															{ style: { fontSize: '1em', color: '#5cb85c', paddingRight: 20 } },
-															this.state.popularity
-													),
-													'Vote Count:',
-													_react2.default.createElement(
-															'span',
-															{ style: { fontSize: '1em', color: '#5cb85c' } },
-															' ',
-															this.state.voteCount
-													)
-											)
-									),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement('br', null)
-							) : _react2.default.createElement(
-									'div',
-									null,
-									_react2.default.createElement(
-											'center',
-											null,
-											_react2.default.createElement('img', { src: '/assets/img/noInfo.jpg' })
-									)
-							);
-	
-							return _react2.default.createElement(
-									'div',
-									{ className: 'news-v2-desc', style: { marginBottom: 30 } },
-									content
-							);
-					}
-			}]);
-	
-			return MovieDBInfo;
+		return MovieDBInfo;
 	}(_react.Component);
 	
 	var stateToProps = function stateToProps(state) {
-			return {
-					movieList: state.movies.list,
-					selected: state.movies.selected
-			};
+		return {
+			movieList: state.movies.list,
+			selected: state.movies.selected
+		};
 	};
 	
 	var dispatchToProps = function dispatchToProps(dispatch) {
-			return {};
+		return {};
 	};
 	
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(MovieDBInfo);
@@ -33391,7 +33365,6 @@
 											return;
 									}
 	
-									// 	console.log('SINGLEMOVIE BODY: '+JSON.stringify(response.body))
 									var movie = response.body;
 									var posterpath = movie.poster_path;
 									var youtubeID = null;
@@ -33430,7 +33403,7 @@
 									_this2.setState({
 											singleMovie: updated
 									});
-									console.log("SingleMovie " + JSON.stringify(_this2.state.singleMovie));
+									// console.log("SingleMovie " + JSON.stringify(this.state.singleMovie))
 							});
 					}
 			}, {
@@ -33560,6 +33533,7 @@
 											'Home'
 									)
 							) : null;
+	
 							return _react2.default.createElement(
 									'div',
 									{ style: { marginTop: 50, padding: '0 30% 20px 30%' } },
@@ -33902,7 +33876,6 @@
 	          alert(err.message);
 	          return;
 	        }
-	        // console.log(JSON.stringify(response))
 	        _this2.props.currentUserReceived(null);
 	        _this2.context.router.push('/account');
 	      });
@@ -34073,7 +34046,6 @@
 	
 	var dispatchToProps = function dispatchToProps(dispatch) {
 	  return {
-	
 	    fetchCurrentUser: function fetchCurrentUser(params) {
 	      return dispatch(_actions2.default.fetchCurrentUser(params));
 	    },
@@ -34263,7 +34235,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -34291,129 +34263,125 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var MoviesNowPlaying = function (_Component) {
-	  _inherits(MoviesNowPlaying, _Component);
+			_inherits(MoviesNowPlaying, _Component);
 	
-	  function MoviesNowPlaying(props) {
-	    _classCallCheck(this, MoviesNowPlaying);
+			function MoviesNowPlaying(props) {
+					_classCallCheck(this, MoviesNowPlaying);
 	
-	    var _this = _possibleConstructorReturn(this, (MoviesNowPlaying.__proto__ || Object.getPrototypeOf(MoviesNowPlaying)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (MoviesNowPlaying.__proto__ || Object.getPrototypeOf(MoviesNowPlaying)).call(this, props));
 	
-	    _this.state = {
-	      movies: []
-	    };
-	    return _this;
-	  }
+					_this.state = {
+							movies: []
+					};
+					return _this;
+			}
 	
-	  _createClass(MoviesNowPlaying, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
+			_createClass(MoviesNowPlaying, [{
+					key: 'componentDidMount',
+					value: function componentDidMount() {
+							var _this2 = this;
 	
-	      //this is to search for a particular movie
-	      // ajax.get('https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=Star%20Wars&page=1&include_adult=false')
-	      //latest movies
-	      var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=4160bdc56f74445097c8012631f85743&language=en-US&page=1';
+							var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=4160bdc56f74445097c8012631f85743&language=en-US&page=1';
 	
-	      _superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err);
-	          return;
-	        }
+							_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+									if (err) {
+											alert('ERROR: ' + err);
+											return;
+									}
 	
-	        // console.log('moviesnowplaying: ' +JSON.stringify(response.body.results))
-	        var movies = response.body.results;
-	        _this2.setState({
-	          movies: movies
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var movieList = null;
-	      if (this.state.movies != null) {
-	        var movies = this.state.movies;
+									var movies = response.body.results;
+									_this2.setState({
+											movies: movies
+									});
+							});
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							var movieList = null;
+							if (this.state.movies != null) {
+									var movies = this.state.movies;
 	
-	        movieList = movies.map(function (movie, i) {
-	          if (movie.poster_path == null) {
-	            return _react2.default.createElement(
-	              'div',
-	              { className: 'col-md-3', key: i },
-	              _react2.default.createElement(
-	                'li',
-	                { style: { marginBottom: 20 } },
-	                _react2.default.createElement(
-	                  'h6',
-	                  null,
-	                  'No Image'
-	                ),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement(
-	                  'h6',
-	                  null,
-	                  movie.title
-	                ),
-	                ' '
-	              )
-	            );
-	          } else {
-	            return _react2.default.createElement(
-	              'div',
-	              { className: 'col-md-3', key: i },
-	              _react2.default.createElement(
-	                'li',
-	                { style: { marginBottom: 50 } },
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: '/singlemovie/' + movie.id },
-	                  _react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
-	                ),
-	                ' '
-	              )
-	            );
-	          }
-	        });
-	      }
+									movieList = movies.map(function (movie, i) {
+											if (movie.poster_path == null) {
+													return _react2.default.createElement(
+															'div',
+															{ className: 'col-md-3', key: i },
+															_react2.default.createElement(
+																	'li',
+																	{ style: { marginBottom: 20 } },
+																	_react2.default.createElement(
+																			'h6',
+																			null,
+																			'No Image'
+																	),
+																	_react2.default.createElement('br', null),
+																	_react2.default.createElement(
+																			'h6',
+																			null,
+																			movie.title
+																	),
+																	' '
+															)
+													);
+											} else {
+													return _react2.default.createElement(
+															'div',
+															{ className: 'col-md-3', key: i },
+															_react2.default.createElement(
+																	'li',
+																	{ style: { marginBottom: 50 } },
+																	_react2.default.createElement(
+																			_reactRouter.Link,
+																			{ to: '/singlemovie/' + movie.id },
+																			_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
+																	),
+																	' '
+															)
+													);
+											}
+									});
+							}
 	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_Header2.default, null),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'container' },
-	          _react2.default.createElement(
-	            'center',
-	            null,
-	            _react2.default.createElement(
-	              'h1',
-	              null,
-	              'Now In Theatres'
-	            ),
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              'Movies currently released for public viewing'
-	            ),
-	            _react2.default.createElement('hr', { style: { width: '40%' } })
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'clearfix' },
-	            _react2.default.createElement(
-	              'ul',
-	              { style: { listStyleType: 'none' } },
-	              movieList
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
+							return _react2.default.createElement(
+									'div',
+									null,
+									_react2.default.createElement(_Header2.default, null),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+											'div',
+											{ className: 'container' },
+											_react2.default.createElement(
+													'center',
+													null,
+													_react2.default.createElement(
+															'h1',
+															null,
+															'Now In Theatres'
+													),
+													_react2.default.createElement(
+															'h4',
+															null,
+															'Movies currently released for public viewing'
+													),
+													_react2.default.createElement('hr', { style: { width: '40%' } })
+											),
+											_react2.default.createElement('br', null),
+											_react2.default.createElement(
+													'div',
+													{ className: 'clearfix' },
+													_react2.default.createElement(
+															'ul',
+															{ style: { listStyleType: 'none' } },
+															movieList
+													)
+											)
+									)
+							);
+					}
+			}]);
 	
-	  return MoviesNowPlaying;
+			return MoviesNowPlaying;
 	}(_react.Component);
 	
 	exports.default = MoviesNowPlaying;
@@ -34534,7 +34502,6 @@
 						actorInfo['actorImage'] = actorImage;
 						actorInfo['birthday'] = birthday;
 	
-						// console.log("IMDB: " + JSON.stringify(imdbId))
 						_this2.setState({
 							actorInfo: actorInfo,
 							actorKnownForList: actorKnownForList,
@@ -34901,8 +34868,6 @@
 	  value: true
 	});
 	exports.default = {
-	
-	  universal: {},
 	
 	  layout: {
 	    margin: {

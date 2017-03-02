@@ -8,8 +8,6 @@ var ProfileSchema = new mongoose.Schema({
 	timestamp:{type:Date, default:Date.now}
 })
 
-
-
 ProfileSchema.methods.summary = function(){
 	var summary = {
 		username: this.username,
@@ -18,7 +16,6 @@ ProfileSchema.methods.summary = function(){
 		profileImage: this.profileImage,
 		id: this._id.toString()
 	}
-
 	return summary
 }
 

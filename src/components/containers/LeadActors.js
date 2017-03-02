@@ -3,7 +3,6 @@ import LeadActor from '../presentation/LeadActor'
 import { APIManager } from '../../utils'
 import styles from './styles'
 
-
 class LeadActors extends Component{
   constructor(props){
     super(props)

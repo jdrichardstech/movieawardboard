@@ -14,11 +14,6 @@ import Footer from './Footer'
 import SearchActor from './SearchActor'
 import GoogleTheMovie from './GoogleTheMovie'
 
-
-
-
-
-
 export{
   CreateMovie,
   CreateMovieNote,
@@ -35,6 +30,4 @@ export{
 	Footer,
 	SearchActor,
 	GoogleTheMovie
-
-
 }

@@ -3,7 +3,6 @@ import SupportingActress from '../presentation/SupportingActress'
 import { APIManager } from '../../utils'
 import styles from './styles'
 
-
 class SupportingActresses extends Component{
   constructor(props){
     super(props)
@@ -42,13 +41,13 @@ class SupportingActresses extends Component{
     updatedList.push(this.state.nomination)
 		APIManager.post('/api/supportingActress', this.state.nomination, (err, response)=>{
 			if (err || !res.ok) {
-		       alert('Oh no! error');
-		     } else {
-		       console.log('supportingActress posted');
-		     }
-				 this.setState({
-					 list:updatedList
-				 })
+	       alert('Oh no! error');
+	     } else {
+	       console.log('supportingActress posted');
+	     }
+			 this.setState({
+				 list:updatedList
+			 })
 		})
   }
 
@@ -64,7 +63,6 @@ class SupportingActresses extends Component{
         <ol style={styles.nominations.other}>
           {listItem}
         </ol>
-
       </div>
     )
   }

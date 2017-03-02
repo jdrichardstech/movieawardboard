@@ -1,7 +1,5 @@
 var BestStunts = require('../models/BestStunts')
 
-
-
 module.exports = {
 
   find: function(params, cb){

@@ -1,7 +1,5 @@
 var LeadActress = require('../models/LeadActress')
 
-
-
 module.exports = {
 
   find: function(params, cb){
@@ -58,5 +56,4 @@ module.exports = {
       return
     })
   }
-
 }

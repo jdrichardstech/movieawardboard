@@ -6,8 +6,6 @@ import store from '../../store/store'
 import actions from '../../actions/actions'
 import { connect } from 'react-redux'
 
-
-
 class MovieNotes extends Component{
   constructor(props){
     super(props)
@@ -41,11 +39,8 @@ class MovieNotes extends Component{
 		}
   }
 
-
-
   addNote(movieNote){
-
-    console.log('click:' + JSON.stringify(movieNote))
+    // console.log('click:' + JSON.stringify(movieNote))
     let updatedMovieNote = Object.assign({}, movieNote)
     let selectedMovie = this.props.movieList[this.props.selected]
     updatedMovieNote['selectedMovieId'] = selectedMovie._id
@@ -61,7 +56,7 @@ class MovieNotes extends Component{
     this.props.notesReceived([note], selectedMovie)
     console.log('note with id: ' + JSON.stringify(note))
     })
-}
+	}
 
   render(){
 
@@ -97,7 +92,6 @@ class MovieNotes extends Component{
 								supportingActor={supportingActor}
 								supportingActress={supportingActress}
 							/>
-
 				</div>
 				<div className="news-v2-desc"style={{marginBottom:30,paddingBottom:40}}>
          <h3>Add A Note for <span style={{color:'rgb(92, 184, 92)'}}> {movieName}:</span></h3>
@@ -124,7 +118,6 @@ const stateToProps = (state) => {
     movieNotesLoaded: state.movieNotes.movieNotesLoaded,
     movieList: state.movies.list,
     selected: state.movies.selected
-
   }
 }
 

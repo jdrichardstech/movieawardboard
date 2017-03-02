@@ -9,8 +9,6 @@ var MovieNotesController = require('./MovieNotesController')
 var ProfileController = require('./ProfileController')
 var AccountController = require('./AccountController')
 
-
-
 module.exports = {
   movie: MovieController,
   leadactor : LeadActorController,

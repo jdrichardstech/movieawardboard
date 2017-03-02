@@ -27,7 +27,6 @@ module.exports = {
   },
 
   create: function(params, cb){
-    
     Movie.create(params, function(err, movie){
       if(err){
         cb(err, null)
@@ -59,5 +58,4 @@ module.exports = {
       return
     })
   }
-
 }

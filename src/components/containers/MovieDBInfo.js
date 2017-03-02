@@ -59,9 +59,6 @@ class MovieDBInfo extends Component{
 				}
 				let selected = this.props.selected
 
-				// console.log("movieDBSelectedMovie: " + JSON.stringify(movieDBSelectedMovie))
-
-
 				this.setState({
 					movie,
 					posterPath,
@@ -71,7 +68,6 @@ class MovieDBInfo extends Component{
 					moviedBId,
 					selected
 				})
-					// console.log("STATE AFTER OVERVIEW " + JSON.stringify(this.state.posterPath))
 			})
 		}
   }
@@ -90,17 +86,17 @@ class MovieDBInfo extends Component{
 				 linkStyle = <div ><Link style={{background:'white',zIndes:20}} to={"/singlemovie/"+this.state.moviedBId}><img style={linkStyle} src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`}   onMouseOut={this.toggleHover} /></Link><br />Click to view MovieDetails</div>
 
 		let content = (this.state.moviedBId != null) ?
-		<div>
-			<center>
-			{linkStyle}
-			<br /><br />
-			<h5 style={{color:"#999"}}>Overview:<br /><span style={{color:'#5cb85c', fontStyle:'oblique'}}> {this.state.overview}</span></h5>
-			<br /><h5 style={{color:'#999'}}> Popularity: <span style={{fontSize:'1em', color:'#5cb85c', paddingRight:20}}>{this.state.popularity}</span>
-			Vote Count:<span style={{fontSize:'1em', color:'#5cb85c'}}> {this.state.voteCount}</span></h5>
-		</center><br /><br /><br />
-		</div>
-		:
-		<div><center><img src="/assets/img/noInfo.jpg" /></center></div>
+			<div>
+				<center>
+					{linkStyle}
+					<br /><br />
+					<h5 style={{color:"#999"}}>Overview:<br /><span style={{color:'#5cb85c', fontStyle:'oblique'}}> {this.state.overview}</span></h5>
+					<br /><h5 style={{color:'#999'}}> Popularity: <span style={{fontSize:'1em', color:'#5cb85c', paddingRight:20}}>{this.state.popularity}</span>
+					Vote Count:<span style={{fontSize:'1em', color:'#5cb85c'}}> {this.state.voteCount}</span></h5>
+				</center><br /><br /><br />
+			</div>
+			:
+			<div><center><img src="/assets/img/noInfo.jpg" /></center></div>
 
     return(
       <div className="news-v2-desc"style={{marginBottom:30}}>

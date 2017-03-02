@@ -3,7 +3,6 @@ import BestStunt from '../presentation/BestStunt'
 import { APIManager } from '../../utils'
 import styles from './styles'
 
-
 class BestStunts extends Component{
   constructor(props){
     super(props)
@@ -42,24 +41,23 @@ class BestStunts extends Component{
     updatedList.push(this.state.nomination)
 		APIManager.post('/api/beststunts', this.state.nomination, (err, response)=>{
 			if (err || !res.ok) {
-					 alert('Oh no! error');
-				 } else {
-					 console.log('beststunts posted');
-				 }
-				 this.setState({
-					 list:updatedList
-				 })
+				 alert('Oh no! error');
+			 } else {
+				 console.log('beststunts posted');
+			 }
+			 this.setState({
+				 list:updatedList
+			 })
 		})
   }
 
-
   render(){
-
     var listItem = this.state.list.map((nomination, i)=>{
       return(
          <li key={i}><BestStunt currentNomination={nomination} /></li>
        )
     })
+		
     return(
       <div style={styles.nominations.border}>
         <h4>Best Stunts:</h4>

@@ -41,13 +41,13 @@ class OutstandingEnsembles extends Component{
     updatedList.push(this.state.nomination)
 		APIManager.post('/api/outstandingEnsemble', this.state.nomination, (err, response)=>{
 			if (err || !res.ok) {
-		       alert('Oh no! error');
-		     } else {
-		       console.log('outstandingEnsemble posted');
-		     }
-				 this.setState({
-					 list:updatedList
-				 })
+	       alert('Oh no! error');
+	     } else {
+	       console.log('outstandingEnsemble posted');
+	     }
+			 this.setState({
+				 list:updatedList
+			 })
 		})
   }
 
@@ -57,6 +57,7 @@ class OutstandingEnsembles extends Component{
          <li key={i}><OutstandingEnsemble currentNomination={nomination} /></li>
        )
     })
+		
     return(
       <div style={styles.nominations.border}>
         <h4>Outstanding Ensemble:</h4>

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import styles from './styles'
 
-
 class GoogleTheMovie extends Component{
 	constructor(){
 		super()
@@ -12,7 +11,6 @@ class GoogleTheMovie extends Component{
 	}
 
 	updateSearch(event){
-
 		let updatedName = Object.assign({}, this.state)
 		updatedName['castName'] = event.target.value
 		this.setState({

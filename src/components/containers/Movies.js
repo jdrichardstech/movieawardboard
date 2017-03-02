@@ -7,7 +7,6 @@ import store from '../../store/store'
 import actions from '../../actions/actions'
 import { connect } from 'react-redux'
 
-
 class Movies extends Component{
   constructor(props){
     super(props)
@@ -19,47 +18,41 @@ class Movies extends Component{
   }
 
   componentDidMount(){
-    // console.log('componentDidMount: ' +JSON.stringify(this.props.user))
+		APIManager.get('/api/movie', null, (err, response) => {
+			if (err){
+				alert('ERROR: '+err.message)
+				return
+			}
+			const movies = response.results
 
+			this.props.moviesReceived(movies)
 
-
-  		APIManager.get('/api/movie', null, (err, response) => {
-  			if (err){
-  				alert('ERROR: '+err.message)
-  				return
-  			}
-  			const movies = response.results
-
-  			this.props.moviesReceived(movies)
-
-				this.setState({
-					movies: movies
-				})
-  		})
-  	}
+			this.setState({
+				movies: movies
+			})
+		})
+	}
 
 	componentDidUpdate(){
 		if(this.state.newMovie==null){
 			return
 		}
 
-			APIManager.get('/api/movie', null, (err, response) => {
-  			if (err){
-  				alert('ERROR: '+err.message)
-  				return
-  			}
-  			const movies = response.results
+		APIManager.get('/api/movie', null, (err, response) => {
+			if (err){
+				alert('ERROR: '+err.message)
+				return
+			}
+			const movies = response.results
 
-  			this.props.moviesReceived(movies)
+			this.props.moviesReceived(movies)
 
-				this.setState({
-					movies: movies,
-					newMovie:null
-				})
-  		})
-
+			this.setState({
+				movies: movies,
+				newMovie:null
+			})
+		})
 	}
-
 
 	handleSelectMovie(index){
 	  // event.preventDefault()
@@ -90,7 +83,6 @@ class Movies extends Component{
 						text:`${movie.movieName.toUpperCase()} has already been added`,
 						type:"error"
 					})
-
 					return
 				}
 			}
@@ -103,7 +95,6 @@ class Movies extends Component{
 	}
 
   render(){
-		
     const movieList = this.props.list.map((movie, i) => {
       let selected = (i==this.props.selected)
       return(

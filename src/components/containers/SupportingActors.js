@@ -3,7 +3,6 @@ import SupportingActor from '../presentation/SupportingActor'
 import { APIManager } from '../../utils'
 import styles from './styles'
 
-
 class SupportingActors extends Component{
   constructor(props){
     super(props)
@@ -42,13 +41,13 @@ class SupportingActors extends Component{
     updatedList.push(this.state.nomination)
 		APIManager.post('/api/supportingActor', this.state.nomination, (err, response)=>{
 			if (err || !res.ok) {
-		       alert('Oh no! error');
-		     } else {
-		       console.log('supportingActor posted');
-		     }
-				 this.setState({
-					 list:updatedList
-				 })
+	       alert('Oh no! error');
+	     } else {
+	       console.log('supportingActor posted');
+	     }
+			 this.setState({
+				 list:updatedList
+			 })
 		})
   }
 

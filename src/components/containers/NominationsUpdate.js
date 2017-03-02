@@ -10,11 +10,9 @@ class NominationsUpdate extends Component{
     super(props)
 		this.restructureEnteredName = this.restructureEnteredName.bind(this)
     this.state={
-
       category:{
         title:'leadactor',
         nominationId:'leadActorName'
-
       },
       nomination:{
         bestStuntsMovie:'',
@@ -23,18 +21,17 @@ class NominationsUpdate extends Component{
         outstandingEnsembleMovie:'',
         supportingActorName:'',
         supportingActressName:''
-
       },
       list:[]
     }
   }
 
   componentDidMount(){
-    console.log('MovieName: ' + JSON.stringify(this.props.list))
+    // console.log('MovieName: ' + JSON.stringify(this.props.list))
   }
 
   updateCategory(event){
-    console.log(this.state.category.title)
+    // console.log(this.state.category.title)
 
     let updatedCategory=Object.assign({}, this.state.category)
     updatedCategory['title'] = (event.target.value)
@@ -73,7 +70,7 @@ class NominationsUpdate extends Component{
     })
   }
 
-restructureEnteredName(name){
+	restructureEnteredName(name){
 		var nameArray = name.split(' ')
 		var newNameArray = nameArray.map((letter)=> {
 			return letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase()
@@ -104,12 +101,10 @@ restructureEnteredName(name){
 			return
 		}
 
-    // // console.log('Submit: ' + this.state.category.title)
     var url = '/api/'+(this.state.category.title).toLowerCase()
     let updatedList = Object.assign([],this.state.list)
     updatedList.push(this.state.nomination)
 
-		// console.log("UPDATED NOMINATION: " + JSON.stringify(this.state.nomination))
 	  superagent
 	  .post(url)
 	  .send(this.state.nomination)
@@ -131,23 +126,9 @@ restructureEnteredName(name){
 		this.refs.nomination.value=''
   }
 
-
   render(){
-
-
-  {/*}  var listItem = this.state.list.map((nomination, i)=>{
-      return(
-         <li key={i}><BestStunt currentNomination={nomination} /></li>
-         ,{/*figure out here how to send to the correct component
-       )
-    })*/}
-
     return(
       <div >
-
-        {/*}<ul style={styles.nominations.list}>
-          {listItem}
-        </ul>*/}
         <h3>Make Nomination:</h3><br />
         <h5>Nomination Category: (please select category)</h5>
         <select className="form-control" style={{backGround:'black',color:'#999'}} value={this.state.category.title} onChange={this.updateCategory.bind(this)}>

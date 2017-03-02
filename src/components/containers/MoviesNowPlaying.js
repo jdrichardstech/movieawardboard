@@ -14,9 +14,6 @@ class MoviesNowPlaying extends Component{
   }
 
   componentDidMount(){
-    //this is to search for a particular movie
-    // ajax.get('https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=Star%20Wars&page=1&include_adult=false')
-    //latest movies
     var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=4160bdc56f74445097c8012631f85743&language=en-US&page=1'
 
     superagent
@@ -29,13 +26,13 @@ class MoviesNowPlaying extends Component{
         return
       }
 
-      // console.log('moviesnowplaying: ' +JSON.stringify(response.body.results))
-      let movies = response.body.results
-      this.setState({
-        movies:movies
-      })
-    })
+	    let movies = response.body.results
+	    this.setState({
+	      movies:movies
+	    })
+	  })
   }
+	
   render(){
     let movieList = null
     if(this.state.movies!=null){

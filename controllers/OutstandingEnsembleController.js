@@ -1,7 +1,5 @@
 var OutstandingEnsemble = require('../models/OutstandingEnsemble')
 
-
-
 module.exports = {
 
   find: function(params, cb){

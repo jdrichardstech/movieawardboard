@@ -1,9 +1,5 @@
 export default{
 
-  universal:{
-
-  },
-
   layout:{
     margin:{
       marginTop:10,

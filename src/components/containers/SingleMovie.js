@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import superagent from 'superagent'
 import { Link } from 'react-router'
 
-
-
-
 class SingleMovie extends Component{
 
   constructor(){
@@ -15,7 +12,6 @@ class SingleMovie extends Component{
   }
 
   componentDidMount(){
-
     let url=
 		`https://api.themoviedb.org/3/movie/${this.props.params.id}?api_key=4160bdc56f74445097c8012631f85743&append_to_response=videos`
 
@@ -29,7 +25,6 @@ class SingleMovie extends Component{
 	      return
 	    }
 
-   // 	console.log('SINGLEMOVIE BODY: '+JSON.stringify(response.body))
     let movie = response.body
     let posterpath=movie.poster_path
     let youtubeID = null
@@ -68,7 +63,7 @@ class SingleMovie extends Component{
     this.setState({
       singleMovie: updated
     })
-    console.log("SingleMovie " + JSON.stringify(this.state.singleMovie))
+    // console.log("SingleMovie " + JSON.stringify(this.state.singleMovie))
   })
 }
 
@@ -76,26 +71,26 @@ class SingleMovie extends Component{
 		let movie = this.state.singleMovie
 		let content = (this.state.singleMovie != null) ?
 		<center>
-		<Link to = "/">Home</Link><br /><br />
-			<img src={`https://image.tmdb.org/t/p/w342/${movie.posterpath}`} /><br /><br />
-				<Link to = {"/movietrailer/"+this.props.params.id+"/"+movie.youtubeID}><button className="btn btn-default">Watch Trailer</button></Link><br /><br />
-				<div>
-					<h4>{movie.overview}</h4><br /><br />
-					<h5>Runtime: {movie.runtime}</h5><br /><br />
-					<h5>Budget: ${movie.budget}</h5><br /><br />
-					<h5>Popularity: {movie.popularity}</h5><br /><br />
-					<h5>Release Date: {movie.releaseDate}</h5><br /><br />
-					<h5>Status: {movie.status}</h5><br /><br />
-					<h5>Tag Line: {movie.tagline}</h5><br /><br />
-					<h5>Homepage: <a href={this.state.homepage} target="_blank" >{movie.homepage}</a></h5><br /><br />
-					<h5><span style={{paddingRight:20}}>Vote Count: {movie.voteCount}  </span>Vote Average: {movie.voteAverage}</h5><br /><br />
-					<a target="_blank" href={"https://www.imdb.com/title/"+movie.imdbID+"/?ref_=nv_sr_1"}>IMDB Profile</a><br /><br />
-				</div>
-
-				<Link to = "/">Home</Link>
+			<Link to = "/">Home</Link><br /><br />
+				<img src={`https://image.tmdb.org/t/p/w342/${movie.posterpath}`} /><br /><br />
+					<Link to = {"/movietrailer/"+this.props.params.id+"/"+movie.youtubeID}><button className="btn btn-default">Watch Trailer</button></Link><br /><br />
+			<div>
+				<h4>{movie.overview}</h4><br /><br />
+				<h5>Runtime: {movie.runtime}</h5><br /><br />
+				<h5>Budget: ${movie.budget}</h5><br /><br />
+				<h5>Popularity: {movie.popularity}</h5><br /><br />
+				<h5>Release Date: {movie.releaseDate}</h5><br /><br />
+				<h5>Status: {movie.status}</h5><br /><br />
+				<h5>Tag Line: {movie.tagline}</h5><br /><br />
+				<h5>Homepage: <a href={this.state.homepage} target="_blank" >{movie.homepage}</a></h5><br /><br />
+				<h5><span style={{paddingRight:20}}>Vote Count: {movie.voteCount}  </span>Vote Average: {movie.voteAverage}</h5><br /><br />
+				<a target="_blank" href={"https://www.imdb.com/title/"+movie.imdbID+"/?ref_=nv_sr_1"}>IMDB Profile</a><br /><br />
+			</div>
+			<Link to = "/">Home</Link>
 		</center>
 		:
 		null
+		
     return(
       <div style={{marginTop:50, padding:'0 30% 20px 30%'}}>
        {content}

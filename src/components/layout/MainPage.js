@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { MovieDBInfo, MovieNotes, Movies, Header, Account, NominationsUpdate } from '../containers'
 import { SearchActor, GoogleTheMovie } from '../presentation'
+
 const MainPage = () => {
 	return(
 		<div className="bg-color-light">
 			<div className="container content-sm">
 					<div className="row">
 						<div className="col-md-3">
-						<Movies />
+							<Movies />
 						</div>
 						<div className="col-md-9">
 							<div className="row news-v2 margin-bottom-50">
@@ -15,21 +16,19 @@ const MainPage = () => {
 									<div className="news-v2-badge" style={{backgroundColor:'black'}}>
 									</div>
 									<div>
-											<MovieDBInfo />
-											<MovieNotes />
+										<MovieDBInfo />
+										<MovieNotes />
 									</div>
-
 								</div>
 								<div className="col-sm-6">
-
 									<div className="news-v2-desc" style={{marginBottom:30}}>
-											<NominationsUpdate />
+										<NominationsUpdate />
 									</div>
 									<div className="news-v2-desc" style={{marginBottom:30}}>
-											<SearchActor />
+										<SearchActor />
 									</div>
 									<div className="news-v2-desc">
-											<GoogleTheMovie />
+										<GoogleTheMovie />
 									</div>
 								</div>
 							</div>
@@ -37,7 +36,6 @@ const MainPage = () => {
 					</div>
 			</div>
 		</div>
-
 	)
 }
 

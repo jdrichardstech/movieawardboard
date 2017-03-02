@@ -1,11 +1,5 @@
 export default{
 
-  universal:{
-
-  },
-
-
-
   nominations:{
     button:{
       marginBottom:20

@@ -1,7 +1,5 @@
 var SupportingActor = require('../models/SupportingActor')
 
-
-
 module.exports = {
 
   find: function(params, cb){
@@ -58,5 +56,4 @@ module.exports = {
       return
     })
   }
-
 }

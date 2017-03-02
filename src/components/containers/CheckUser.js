@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import actions from '../../actions/actions'
 import MainPage from '../layout/MainPage'
 
-
 class Home extends Component{
 	componentDidMount(){
 		this.props.fetchCurrentUser(null)
@@ -14,20 +13,19 @@ class Home extends Component{
 	render(){
 		let content = null
 
-			content = (this.props.user != null) ?
+		content = (this.props.user != null) ?
 			<div>
 				<Header />
 				<MainPage />
-		</div>
+			</div>
 		: <Account />
 
 		return(
 		<div>
-
 			{content}
 		</div>
-	)
-}
+		)
+	}
 }
 
 const stateToProps = (state) => {
@@ -41,6 +39,5 @@ const dispatchToProps=(dispatch)=>{
 		fetchCurrentUser: (params)=>dispatch(actions.fetchCurrentUser(params))
 	}
 }
-
 
 export default connect(stateToProps, dispatchToProps)(Home)

@@ -7,7 +7,6 @@ import { Link } from 'react-router'
 import Header from '../containers/Header'
 import Checkout from '../containers/CheckUser'
 
-
 class Account extends Component{
   constructor(props){
     super(props)

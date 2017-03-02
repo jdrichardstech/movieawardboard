@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import styles from './styles'
 
-
 class SearchActor extends Component{
 	constructor(){
 		super()

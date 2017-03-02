@@ -1,7 +1,5 @@
 var MovieNotes = require('../models/MovieNotes')
 
-
-
 module.exports = {
 
   find: function(params, cb){
