@@ -5,14 +5,16 @@ import store from '../../store/store'
 import actions from '../../actions/actions'
 import { Link } from 'react-router'
 import superagent from 'superagent'
+import styles from './styles'
 
 class MovieDBInfo extends Component{
   constructor(props){
     super(props)
+		this.toggleHover=this.toggleHover.bind(this)
     this.state={
       movie:[],
       posterPath:'',
-      flag: false
+      hover: false
     }
   }
 
@@ -74,11 +76,23 @@ class MovieDBInfo extends Component{
 		}
   }
 
+	toggleHover(){
+		this.setState({
+			hover:!this.state.hover
+		})
+	}
+
   render(){
+		let linkStyle=
+			(!this.state.hover) ?
+				linkStyle=<Link to={"/singlemovie/"+this.state.moviedBId}><img style={linkStyle} src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`} onMouseEnter={this.toggleHover}  /></Link>
+			  :
+				 linkStyle = <div ><Link style={{background:'white',zIndes:20}} to={"/singlemovie/"+this.state.moviedBId}><img style={linkStyle} src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`}   onMouseOut={this.toggleHover} /></Link><br />Click to view MovieDetails</div>
+
 		let content = (this.state.moviedBId != null) ?
 		<div>
 			<center>
-			<Link to={"/singlemovie/"+this.state.moviedBId}><img src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`} /></Link>
+			{linkStyle}
 			<br /><br />
 			<h5 style={{color:"#999"}}>Overview:<br /><span style={{color:'#5cb85c', fontStyle:'oblique'}}> {this.state.overview}</span></h5>
 			<br /><h5 style={{color:'#999'}}> Popularity: <span style={{fontSize:'1em', color:'#5cb85c', paddingRight:20}}>{this.state.popularity}</span>

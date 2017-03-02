@@ -5,12 +5,13 @@ export default{
   },
 
 
+
   nominations:{
     button:{
       marginBottom:20
     },
     list:{
-    
+
       margin:0,
       padding:0,
       color:'gray'

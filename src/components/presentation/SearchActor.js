@@ -28,8 +28,8 @@ class SearchActor extends Component{
 	render(){
 		return(
 			<div>
-
-				<h5>Search for Actor:</h5><br />
+				<h2>Get Actor or Actress Info</h2><br />
+				<h5>Enter Name of Actor or Actress:</h5><br />
 				<input className="form-control" onChange={this.updateSearch.bind(this)} style={{backGround:'black',color:'#999'}} id="actorName" ref="actorName" /><br />
 				<Link to={"/actor/"+this.state.actorName}><button className="btn btn-info" style={styles.nominations.button} onClick={this.submitSearch.bind(this)}> Search</button></Link><br />
 			</div>
