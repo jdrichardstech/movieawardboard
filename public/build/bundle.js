@@ -33065,12 +33065,12 @@
 	          _react2.default.createElement(
 	            'option',
 	            { value: 'bestStunts' },
-	            'Best Stunts'
+	            'Movie with Best Stunts'
 	          ),
 	          _react2.default.createElement(
 	            'option',
 	            { value: 'outstandingEnsemble' },
-	            'Outstanding Ensemble'
+	            'Movie with Most Outstanding Ensemble'
 	          )
 	        ),
 	        _react2.default.createElement('br', null),

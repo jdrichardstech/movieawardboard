@@ -136,8 +136,8 @@ class NominationsUpdate extends Component{
          <option value="leadActress">Lead Actress</option>
          <option value="supportingActor">Supporting Actor</option>
          <option value="supportingActress">Supporting Actress</option>
-         <option value="bestStunts">Best Stunts</option>
-         <option value="outstandingEnsemble">Outstanding Ensemble</option>
+         <option value="bestStunts">Movie with Best Stunts</option>
+         <option value="outstandingEnsemble">Movie with Most Outstanding Ensemble</option>
      		</select>
      		<br /><br />
 				<label><h5>Enter Name or Movie:</h5></label>
