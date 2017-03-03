@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SupportingActor from '../presentation/SupportingActor'
 import { APIManager } from '../../utils'
 import styles from './styles'
+import { Link } from 'react-router'
 
 class SupportingActors extends Component{
   constructor(props){
@@ -58,7 +59,11 @@ class SupportingActors extends Component{
 
     var listItem = this.state.list.map((nomination, i)=>{
       return(
-         <li key={i}><SupportingActor currentNomination={nomination} /></li>
+         <li key={i}>
+					 <Link to={"/actor/"+nomination.supportingActorName}>
+					 	<SupportingActor currentNomination={nomination} />
+					 </Link>
+				 </li>
        )
     })
     return(

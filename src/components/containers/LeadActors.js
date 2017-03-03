@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LeadActor from '../presentation/LeadActor'
 import { APIManager } from '../../utils'
 import styles from './styles'
+import { Link } from 'react-router'
 
 class LeadActors extends Component{
   constructor(props){
@@ -53,7 +54,11 @@ class LeadActors extends Component{
   render(){
     var listItem = this.state.list.map((nomination, i)=>{
       return(
-        <li key={i}><LeadActor currentNomination={nomination} /></li>
+        <li key={i}>
+					<Link to={"/actor/"+nomination.leadActorName}>
+						<LeadActor currentNomination={nomination} />
+					</Link>
+				</li>
        )
     })
     return(

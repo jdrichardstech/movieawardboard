@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LeadActress from '../presentation/LeadActress'
 import { APIManager } from '../../utils'
 import styles from './styles'
+import { Link } from 'react-router'
 
 class LeadActresses extends Component{
   constructor(props){
@@ -21,7 +22,7 @@ class LeadActresses extends Component{
 				return
 			}
 			let results = response.results
-
+			console.log("NAME OF: " + JSON.stringify(results))
 			this.setState({
 				list: results
 			})
@@ -54,7 +55,11 @@ class LeadActresses extends Component{
   render(){
     var listItem = this.state.list.map((nomination, i)=>{
       return(
-         <li key={i}><LeadActress currentNomination={nomination} /></li>
+         <li key={i}>
+					 <Link to={"/actor/"+nomination.leadActressName}>
+					 		<LeadActress currentNomination={nomination} />
+					 </Link>
+			 	</li>
        )
     })
     return(

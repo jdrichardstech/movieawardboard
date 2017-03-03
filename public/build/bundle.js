@@ -32221,6 +32221,8 @@
 	
 	var _styles2 = _interopRequireDefault(_styles);
 	
+	var _reactRouter = __webpack_require__(186);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32296,7 +32298,11 @@
 	        return _react2.default.createElement(
 	          'li',
 	          { key: i },
-	          _react2.default.createElement(_LeadActor2.default, { currentNomination: nomination })
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: "/actor/" + nomination.leadActorName },
+	            _react2.default.createElement(_LeadActor2.default, { currentNomination: nomination })
+	          )
 	        );
 	      });
 	      return _react2.default.createElement(
@@ -32347,6 +32353,8 @@
 	
 	var _styles2 = _interopRequireDefault(_styles);
 	
+	var _reactRouter = __webpack_require__(186);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32383,7 +32391,7 @@
 	          return;
 	        }
 	        var results = response.results;
-	
+	        console.log("NAME OF: " + JSON.stringify(results));
 	        _this2.setState({
 	          list: results
 	        });
@@ -32423,7 +32431,11 @@
 	        return _react2.default.createElement(
 	          'li',
 	          { key: i },
-	          _react2.default.createElement(_LeadActress2.default, { currentNomination: nomination })
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: "/actor/" + nomination.leadActressName },
+	            _react2.default.createElement(_LeadActress2.default, { currentNomination: nomination })
+	          )
 	        );
 	      });
 	      return _react2.default.createElement(
@@ -32473,6 +32485,8 @@
 	var _styles = __webpack_require__(254);
 	
 	var _styles2 = _interopRequireDefault(_styles);
+	
+	var _reactRouter = __webpack_require__(186);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -32553,7 +32567,11 @@
 	        return _react2.default.createElement(
 	          'li',
 	          { key: i },
-	          _react2.default.createElement(_SupportingActor2.default, { currentNomination: nomination })
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: "/actor/" + nomination.supportingActorName },
+	            _react2.default.createElement(_SupportingActor2.default, { currentNomination: nomination })
+	          )
 	        );
 	      });
 	      return _react2.default.createElement(
@@ -32603,6 +32621,8 @@
 	var _styles = __webpack_require__(254);
 	
 	var _styles2 = _interopRequireDefault(_styles);
+	
+	var _reactRouter = __webpack_require__(186);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -32680,7 +32700,11 @@
 	        return _react2.default.createElement(
 	          'li',
 	          { key: i },
-	          _react2.default.createElement(_SupportingActress2.default, { currentNomination: nomination })
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: "/actor/" + nomination.supportingActressName },
+	            _react2.default.createElement(_SupportingActress2.default, { currentNomination: nomination })
+	          )
 	        );
 	      });
 	      return _react2.default.createElement(
