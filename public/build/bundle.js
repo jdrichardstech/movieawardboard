@@ -33314,7 +33314,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+		value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -33338,210 +33338,236 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var SingleMovie = function (_Component) {
-			_inherits(SingleMovie, _Component);
+		_inherits(SingleMovie, _Component);
 	
-			function SingleMovie() {
-					_classCallCheck(this, SingleMovie);
+		function SingleMovie() {
+			_classCallCheck(this, SingleMovie);
 	
-					var _this = _possibleConstructorReturn(this, (SingleMovie.__proto__ || Object.getPrototypeOf(SingleMovie)).call(this));
+			var _this = _possibleConstructorReturn(this, (SingleMovie.__proto__ || Object.getPrototypeOf(SingleMovie)).call(this));
 	
-					_this.state = {
-							singleMovie: {}
-					};
-					return _this;
+			_this.state = {
+	
+				singleMovie: {
+					castList: []
+				}
+			};
+			return _this;
+		}
+	
+		_createClass(SingleMovie, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var _this2 = this;
+	
+				var url = 'https://api.themoviedb.org/3/movie/' + this.props.params.id + '?api_key=4160bdc56f74445097c8012631f85743&append_to_response=videos';
+	
+				var updated = Object.assign({}, this.state.singleMovie);
+				_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+					if (err) {
+						alert('ERROR: ' + err);
+						return;
+					}
+	
+					var castURL = 'https://api.themoviedb.org/3/movie/' + _this2.props.params.id + '/credits?api_key=4160bdc56f74445097c8012631f85743';
+					_superagent2.default.get(castURL).query(null).set('Accept', 'application/json').end(function (err, res) {
+						if (err) {
+							alert('ERROR: ' + err);
+							return;
+						}
+						var credits = res.body.cast;
+						// console.log("CREDITS: " + JSON.stringify(credits))
+						var castList = [];
+						credits.map(function (castMember, i) {
+							if (i < 10) {
+								castList.push(castMember);
+							}
+						});
+	
+						console.log("INNER CAST: " + JSON.stringify(updated));
+						var movie = response.body;
+						var posterpath = movie.poster_path;
+						var youtubeID = null;
+						if (movie.videos['results'].length != 0) {
+							youtubeID = movie.videos['results'][0].key;
+						} else {
+							youtubeID = "novideo";
+						}
+						var budget = movie.budget;
+						var overview = movie.overview;
+						var popularity = movie.popularity;
+						var runtime = movie.runtime;
+						var voteCount = movie.vote_count;
+						var voteAverage = movie.vote_average;
+						var imdbID = movie.imdb_id;
+						var releaseDate = movie.release_date;
+						var status = movie.status;
+						var tagline = movie.tagline;
+						var homepage = movie.homepage;
+						// console.log("SINGLE POSTER PATH: " + posterpath)
+	
+						updated['posterpath'] = posterpath;
+						updated['youtubeID'] = youtubeID;
+						updated['budget'] = budget;
+						updated['overview'] = overview;
+						updated['popularity'] = popularity;
+						updated['runtime'] = runtime;
+						updated['voteCount'] = voteCount;
+						updated['voteAverage'] = voteAverage;
+						updated['imdbID'] = imdbID;
+						updated['releaseDate'] = releaseDate;
+						updated['status'] = status;
+						updated['tagline'] = tagline;
+						updated['homepage'] = homepage;
+						updated['castList'] = castList;
+	
+						_this2.setState({
+							singleMovie: updated
+						});
+						console.log("SingleMovie " + JSON.stringify(_this2.state.singleMovie));
+					});
+				});
 			}
+		}, {
+			key: 'render',
+			value: function render() {
 	
-			_createClass(SingleMovie, [{
-					key: 'componentDidMount',
-					value: function componentDidMount() {
-							var _this2 = this;
+				var movie = this.state.singleMovie;
+				if (movie != null) {
+					console.log('CASTLSIST: ' + JSON.stringify(movie.castList));
+				}
+				var content = this.state.singleMovie != null ? _react2.default.createElement(
+					'center',
+					null,
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/' },
+						'Home'
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w342/' + movie.posterpath }),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: "/movietrailer/" + this.props.params.id + "/" + movie.youtubeID },
+						_react2.default.createElement(
+							'button',
+							{ className: 'btn btn-default' },
+							'Watch Trailer'
+						)
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(
+							'h4',
+							null,
+							movie.overview
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							null,
+							'Runtime: ',
+							movie.runtime
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							null,
+							'Budget: $',
+							movie.budget
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							null,
+							'Popularity: ',
+							movie.popularity
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							null,
+							'Release Date: ',
+							movie.releaseDate
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							null,
+							'Status: ',
+							movie.status
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							null,
+							'Tag Line: ',
+							movie.tagline
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							null,
+							'Homepage: ',
+							_react2.default.createElement(
+								'a',
+								{ href: this.state.homepage, target: '_blank' },
+								movie.homepage
+							)
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h5',
+							null,
+							_react2.default.createElement(
+								'span',
+								{ style: { paddingRight: 20 } },
+								'Vote Count: ',
+								movie.voteCount,
+								'  '
+							),
+							'Vote Average: ',
+							movie.voteAverage
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'a',
+							{ target: '_blank', href: "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=nv_sr_1" },
+							'IMDB Profile'
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement('br', null)
+					),
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/' },
+						'Home'
+					)
+				) : null;
 	
-							var url = 'https://api.themoviedb.org/3/movie/' + this.props.params.id + '?api_key=4160bdc56f74445097c8012631f85743&append_to_response=videos';
+				return _react2.default.createElement(
+					'div',
+					{ style: { marginTop: 50, padding: '0 30% 20px 30%' } },
+					content
+				);
+			}
+		}]);
 	
-							_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
-									if (err) {
-											alert('ERROR: ' + err);
-											return;
-									}
-	
-									var movie = response.body;
-									var posterpath = movie.poster_path;
-									var youtubeID = null;
-									if (movie.videos['results'].length != 0) {
-											youtubeID = movie.videos['results'][0].key;
-									} else {
-											youtubeID = "novideo";
-									}
-									var budget = movie.budget;
-									var overview = movie.overview;
-									var popularity = movie.popularity;
-									var runtime = movie.runtime;
-									var voteCount = movie.vote_count;
-									var voteAverage = movie.vote_average;
-									var imdbID = movie.imdb_id;
-									var releaseDate = movie.release_date;
-									var status = movie.status;
-									var tagline = movie.tagline;
-									var homepage = movie.homepage;
-									// console.log("SINGLE POSTER PATH: " + posterpath)
-									var updated = Object.assign({}, _this2.state.singleMovie);
-									updated['posterpath'] = posterpath;
-									updated['youtubeID'] = youtubeID;
-									updated['budget'] = budget;
-									updated['overview'] = overview;
-									updated['popularity'] = popularity;
-									updated['runtime'] = runtime;
-									updated['voteCount'] = voteCount;
-									updated['voteAverage'] = voteAverage;
-									updated['imdbID'] = imdbID;
-									updated['releaseDate'] = releaseDate;
-									updated['status'] = status;
-									updated['tagline'] = tagline;
-									updated['homepage'] = homepage;
-	
-									_this2.setState({
-											singleMovie: updated
-									});
-									// console.log("SingleMovie " + JSON.stringify(this.state.singleMovie))
-							});
-					}
-			}, {
-					key: 'render',
-					value: function render() {
-							var movie = this.state.singleMovie;
-							var content = this.state.singleMovie != null ? _react2.default.createElement(
-									'center',
-									null,
-									_react2.default.createElement(
-											_reactRouter.Link,
-											{ to: '/' },
-											'Home'
-									),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w342/' + movie.posterpath }),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement(
-											_reactRouter.Link,
-											{ to: "/movietrailer/" + this.props.params.id + "/" + movie.youtubeID },
-											_react2.default.createElement(
-													'button',
-													{ className: 'btn btn-default' },
-													'Watch Trailer'
-											)
-									),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement(
-											'div',
-											null,
-											_react2.default.createElement(
-													'h4',
-													null,
-													movie.overview
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													null,
-													'Runtime: ',
-													movie.runtime
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													null,
-													'Budget: $',
-													movie.budget
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													null,
-													'Popularity: ',
-													movie.popularity
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													null,
-													'Release Date: ',
-													movie.releaseDate
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													null,
-													'Status: ',
-													movie.status
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													null,
-													'Tag Line: ',
-													movie.tagline
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													null,
-													'Homepage: ',
-													_react2.default.createElement(
-															'a',
-															{ href: this.state.homepage, target: '_blank' },
-															movie.homepage
-													)
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'h5',
-													null,
-													_react2.default.createElement(
-															'span',
-															{ style: { paddingRight: 20 } },
-															'Vote Count: ',
-															movie.voteCount,
-															'  '
-													),
-													'Vote Average: ',
-													movie.voteAverage
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'a',
-													{ target: '_blank', href: "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=nv_sr_1" },
-													'IMDB Profile'
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null)
-									),
-									_react2.default.createElement(
-											_reactRouter.Link,
-											{ to: '/' },
-											'Home'
-									)
-							) : null;
-	
-							return _react2.default.createElement(
-									'div',
-									{ style: { marginTop: 50, padding: '0 30% 20px 30%' } },
-									content
-							);
-					}
-			}]);
-	
-			return SingleMovie;
+		return SingleMovie;
 	}(_react.Component);
 	
 	exports.default = SingleMovie;

@@ -7,7 +7,10 @@ class SingleMovie extends Component{
   constructor(){
     super()
     this.state={
-			singleMovie:{}
+
+			singleMovie:{
+				castList:[]
+			}
 		}
   }
 
@@ -15,6 +18,9 @@ class SingleMovie extends Component{
     let url=
 		`https://api.themoviedb.org/3/movie/${this.props.params.id}?api_key=4160bdc56f74445097c8012631f85743&append_to_response=videos`
 
+
+
+		let updated = Object.assign({}, this.state.singleMovie)
 	  superagent
 	  .get(url)
 	  .query(null)
@@ -25,51 +31,82 @@ class SingleMovie extends Component{
 	      return
 	    }
 
-    let movie = response.body
-    let posterpath=movie.poster_path
-    let youtubeID = null
-    if(movie.videos['results'].length !=0){
-       youtubeID= movie.videos['results'][0].key
-    }else{
-      youtubeID="novideo"
-    }
-    let budget=movie.budget
-    let overview=movie.overview
-    let popularity=movie.popularity
-    let runtime=movie.runtime
-    let voteCount = movie.vote_count
-    let voteAverage = movie.vote_average
-    let imdbID = movie.imdb_id
-		let releaseDate = movie.release_date
-		let status = movie.status
-		let tagline = movie.tagline
-		let homepage = movie.homepage
-    // console.log("SINGLE POSTER PATH: " + posterpath)
-		let updated = Object.assign({}, this.state.singleMovie)
-		updated['posterpath'] = posterpath
-		updated['youtubeID'] = youtubeID
-		updated['budget'] = budget
-		updated['overview'] = overview
-		updated['popularity'] = popularity
-		updated['runtime'] = runtime
-		updated['voteCount'] = voteCount
-		updated['voteAverage'] = voteAverage
-		updated['imdbID'] = imdbID
-		updated['releaseDate'] = releaseDate
-		updated['status'] = status
-		updated['tagline'] = tagline
-		updated['homepage'] = homepage
+		let castURL = `https://api.themoviedb.org/3/movie/${this.props.params.id}/credits?api_key=4160bdc56f74445097c8012631f85743`
+			superagent
+			.get(castURL)
+			.query(null)
+			.set('Accept', 'application/json')
+		  .end((err, res) => {
+		    if (err){
+		      alert('ERROR: '+err)
+		      return
+		    }
+				let credits = res.body.cast
+				// console.log("CREDITS: " + JSON.stringify(credits))
+				let castList = []
+				credits.map((castMember, i) => {
+					if(i < 10){
+						castList.push(castMember)
+					}
+				})
 
-    this.setState({
-      singleMovie: updated
-    })
-    // console.log("SingleMovie " + JSON.stringify(this.state.singleMovie))
+				 console.log("INNER CAST: " + JSON.stringify(updated))
+				 let movie = response.body
+				 let posterpath=movie.poster_path
+				 let youtubeID = null
+				 if(movie.videos['results'].length !=0){
+						youtubeID= movie.videos['results'][0].key
+				 }else{
+					 youtubeID="novideo"
+				 }
+				 let budget=movie.budget
+				 let overview=movie.overview
+				 let popularity=movie.popularity
+				 let runtime=movie.runtime
+				 let voteCount = movie.vote_count
+				 let voteAverage = movie.vote_average
+				 let imdbID = movie.imdb_id
+				 let releaseDate = movie.release_date
+				 let status = movie.status
+				 let tagline = movie.tagline
+				 let homepage = movie.homepage
+				 // console.log("SINGLE POSTER PATH: " + posterpath)
+
+				 updated['posterpath'] = posterpath
+				 updated['youtubeID'] = youtubeID
+				 updated['budget'] = budget
+				 updated['overview'] = overview
+				 updated['popularity'] = popularity
+				 updated['runtime'] = runtime
+				 updated['voteCount'] = voteCount
+				 updated['voteAverage'] = voteAverage
+				 updated['imdbID'] = imdbID
+				 updated['releaseDate'] = releaseDate
+				 updated['status'] = status
+				 updated['tagline'] = tagline
+				 updated['homepage'] = homepage
+				 updated['castList']=castList
+
+
+
+				 this.setState({
+					 singleMovie: updated
+				 })
+					console.log("SingleMovie " + JSON.stringify(this.state.singleMovie))
+			})
+
+
   })
 }
 
   render(){
+
 		let movie = this.state.singleMovie
+		if(movie !=null){
+			console.log('CASTLSIST: ' + JSON.stringify(movie.castList))
+		}
 		let content = (this.state.singleMovie != null) ?
+
 		<center>
 			<Link to = "/">Home</Link><br /><br />
 				<img src={`https://image.tmdb.org/t/p/w342/${movie.posterpath}`} /><br /><br />
@@ -90,7 +127,7 @@ class SingleMovie extends Component{
 		</center>
 		:
 		null
-		
+
     return(
       <div style={{marginTop:50, padding:'0 30% 20px 30%'}}>
        {content}
