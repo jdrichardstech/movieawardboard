@@ -32383,6 +32383,7 @@
 	          return;
 	        }
 	        var results = response.results;
+	
 	        _this2.setState({
 	          list: results
 	        });
@@ -33470,12 +33471,7 @@
 					),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement('br', null),
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/singlemovie/' + movie.id },
-						_react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w185/' + movie.posterpath })
-					),
-					_react2.default.createElement('br', null),
+					_react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w185/' + movie.posterpath }),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
 						_reactRouter.Link,

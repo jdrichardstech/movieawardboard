@@ -117,8 +117,12 @@ class SingleMovie extends Component{
 
 		<center>
 			<Link to = "/">Home</Link><br /><br />
-				<Link to = {`/singlemovie/${movie.id}`}><img src={`https://image.tmdb.org/t/p/w185/${movie.posterpath}`} /></Link><br /><br />
-					<Link to = {"/movietrailer/"+this.props.params.id+"/"+movie.youtubeID}><button className="btn btn-default">Watch Trailer</button></Link><br /><br />
+
+					<img src={`https://image.tmdb.org/t/p/w185/${movie.posterpath}`} /><br />
+
+				<Link to = {"/movietrailer/"+this.props.params.id+"/"+movie.youtubeID}>
+					<button className="btn btn-default">Watch Trailer</button>
+				</Link><br /><br />
 			<div>
 				<h4>{movie.overview}</h4><br /><br />
 				<ul style={{listStyleType:'none'}}>{actor}</ul><br />

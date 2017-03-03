@@ -21,6 +21,7 @@ class LeadActresses extends Component{
 				return
 			}
 			let results = response.results
+
 			this.setState({
 				list: results
 			})
