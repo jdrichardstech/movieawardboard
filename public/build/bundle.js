@@ -60,7 +60,7 @@
 	
 	var _containers = __webpack_require__(245);
 	
-	var _layout = __webpack_require__(307);
+	var _layout = __webpack_require__(315);
 	
 	var _presentation = __webpack_require__(173);
 	
@@ -27571,6 +27571,8 @@
 		}, {
 			key: 'submitSearch',
 			value: function submitSearch(event) {
+				var url = 'https://www.google.com/search?q=' + this.state.castName + '+cast&oq=' + this.state.castName + '+cast&aqs=chrome..69i57.3111j0j7&sourceid=chrome&ie=UTF-8';
+				window.open(url, '_blank');
 				this.refs.actorName.value = '';
 			}
 		}, {
@@ -27595,8 +27597,8 @@
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
 						'button',
-						{ className: 'btn btn-success', style: _styles2.default.nominations.button, onClick: this.submitSearch.bind(this), href: 'https://www.google.com/search?q=' + this.state.castName + '+cast&oq=' + this.state.castName + '+cast&aqs=chrome..69i57.3111j0j7&sourceid=chrome&ie=UTF-8', target: '_blank' },
-						'Find Movie Cast'
+						{ className: 'btn btn-success', style: _styles2.default.nominations.button, onClick: this.submitSearch.bind(this) },
+						' Find Movie Cast'
 					),
 					_react2.default.createElement('br', null)
 				);
@@ -27671,15 +27673,15 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _MoviesNowPlaying = __webpack_require__(304);
+	var _MoviesNowPlaying = __webpack_require__(312);
 	
 	var _MoviesNowPlaying2 = _interopRequireDefault(_MoviesNowPlaying);
 	
-	var _ActorInfo = __webpack_require__(305);
+	var _ActorInfo = __webpack_require__(313);
 	
 	var _ActorInfo2 = _interopRequireDefault(_ActorInfo);
 	
-	var _Auth = __webpack_require__(306);
+	var _Auth = __webpack_require__(314);
 	
 	var _Auth2 = _interopRequireDefault(_Auth);
 	
@@ -33378,7 +33380,7 @@
 						// console.log("CREDITS: " + JSON.stringify(credits))
 						var castList = [];
 						credits.map(function (castMember, i) {
-							if (i < 10) {
+							if (i < 12) {
 								castList.push(castMember);
 							}
 						});
@@ -33432,8 +33434,31 @@
 			value: function render() {
 	
 				var movie = this.state.singleMovie;
+				var actor = null;
 				if (movie != null) {
-					console.log('CASTLSIST: ' + JSON.stringify(movie.castList));
+	
+					actor = movie.castList.map(function (castMember, i) {
+						var actorImage = castMember.profile_path == null ? _react2.default.createElement('img', { style: { width: 92, height: 138, borderRadius: 10 }, src: '/assets/img/actor_placeholder.jpg' }) : _react2.default.createElement('img', { style: { borderRadius: 10 }, src: "http://image.tmdb.org/t/p/w92//" + castMember.profile_path });
+						return _react2.default.createElement(
+							_reactRouter.Link,
+							{ to: "/actor/" + castMember.name.toLowerCase() },
+							_react2.default.createElement(
+								'li',
+								{ style: { float: 'left', paddingRight: 10 }, key: i },
+								actorImage,
+								_react2.default.createElement('br', null),
+								_react2.default.createElement(
+									'span',
+									null,
+									castMember.name,
+									_react2.default.createElement('br', null),
+									'"',
+									castMember.character,
+									'"'
+								)
+							)
+						);
+					});
 				}
 				var content = this.state.singleMovie != null ? _react2.default.createElement(
 					'center',
@@ -33445,7 +33470,11 @@
 					),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement('br', null),
-					_react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w342/' + movie.posterpath }),
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/singlemovie/' + movie.id },
+						_react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w185/' + movie.posterpath })
+					),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
@@ -33470,8 +33499,14 @@
 						_react2.default.createElement('br', null),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement(
+							'ul',
+							{ style: { listStyleType: 'none' } },
+							actor
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
 							'h5',
-							null,
+							{ style: { clear: 'left' } },
 							'Runtime: ',
 							movie.runtime
 						),
@@ -33482,14 +33517,6 @@
 							null,
 							'Budget: $',
 							movie.budget
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'h5',
-							null,
-							'Popularity: ',
-							movie.popularity
 						),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement('br', null),
@@ -33512,35 +33539,12 @@
 						_react2.default.createElement(
 							'h5',
 							null,
-							'Tag Line: ',
-							movie.tagline
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'h5',
-							null,
 							'Homepage: ',
 							_react2.default.createElement(
 								'a',
 								{ href: this.state.homepage, target: '_blank' },
 								movie.homepage
 							)
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'h5',
-							null,
-							_react2.default.createElement(
-								'span',
-								{ style: { paddingRight: 20 } },
-								'Vote Count: ',
-								movie.voteCount,
-								'  '
-							),
-							'Vote Average: ',
-							movie.voteAverage
 						),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement('br', null),
@@ -33610,11 +33614,11 @@
 	
 	var _CheckUser2 = _interopRequireDefault(_CheckUser);
 	
-	var _reactDropzone = __webpack_require__(310);
+	var _reactDropzone = __webpack_require__(304);
 	
 	var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
 	
-	var _sha = __webpack_require__(311);
+	var _sha = __webpack_require__(305);
 	
 	var _sha2 = _interopRequireDefault(_sha);
 	
@@ -34320,683 +34324,6 @@
 /* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-			value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(186);
-	
-	var _Header = __webpack_require__(301);
-	
-	var _Header2 = _interopRequireDefault(_Header);
-	
-	var _superagent = __webpack_require__(249);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var MoviesNowPlaying = function (_Component) {
-			_inherits(MoviesNowPlaying, _Component);
-	
-			function MoviesNowPlaying(props) {
-					_classCallCheck(this, MoviesNowPlaying);
-	
-					var _this = _possibleConstructorReturn(this, (MoviesNowPlaying.__proto__ || Object.getPrototypeOf(MoviesNowPlaying)).call(this, props));
-	
-					_this.state = {
-							movies: []
-					};
-					return _this;
-			}
-	
-			_createClass(MoviesNowPlaying, [{
-					key: 'componentDidMount',
-					value: function componentDidMount() {
-							var _this2 = this;
-	
-							var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=4160bdc56f74445097c8012631f85743&language=en-US&page=1';
-	
-							_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
-									if (err) {
-											alert('ERROR: ' + err);
-											return;
-									}
-	
-									var movies = response.body.results;
-									_this2.setState({
-											movies: movies
-									});
-							});
-					}
-			}, {
-					key: 'render',
-					value: function render() {
-							var movieList = null;
-							if (this.state.movies != null) {
-									var movies = this.state.movies;
-	
-									movieList = movies.map(function (movie, i) {
-											if (movie.poster_path == null) {
-													return _react2.default.createElement(
-															'div',
-															{ className: 'col-md-3', key: i },
-															_react2.default.createElement(
-																	'li',
-																	{ style: { marginBottom: 20 } },
-																	_react2.default.createElement(
-																			'h6',
-																			null,
-																			'No Image'
-																	),
-																	_react2.default.createElement('br', null),
-																	_react2.default.createElement(
-																			'h6',
-																			null,
-																			movie.title
-																	),
-																	' '
-															)
-													);
-											} else {
-													return _react2.default.createElement(
-															'div',
-															{ className: 'col-md-3', key: i },
-															_react2.default.createElement(
-																	'li',
-																	{ style: { marginBottom: 50 } },
-																	_react2.default.createElement(
-																			_reactRouter.Link,
-																			{ to: '/singlemovie/' + movie.id },
-																			_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
-																	),
-																	' '
-															)
-													);
-											}
-									});
-							}
-	
-							return _react2.default.createElement(
-									'div',
-									null,
-									_react2.default.createElement(_Header2.default, null),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement(
-											'div',
-											{ className: 'container' },
-											_react2.default.createElement(
-													'center',
-													null,
-													_react2.default.createElement(
-															'h1',
-															null,
-															'Now In Theatres'
-													),
-													_react2.default.createElement(
-															'h4',
-															null,
-															'Movies currently released for public viewing'
-													),
-													_react2.default.createElement('hr', { style: { width: '40%' } })
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement(
-													'div',
-													{ className: 'clearfix' },
-													_react2.default.createElement(
-															'ul',
-															{ style: { listStyleType: 'none' } },
-															movieList
-													)
-											)
-									)
-							);
-					}
-			}]);
-	
-			return MoviesNowPlaying;
-	}(_react.Component);
-	
-	exports.default = MoviesNowPlaying;
-
-/***/ },
-/* 305 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _superagent = __webpack_require__(249);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
-	
-	var _reactRouter = __webpack_require__(186);
-	
-	var _styles = __webpack_require__(254);
-	
-	var _styles2 = _interopRequireDefault(_styles);
-	
-	var _containers = __webpack_require__(245);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ActorInfo = function (_Component) {
-		_inherits(ActorInfo, _Component);
-	
-		function ActorInfo() {
-			_classCallCheck(this, ActorInfo);
-	
-			var _this = _possibleConstructorReturn(this, (ActorInfo.__proto__ || Object.getPrototypeOf(ActorInfo)).call(this));
-	
-			_this.state = {
-				actorKnownForList: [],
-				actorInfo: {},
-				length: 0
-			};
-			return _this;
-		}
-	
-		_createClass(ActorInfo, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				var _this2 = this;
-	
-				var actorName = this.props.params.actorName;
-				actorName = actorName.replace(/\s+/g, '+').toLowerCase(); //get rid of spaces and replace space with a + sign
-	
-				var url = 'https://api.themoviedb.org/3/search/person?api_key=4160bdc56f74445097c8012631f85743&query=' + actorName;
-				_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
-					if (err) {
-						alert(err);
-						return;
-					}
-					var info = response.body.results;
-					var length = info.length; //this is the length of the array the results are in
-	
-					// console.log("ACTOR RESPONSE: " + JSON.stringify(info[0]['known_for'][0]['poster_path']))
-					if (info.length == 0) {
-						alert("Nobody by that name");
-						return;
-					}
-					var actorKnownForList = Object.assign([], _this2.state.actorKnownForList);
-					for (var i = 0; i < info[0]['known_for'].length; i++) {
-						// console.log(i)
-						actorKnownForList.push(info[0]['known_for'][i]['poster_path']);
-					}
-	
-					// console.log("ACTOR LIST: " + JSON.stringify(actorKnownForList))
-					var id = info[0].id;
-					_superagent2.default.get('https://api.themoviedb.org/3/person/' + id + '?api_key=4160bdc56f74445097c8012631f85743&append_to_response=images').query(null).set('Accept', 'application/json').end(function (err, res) {
-						if (err) {
-							alert(err);
-							return;
-						}
-						// console.log("2nd query: " + JSON.stringify(res.body))
-						var placeOfBirth = res.body.place_of_birth;
-						if (placeOfBirth == null) {
-							placeOfBirth = 'unknown';
-						}
-						var biography = res.body.biography;
-						var imdbId = res.body.imdb_id;
-						var actorImage = res.body.profile_path;
-						var jsonBirthday = res.body.birthday;
-						var birthdayArr = jsonBirthday.split('-');
-						var year = birthdayArr.shift();
-						birthdayArr.push(year);
-						var birthday = birthdayArr.join('-');
-						console.log("BIRTHDAY: " + JSON.stringify(birthday));
-						// let birthdayArr = birthday.split('-')
-						// let year= birthdayArr.shift()
-						// birthdayArr = birthdayArr.push(year)
-						// // let newBirthday = birthdayArr.join('-')
-						// console.log("BIRTHDAY: "+ JSON.stringify(birthdayArr))
-	
-						var actorInfo = Object.assign({}, _this2.state.actorInfo);
-						actorInfo['placeOfBirth'] = placeOfBirth;
-						actorInfo['biography'] = biography;
-						actorInfo['imdbId'] = imdbId;
-						actorInfo['actorImage'] = actorImage;
-						actorInfo['birthday'] = birthday;
-	
-						_this2.setState({
-							actorInfo: actorInfo,
-							actorKnownForList: actorKnownForList,
-							length: length
-						});
-					});
-				});
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var moviesKnownFor = this.state.actorKnownForList.map(function (posterId, i) {
-					return _react2.default.createElement('img', { key: i, style: { paddingRight: 20 }, src: "http://image.tmdb.org/t/p/w185//" + posterId });
-				});
-				var actor = this.state.actorInfo;
-				// console.log("LENGTH: " + JSON.stringify(actor.length))
-				var content = this.state.length == 0 ? 'NOBODY BY THAT NAME' : _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'div',
-						{ className: 'container' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'row' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'col-md-12' },
-								_react2.default.createElement(
-									'center',
-									null,
-									_react2.default.createElement(
-										'h1',
-										{ style: { padding: '50px 0' } },
-										this.props.params.actorName
-									)
-								)
-							)
-						)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'container', style: { padding: 50, border: '1px solid white', marginBottom: 50 } },
-						_react2.default.createElement(
-							'div',
-							{ className: 'row' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'col-md-3' },
-								_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w342/' + actor.actorImage }),
-								_react2.default.createElement('br', null),
-								_react2.default.createElement(
-									'p',
-									{ style: { marginTop: 20 } },
-									'Born in: ',
-									actor.placeOfBirth
-								),
-								_react2.default.createElement(
-									'p',
-									null,
-									'Birthday: ',
-									actor.birthday
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'col-md-8 col-md-offset-1' },
-								_react2.default.createElement(
-									'h3',
-									null,
-									'Biography:'
-								),
-								_react2.default.createElement(
-									'p',
-									{ style: { marginBottom: 30 } },
-									actor.biography
-								),
-								_react2.default.createElement(
-									'h3',
-									null,
-									'Also Known For:'
-								),
-								_react2.default.createElement(
-									'center',
-									null,
-									_react2.default.createElement(
-										'p',
-										null,
-										moviesKnownFor
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'row' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'col-md-12' },
-								_react2.default.createElement(
-									'center',
-									null,
-									_react2.default.createElement(
-										_reactRouter.Link,
-										{ to: '/' },
-										_react2.default.createElement(
-											'button',
-											_defineProperty({ style: _styles2.default.nominations.button, type: '', className: 'btn btn-info btn-lg' }, 'style', { margin: '30px auto' }),
-											'Home'
-										)
-									)
-								)
-							)
-						)
-					)
-				);
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(_containers.Header, null),
-					content
-				);
-			}
-		}]);
-	
-		return ActorInfo;
-	}(_react.Component);
-	
-	exports.default = ActorInfo;
-
-/***/ },
-/* 306 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	exports.default = function (ComposedComponent) {
-		var Auth = function (_Component) {
-			_inherits(Auth, _Component);
-	
-			function Auth() {
-				_classCallCheck(this, Auth);
-	
-				return _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
-			}
-	
-			_createClass(Auth, [{
-				key: 'componentDidMount',
-				value: function componentDidMount() {
-					if (this.props.user == null) {
-						this.context.router.push('/account');
-					}
-				}
-			}, {
-				key: 'componentWillUpdate',
-				value: function componentWillUpdate() {
-					if (this.props.user == null) {
-						this.context.router.push('/account');
-						return;
-					}
-					if (this.props.user != null) {
-						this.context.router.push('/');
-						return;
-					}
-				}
-			}, {
-				key: 'render',
-				value: function render() {
-					return _react2.default.createElement(ComposedComponent, this.props);
-				}
-			}]);
-	
-			return Auth;
-		}(_react.Component);
-	
-		Auth.contextTypes = {
-			router: _react.PropTypes.object
-		};
-		var stateToProps = function stateToProps(state) {
-			return {
-				user: state.account.user
-			};
-		};
-		return (0, _reactRedux.connect)(stateToProps)(Auth);
-	};
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(283);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/***/ },
-/* 307 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.MainPage = exports.NominationInputs = undefined;
-	
-	var _NominationInputs = __webpack_require__(308);
-	
-	var _NominationInputs2 = _interopRequireDefault(_NominationInputs);
-	
-	var _MainPage = __webpack_require__(303);
-	
-	var _MainPage2 = _interopRequireDefault(_MainPage);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.NominationInputs = _NominationInputs2.default;
-	exports.MainPage = _MainPage2.default;
-
-/***/ },
-/* 308 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-			value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _LeadActors = __webpack_require__(292);
-	
-	var _LeadActors2 = _interopRequireDefault(_LeadActors);
-	
-	var _LeadActresses = __webpack_require__(293);
-	
-	var _LeadActresses2 = _interopRequireDefault(_LeadActresses);
-	
-	var _SupportingActors = __webpack_require__(294);
-	
-	var _SupportingActors2 = _interopRequireDefault(_SupportingActors);
-	
-	var _SupportingActresses = __webpack_require__(295);
-	
-	var _SupportingActresses2 = _interopRequireDefault(_SupportingActresses);
-	
-	var _OutstandingEnsembles = __webpack_require__(296);
-	
-	var _OutstandingEnsembles2 = _interopRequireDefault(_OutstandingEnsembles);
-	
-	var _BestStunts = __webpack_require__(291);
-	
-	var _BestStunts2 = _interopRequireDefault(_BestStunts);
-	
-	var _Header = __webpack_require__(301);
-	
-	var _Header2 = _interopRequireDefault(_Header);
-	
-	var _reactRouter = __webpack_require__(186);
-	
-	var _styles = __webpack_require__(309);
-	
-	var _styles2 = _interopRequireDefault(_styles);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var NominationInputs = function NominationInputs() {
-			return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(_Header2.default, null),
-					_react2.default.createElement(
-							'div',
-							{ className: 'container' },
-							_react2.default.createElement(
-									'div',
-									{ className: 'row' },
-									_react2.default.createElement(
-											'div',
-											{ className: 'col-md-12' },
-											_react2.default.createElement(
-													'h1',
-													null,
-													'Potential Nominations'
-											),
-											_react2.default.createElement(
-													'h3',
-													null,
-													'Pick five from each category to nominate'
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null)
-									)
-							),
-							_react2.default.createElement(
-									'div',
-									{ className: 'row' },
-									_react2.default.createElement(
-											'div',
-											{ className: 'col-md-12' },
-											_react2.default.createElement(
-													'div',
-													{ className: 'row' },
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_LeadActors2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_LeadActresses2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_SupportingActors2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_SupportingActresses2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_OutstandingEnsembles2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_BestStunts2.default, null)
-													)
-											)
-									)
-							)
-					)
-			);
-	};
-	
-	exports.default = NominationInputs;
-
-/***/ },
-/* 309 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	
-	  layout: {
-	    margin: {
-	      marginTop: 10,
-	      marginBottom: 10
-	    },
-	    border: {
-	      display: 'block',
-	      border: '1px solid #ddd',
-	      borderRadius: 5,
-	      marginBottom: 40,
-	      paddingBottom: 40,
-	      marginTop: 20
-	    },
-	    border2: {
-	      marginRight: 50
-	    },
-	    nomination: {
-	      borderRight: '1px solid #ddd',
-	      paddingRight: 20
-	    }
-	  },
-	  containers: {},
-	  presentation: {},
-	
-	  nominations: {
-	
-	    button: {
-	      marginBottom: 0
-	    }
-	  },
-	
-	  movieForm: {},
-	
-	  movieList: {}
-	};
-
-/***/ },
-/* 310 */
-/***/ function(module, exports, __webpack_require__) {
-
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
 			module.exports = factory(__webpack_require__(1));
@@ -35588,13 +34915,13 @@
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 311 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {(function() {
-	  var crypt = __webpack_require__(316),
-	      utf8 = __webpack_require__(317).utf8,
-	      bin = __webpack_require__(317).bin,
+	  var crypt = __webpack_require__(310),
+	      utf8 = __webpack_require__(311).utf8,
+	      bin = __webpack_require__(311).bin,
 	
 	  // The core
 	  sha1 = function (message) {
@@ -35674,10 +35001,10 @@
 	  module.exports = api;
 	})();
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(312).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(306).Buffer))
 
 /***/ },
-/* 312 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
@@ -35690,9 +35017,9 @@
 	
 	'use strict'
 	
-	var base64 = __webpack_require__(313)
-	var ieee754 = __webpack_require__(314)
-	var isArray = __webpack_require__(315)
+	var base64 = __webpack_require__(307)
+	var ieee754 = __webpack_require__(308)
+	var isArray = __webpack_require__(309)
 	
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -37470,10 +36797,10 @@
 	  return val !== val // eslint-disable-line no-self-compare
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(312).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(306).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 313 */
+/* 307 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -37593,7 +36920,7 @@
 
 
 /***/ },
-/* 314 */
+/* 308 */
 /***/ function(module, exports) {
 
 	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -37683,7 +37010,7 @@
 
 
 /***/ },
-/* 315 */
+/* 309 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -37694,7 +37021,7 @@
 
 
 /***/ },
-/* 316 */
+/* 310 */
 /***/ function(module, exports) {
 
 	(function() {
@@ -37796,7 +37123,7 @@
 
 
 /***/ },
-/* 317 */
+/* 311 */
 /***/ function(module, exports) {
 
 	var charenc = {
@@ -37833,6 +37160,689 @@
 	
 	module.exports = charenc;
 
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+			value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(186);
+	
+	var _Header = __webpack_require__(301);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _superagent = __webpack_require__(249);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var MoviesNowPlaying = function (_Component) {
+			_inherits(MoviesNowPlaying, _Component);
+	
+			function MoviesNowPlaying(props) {
+					_classCallCheck(this, MoviesNowPlaying);
+	
+					var _this = _possibleConstructorReturn(this, (MoviesNowPlaying.__proto__ || Object.getPrototypeOf(MoviesNowPlaying)).call(this, props));
+	
+					_this.state = {
+							movies: []
+					};
+					return _this;
+			}
+	
+			_createClass(MoviesNowPlaying, [{
+					key: 'componentDidMount',
+					value: function componentDidMount() {
+							var _this2 = this;
+	
+							var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=4160bdc56f74445097c8012631f85743&language=en-US&page=1';
+	
+							_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+									if (err) {
+											alert('ERROR: ' + err);
+											return;
+									}
+	
+									var movies = response.body.results;
+									_this2.setState({
+											movies: movies
+									});
+							});
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							var movieList = null;
+							if (this.state.movies != null) {
+									var movies = this.state.movies;
+	
+									movieList = movies.map(function (movie, i) {
+											if (movie.poster_path == null) {
+													return _react2.default.createElement(
+															'div',
+															{ className: 'col-md-3', key: i },
+															_react2.default.createElement(
+																	'li',
+																	{ style: { marginBottom: 20 } },
+																	_react2.default.createElement(
+																			'h6',
+																			null,
+																			'No Image'
+																	),
+																	_react2.default.createElement('br', null),
+																	_react2.default.createElement(
+																			'h6',
+																			null,
+																			movie.title
+																	),
+																	' '
+															)
+													);
+											} else {
+													return _react2.default.createElement(
+															'div',
+															{ className: 'col-md-3', key: i },
+															_react2.default.createElement(
+																	'li',
+																	{ style: { marginBottom: 50 } },
+																	_react2.default.createElement(
+																			_reactRouter.Link,
+																			{ to: '/singlemovie/' + movie.id },
+																			_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
+																	),
+																	' '
+															)
+													);
+											}
+									});
+							}
+	
+							return _react2.default.createElement(
+									'div',
+									null,
+									_react2.default.createElement(_Header2.default, null),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+											'div',
+											{ className: 'container' },
+											_react2.default.createElement(
+													'center',
+													null,
+													_react2.default.createElement(
+															'h1',
+															null,
+															'Now In Theatres'
+													),
+													_react2.default.createElement(
+															'h4',
+															null,
+															'Movies currently released for public viewing'
+													),
+													_react2.default.createElement('hr', { style: { width: '40%' } })
+											),
+											_react2.default.createElement('br', null),
+											_react2.default.createElement(
+													'div',
+													{ className: 'clearfix' },
+													_react2.default.createElement(
+															'ul',
+															{ style: { listStyleType: 'none' } },
+															movieList
+													)
+											)
+									)
+							);
+					}
+			}]);
+	
+			return MoviesNowPlaying;
+	}(_react.Component);
+	
+	exports.default = MoviesNowPlaying;
+
+/***/ },
+/* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _superagent = __webpack_require__(249);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
+	
+	var _reactRouter = __webpack_require__(186);
+	
+	var _styles = __webpack_require__(254);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
+	var _containers = __webpack_require__(245);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ActorInfo = function (_Component) {
+		_inherits(ActorInfo, _Component);
+	
+		function ActorInfo() {
+			_classCallCheck(this, ActorInfo);
+	
+			var _this = _possibleConstructorReturn(this, (ActorInfo.__proto__ || Object.getPrototypeOf(ActorInfo)).call(this));
+	
+			_this.state = {
+	
+				actorKnownForList: [],
+				actorInfo: {},
+				length: 0
+			};
+			return _this;
+		}
+	
+		_createClass(ActorInfo, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var _this2 = this;
+	
+				var actorName = this.props.params.actorName;
+				actorName = actorName.replace(/\s+/g, '+').toLowerCase(); //get rid of spaces and replace space with a + sign
+	
+				var url = 'https://api.themoviedb.org/3/search/person?api_key=4160bdc56f74445097c8012631f85743&query=' + actorName;
+				_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+					if (err) {
+						alert(err);
+						return;
+					}
+					var info = response.body.results;
+					var length = info.length; //this is the length of the array the results are in
+	
+					// console.log("ACTOR RESPONSE: " + JSON.stringify(info[0]['known_for'][0]['poster_path']))
+					if (info.length == 0) {
+						alert("Nobody by that name");
+						return;
+					}
+					var actorKnownForList = Object.assign([], _this2.state.actorKnownForList);
+	
+					for (var i = 0; i < info[0]['known_for'].length; i++) {
+						// console.log(i)
+						actorKnownForList.push(info[0]['known_for'][i]);
+					}
+	
+					console.log("KNOWNFOR: " + JSON.stringify(actorKnownForList));
+					var id = info[0].id;
+					_superagent2.default.get('https://api.themoviedb.org/3/person/' + id + '?api_key=4160bdc56f74445097c8012631f85743&append_to_response=images').query(null).set('Accept', 'application/json').end(function (err, res) {
+						if (err) {
+							alert(err);
+							return;
+						}
+						// console.log("2nd query: " + JSON.stringify(res.body))
+						var placeOfBirth = res.body.place_of_birth;
+						if (placeOfBirth == null) {
+							placeOfBirth = 'unknown';
+						}
+						var biography = res.body.biography;
+						var imdbId = res.body.imdb_id;
+						var actorImage = res.body.profile_path;
+						var jsonBirthday = res.body.birthday;
+						var birthdayArr = jsonBirthday.split('-');
+						var year = birthdayArr.shift();
+						birthdayArr.push(year);
+						var birthday = birthdayArr.join('-');
+						var actorInfo = Object.assign({}, _this2.state.actorInfo);
+						actorInfo['placeOfBirth'] = placeOfBirth;
+						actorInfo['biography'] = biography;
+						actorInfo['imdbId'] = imdbId;
+						actorInfo['actorImage'] = actorImage;
+						actorInfo['birthday'] = birthday;
+	
+						_this2.setState({
+							actorInfo: actorInfo,
+							actorKnownForList: actorKnownForList,
+							length: length
+						});
+					});
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+	
+				var moviesKnownFor = this.state.actorKnownForList.map(function (knownForInfo, i) {
+					return _react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/singlemovie/' + knownForInfo.id },
+						_react2.default.createElement('img', { key: i, style: { paddingRight: 20 }, src: "http://image.tmdb.org/t/p/w185//" + knownForInfo.poster_path })
+					);
+				});
+				var actor = this.state.actorInfo;
+				// console.log("LENGTH: " + JSON.stringify(actor.length))
+				var content = this.state.length == 0 ? 'NOBODY BY THAT NAME' : _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'div',
+						{ className: 'container' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-12' },
+								_react2.default.createElement(
+									'center',
+									null,
+									_react2.default.createElement(
+										'h1',
+										{ style: { padding: '50px 0' } },
+										this.props.params.actorName
+									)
+								)
+							)
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'container', style: { padding: 50, border: '1px solid white', marginBottom: 50 } },
+						_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-3' },
+								_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w342/' + actor.actorImage }),
+								_react2.default.createElement('br', null),
+								_react2.default.createElement(
+									'p',
+									{ style: { marginTop: 20 } },
+									'Born in: ',
+									actor.placeOfBirth
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									'Birthday: ',
+									actor.birthday
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-8 col-md-offset-1' },
+								_react2.default.createElement(
+									'h3',
+									null,
+									'Biography:'
+								),
+								_react2.default.createElement(
+									'p',
+									{ style: { marginBottom: 30 } },
+									actor.biography
+								),
+								_react2.default.createElement(
+									'h3',
+									null,
+									'Also Known For:'
+								),
+								_react2.default.createElement(
+									'center',
+									null,
+									_react2.default.createElement(
+										'p',
+										null,
+										moviesKnownFor
+									),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+										'p',
+										{ style: { fontSize: '.9em' } },
+										'(click image for movie details)'
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-12' },
+								_react2.default.createElement(
+									'center',
+									null,
+									_react2.default.createElement(
+										_reactRouter.Link,
+										{ to: '/' },
+										_react2.default.createElement(
+											'button',
+											_defineProperty({ style: _styles2.default.nominations.button, type: '', className: 'btn btn-info btn-lg' }, 'style', { margin: '50px auto 30px auto' }),
+											'Home'
+										)
+									)
+								)
+							)
+						)
+					)
+				);
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_containers.Header, null),
+					content
+				);
+			}
+		}]);
+	
+		return ActorInfo;
+	}(_react.Component);
+	
+	exports.default = ActorInfo;
+
+/***/ },
+/* 314 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	exports.default = function (ComposedComponent) {
+		var Auth = function (_Component) {
+			_inherits(Auth, _Component);
+	
+			function Auth() {
+				_classCallCheck(this, Auth);
+	
+				return _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
+			}
+	
+			_createClass(Auth, [{
+				key: 'componentDidMount',
+				value: function componentDidMount() {
+					if (this.props.user == null) {
+						this.context.router.push('/account');
+					}
+				}
+			}, {
+				key: 'componentWillUpdate',
+				value: function componentWillUpdate() {
+					if (this.props.user == null) {
+						this.context.router.push('/account');
+						return;
+					}
+					if (this.props.user != null) {
+						this.context.router.push('/');
+						return;
+					}
+				}
+			}, {
+				key: 'render',
+				value: function render() {
+					return _react2.default.createElement(ComposedComponent, this.props);
+				}
+			}]);
+	
+			return Auth;
+		}(_react.Component);
+	
+		Auth.contextTypes = {
+			router: _react.PropTypes.object
+		};
+		var stateToProps = function stateToProps(state) {
+			return {
+				user: state.account.user
+			};
+		};
+		return (0, _reactRedux.connect)(stateToProps)(Auth);
+	};
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(283);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/***/ },
+/* 315 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.MainPage = exports.NominationInputs = undefined;
+	
+	var _NominationInputs = __webpack_require__(316);
+	
+	var _NominationInputs2 = _interopRequireDefault(_NominationInputs);
+	
+	var _MainPage = __webpack_require__(303);
+	
+	var _MainPage2 = _interopRequireDefault(_MainPage);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.NominationInputs = _NominationInputs2.default;
+	exports.MainPage = _MainPage2.default;
+
+/***/ },
+/* 316 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+			value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _LeadActors = __webpack_require__(292);
+	
+	var _LeadActors2 = _interopRequireDefault(_LeadActors);
+	
+	var _LeadActresses = __webpack_require__(293);
+	
+	var _LeadActresses2 = _interopRequireDefault(_LeadActresses);
+	
+	var _SupportingActors = __webpack_require__(294);
+	
+	var _SupportingActors2 = _interopRequireDefault(_SupportingActors);
+	
+	var _SupportingActresses = __webpack_require__(295);
+	
+	var _SupportingActresses2 = _interopRequireDefault(_SupportingActresses);
+	
+	var _OutstandingEnsembles = __webpack_require__(296);
+	
+	var _OutstandingEnsembles2 = _interopRequireDefault(_OutstandingEnsembles);
+	
+	var _BestStunts = __webpack_require__(291);
+	
+	var _BestStunts2 = _interopRequireDefault(_BestStunts);
+	
+	var _Header = __webpack_require__(301);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _reactRouter = __webpack_require__(186);
+	
+	var _styles = __webpack_require__(317);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var NominationInputs = function NominationInputs() {
+			return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_Header2.default, null),
+					_react2.default.createElement(
+							'div',
+							{ className: 'container' },
+							_react2.default.createElement(
+									'div',
+									{ className: 'row' },
+									_react2.default.createElement(
+											'div',
+											{ className: 'col-md-12' },
+											_react2.default.createElement(
+													'h1',
+													null,
+													'Potential Nominations'
+											),
+											_react2.default.createElement(
+													'h3',
+													null,
+													'Pick five from each category to nominate'
+											),
+											_react2.default.createElement('br', null),
+											_react2.default.createElement('br', null)
+									)
+							),
+							_react2.default.createElement(
+									'div',
+									{ className: 'row' },
+									_react2.default.createElement(
+											'div',
+											{ className: 'col-md-12' },
+											_react2.default.createElement(
+													'div',
+													{ className: 'row' },
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_LeadActors2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_LeadActresses2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_SupportingActors2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_SupportingActresses2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_OutstandingEnsembles2.default, null)
+													),
+													_react2.default.createElement(
+															'div',
+															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+															_react2.default.createElement(_BestStunts2.default, null)
+													)
+											)
+									)
+							)
+					)
+			);
+	};
+	
+	exports.default = NominationInputs;
+
+/***/ },
+/* 317 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	
+	  layout: {
+	    margin: {
+	      marginTop: 10,
+	      marginBottom: 10
+	    },
+	    border: {
+	      display: 'block',
+	      border: '1px solid #ddd',
+	      borderRadius: 5,
+	      marginBottom: 40,
+	      paddingBottom: 40,
+	      marginTop: 20
+	    },
+	    border2: {
+	      marginRight: 50
+	    },
+	    nomination: {
+	      borderRight: '1px solid #ddd',
+	      paddingRight: 20
+	    }
+	  },
+	  containers: {},
+	  presentation: {},
+	
+	  nominations: {
+	
+	    button: {
+	      marginBottom: 0
+	    }
+	  },
+	
+	  movieForm: {},
+	
+	  movieList: {}
+	};
 
 /***/ }
 /******/ ]);

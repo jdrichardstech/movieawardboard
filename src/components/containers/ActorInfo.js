@@ -8,6 +8,7 @@ class ActorInfo extends Component{
 	constructor(){
 		super()
 		this.state={
+
 			actorKnownForList:[],
 			actorInfo:{},
 			length:0
@@ -37,12 +38,14 @@ class ActorInfo extends Component{
 					return
 				}
 				let actorKnownForList = Object.assign([], this.state.actorKnownForList)
+
 				for(let i = 0; i < info[0]['known_for'].length;i++){
 					// console.log(i)
-					actorKnownForList.push(info[0]['known_for'][i]['poster_path'])
+					actorKnownForList.push(info[0]['known_for'][i])
+
 				}
 
-				// console.log("ACTOR LIST: " + JSON.stringify(actorKnownForList))
+				console.log("KNOWNFOR: " + JSON.stringify(actorKnownForList))
 				let id = info[0].id
 				superagent
 				.get(`https://api.themoviedb.org/3/person/${id}?api_key=4160bdc56f74445097c8012631f85743&append_to_response=images`)
@@ -66,13 +69,6 @@ class ActorInfo extends Component{
 						let year = birthdayArr.shift()
 						birthdayArr.push(year)
 						let birthday = birthdayArr.join('-')
-						console.log("BIRTHDAY: " + JSON.stringify(birthday))
-						// let birthdayArr = birthday.split('-')
-						// let year= birthdayArr.shift()
-						// birthdayArr = birthdayArr.push(year)
-						// // let newBirthday = birthdayArr.join('-')
-						// console.log("BIRTHDAY: "+ JSON.stringify(birthdayArr))
-
 						let actorInfo = Object.assign({}, this.state.actorInfo)
 						actorInfo['placeOfBirth'] = placeOfBirth
 						actorInfo['biography'] = biography
@@ -90,8 +86,9 @@ class ActorInfo extends Component{
 	}
 
 	render(){
-		let moviesKnownFor = this.state.actorKnownForList.map((posterId, i)=>{
-			return <img key={i} style={{paddingRight:20}} src={"http://image.tmdb.org/t/p/w185//"+posterId} />
+
+		let moviesKnownFor = this.state.actorKnownForList.map((knownForInfo, i)=>{
+			return <Link to = {`/singlemovie/${knownForInfo.id}`}><img key={i} style={{paddingRight:20}} src={"http://image.tmdb.org/t/p/w185//"+knownForInfo.poster_path} /></Link>
 		})
 		let actor = this.state.actorInfo
 		// console.log("LENGTH: " + JSON.stringify(actor.length))
@@ -115,13 +112,16 @@ class ActorInfo extends Component{
 					<h3>Biography:</h3>
 					<p style={{marginBottom:30}}>{actor.biography}</p>
 					<h3>Also Known For:</h3>
-					<center><p>{moviesKnownFor}</p></center>
+					<center>
+						<p>{moviesKnownFor}</p><br />
+						<p style={{fontSize:'.9em'}}>(click image for movie details)</p>
+					</center>
 				</div>
 			</div>
 			<div className="row">
 				<div className="col-md-12">
 					<center>
-						 <Link to = "/"><button style={styles.nominations.button}  type="" className="btn btn-info btn-lg" style={{margin:'30px auto'}}>Home</button></Link>
+						 <Link to = "/"><button style={styles.nominations.button}  type="" className="btn btn-info btn-lg" style={{margin:'50px auto 30px auto'}}>Home</button></Link>
 					</center>
 				</div>
 			</div>

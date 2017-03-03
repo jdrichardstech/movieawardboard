@@ -45,7 +45,7 @@ class SingleMovie extends Component{
 				// console.log("CREDITS: " + JSON.stringify(credits))
 				let castList = []
 				credits.map((castMember, i) => {
-					if(i < 10){
+					if(i < 12){
 						castList.push(castMember)
 					}
 				})
@@ -87,40 +87,49 @@ class SingleMovie extends Component{
 				 updated['homepage'] = homepage
 				 updated['castList']=castList
 
-
-
 				 this.setState({
 					 singleMovie: updated
 				 })
 					console.log("SingleMovie " + JSON.stringify(this.state.singleMovie))
 			})
-
-
   })
 }
 
   render(){
 
 		let movie = this.state.singleMovie
+		let actor = null
 		if(movie !=null){
-			console.log('CASTLSIST: ' + JSON.stringify(movie.castList))
+
+			actor = movie.castList.map((castMember, i)=>{
+				let actorImage = (castMember.profile_path==null)? <img style={{width:92,height:138,borderRadius:10}} src="/assets/img/actor_placeholder.jpg" />: <img style={{borderRadius:10}} src={"http://image.tmdb.org/t/p/w92//"+castMember.profile_path} />
+			return	<Link to={"/actor/"+castMember.name.toLowerCase()}>
+								<li style={{float:'left', paddingRight:10}} key={i}>{actorImage}<br />
+									<span>
+										{castMember.name}<br />
+										"{castMember.character}"
+									</span>
+								</li>
+							</Link>
+			})
 		}
 		let content = (this.state.singleMovie != null) ?
 
 		<center>
 			<Link to = "/">Home</Link><br /><br />
-				<img src={`https://image.tmdb.org/t/p/w342/${movie.posterpath}`} /><br /><br />
+				<Link to = {`/singlemovie/${movie.id}`}><img src={`https://image.tmdb.org/t/p/w185/${movie.posterpath}`} /></Link><br /><br />
 					<Link to = {"/movietrailer/"+this.props.params.id+"/"+movie.youtubeID}><button className="btn btn-default">Watch Trailer</button></Link><br /><br />
 			<div>
 				<h4>{movie.overview}</h4><br /><br />
-				<h5>Runtime: {movie.runtime}</h5><br /><br />
+				<ul style={{listStyleType:'none'}}>{actor}</ul><br />
+				<h5 style={{clear:'left'}}>Runtime: {movie.runtime}</h5><br /><br />
 				<h5>Budget: ${movie.budget}</h5><br /><br />
-				<h5>Popularity: {movie.popularity}</h5><br /><br />
+
 				<h5>Release Date: {movie.releaseDate}</h5><br /><br />
 				<h5>Status: {movie.status}</h5><br /><br />
-				<h5>Tag Line: {movie.tagline}</h5><br /><br />
+
 				<h5>Homepage: <a href={this.state.homepage} target="_blank" >{movie.homepage}</a></h5><br /><br />
-				<h5><span style={{paddingRight:20}}>Vote Count: {movie.voteCount}  </span>Vote Average: {movie.voteAverage}</h5><br /><br />
+
 				<a target="_blank" href={"https://www.imdb.com/title/"+movie.imdbID+"/?ref_=nv_sr_1"}>IMDB Profile</a><br /><br />
 			</div>
 			<Link to = "/">Home</Link>
