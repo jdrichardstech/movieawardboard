@@ -91,6 +91,10 @@ class ActorInfo extends Component{
 			return <Link to = {`/singlemovie/${knownForInfo.id}`}><img key={i} style={{paddingRight:20}} src={"http://image.tmdb.org/t/p/w185//"+knownForInfo.poster_path} /></Link>
 		})
 		let actor = this.state.actorInfo
+		let actorImage = (actor.actorImage !=null)?
+			<img src={`http://image.tmdb.org/t/p/w342/${actor.actorImage}`} />
+			:
+			<img style={{width:342, height:500}} src="/assets/img/noprofile.jpg" />
 		// console.log("LENGTH: " + JSON.stringify(actor.length))
 		let content = (this.state.length == 0) ? 'NOBODY BY THAT NAME' :
 		<div>
@@ -104,7 +108,7 @@ class ActorInfo extends Component{
 			<div className="container" style={{padding:50, border:'1px solid white',marginBottom:50}}>
 			<div className="row">
 				<div className="col-md-3">
-					<img src={`http://image.tmdb.org/t/p/w342/${actor.actorImage}`} /><br />
+					{actorImage}<br />
 					<p style={{marginTop:20}}>Born in: {actor.placeOfBirth}</p>
 					<p>Birthday: {actor.birthday}</p>
 					<p><a href={`http://www.imdb.com/name/${actor.imdbId}/?ref_=nv_sr_1`} target="_blank">IMDB</a></p>

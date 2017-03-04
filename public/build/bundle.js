@@ -33560,7 +33560,7 @@
 							}
 						});
 	
-						console.log("INNER CAST: " + JSON.stringify(updated));
+						console.log("MOVIE NAME: " + JSON.stringify(response.body));
 						var movie = response.body;
 						var posterpath = movie.poster_path;
 						var youtubeID = null;
@@ -33580,8 +33580,10 @@
 						var status = movie.status;
 						var tagline = movie.tagline;
 						var homepage = movie.homepage;
-						// console.log("SINGLE POSTER PATH: " + posterpath)
+						var movieName = movie.title.toLowerCase();
+						console.log("SINGLE POSTER PATH: " + JSON.stringify(movieName));
 	
+						updated['movieName'] = movieName;
 						updated['posterpath'] = posterpath;
 						updated['youtubeID'] = youtubeID;
 						updated['budget'] = budget;
@@ -33607,19 +33609,19 @@
 		}, {
 			key: 'render',
 			value: function render() {
-	
+				var moviePoster = null;
 				var movie = this.state.singleMovie;
 				var actor = null;
 				if (movie != null) {
-	
 					actor = movie.castList.map(function (castMember, i) {
-						var actorImage = castMember.profile_path == null ? _react2.default.createElement('img', { style: { width: 92, height: 138, borderRadius: 10 }, src: '/assets/img/actor_placeholder.jpg' }) : _react2.default.createElement('img', { style: { borderRadius: 10 }, src: "http://image.tmdb.org/t/p/w92//" + castMember.profile_path });
+						moviePoster = movie.posterpath != null ? _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w342/' + movie.posterpath }) : _react2.default.createElement('img', { style: { width: 342, height: 500 }, src: '/assets/img/nomovie.png' });
+						var actorImage = castMember.profile_path == null ? _react2.default.createElement('img', { style: { width: 92, height: 138, borderRadius: 10 }, src: '/assets/img/actor_placeholder.jpg' }) : _react2.default.createElement('img', { style: { borderRadius: 10, width: 92, height: 138 }, src: "http://image.tmdb.org/t/p/w92//" + castMember.profile_path });
 						return _react2.default.createElement(
 							_reactRouter.Link,
 							{ to: "/actor/" + castMember.name.toLowerCase() },
 							_react2.default.createElement(
 								'li',
-								{ style: { float: 'left', paddingRight: 10 }, key: i },
+								{ style: { float: 'left', paddingRight: 10, paddingBottom: 20 }, key: i },
 								actorImage,
 								_react2.default.createElement('br', null),
 								_react2.default.createElement(
@@ -33633,100 +33635,109 @@
 					});
 				}
 				var content = this.state.singleMovie != null ? _react2.default.createElement(
-					'center',
+					'div',
 					null,
 					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/' },
-						'Home'
+						'h1',
+						null,
+						movie.movieName
 					),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w185/' + movie.posterpath }),
-					_react2.default.createElement('br', null),
 					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: "/movietrailer/" + this.props.params.id + "/" + movie.youtubeID },
-						_react2.default.createElement(
-							'button',
-							{ className: 'btn btn-default' },
-							'Watch Trailer'
-						)
-					),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement(
-						'div',
+						'center',
 						null,
 						_react2.default.createElement(
-							'h4',
-							null,
-							movie.overview
+							_reactRouter.Link,
+							{ to: '/' },
+							'Home'
 						),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'ul',
-							{ style: { listStyleType: 'none' } },
-							actor
-						),
+						moviePoster,
 						_react2.default.createElement('br', null),
 						_react2.default.createElement(
-							'h5',
-							{ style: { clear: 'left' } },
-							'Runtime: ',
-							movie.runtime
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'h5',
-							null,
-							'Budget: $',
-							movie.budget
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'h5',
-							null,
-							'Release Date: ',
-							movie.releaseDate
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'h5',
-							null,
-							'Status: ',
-							movie.status
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'h5',
-							null,
-							'Homepage: ',
+							_reactRouter.Link,
+							{ to: "/movietrailer/" + this.props.params.id + "/" + movie.youtubeID },
 							_react2.default.createElement(
-								'a',
-								{ href: this.state.homepage, target: '_blank' },
-								movie.homepage
+								'button',
+								{ className: 'btn btn-default' },
+								'Watch Trailer'
 							)
 						),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement(
-							'a',
-							{ target: '_blank', href: "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=nv_sr_1" },
-							'IMDB Profile'
+							'div',
+							null,
+							_react2.default.createElement(
+								'h4',
+								null,
+								movie.overview
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'ul',
+								{ style: { listStyleType: 'none' } },
+								actor
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'h5',
+								{ style: { clear: 'left' } },
+								'Runtime: ',
+								movie.runtime
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'h5',
+								null,
+								'Budget: $',
+								movie.budget
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'h5',
+								null,
+								'Release Date: ',
+								movie.releaseDate
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'h5',
+								null,
+								'Status: ',
+								movie.status
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'h5',
+								null,
+								'Homepage: ',
+								_react2.default.createElement(
+									'a',
+									{ href: this.state.homepage, target: '_blank' },
+									movie.homepage
+								)
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'a',
+								{ target: '_blank', href: "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=nv_sr_1" },
+								'IMDB Profile'
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement('br', null)
 						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null)
-					),
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/' },
-						'Home'
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/' },
+							'Home'
+						)
 					)
 				) : null;
 	
@@ -37617,6 +37628,7 @@
 					);
 				});
 				var actor = this.state.actorInfo;
+				var actorImage = actor.actorImage != null ? _react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w342/' + actor.actorImage }) : _react2.default.createElement('img', { style: { width: 342, height: 500 }, src: '/assets/img/noprofile.jpg' });
 				// console.log("LENGTH: " + JSON.stringify(actor.length))
 				var content = this.state.length == 0 ? 'NOBODY BY THAT NAME' : _react2.default.createElement(
 					'div',
@@ -37651,7 +37663,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-md-3' },
-								_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w342/' + actor.actorImage }),
+								actorImage,
 								_react2.default.createElement('br', null),
 								_react2.default.createElement(
 									'p',

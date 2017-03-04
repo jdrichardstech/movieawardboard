@@ -50,7 +50,7 @@ class SingleMovie extends Component{
 					}
 				})
 
-				 console.log("INNER CAST: " + JSON.stringify(updated))
+				 console.log("MOVIE NAME: " + JSON.stringify(response.body))
 				 let movie = response.body
 				 let posterpath=movie.poster_path
 				 let youtubeID = null
@@ -70,8 +70,10 @@ class SingleMovie extends Component{
 				 let status = movie.status
 				 let tagline = movie.tagline
 				 let homepage = movie.homepage
-				 // console.log("SINGLE POSTER PATH: " + posterpath)
+				 let movieName = movie.title.toLowerCase()
+				 console.log("SINGLE POSTER PATH: " + JSON.stringify(movieName))
 
+				 updated['movieName'] = movieName
 				 updated['posterpath'] = posterpath
 				 updated['youtubeID'] = youtubeID
 				 updated['budget'] = budget
@@ -96,15 +98,18 @@ class SingleMovie extends Component{
 }
 
   render(){
-
+		let moviePoster = null
 		let movie = this.state.singleMovie
 		let actor = null
 		if(movie !=null){
-
-			actor = movie.castList.map((castMember, i)=>{
-				let actorImage = (castMember.profile_path==null)? <img style={{width:92,height:138,borderRadius:10}} src="/assets/img/actor_placeholder.jpg" />: <img style={{borderRadius:10}} src={"http://image.tmdb.org/t/p/w92//"+castMember.profile_path} />
+				actor = movie.castList.map((castMember, i)=>{
+				moviePoster = (movie.posterpath!=null) ?
+					<img src={`https://image.tmdb.org/t/p/w342/${movie.posterpath}`} />
+					:
+					<img style={{width:342, height:500}} src="/assets/img/nomovie.png" />
+				let actorImage = (castMember.profile_path==null)? <img style={{width:92,height:138,borderRadius:10}} src="/assets/img/actor_placeholder.jpg" />: <img style={{borderRadius:10, width:92,height:138,}} src={"http://image.tmdb.org/t/p/w92//"+castMember.profile_path} />
 			return	<Link to={"/actor/"+castMember.name.toLowerCase()}>
-								<li style={{float:'left', paddingRight:10}} key={i}>{actorImage}<br />
+								<li style={{float:'left', paddingRight:10, paddingBottom:20}} key={i}>{actorImage}<br />
 									<span>
 										{castMember.name}<br />
 									</span>
@@ -113,11 +118,12 @@ class SingleMovie extends Component{
 			})
 		}
 		let content = (this.state.singleMovie != null) ?
-
+		<div>
+			<h1>{movie.movieName}</h1>
 		<center>
 			<Link to = "/">Home</Link><br /><br />
 
-					<img src={`https://image.tmdb.org/t/p/w185/${movie.posterpath}`} /><br />
+					{moviePoster}<br />
 
 				<Link to = {"/movietrailer/"+this.props.params.id+"/"+movie.youtubeID}>
 					<button className="btn btn-default">Watch Trailer</button>
@@ -137,6 +143,7 @@ class SingleMovie extends Component{
 			</div>
 			<Link to = "/">Home</Link>
 		</center>
+	</div>
 		:
 		null
 
