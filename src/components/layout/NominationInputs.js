@@ -12,15 +12,18 @@ import styles from './styles'
 const NominationInputs = () => {
   return(
     <div>
-	    <Header />
+			<Header />
 	    <div className="container">
 	      <div className="row">
 	        <div className="col-md-12">
-	          <h1>Potential Nominations</h1>
-	          <h3>Pick five from each category to nominate</h3><br /><br />
-	        </div>
-	      </div>
-	      <div className="row">
+						<div style={{margin:'40px 0 0 0'}}>
+	          <h1 style={{color:'#ccc', marginTop:40}}>Potential Nominations</h1>
+	          <h4 style={{color:'#ccc'}}>Pick five from each category to nominate</h4><br /><br />
+						</div>
+					</div>
+        </div>
+      </div>
+	      <div className="row" style={{padding:30}}>
 	        <div className="col-md-12">
 	          <div className="row">
 	            <div style={styles.layout.nomination} className="col-md-2">
@@ -45,7 +48,7 @@ const NominationInputs = () => {
 	        </div>
 	      </div>
 	    </div>
-	  </div>
+
   )
 }
 

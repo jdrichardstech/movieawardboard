@@ -27,8 +27,9 @@ class SearchActor extends Component{
 	render(){
 		return(
 			<div>
-				<h2>Get Actor or Actress Info</h2><br />
-				<h5>Enter Name of Actor or Actress:</h5><br />
+				<h2>Actor/Actress Information</h2><br />
+				<p>Enter the name of an Actor or Actress to read their biography, know where they are from, birthdate, or other movies in which they have appeared</p>
+				<label><h5>Name:</h5></label><br />
 				<input className="form-control" onChange={this.updateSearch.bind(this)} style={{backGround:'black',color:'#999'}} id="actorName" ref="actorName" /><br />
 				<Link to={"/actor/"+this.state.actorName}><button className="btn btn-info" style={styles.nominations.button} onClick={this.submitSearch.bind(this)}> Search</button></Link><br />
 			</div>

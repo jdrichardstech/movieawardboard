@@ -54,13 +54,17 @@ class OutstandingEnsembles extends Component{
   render(){
     var listItem = this.state.list.map((nomination, i)=>{
       return(
-         <li key={i}><OutstandingEnsemble currentNomination={nomination} /></li>
+         <li className="tag-box tag-box-v3"style={{marginBottom:30}} key={i}>
+				 	<OutstandingEnsemble idx={i+1} currentNomination={nomination} />
+			 	</li>
        )
     })
-		
+
     return(
-      <div style={styles.nominations.border}>
-        <h4>Outstanding Ensemble:</h4>
+			<div>
+	      <div className="headline" style={{marginBottom:40}}>
+	        <h4>Outstanding <br />Ensemble:</h4>
+				</div>
         <ol style={styles.nominations.other}>
           {listItem}
         </ol>

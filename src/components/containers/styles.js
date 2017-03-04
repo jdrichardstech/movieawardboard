@@ -22,7 +22,8 @@ export default{
 
       margin:0,
       padding:'10px 0',
-      color:'gray'
+      color:'rgb(92, 184, 92)',
+			listStyle:'none'
     },
     makeNomination:{
       border:'1px solid #ddd',

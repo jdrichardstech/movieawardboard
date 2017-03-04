@@ -54,16 +54,20 @@ class BestStunts extends Component{
   render(){
     var listItem = this.state.list.map((nomination, i)=>{
       return(
-         <li key={i}><BestStunt currentNomination={nomination} /></li>
+         <li className="tag-box tag-box-v3"style={{marginBottom:30}} key={i}>
+					 <BestStunt idx={i+1} currentNomination={nomination} />
+				 </li>
        )
     })
-		
+
     return(
-      <div style={styles.nominations.border}>
-        <h4>Best Stunts:</h4>
-        <ol style={styles.nominations.list}>
+			<div>
+	      <div className="headline" style={{marginBottom:40}}>
+	        <h4>Best<br />Stunts:</h4>
+				</div>
+        <ul style={styles.nominations.other}>
           {listItem}
-        </ol>
+        </ul>
       </div>
     )
   }

@@ -59,20 +59,21 @@ class SupportingActors extends Component{
 
     var listItem = this.state.list.map((nomination, i)=>{
       return(
-         <li key={i}>
+         <li className="tag-box tag-box-v3"style={{marginBottom:30}} key={i}>
 					 <Link to={"/actor/"+nomination.supportingActorName}>
-					 	<SupportingActor currentNomination={nomination} />
+					 	<SupportingActor idx={i+1} currentNomination={nomination} />
 					 </Link>
 				 </li>
        )
     })
     return(
-
-      <div style={styles.nominations.border}>
-        <h4>Supporting Actor:</h4>
-        <ol style={styles.nominations.other}>
+			<div>
+	      <div className="headline" style={{marginBottom:40}}>
+	        <h4>Supporting<br />Actor:</h4>
+				</div>
+        <ul style={styles.nominations.other}>
           {listItem}
-        </ol>
+        </ul>
       </div>
     )
   }

@@ -130,6 +130,17 @@ class NominationsUpdate extends Component{
     return(
       <div >
         <h3>Make Nomination:</h3><br />
+				<ul style={{listStyle: 'square'}}>
+					<li>
+						Please choose a Nomination Category
+					</li>
+					<li>
+						For Lead and Supporting Categories:<br /> Please Type the Name of the Actor or Actress
+					</li>
+					<li>	
+						For OutstandingEnsemble and Best Stunts:<br />Please type in the Name of the Movie
+					</li>
+				</ul><br />
         <h5>Nomination Category: (please select category)</h5>
         <select className="form-control" style={{backGround:'black',color:'#999'}} value={this.state.category.title} onChange={this.updateCategory.bind(this)}>
          <option value="leadActor">Lead Actor</option>

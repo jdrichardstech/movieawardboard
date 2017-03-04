@@ -118,6 +118,7 @@ class Movies extends Component{
 					<hr />
           <div className="headline-v2">
 						<h2>Create Movie:</h2>
+						<p>Add the name of the movie to your list as well as the actors and actresses that have been submitted for nomination consideration from your information page.</p>
 					</div>
           <div style={{marginBottom:50}}>
             <CreateMovie movie={this.props.movie} list={this.props.list} onCreateMovie={this.handleMovieSubmit.bind(this)}/>

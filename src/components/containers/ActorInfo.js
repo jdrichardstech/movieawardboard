@@ -107,6 +107,7 @@ class ActorInfo extends Component{
 					<img src={`http://image.tmdb.org/t/p/w342/${actor.actorImage}`} /><br />
 					<p style={{marginTop:20}}>Born in: {actor.placeOfBirth}</p>
 					<p>Birthday: {actor.birthday}</p>
+					<p><a href={`http://www.imdb.com/name/${actor.imdbId}/?ref_=nv_sr_1`} target="_blank">IMDB</a></p>
 				</div>
 				<div className="col-md-8 col-md-offset-1">
 					<h3>Biography:</h3>

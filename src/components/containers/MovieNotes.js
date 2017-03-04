@@ -95,6 +95,8 @@ class MovieNotes extends Component{
 				</div>
 				<div className="news-v2-desc"style={{marginBottom:30,paddingBottom:40}}>
          <h3>Add A Note for <span style={{color:'rgb(92, 184, 92)'}}> {movieName}:</span></h3>
+				 <p>You may include anything you want to remember about actors, actresses or the movie itself</p><br />
+				 <h5>Add Note:</h5>
          <CreateMovieNote movieName={movieName} createMovieNote={this.addNote.bind(this)} />
        	</div>
 				<div>

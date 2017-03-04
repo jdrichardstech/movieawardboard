@@ -31,6 +31,9 @@ export default{
     }
 
   },
+	a:{
+		color:'#ddd'
+	},
 
   movieForm:{
 

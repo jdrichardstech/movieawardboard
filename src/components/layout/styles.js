@@ -19,7 +19,7 @@ export default{
       marginRight:50
     },
     nomination:{
-      borderRight:'1px solid #ddd',
+      borderRight:'none',
       paddingRight:20
     }
   },

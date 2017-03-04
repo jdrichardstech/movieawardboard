@@ -21940,11 +21940,11 @@
 	    value: function render() {
 	      var movieTitle = this.props.isSelected ? _react2.default.createElement(
 	        'a',
-	        { style: { color: 'green' }, href: '#' },
+	        { style: { color: 'rgb(92, 184, 92)' }, href: '#' },
 	        this.props.currentMovie.movieName
 	      ) : _react2.default.createElement(
 	        'a',
-	        { href: '#' },
+	        { style: { color: '#31b0d5' }, href: '#' },
 	        this.props.currentMovie.movieName
 	      );
 	      return _react2.default.createElement(
@@ -21978,6 +21978,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _styles = __webpack_require__(243);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var BestStunt = function BestStunt(props) {
@@ -21986,7 +21990,9 @@
 	    null,
 	    _react2.default.createElement(
 	      'span',
-	      null,
+	      { style: _styles2.default.a },
+	      props.idx,
+	      '. ',
 	      props.currentNomination.bestStuntsMovie
 	    ),
 	    _react2.default.createElement('br', null),
@@ -22010,6 +22016,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _styles = __webpack_require__(243);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var LeadActor = function LeadActor(props) {
@@ -22018,7 +22028,9 @@
 	    null,
 	    _react2.default.createElement(
 	      'span',
-	      null,
+	      { style: _styles2.default.a },
+	      props.idx,
+	      '. ',
 	      props.currentNomination.leadActorName
 	    ),
 	    _react2.default.createElement('br', null),
@@ -22042,6 +22054,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _styles = __webpack_require__(243);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var LeadActress = function LeadActress(props) {
@@ -22050,7 +22066,9 @@
 	    null,
 	    _react2.default.createElement(
 	      'span',
-	      null,
+	      { style: _styles2.default.a },
+	      props.idx,
+	      '. ',
 	      props.currentNomination.leadActressName
 	    ),
 	    _react2.default.createElement('br', null),
@@ -22074,6 +22092,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _styles = __webpack_require__(243);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var SupportingActor = function SupportingActor(props) {
@@ -22082,7 +22104,9 @@
 	    null,
 	    _react2.default.createElement(
 	      'span',
-	      null,
+	      { style: _styles2.default.a },
+	      props.idx,
+	      '. ',
 	      props.currentNomination.supportingActorName
 	    ),
 	    _react2.default.createElement('br', null),
@@ -22106,6 +22130,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _styles = __webpack_require__(243);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var SupportingActress = function SupportingActress(props) {
@@ -22114,7 +22142,9 @@
 	    null,
 	    _react2.default.createElement(
 	      'span',
-	      null,
+	      { style: _styles2.default.a },
+	      props.idx,
+	      '. ',
 	      props.currentNomination.supportingActressName
 	    ),
 	    _react2.default.createElement('br', null),
@@ -22138,6 +22168,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _styles = __webpack_require__(243);
+	
+	var _styles2 = _interopRequireDefault(_styles);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var OutstandingEnsemble = function OutstandingEnsemble(props) {
@@ -22146,7 +22180,9 @@
 	    null,
 	    _react2.default.createElement(
 	      'span',
-	      null,
+	      { style: _styles2.default.a },
+	      props.idx,
+	      '. ',
 	      props.currentNomination.outstandingEnsembleMovie
 	    ),
 	    _react2.default.createElement('br', null),
@@ -22185,11 +22221,11 @@
 									_react2.default.createElement(
 											"h4",
 											null,
-											"Submitted Nomination Considerations For:"
+											"Actors/Actresses Under Consideration for Nomination For:"
 									),
 									_react2.default.createElement(
 											"h2",
-											{ style: { color: 'green', paddingBottom: 15 } },
+											{ style: { color: 'green rgb(92, 184, 92)', paddingBottom: 15 } },
 											props.movieName
 									),
 									_react2.default.createElement(
@@ -22200,8 +22236,12 @@
 													{ style: { fontWeight: 'bold' } },
 													"Lead Actor(s):"
 											),
-											" ",
-											props.leadActor
+											_react2.default.createElement(
+													"span",
+													{ style: { color: 'rgb(92, 184, 92)' } },
+													" ",
+													props.leadActor
+											)
 									),
 									_react2.default.createElement(
 											"h5",
@@ -22211,8 +22251,12 @@
 													{ style: { fontWeight: 'bold' } },
 													"Lead Actress(es):"
 											),
-											" ",
-											props.leadActress
+											_react2.default.createElement(
+													"span",
+													{ style: { color: 'rgb(92, 184, 92)' } },
+													" ",
+													props.leadActress
+											)
 									),
 									_react2.default.createElement(
 											"h5",
@@ -22222,8 +22266,12 @@
 													{ style: { fontWeight: 'bold' } },
 													"Supporting Actor(s):"
 											),
-											" ",
-											props.supportingActor
+											_react2.default.createElement(
+													"span",
+													{ style: { color: 'rgb(92, 184, 92)' } },
+													" ",
+													props.supportingActor
+											)
 									),
 									_react2.default.createElement(
 											"h5",
@@ -22233,8 +22281,12 @@
 													{ style: { fontWeight: 'bold' } },
 													"Supporting Actress(es):"
 											),
-											" ",
-											props.supportingActress
+											_react2.default.createElement(
+													"span",
+													{ style: { color: 'rgb(92, 184, 92)' } },
+													" ",
+													props.supportingActress
+											)
 									)
 							)
 					)
@@ -27437,13 +27489,22 @@
 					_react2.default.createElement(
 						'h2',
 						null,
-						'Get Actor or Actress Info'
+						'Actor/Actress Information'
 					),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
-						'h5',
+						'p',
 						null,
-						'Enter Name of Actor or Actress:'
+						'Enter the name of an Actor or Actress to read their biography, know where they are from, birthdate, or other movies in which they have appeared'
+					),
+					_react2.default.createElement(
+						'label',
+						null,
+						_react2.default.createElement(
+							'h5',
+							null,
+							'Name:'
+						)
 					),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement('input', { className: 'form-control', onChange: this.updateSearch.bind(this), style: { backGround: 'black', color: '#999' }, id: 'actorName', ref: 'actorName' }),
@@ -27508,6 +27569,9 @@
 	      padding: 10
 	    }
 	
+	  },
+	  a: {
+	    color: '#ddd'
 	  },
 	
 	  movieForm: {},
@@ -27584,13 +27648,22 @@
 					_react2.default.createElement(
 						'h2',
 						null,
-						'Google Movie Name for Cast Members'
+						'Google the Cast'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Enter the name of a movie to find out names of cast members in that movie'
 					),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
-						'h5',
+						'label',
 						null,
-						'Enter the movie name:'
+						_react2.default.createElement(
+							'h5',
+							null,
+							'Enter the movie name:'
+						)
 					),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement('input', { className: 'form-control', onChange: this.updateSearch.bind(this), style: { backGround: 'black', color: '#999' }, id: 'actorName', ref: 'actorName' }),
@@ -27905,6 +27978,11 @@
 								'h2',
 								null,
 								'Create Movie:'
+							),
+							_react2.default.createElement(
+								'p',
+								null,
+								'Add the name of the movie to your list as well as the actors and actresses that have been submitted for nomination consideration from your information page.'
 							)
 						),
 						_react2.default.createElement(
@@ -29674,7 +29752,8 @@
 	
 	      margin: 0,
 	      padding: '10px 0',
-	      color: 'gray'
+	      color: 'rgb(92, 184, 92)',
+	      listStyle: 'none'
 	    },
 	    makeNomination: {
 	      border: '1px solid #ddd',
@@ -32010,6 +32089,17 @@
 	              ':'
 	            )
 	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'You may include anything you want to remember about actors, actresses or the movie itself'
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'h5',
+	            null,
+	            'Add Note:'
+	          ),
 	          _react2.default.createElement(_presentation.CreateMovieNote, { movieName: movieName, createMovieNote: this.addNote.bind(this) })
 	        ),
 	        _react2.default.createElement(
@@ -32168,22 +32258,28 @@
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
-	          { key: i },
-	          _react2.default.createElement(_BestStunt2.default, { currentNomination: nomination })
+	          { className: 'tag-box tag-box-v3', style: { marginBottom: 30 }, key: i },
+	          _react2.default.createElement(_BestStunt2.default, { idx: i + 1, currentNomination: nomination })
 	        );
 	      });
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { style: _styles2.default.nominations.border },
+	        null,
 	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Best Stunts:'
+	          'div',
+	          { className: 'headline', style: { marginBottom: 40 } },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'Best',
+	            _react2.default.createElement('br', null),
+	            'Stunts:'
+	          )
 	        ),
 	        _react2.default.createElement(
-	          'ol',
-	          { style: _styles2.default.nominations.list },
+	          'ul',
+	          { style: _styles2.default.nominations.other },
 	          listItem
 	        )
 	      );
@@ -32297,24 +32393,30 @@
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
-	          { key: i },
+	          { className: 'tag-box tag-box-v3', style: { marginBottom: 30 }, key: i },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: "/actor/" + nomination.leadActorName },
-	            _react2.default.createElement(_LeadActor2.default, { currentNomination: nomination })
+	            _react2.default.createElement(_LeadActor2.default, { idx: i + 1, currentNomination: nomination })
 	          )
 	        );
 	      });
 	      return _react2.default.createElement(
 	        'div',
-	        { style: _styles2.default.nominations.border },
+	        null,
 	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Lead Actor:'
+	          'div',
+	          { className: 'headline', style: { marginBottom: 40 } },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'Lead',
+	            _react2.default.createElement('br', null),
+	            'Actor:'
+	          )
 	        ),
 	        _react2.default.createElement(
-	          'ol',
+	          'ul',
 	          { style: _styles2.default.nominations.other },
 	          listItem
 	        )
@@ -32334,7 +32436,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32364,98 +32466,104 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var LeadActresses = function (_Component) {
-	  _inherits(LeadActresses, _Component);
+			_inherits(LeadActresses, _Component);
 	
-	  function LeadActresses(props) {
-	    _classCallCheck(this, LeadActresses);
+			function LeadActresses(props) {
+					_classCallCheck(this, LeadActresses);
 	
-	    var _this = _possibleConstructorReturn(this, (LeadActresses.__proto__ || Object.getPrototypeOf(LeadActresses)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (LeadActresses.__proto__ || Object.getPrototypeOf(LeadActresses)).call(this, props));
 	
-	    _this.state = {
-	      nomination: {
-	        leadActressName: ''
-	      },
-	      list: []
-	    };
-	    return _this;
-	  }
+					_this.state = {
+							nomination: {
+									leadActressName: ''
+							},
+							list: []
+					};
+					return _this;
+			}
 	
-	  _createClass(LeadActresses, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
+			_createClass(LeadActresses, [{
+					key: 'componentDidMount',
+					value: function componentDidMount() {
+							var _this2 = this;
 	
-	      _utils.APIManager.get('/api/leadactress', null, function (err, response) {
-	        if (err) {
-	          alert('ERROR: ' + err);
-	          return;
-	        }
-	        var results = response.results;
-	        console.log("NAME OF: " + JSON.stringify(results));
-	        _this2.setState({
-	          list: results
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'updateNomination',
-	    value: function updateNomination(event) {
-	      var updatedNomination = Object.assign({}, this.state.nomination);
-	      updatedNomination[event.target.id] = event.target.value;
-	      this.setState({
-	        nomination: updatedNomination
-	      });
-	    }
-	  }, {
-	    key: 'submitNomination',
-	    value: function submitNomination(event) {
-	      var _this3 = this;
+							_utils.APIManager.get('/api/leadactress', null, function (err, response) {
+									if (err) {
+											alert('ERROR: ' + err);
+											return;
+									}
+									var results = response.results;
+									console.log("NAME OF: " + JSON.stringify(results));
+									_this2.setState({
+											list: results
+									});
+							});
+					}
+			}, {
+					key: 'updateNomination',
+					value: function updateNomination(event) {
+							var updatedNomination = Object.assign({}, this.state.nomination);
+							updatedNomination[event.target.id] = event.target.value;
+							this.setState({
+									nomination: updatedNomination
+							});
+					}
+			}, {
+					key: 'submitNomination',
+					value: function submitNomination(event) {
+							var _this3 = this;
 	
-	      var updatedList = Object.assign([], this.state.list);
-	      updatedList.push(this.state.nomination);
-	      _utils.APIManager.post('/api/leadactress', this.state.nomination, function (err, response) {
-	        if (err || !res.ok) {
-	          alert('Oh no! error');
-	        } else {
-	          console.log('leadactress posted');
-	        }
-	        _this3.setState({
-	          list: updatedList
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var listItem = this.state.list.map(function (nomination, i) {
-	        return _react2.default.createElement(
-	          'li',
-	          { key: i },
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: "/actor/" + nomination.leadActressName },
-	            _react2.default.createElement(_LeadActress2.default, { currentNomination: nomination })
-	          )
-	        );
-	      });
-	      return _react2.default.createElement(
-	        'div',
-	        { style: _styles2.default.nominations.border },
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Lead Actress:'
-	        ),
-	        _react2.default.createElement(
-	          'ol',
-	          { style: _styles2.default.nominations.other },
-	          listItem
-	        )
-	      );
-	    }
-	  }]);
+							var updatedList = Object.assign([], this.state.list);
+							updatedList.push(this.state.nomination);
+							_utils.APIManager.post('/api/leadactress', this.state.nomination, function (err, response) {
+									if (err || !res.ok) {
+											alert('Oh no! error');
+									} else {
+											console.log('leadactress posted');
+									}
+									_this3.setState({
+											list: updatedList
+									});
+							});
+					}
+			}, {
+					key: 'render',
+					value: function render() {
+							var listItem = this.state.list.map(function (nomination, i) {
+									return _react2.default.createElement(
+											'li',
+											{ className: 'tag-box tag-box-v3', style: { marginBottom: 30 }, key: i },
+											_react2.default.createElement(
+													_reactRouter.Link,
+													{ to: "/actor/" + nomination.leadActressName },
+													_react2.default.createElement(_LeadActress2.default, { idx: i + 1, currentNomination: nomination })
+											)
+									);
+							});
+							return _react2.default.createElement(
+									'div',
+									null,
+									_react2.default.createElement(
+											'div',
+											{ className: 'headline', style: { marginBottom: 40 } },
+											_react2.default.createElement(
+													'h4',
+													null,
+													'Lead',
+													_react2.default.createElement('br', null),
+													'Actress:'
+											)
+									),
+									_react2.default.createElement(
+											'ul',
+											{ style: _styles2.default.nominations.other },
+											listItem
+									)
+							);
+					}
+			}]);
 	
-	  return LeadActresses;
+			return LeadActresses;
 	}(_react.Component);
 	
 	exports.default = LeadActresses;
@@ -32566,24 +32674,30 @@
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
-	          { key: i },
+	          { className: 'tag-box tag-box-v3', style: { marginBottom: 30 }, key: i },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: "/actor/" + nomination.supportingActorName },
-	            _react2.default.createElement(_SupportingActor2.default, { currentNomination: nomination })
+	            _react2.default.createElement(_SupportingActor2.default, { idx: i + 1, currentNomination: nomination })
 	          )
 	        );
 	      });
 	      return _react2.default.createElement(
 	        'div',
-	        { style: _styles2.default.nominations.border },
+	        null,
 	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Supporting Actor:'
+	          'div',
+	          { className: 'headline', style: { marginBottom: 40 } },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'Supporting',
+	            _react2.default.createElement('br', null),
+	            'Actor:'
+	          )
 	        ),
 	        _react2.default.createElement(
-	          'ol',
+	          'ul',
 	          { style: _styles2.default.nominations.other },
 	          listItem
 	        )
@@ -32699,24 +32813,30 @@
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
-	          { key: i },
+	          { className: 'tag-box tag-box-v3', style: { marginBottom: 30 }, key: i },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: "/actor/" + nomination.supportingActressName },
-	            _react2.default.createElement(_SupportingActress2.default, { currentNomination: nomination })
+	            _react2.default.createElement(_SupportingActress2.default, { idx: i + 1, currentNomination: nomination })
 	          )
 	        );
 	      });
 	      return _react2.default.createElement(
 	        'div',
-	        { style: _styles2.default.nominations.border },
+	        null,
 	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Supporting Actress:'
+	          'div',
+	          { className: 'headline', style: { marginBottom: 40 } },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'Supporting',
+	            _react2.default.createElement('br', null),
+	            'Actress:'
+	          )
 	        ),
 	        _react2.default.createElement(
-	          'ol',
+	          'ul',
 	          { style: _styles2.default.nominations.other },
 	          listItem
 	        )
@@ -32830,18 +32950,24 @@
 	      var listItem = this.state.list.map(function (nomination, i) {
 	        return _react2.default.createElement(
 	          'li',
-	          { key: i },
-	          _react2.default.createElement(_OutstandingEnsemble2.default, { currentNomination: nomination })
+	          { className: 'tag-box tag-box-v3', style: { marginBottom: 30 }, key: i },
+	          _react2.default.createElement(_OutstandingEnsemble2.default, { idx: i + 1, currentNomination: nomination })
 	        );
 	      });
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { style: _styles2.default.nominations.border },
+	        null,
 	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Outstanding Ensemble:'
+	          'div',
+	          { className: 'headline', style: { marginBottom: 40 } },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'Outstanding ',
+	            _react2.default.createElement('br', null),
+	            'Ensemble:'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'ol',
@@ -33032,6 +33158,30 @@
 	          'h3',
 	          null,
 	          'Make Nomination:'
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'ul',
+	          { style: { listStyle: 'square' } },
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Please choose a Nomination Category'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'For Lead and Supporting Categories:',
+	            _react2.default.createElement('br', null),
+	            ' Please Type the Name of the Actor or Actress'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'For OutstandingEnsemble and Best Stunts:',
+	            _react2.default.createElement('br', null),
+	            'Please type in the Name of the Movie'
+	          )
 	        ),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
@@ -33476,10 +33626,7 @@
 									'span',
 									null,
 									castMember.name,
-									_react2.default.createElement('br', null),
-									'"',
-									castMember.character,
-									'"'
+									_react2.default.createElement('br', null)
 								)
 							)
 						);
@@ -37517,6 +37664,15 @@
 									null,
 									'Birthday: ',
 									actor.birthday
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									_react2.default.createElement(
+										'a',
+										{ href: 'http://www.imdb.com/name/' + actor.imdbId + '/?ref_=nv_sr_1', target: '_blank' },
+										'IMDB'
+									)
 								)
 							),
 							_react2.default.createElement(
@@ -37756,58 +37912,62 @@
 											'div',
 											{ className: 'col-md-12' },
 											_react2.default.createElement(
-													'h1',
-													null,
-													'Potential Nominations'
-											),
-											_react2.default.createElement(
-													'h3',
-													null,
-													'Pick five from each category to nominate'
-											),
-											_react2.default.createElement('br', null),
-											_react2.default.createElement('br', null)
+													'div',
+													{ style: { margin: '40px 0 0 0' } },
+													_react2.default.createElement(
+															'h1',
+															{ style: { color: '#ccc', marginTop: 40 } },
+															'Potential Nominations'
+													),
+													_react2.default.createElement(
+															'h4',
+															{ style: { color: '#ccc' } },
+															'Pick five from each category to nominate'
+													),
+													_react2.default.createElement('br', null),
+													_react2.default.createElement('br', null)
+											)
 									)
-							),
+							)
+					),
+					_react2.default.createElement(
+							'div',
+							{ className: 'row', style: { padding: 30 } },
 							_react2.default.createElement(
 									'div',
-									{ className: 'row' },
+									{ className: 'col-md-12' },
 									_react2.default.createElement(
 											'div',
-											{ className: 'col-md-12' },
+											{ className: 'row' },
 											_react2.default.createElement(
 													'div',
-													{ className: 'row' },
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_LeadActors2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_LeadActresses2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_SupportingActors2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_SupportingActresses2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_OutstandingEnsembles2.default, null)
-													),
-													_react2.default.createElement(
-															'div',
-															{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-															_react2.default.createElement(_BestStunts2.default, null)
-													)
+													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+													_react2.default.createElement(_LeadActors2.default, null)
+											),
+											_react2.default.createElement(
+													'div',
+													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+													_react2.default.createElement(_LeadActresses2.default, null)
+											),
+											_react2.default.createElement(
+													'div',
+													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+													_react2.default.createElement(_SupportingActors2.default, null)
+											),
+											_react2.default.createElement(
+													'div',
+													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+													_react2.default.createElement(_SupportingActresses2.default, null)
+											),
+											_react2.default.createElement(
+													'div',
+													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+													_react2.default.createElement(_OutstandingEnsembles2.default, null)
+											),
+											_react2.default.createElement(
+													'div',
+													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
+													_react2.default.createElement(_BestStunts2.default, null)
 											)
 									)
 							)
@@ -37845,7 +38005,7 @@
 	      marginRight: 50
 	    },
 	    nomination: {
-	      borderRight: '1px solid #ddd',
+	      borderRight: 'none',
 	      paddingRight: 20
 	    }
 	  },

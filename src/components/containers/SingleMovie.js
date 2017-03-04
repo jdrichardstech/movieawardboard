@@ -107,7 +107,6 @@ class SingleMovie extends Component{
 								<li style={{float:'left', paddingRight:10}} key={i}>{actorImage}<br />
 									<span>
 										{castMember.name}<br />
-										"{castMember.character}"
 									</span>
 								</li>
 							</Link>
