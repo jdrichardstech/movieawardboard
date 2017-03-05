@@ -37571,7 +37571,12 @@
 	
 					// console.log("ACTOR RESPONSE: " + JSON.stringify(info[0]['known_for'][0]['poster_path']))
 					if (info.length == 0) {
-						alert("Nobody by that name");
+						swal({
+							title: "Error!",
+							text: "We Have No One With That Name. Try Again.",
+							type: "error"
+						});
+						_this2.context.router.push('/');
 						return;
 					}
 					var actorKnownForList = Object.assign([], _this2.state.actorKnownForList);
@@ -37756,6 +37761,10 @@
 	
 		return ActorInfo;
 	}(_react.Component);
+	
+	ActorInfo.contextTypes = {
+		router: _react.PropTypes.object
+	};
 	
 	exports.default = ActorInfo;
 
