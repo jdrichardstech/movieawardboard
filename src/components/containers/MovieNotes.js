@@ -15,7 +15,7 @@ class MovieNotes extends Component{
   }
 
   componentDidUpdate(){
-    console.log('componentDidUpdate')
+    // console.log('componentDidUpdate')
 		if(this.props.movieList.length != 0){
 			let selectedMovie = this.props.movieList[this.props.selected]
 			let notesArray = this.props.notesMap[selectedMovie._id]

@@ -15,6 +15,8 @@ import MoviesNowPlaying from './MoviesNowPlaying'
 import ActorInfo from './ActorInfo'
 import Auth from './Auth'
 import CheckUser from './CheckUser'
+import SearchForAMovie from './SearchForAMovie'
+
 
 export{
   Movies,
@@ -33,6 +35,7 @@ export{
 	MoviesNowPlaying,
 	ActorInfo,
 	Auth,
-	CheckUser
+	CheckUser,
+	SearchForAMovie
 
 }

@@ -27692,7 +27692,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.CheckUser = exports.Auth = exports.ActorInfo = exports.MoviesNowPlaying = exports.Header = exports.Account = exports.SingleMovie = exports.MovieDBInfo = exports.NominationsUpdate = exports.OutstandingEnsembles = exports.SupportingActresses = exports.SupportingActors = exports.LeadActresses = exports.LeadActors = exports.BestStunts = exports.MovieNotes = exports.Movies = undefined;
+	exports.SearchForAMovie = exports.CheckUser = exports.Auth = exports.ActorInfo = exports.MoviesNowPlaying = exports.Header = exports.Account = exports.SingleMovie = exports.MovieDBInfo = exports.NominationsUpdate = exports.OutstandingEnsembles = exports.SupportingActresses = exports.SupportingActors = exports.LeadActresses = exports.LeadActors = exports.BestStunts = exports.MovieNotes = exports.Movies = undefined;
 	
 	var _Movies = __webpack_require__(246);
 	
@@ -27762,6 +27762,10 @@
 	
 	var _CheckUser2 = _interopRequireDefault(_CheckUser);
 	
+	var _SearchForAMovie = __webpack_require__(318);
+	
+	var _SearchForAMovie2 = _interopRequireDefault(_SearchForAMovie);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.Movies = _Movies2.default;
@@ -27781,6 +27785,7 @@
 	exports.ActorInfo = _ActorInfo2.default;
 	exports.Auth = _Auth2.default;
 	exports.CheckUser = _CheckUser2.default;
+	exports.SearchForAMovie = _SearchForAMovie2.default;
 
 /***/ },
 /* 246 */
@@ -31978,7 +31983,7 @@
 	    value: function componentDidUpdate() {
 	      var _this2 = this;
 	
-	      console.log('componentDidUpdate');
+	      // console.log('componentDidUpdate')
 	      if (this.props.movieList.length != 0) {
 	        var _ret = function () {
 	          var selectedMovie = _this2.props.movieList[_this2.props.selected];
@@ -34197,7 +34202,7 @@
 	        );
 	      } else {
 	
-	        console.log("IMageProfile: " + JSON.stringify(this.props.user.profileImage));
+	        // console.log("IMageProfile: " + JSON.stringify(this.props.user.profileImage))
 	        if (this.props.user.profileImage.length == 0) {
 	          imageProfile = "/assets/img/profileImg-placeholder.png";
 	        } else {
@@ -34485,7 +34490,7 @@
 								),
 								_react2.default.createElement(
 									'div',
-									{ className: 'news-v2-desc' },
+									{ className: 'news-v2-desc', style: { marginBottom: 30 } },
 									_react2.default.createElement(_presentation.GoogleTheMovie, null)
 								)
 							)
@@ -38044,6 +38049,137 @@
 	
 	  movieList: {}
 	};
+
+/***/ },
+/* 318 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _superagent = __webpack_require__(249);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
+	
+	var _reactRouter = __webpack_require__(186);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SearchForAMovie = function (_Component) {
+		_inherits(SearchForAMovie, _Component);
+	
+		function SearchForAMovie() {
+			_classCallCheck(this, SearchForAMovie);
+	
+			var _this = _possibleConstructorReturn(this, (SearchForAMovie.__proto__ || Object.getPrototypeOf(SearchForAMovie)).call(this));
+	
+			_this.state = {
+				updated: {
+					search: null,
+					movieId: null
+				}
+			};
+			return _this;
+		}
+	
+		_createClass(SearchForAMovie, [{
+			key: 'updateSearch',
+			value: function updateSearch(event) {
+				// console.log("SearchForAMovie: " + JSON.stringify(event.target.value))
+				var updated = Object.assign({}, this.state.updated);
+				updated['search'] = event.target.value;
+				this.setState({
+					updated: updated
+				});
+			}
+		}, {
+			key: 'submitSearch',
+			value: function submitSearch(event) {
+				var _this2 = this;
+	
+				event.preventDefault();
+				// console.log("STATE: " + JSON.stringify(this.state.updated.search))
+				if (this.state.updated.search == null) {
+					swal({
+						title: "Nothing Entered!",
+						text: "You must enter a movie name",
+						type: "error"
+					});
+				} else {
+					var movieName = this.state.updated.search;
+	
+					var urlMovieName = movieName.split(' ').join('%20');
+					var url = 'https://api.themoviedb.org/3/search/movie?api_key=4160bdc56f74445097c8012631f85743&language=en-US&query=' + urlMovieName + '&page=1&include_adult=false';
+	
+					_superagent2.default.get(url).query(null).set('Accept', 'application/json').end(function (err, response) {
+						if (err) {
+							alert('ERROR: ' + err);
+							return;
+						}
+						var movie = response.body.results;
+						var movieId = null;
+						if (movie != null) {
+							movieId = movie[0].id;
+							var updated = Object.assign({}, _this2.state.updated);
+							updated['movieId'] = movieId;
+							console.log("MOVIE ID: " + JSON.stringify(movieId));
+							_this2.setState({
+								updated: updated
+							});
+							console.log("UPDATED: " + JSON.stringify(updated));
+						}
+					});
+				}
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var link = this.state.updated.movieId != null ? _react2.default.createElement(
+					_reactRouter.Link,
+					{ to: "/singlemovie/" + this.state.updated.movieId },
+					'Search'
+				) : _react2.default.createElement(
+					'span',
+					null,
+					'Empty'
+				);
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'h2',
+						null,
+						'Search for any Movie:'
+					),
+					_react2.default.createElement('input', { onChange: this.updateSearch.bind(this), type: 'text', ref: 'movieName', className: 'form-control' }),
+					_react2.default.createElement(
+						'button',
+						{ onClick: this.submitSearch.bind(this), className: 'btn btn-success' },
+						link
+					)
+				);
+			}
+		}]);
+	
+		return SearchForAMovie;
+	}(_react.Component);
+	
+	exports.default = SearchForAMovie;
 
 /***/ }
 /******/ ]);

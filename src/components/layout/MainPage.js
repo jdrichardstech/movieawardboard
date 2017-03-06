@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { MovieDBInfo, MovieNotes, Movies, Header, Account, NominationsUpdate } from '../containers'
+import { MovieDBInfo, MovieNotes, Movies, Header, Account, NominationsUpdate, SearchForAMovie } from '../containers'
 import { SearchActor, GoogleTheMovie } from '../presentation'
 
 const MainPage = () => {
@@ -27,7 +27,7 @@ const MainPage = () => {
 									<div className="news-v2-desc" style={{marginBottom:30}}>
 										<SearchActor />
 									</div>
-									<div className="news-v2-desc">
+									<div className="news-v2-desc" style={{marginBottom:30}}>
 										<GoogleTheMovie />
 									</div>
 								</div>

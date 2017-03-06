@@ -46,7 +46,7 @@ class Header extends Component{
       )
     } else{
 
-			console.log("IMageProfile: " + JSON.stringify(this.props.user.profileImage))
+			// console.log("IMageProfile: " + JSON.stringify(this.props.user.profileImage))
 			if(this.props.user.profileImage.length==0){
 				imageProfile = "/assets/img/profileImg-placeholder.png"
 			}else{

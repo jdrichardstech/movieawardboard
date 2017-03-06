@@ -84,7 +84,7 @@ router.post('/:action', function(req, res, next){
 
 			var profile = results[0]
 
-			var isPasswordCorrect = bcrypt.compareSync(req.body.password, profile.password)
+			// var isPasswordCorrect = bcrypt.compareSync(req.body.password, profile.password)
 				console.log("password: " + JSON.stringify(profile.password+" "+ req.body.password))
 			// if (isPasswordCorrect == false){
 			// 	res.json({
