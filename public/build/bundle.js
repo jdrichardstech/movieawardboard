@@ -22233,8 +22233,8 @@
 											null,
 											_react2.default.createElement(
 													"span",
-													{ style: { fontWeight: 'bold' } },
-													"Lead Actor(s):"
+													{ style: { fontWeight: 'bold', paddingRight: 5 } },
+													"Lead Actor(s): "
 											),
 											_react2.default.createElement(
 													"span",
@@ -22248,8 +22248,8 @@
 											null,
 											_react2.default.createElement(
 													"span",
-													{ style: { fontWeight: 'bold' } },
-													"Lead Actress(es):"
+													{ style: { fontWeight: 'bold', paddingRight: 5 } },
+													"Lead Actress(es): "
 											),
 											_react2.default.createElement(
 													"span",
@@ -22263,8 +22263,8 @@
 											null,
 											_react2.default.createElement(
 													"span",
-													{ style: { fontWeight: 'bold' } },
-													"Supporting Actor(s):"
+													{ style: { fontWeight: 'bold', paddingRight: 5 } },
+													"Supporting Actor(s): "
 											),
 											_react2.default.createElement(
 													"span",
@@ -22278,8 +22278,8 @@
 											null,
 											_react2.default.createElement(
 													"span",
-													{ style: { fontWeight: 'bold' } },
-													"Supporting Actress(es):"
+													{ style: { fontWeight: 'bold', paddingRight: 5 } },
+													"Supporting Actress(es): "
 											),
 											_react2.default.createElement(
 													"span",
