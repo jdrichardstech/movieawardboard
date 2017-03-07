@@ -34280,12 +34280,12 @@
 	            _react2.default.createElement(
 	              'h1',
 	              { style: { color: 'white' } },
-	              'MOVIE AWARDS'
+	              'MOVIE NOMINATION'
 	            ),
 	            _react2.default.createElement(
 	              'span',
 	              { style: { color: 'white' } },
-	              'Nomination Dashboard'
+	              'Dashboard'
 	            )
 	          )
 	        )

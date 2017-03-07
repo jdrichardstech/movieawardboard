@@ -87,8 +87,8 @@ class Header extends Component{
 	        </div>
 	        <div className="breadcrumbs-v1" >
 	          <div className="container">
-	            <h1 style={{color:'white'}}>MOVIE AWARDS</h1>
-	            <span style={{color:'white'}}>Nomination Dashboard</span>
+	            <h1 style={{color:'white'}}>MOVIE NOMINATION</h1>
+	            <span style={{color:'white'}}>Dashboard</span>
 	          </div>
 	        </div>
 				</div>
