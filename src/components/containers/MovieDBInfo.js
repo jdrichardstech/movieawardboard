@@ -81,9 +81,9 @@ class MovieDBInfo extends Component{
   render(){
 		let linkStyle=
 			(!this.state.hover) ?
-				linkStyle=<Link to={"/singlemovie/"+this.state.moviedBId}><img style={linkStyle} src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`} onMouseEnter={this.toggleHover}  /></Link>
+				linkStyle=<div><Link to={"/singlemovie/"+this.state.moviedBId}><img style={linkStyle} src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`} onMouseEnter={this.toggleHover}  /></Link><br /><span style={{color:'#269abc'}}>click image to view movie details</span></div>
 			  :
-				 linkStyle = <div ><Link style={{background:'white',zIndes:20}} to={"/singlemovie/"+this.state.moviedBId}><img style={linkStyle} src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`}   onMouseOut={this.toggleHover} /></Link><br />Click to view MovieDetails</div>
+				 linkStyle = <div ><Link style={{background:'white',zIndes:20}} to={"/singlemovie/"+this.state.moviedBId}><img style={linkStyle} src={`http://image.tmdb.org/t/p/w185/${this.state.posterPath}`}   onMouseOut={this.toggleHover} /></Link><br />click image to view movie details</div>
 
 		let content = (this.state.moviedBId != null) ?
 			<div>

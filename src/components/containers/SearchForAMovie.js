@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import superagent from 'superagent'
 import { Link } from 'react-router'
 
@@ -12,7 +12,7 @@ class SearchForAMovie extends Component{
 			}
 		}
 	}
-	
+
 
 	updateSearch(event){
 		// console.log("SearchForAMovie: " + JSON.stringify(event.target.value))
@@ -51,13 +51,19 @@ class SearchForAMovie extends Component{
 				let movieId =null
 				if(movie != null){
 					movieId = movie[0].id
-					let updated = Object.assign({}, this.state.updated)
-					updated['movieId'] = movieId
-					console.log("MOVIE ID: " + JSON.stringify(movieId))
+					this.context.router.push('/singlemovie/'+movieId)
+					this.refs.movieName.value=''
 					this.setState({
-						updated:updated
+						search:null,
+						movieId:null
 					})
-					console.log("UPDATED: " + JSON.stringify(updated))
+					// let updated = Object.assign({}, this.state.updated)
+					// updated['movieId'] = movieId
+					// console.log("MOVIE ID: " + JSON.stringify(movieId))
+					// this.setState({
+					// 	updated:updated
+					// })
+					// console.log("UPDATED: " + JSON.stringify(updated))
 				}
 
 		})
@@ -72,11 +78,17 @@ class SearchForAMovie extends Component{
 		return(
 			<div>
 				<h2>Search for any Movie:</h2>
-				<input onChange={this.updateSearch.bind(this)} type="text" ref="movieName" className="form-control" />
-				<button onClick={this.submitSearch.bind(this)} className="btn btn-success">{link}</button>
+				<p>Enter name of any movie & click 'Search for Movie' to find out more information about it and/or watch the trailer<br /> OR <br /> Click 'Now Playing in Theatres to view current releases'</p>
+				<input onChange={this.updateSearch.bind(this)} type="text" ref="movieName" className="form-control" /><br />
+				<button style={{marginRight:10}} onClick={this.submitSearch.bind(this)} className="btn btn-success">Search For Movie</button>
+				<button className="btn btn-info" style={{background:'#269abc'}}><Link style={{color:'white'}} to = '/moviesnowplaying'>Now Playing in Theatres</Link></button>
 			</div>
 		)
 	}
+}
+
+SearchForAMovie.contextTypes={
+	router:PropTypes.object
 }
 
 export default SearchForAMovie

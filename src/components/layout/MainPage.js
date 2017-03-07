@@ -30,6 +30,9 @@ const MainPage = () => {
 									<div className="news-v2-desc" style={{marginBottom:30}}>
 										<GoogleTheMovie />
 									</div>
+									<div className="news-v2-desc" style={{marginBottom:30}}>
+										<SearchForAMovie />
+									</div>
 								</div>
 							</div>
 						</div>
