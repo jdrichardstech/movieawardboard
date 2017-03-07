@@ -3,6 +3,7 @@ import superagent from 'superagent'
 import { Link } from 'react-router'
 import styles from './styles'
 import { Header } from '../containers'
+import { Footer } from '../presentation'
 
 class ActorInfo extends Component{
 	constructor(){
@@ -141,6 +142,7 @@ class ActorInfo extends Component{
 			<div>
 				<Header />
 				{content}
+				<Footer />
 			</div>
 		)
 	}

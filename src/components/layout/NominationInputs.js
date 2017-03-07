@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-import LeadActors from '../containers/LeadActors'
-import LeadActresses from '../containers/LeadActresses'
-import SupportingActors from '../containers/SupportingActors'
-import SupportingActresses from '../containers/SupportingActresses'
-import OutstandingEnsembles from '../containers/OutstandingEnsembles'
-import BestStunts from '../containers/BestStunts'
-import Header from '../containers/Header'
+import { LeadActors,LeadActresses, SupportingActors, SupportingActresses, OutstandingEnsembles, BestStunts,  Header} from '../containers'
+import { Footer } from '../presentation'
 import { Link } from 'react-router'
 import styles from './styles'
 
@@ -47,6 +42,7 @@ const NominationInputs = () => {
 	          </div>
 	        </div>
 	      </div>
+				<Footer />
 	    </div>
 
   )

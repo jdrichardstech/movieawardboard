@@ -23,8 +23,10 @@ class MovieTrailer extends Component{
       <div>
         <div style={{marginTop:50, marginBottom:50}}>
         <center>
-        <Link to={"singlemovie/"+this.props.params.id}><button style={{marginBottom:20}} className="btn btn-success">Back</button></Link><br />
-        {content}
+	      	<h1>Trailer</h1>
+	        {content}
+					<br />
+				  <Link to={"singlemovie/"+this.props.params.id}><button style={{marginBottom:20}} className="btn btn-success">Back</button></Link><br />
         </center>
        </div>
       </div>

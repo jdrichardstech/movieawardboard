@@ -71,6 +71,7 @@ class MoviesNowPlaying extends Component{
 		          {/*<a target="_blank" href="http://api.themoviedb.org/3/movie/330459/videos?api_key=4160bdc56f74445097c8012631f85743">Trailer</a>
 		          */}
 		      </div>
+					<Footer />
       </div>
     )
   }

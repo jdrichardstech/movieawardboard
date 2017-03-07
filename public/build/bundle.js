@@ -22419,6 +22419,13 @@
 	            'center',
 	            null,
 	            _react2.default.createElement(
+	              'h1',
+	              null,
+	              'Trailer'
+	            ),
+	            content,
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { to: "singlemovie/" + this.props.params.id },
 	              _react2.default.createElement(
@@ -22427,8 +22434,7 @@
 	                'Back'
 	              )
 	            ),
-	            _react2.default.createElement('br', null),
-	            content
+	            _react2.default.createElement('br', null)
 	          )
 	        )
 	      );
@@ -27400,8 +27406,8 @@
 									null,
 									_react2.default.createElement(
 										"a",
-										{ href: "#", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Facebook" },
-										_react2.default.createElement("i", { className: "fa fa-facebook" })
+										{ href: "http://www.github.com/jdrichardstech", target: "_blank", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Github" },
+										_react2.default.createElement("i", { className: "fa fa-github" })
 									)
 								),
 								_react2.default.createElement(
@@ -27409,25 +27415,7 @@
 									null,
 									_react2.default.createElement(
 										"a",
-										{ href: "#", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Skype" },
-										_react2.default.createElement("i", { className: "fa fa-skype" })
-									)
-								),
-								_react2.default.createElement(
-									"li",
-									null,
-									_react2.default.createElement(
-										"a",
-										{ href: "#", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Google Plus" },
-										_react2.default.createElement("i", { className: "fa fa-google-plus" })
-									)
-								),
-								_react2.default.createElement(
-									"li",
-									null,
-									_react2.default.createElement(
-										"a",
-										{ href: "#", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Linkedin" },
+										{ href: "http://www.linkedin.com/in/jdrichardstech", target: "_blank", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Linkedin" },
 										_react2.default.createElement("i", { className: "fa fa-linkedin" })
 									)
 								),
@@ -27436,26 +27424,8 @@
 									null,
 									_react2.default.createElement(
 										"a",
-										{ href: "#", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Pinterest" },
-										_react2.default.createElement("i", { className: "fa fa-pinterest" })
-									)
-								),
-								_react2.default.createElement(
-									"li",
-									null,
-									_react2.default.createElement(
-										"a",
-										{ href: "#", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Twitter" },
+										{ href: "http://www.twitter.com/jdrichardstech", target: "_blank", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Twitter" },
 										_react2.default.createElement("i", { className: "fa fa-twitter" })
-									)
-								),
-								_react2.default.createElement(
-									"li",
-									null,
-									_react2.default.createElement(
-										"a",
-										{ href: "#", className: "tooltips", "data-toggle": "tooltip", "data-placement": "top", title: "", "data-original-title": "Dribbble" },
-										_react2.default.createElement("i", { className: "fa fa-dribbble" })
 									)
 								)
 							)
@@ -37517,7 +37487,8 @@
 															movieList
 													)
 											)
-									)
+									),
+									_react2.default.createElement(_presentation.Footer, null)
 							);
 					}
 			}]);
@@ -37554,6 +37525,8 @@
 	var _styles2 = _interopRequireDefault(_styles);
 	
 	var _containers = __webpack_require__(245);
+	
+	var _presentation = __webpack_require__(173);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37784,7 +37757,8 @@
 					'div',
 					null,
 					_react2.default.createElement(_containers.Header, null),
-					content
+					content,
+					_react2.default.createElement(_presentation.Footer, null)
 				);
 			}
 		}]);
@@ -38072,33 +38046,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _LeadActors = __webpack_require__(292);
+	var _containers = __webpack_require__(245);
 	
-	var _LeadActors2 = _interopRequireDefault(_LeadActors);
-	
-	var _LeadActresses = __webpack_require__(293);
-	
-	var _LeadActresses2 = _interopRequireDefault(_LeadActresses);
-	
-	var _SupportingActors = __webpack_require__(294);
-	
-	var _SupportingActors2 = _interopRequireDefault(_SupportingActors);
-	
-	var _SupportingActresses = __webpack_require__(295);
-	
-	var _SupportingActresses2 = _interopRequireDefault(_SupportingActresses);
-	
-	var _OutstandingEnsembles = __webpack_require__(296);
-	
-	var _OutstandingEnsembles2 = _interopRequireDefault(_OutstandingEnsembles);
-	
-	var _BestStunts = __webpack_require__(291);
-	
-	var _BestStunts2 = _interopRequireDefault(_BestStunts);
-	
-	var _Header = __webpack_require__(301);
-	
-	var _Header2 = _interopRequireDefault(_Header);
+	var _presentation = __webpack_require__(173);
 	
 	var _reactRouter = __webpack_require__(187);
 	
@@ -38112,7 +38062,7 @@
 			return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(_Header2.default, null),
+					_react2.default.createElement(_containers.Header, null),
 					_react2.default.createElement(
 							'div',
 							{ className: 'container' },
@@ -38153,36 +38103,37 @@
 											_react2.default.createElement(
 													'div',
 													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-													_react2.default.createElement(_LeadActors2.default, null)
+													_react2.default.createElement(_containers.LeadActors, null)
 											),
 											_react2.default.createElement(
 													'div',
 													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-													_react2.default.createElement(_LeadActresses2.default, null)
+													_react2.default.createElement(_containers.LeadActresses, null)
 											),
 											_react2.default.createElement(
 													'div',
 													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-													_react2.default.createElement(_SupportingActors2.default, null)
+													_react2.default.createElement(_containers.SupportingActors, null)
 											),
 											_react2.default.createElement(
 													'div',
 													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-													_react2.default.createElement(_SupportingActresses2.default, null)
+													_react2.default.createElement(_containers.SupportingActresses, null)
 											),
 											_react2.default.createElement(
 													'div',
 													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-													_react2.default.createElement(_OutstandingEnsembles2.default, null)
+													_react2.default.createElement(_containers.OutstandingEnsembles, null)
 											),
 											_react2.default.createElement(
 													'div',
 													{ style: _styles2.default.layout.nomination, className: 'col-md-2' },
-													_react2.default.createElement(_BestStunts2.default, null)
+													_react2.default.createElement(_containers.BestStunts, null)
 											)
 									)
 							)
-					)
+					),
+					_react2.default.createElement(_presentation.Footer, null)
 			);
 	};
 	
