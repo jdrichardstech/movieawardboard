@@ -33916,14 +33916,20 @@
 	              { className: 'margin-bottom-6 head' },
 	              _react2.default.createElement(
 	                'h1',
-	                null,
+	                { style: { color: 'white' } },
 	                'Welcome to the Movie Awards Dashboard'
 	              ),
 	              _react2.default.createElement(
 	                'h2',
 	                null,
-	                'Login or Register an Account'
-	              )
+	                'Sign In or Sign Up for an Account'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                { style: { color: '#ddd' } },
+	                '(If you do not want to Sign Up just enter person and password in the Sign In section)'
+	              ),
+	              _react2.default.createElement('br', null)
 	            ),
 	            _react2.default.createElement(
 	              'div',
@@ -34035,7 +34041,7 @@
 	                    _react2.default.createElement(
 	                      'button',
 	                      { onClick: this.submitProfile.bind(this), type: 'submit', className: 'btn-u btn-block rounded' },
-	                      'Register'
+	                      'Sign Up'
 	                    )
 	                  )
 	                )

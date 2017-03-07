@@ -100,8 +100,9 @@ class Account extends Component{
 				<div className="forms-wrapper">
           <div className="container content-md" style={{paddingTop:40}}>
             <div className="margin-bottom-6 head">
-							<h1>Welcome to the Movie Awards Dashboard</h1>
-							<h2>Login or Register an Account</h2>
+							<h1 style={{color:'white'}}>Welcome to the Movie Awards Dashboard</h1>
+							<h2>Sign In or Sign Up for an Account</h2>
+							<p style={{color:'#ddd'}}>(If you do not want to Sign Up just enter person and password in the Sign In section)</p><br />
             </div>
             <div className="row space-xlg-hor equal-height-columns">
               <div className="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column" style={{background:'rgba(105,196,199,0.5)'}}>
@@ -141,7 +142,7 @@ class Account extends Component{
 								<DropZone style={{color:'blue'}} onDrop={this.uploadImage.bind(this)}><a>Add Profile Image</a></DropZone><br />
                 <div className="row">
                   <div className="col-md-12" >
-                    <button onClick={this.submitProfile.bind(this)} type="submit" className="btn-u btn-block rounded">Register</button>
+                    <button onClick={this.submitProfile.bind(this)} type="submit" className="btn-u btn-block rounded">Sign Up</button>
                   </div>
                 </div>
               </div>
