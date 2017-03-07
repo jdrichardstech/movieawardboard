@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { MovieDBInfo, MovieNotes, Movies, Header, Account, NominationsUpdate, SearchForAMovie } from '../containers'
-import { SearchActor, GoogleTheMovie } from '../presentation'
+import { SearchActor, GoogleTheMovie, Footer } from '../presentation'
 
 const MainPage = () => {
 	return(
@@ -38,6 +38,7 @@ const MainPage = () => {
 						</div>
 					</div>
 			</div>
+			<Footer />
 		</div>
 	)
 }

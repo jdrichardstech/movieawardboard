@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import Header from '../containers/Header'
 import superagent from 'superagent'
+import { Footer } from '../presentation'
 
 
 
@@ -32,7 +33,7 @@ class MoviesNowPlaying extends Component{
 	    })
 	  })
   }
-	
+
   render(){
     let movieList = null
     if(this.state.movies!=null){

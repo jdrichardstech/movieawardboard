@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import superagent from 'superagent'
 import { Link } from 'react-router'
+import { Footer } from '../presentation'
 
 class SingleMovie extends Component{
 
@@ -70,7 +71,7 @@ class SingleMovie extends Component{
 				 let status = movie.status
 				 let tagline = movie.tagline
 				 let homepage = movie.homepage
-				 let movieName = movie.title.toLowerCase()
+				 let movieName = movie.title.toUpperCase()
 				 console.log("SINGLE POSTER PATH: " + JSON.stringify(movieName))
 
 				 updated['movieName'] = movieName
@@ -107,49 +108,63 @@ class SingleMovie extends Component{
 					<img src={`https://image.tmdb.org/t/p/w342/${movie.posterpath}`} />
 					:
 					<img style={{width:342, height:500}} src="/assets/img/nomovie.png" />
-				let actorImage = (castMember.profile_path==null)? <img style={{width:92,height:138,borderRadius:10}} src="/assets/img/actor_placeholder.jpg" />: <img style={{borderRadius:10, width:92,height:138,}} src={"http://image.tmdb.org/t/p/w92//"+castMember.profile_path} />
-			return	<Link to={"/actor/"+castMember.name.toLowerCase()}>
-								<li style={{float:'left', paddingRight:10, paddingBottom:20}} key={i}>{actorImage}<br />
-									<span>
-										{castMember.name}<br />
-									</span>
-								</li>
-							</Link>
-			})
+
+				let actorImage = (castMember.profile_path==null) ?
+					<img style={{width:92,height:138,borderRadius:10}} src="/assets/img/actor_placeholder.jpg" />
+					:
+					<img style={{borderRadius:10, width:92,height:138,}} src={"http://image.tmdb.org/t/p/w92//"+castMember.profile_path} />
+
+				return	<Link to={"/actor/"+castMember.name.toLowerCase()}>
+									<li style={{float:'left',paddingRight:10, paddingBottom:20}} key={i}>{actorImage}<br />
+										<span style={{fontSize:'.7em'}}>
+											{castMember.name}<br />
+										</span>
+									</li>
+								</Link>
+				})
 		}
 		let content = (this.state.singleMovie != null) ?
 		<div>
-			<h1>{movie.movieName}</h1>
-		<center>
-			<Link to = "/">Home</Link><br /><br />
-
-					{moviePoster}<br />
-
-				<Link to = {"/movietrailer/"+this.props.params.id+"/"+movie.youtubeID}>
-					<button className="btn btn-default">Watch Trailer</button>
-				</Link><br /><br />
-			<div>
-				<h4>{movie.overview}</h4><br /><br />
-				<ul style={{listStyleType:'none'}}>{actor}</ul><br />
-				<h5 style={{clear:'left'}}>Runtime: {movie.runtime}</h5><br /><br />
-				<h5>Budget: ${movie.budget}</h5><br /><br />
-
-				<h5>Release Date: {movie.releaseDate}</h5><br /><br />
-				<h5>Status: {movie.status}</h5><br /><br />
-
-				<h5>Homepage: <a href={this.state.homepage} target="_blank" >{movie.homepage}</a></h5><br /><br />
-
-				<a target="_blank" href={"https://www.imdb.com/title/"+movie.imdbID+"/?ref_=nv_sr_1"}>IMDB Profile</a><br /><br />
+			<div className="container" style={{padding:50, border:'1px solid white',margin:'50px 30px'}}>
+				<div className="row">
+					<div className="col-md-4">
+						<center>
+							{moviePoster}<br /><br />
+							<Link to = {"/movietrailer/"+this.props.params.id+"/"+movie.youtubeID}>
+								<button className="btn btn-default">Watch Trailer</button>
+							</Link>
+						</center><br />
+					</div>
+					<div className="col-md-7 col-md-offset-1">
+						<h1 style={{paddingTop:50}}>{movie.movieName}</h1>
+						<p style={{fontSize:'1.1em'}}>{movie.runtime} min. |  {movie.status} | {movie.releaseDate} | ${movie.budget} budget</p>
+						<h5><a target="_blank" href={"https://www.imdb.com/title/"+movie.imdbID+"/?ref_=nv_sr_1"}>IMDB</a>
+						 <a style={{paddingLeft:30}} href={this.state.homepage} target="_blank" >{movie.homepage}</a></h5>
+						 <hr />
+						<h3>{movie.overview}</h3>
+						<hr />
+						<h2>CAST INCLUDES:</h2>
+						<center><ul style={{listStyleType:'none', width:'80%'}}>{actor}</ul></center><br />
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-md-12">
+						<center>
+								<button style={{background:'#269abc', marginTop:30}} className="btn btn-lg">
+										<Link style={{color:'white'}} to = '/'>Home</Link>
+								</button>
+						</center>
+					</div>
+				</div>
 			</div>
-			<Link to = "/">Home</Link>
-		</center>
-	</div>
+		</div>
 		:
 		null
 
     return(
-      <div style={{marginTop:50, padding:'0 30% 20px 30%'}}>
+      <div>
        {content}
+			 <Footer />
       </div>
     )
   }

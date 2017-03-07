@@ -21468,7 +21468,7 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -21478,16 +21478,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _presentation = __webpack_require__(173);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Main = function Main(props) {
 		return _react2.default.createElement(
-			'div',
-			{ className: 'wrapper' },
-			props.children,
-			_react2.default.createElement(_presentation.Footer, null)
+			"div",
+			{ className: "wrapper" },
+			props.children
 		);
 	};
 	
@@ -33521,6 +33518,8 @@
 	
 	var _reactRouter = __webpack_require__(187);
 	
+	var _presentation = __webpack_require__(173);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33595,7 +33594,7 @@
 						var status = movie.status;
 						var tagline = movie.tagline;
 						var homepage = movie.homepage;
-						var movieName = movie.title.toLowerCase();
+						var movieName = movie.title.toUpperCase();
 						console.log("SINGLE POSTER PATH: " + JSON.stringify(movieName));
 	
 						updated['movieName'] = movieName;
@@ -33630,7 +33629,9 @@
 				if (movie != null) {
 					actor = movie.castList.map(function (castMember, i) {
 						moviePoster = movie.posterpath != null ? _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w342/' + movie.posterpath }) : _react2.default.createElement('img', { style: { width: 342, height: 500 }, src: '/assets/img/nomovie.png' });
+	
 						var actorImage = castMember.profile_path == null ? _react2.default.createElement('img', { style: { width: 92, height: 138, borderRadius: 10 }, src: '/assets/img/actor_placeholder.jpg' }) : _react2.default.createElement('img', { style: { borderRadius: 10, width: 92, height: 138 }, src: "http://image.tmdb.org/t/p/w92//" + castMember.profile_path });
+	
 						return _react2.default.createElement(
 							_reactRouter.Link,
 							{ to: "/actor/" + castMember.name.toLowerCase() },
@@ -33641,7 +33642,7 @@
 								_react2.default.createElement('br', null),
 								_react2.default.createElement(
 									'span',
-									null,
+									{ style: { fontSize: '.7em' } },
 									castMember.name,
 									_react2.default.createElement('br', null)
 								)
@@ -33653,113 +33654,119 @@
 					'div',
 					null,
 					_react2.default.createElement(
-						'h1',
-						null,
-						movie.movieName
-					),
-					_react2.default.createElement(
-						'center',
-						null,
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/' },
-							'Home'
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
-						moviePoster,
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: "/movietrailer/" + this.props.params.id + "/" + movie.youtubeID },
-							_react2.default.createElement(
-								'button',
-								{ className: 'btn btn-default' },
-								'Watch Trailer'
-							)
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
+						'div',
+						{ className: 'container', style: { padding: 50, border: '1px solid white', margin: '50px 30px' } },
 						_react2.default.createElement(
 							'div',
-							null,
+							{ className: 'row' },
 							_react2.default.createElement(
-								'h4',
-								null,
-								movie.overview
-							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement(
-								'ul',
-								{ style: { listStyleType: 'none' } },
-								actor
-							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement(
-								'h5',
-								{ style: { clear: 'left' } },
-								'Runtime: ',
-								movie.runtime
-							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement(
-								'h5',
-								null,
-								'Budget: $',
-								movie.budget
-							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement(
-								'h5',
-								null,
-								'Release Date: ',
-								movie.releaseDate
-							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement(
-								'h5',
-								null,
-								'Status: ',
-								movie.status
-							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement(
-								'h5',
-								null,
-								'Homepage: ',
+								'div',
+								{ className: 'col-md-4' },
 								_react2.default.createElement(
-									'a',
-									{ href: this.state.homepage, target: '_blank' },
-									movie.homepage
-								)
+									'center',
+									null,
+									moviePoster,
+									_react2.default.createElement('br', null),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+										_reactRouter.Link,
+										{ to: "/movietrailer/" + this.props.params.id + "/" + movie.youtubeID },
+										_react2.default.createElement(
+											'button',
+											{ className: 'btn btn-default' },
+											'Watch Trailer'
+										)
+									)
+								),
+								_react2.default.createElement('br', null)
 							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement('br', null),
 							_react2.default.createElement(
-								'a',
-								{ target: '_blank', href: "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=nv_sr_1" },
-								'IMDB Profile'
-							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement('br', null)
+								'div',
+								{ className: 'col-md-7 col-md-offset-1' },
+								_react2.default.createElement(
+									'h1',
+									{ style: { paddingTop: 50 } },
+									movie.movieName
+								),
+								_react2.default.createElement(
+									'p',
+									{ style: { fontSize: '1.1em' } },
+									movie.runtime,
+									' min. |  ',
+									movie.status,
+									' | ',
+									movie.releaseDate,
+									' | $',
+									movie.budget,
+									' budget'
+								),
+								_react2.default.createElement(
+									'h5',
+									null,
+									_react2.default.createElement(
+										'a',
+										{ target: '_blank', href: "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=nv_sr_1" },
+										'IMDB'
+									),
+									_react2.default.createElement(
+										'a',
+										{ style: { paddingLeft: 30 }, href: this.state.homepage, target: '_blank' },
+										movie.homepage
+									)
+								),
+								_react2.default.createElement('hr', null),
+								_react2.default.createElement(
+									'h3',
+									null,
+									movie.overview
+								),
+								_react2.default.createElement('hr', null),
+								_react2.default.createElement(
+									'h2',
+									null,
+									'CAST INCLUDES:'
+								),
+								_react2.default.createElement(
+									'center',
+									null,
+									_react2.default.createElement(
+										'ul',
+										{ style: { listStyleType: 'none', width: '80%' } },
+										actor
+									)
+								),
+								_react2.default.createElement('br', null)
+							)
 						),
 						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/' },
-							'Home'
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-12' },
+								_react2.default.createElement(
+									'center',
+									null,
+									_react2.default.createElement(
+										'button',
+										{ style: { background: '#269abc', marginTop: 30 }, className: 'btn btn-lg' },
+										_react2.default.createElement(
+											_reactRouter.Link,
+											{ style: { color: 'white' }, to: '/' },
+											'Home'
+										)
+									)
+								)
+							)
 						)
 					)
 				) : null;
 	
 				return _react2.default.createElement(
 					'div',
-					{ style: { marginTop: 50, padding: '0 30% 20px 30%' } },
-					content
+					null,
+					content,
+					_react2.default.createElement(_presentation.Footer, null)
 				);
 			}
 		}]);
@@ -34512,7 +34519,8 @@
 						)
 					)
 				)
-			)
+			),
+			_react2.default.createElement(_presentation.Footer, null)
 		);
 	};
 	
@@ -37384,6 +37392,8 @@
 	var _superagent = __webpack_require__(249);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
+	
+	var _presentation = __webpack_require__(173);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
