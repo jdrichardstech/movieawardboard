@@ -37373,6 +37373,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -37442,16 +37444,18 @@
 															)
 													);
 											} else {
+													var _React$createElement;
+	
 													return _react2.default.createElement(
 															'div',
-															{ className: 'col-md-3', key: i },
+															(_React$createElement = { style: { float: 'left' }, className: 'col-md-3' }, _defineProperty(_React$createElement, 'style', { marginBottom: 50 }), _defineProperty(_React$createElement, 'key', i), _React$createElement),
 															_react2.default.createElement(
 																	'li',
-																	{ style: { marginBottom: 50 } },
+																	null,
 																	_react2.default.createElement(
 																			_reactRouter.Link,
 																			{ to: '/singlemovie/' + movie.id },
-																			_react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
+																			_react2.default.createElement('img', { style: { width: 185, height: 275 }, src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
 																	),
 																	' '
 															)
@@ -37479,7 +37483,12 @@
 													_react2.default.createElement(
 															'h4',
 															null,
-															'Movies currently released for public viewing'
+															'Movies currently released'
+													),
+													_react2.default.createElement(
+															'p',
+															{ style: { fontSize: '.9em' } },
+															'(click on movie poster to get more information)'
 													),
 													_react2.default.createElement('hr', { style: { width: '40%' } })
 											),
@@ -37488,9 +37497,17 @@
 													'div',
 													{ className: 'clearfix' },
 													_react2.default.createElement(
-															'ul',
-															{ style: { listStyleType: 'none' } },
-															movieList
+															'div',
+															{ className: 'row' },
+															_react2.default.createElement(
+																	'div',
+																	{ className: 'col-md-12' },
+																	_react2.default.createElement(
+																			'ul',
+																			{ style: { listStyleType: 'none' } },
+																			movieList
+																	)
+															)
 													)
 											)
 									),
