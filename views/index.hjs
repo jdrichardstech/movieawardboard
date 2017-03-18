@@ -23,7 +23,7 @@
   </head>
 
 
-  <body style="background:url('/build/img/bg/31.jpg')" class="dark">
+  <body class="dark">
 
   <div id="root"></div>
 
