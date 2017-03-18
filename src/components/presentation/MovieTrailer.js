@@ -10,8 +10,8 @@ class MovieTrailer extends Component{
 		let content = null
     if(this.props.params.youtubeID != "novideo"){
     content=( <div>
-               <iframe id="ytplayer" type="text/html" width="640" height="360"
-               src={"https://www.youtube.com/embed/"+this.props.params.youtubeID+"?autoplay=1&origin=http://example.com"}
+               <iframe id="ytplayer" type="text/html" width="853" height="505"
+               src={"https://www.youtube.com/embed/"+this.props.params.youtubeID+"?autoplay=1"}
                frameborder="0" allowfullscreen></iframe>
               </div>
 						)
