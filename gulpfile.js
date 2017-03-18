@@ -75,6 +75,6 @@ gulp.task('watch', function(){
     gulp.watch(['./src/*/**.js]', './src/*/*/**.js', './src/*/*/*/**.js'], ['css', 'build','image'])
 });
 
-gulp.task('prod', ['css', 'copy','image', 'build'], function(){})
+gulp.task('prod', ['css', 'copy','image', 'build','watch'], function(){})
 
-gulp.task('default', ['css', 'copy', 'image','build', 'watch'], function(){})
+gulp.task('default', ['css', 'copy', 'image','build'], function(){})
