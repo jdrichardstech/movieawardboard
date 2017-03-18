@@ -37455,7 +37455,7 @@
 																	_react2.default.createElement(
 																			_reactRouter.Link,
 																			{ to: '/singlemovie/' + movie.id },
-																			_react2.default.createElement('img', { style: { width: 185, height: 275 }, src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
+																			_react2.default.createElement('img', { style: { width: 185, height: 278 }, src: 'http://image.tmdb.org/t/p/w185/' + movie.poster_path })
 																	),
 																	' '
 															)

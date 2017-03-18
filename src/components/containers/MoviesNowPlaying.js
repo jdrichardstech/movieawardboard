@@ -46,7 +46,7 @@ class MoviesNowPlaying extends Component{
 	        </div>
 	      }else{
 					return <div style={{float:'left'}} className="col-md-3" style={{marginBottom:50}} key={i}>
-											<li><Link to = {`/singlemovie/${movie.id}`}><img style={{width:185,height:275}} src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} /></Link> </li>
+											<li><Link to = {`/singlemovie/${movie.id}`}><img style={{width:185,height:278}} src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} /></Link> </li>
 								 </div>
 				}
       })
